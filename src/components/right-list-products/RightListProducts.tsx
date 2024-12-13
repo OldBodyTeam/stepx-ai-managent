@@ -27,7 +27,7 @@ const RightListProducts = () => {
                         className="ml-8"
                       />
                     </div>
-                    <div className="text-222222 leading-18 text-12">
+                    <div className="text-o34 leading-18 text-12">
                       Pageview : 1196753
                     </div>
                   </div>
