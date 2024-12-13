@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 const roboto = Poppins({
   weight: ["400", "500", "700"],
   display: "swap",
+  subsets: ["latin"],
 });
 export default function RootLayout({
   children,

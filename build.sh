@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-git pull
+pnpm install
 pnpm run build
 
 pm2 reload 0
