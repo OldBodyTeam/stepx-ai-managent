@@ -38,6 +38,27 @@ export default {
       EDEDED: "#EDEDED",
       FADB14: "#FADB14",
       E8E8E9: "#E8E8E9",
+      F0F0F0: "#F0F0F0",
+    },
+    fontSize: {
+      xs12: [
+        "12px",
+        {
+          lineHeight: "18px",
+        },
+      ],
+      xs14: [
+        "14px",
+        {
+          lineHeight: "21px",
+        },
+      ],
+      xs16: [
+        "16px",
+        {
+          lineHeight: "25px",
+        },
+      ],
     },
   },
   plugins: [],

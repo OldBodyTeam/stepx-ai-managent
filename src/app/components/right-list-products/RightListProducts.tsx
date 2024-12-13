@@ -10,18 +10,18 @@ const RightListProducts = () => {
             return (
               <div
                 key={index}
-                className="flex items-center justify-between p-24 rounded-24 bg-white border-1 border-E8E8E9 bg-FFFFFF"
+                className="flex items-center justify-between p-16 rounded-16 bg-white border-1 border-E8E8E9 bg-FFFFFF"
               >
                 <div className="flex-1 flex items-center">
-                  <div className="overflow-hidden w-46 h-46 mr-16">logo</div>
+                  <div className="overflow-hidden w-40 h-40 mr-8">logo</div>
                   <div className="flex-1">
-                    <div className="line-clamp-1 flex items-center text-222222 font-medium text-18 leading-27 mb-4">
+                    <div className="line-clamp-1 flex items-center text-222222 font-medium text-14 leading-21 mb-4">
                       Spotter Studio
                       <Image
                         src="/yes-yellow.png"
                         alt="yellow"
-                        width={20}
-                        height={20}
+                        width={14}
+                        height={14}
                         className="ml-8"
                       />
                     </div>
@@ -33,9 +33,9 @@ const RightListProducts = () => {
                 <Image
                   src="/right-arrow.png"
                   alt="right-arrow"
-                  className="w-24 h-24"
-                  width={24}
-                  height={24}
+                  className="w-16 h-16"
+                  width={16}
+                  height={16}
                 />
               </div>
             );
