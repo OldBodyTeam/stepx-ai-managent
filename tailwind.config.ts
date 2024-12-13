@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
-
+import daisyui from "daisyui";
+import scrollbar from "tailwind-scrollbar";
 export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -60,6 +61,11 @@ export default {
         },
       ],
     },
+    screens: {
+      desktop12: "1280px",
+      desktop14: "1440px",
+      desktop19: "1290px",
+    },
   },
-  plugins: [],
+  plugins: [daisyui, scrollbar],
 } satisfies Config;

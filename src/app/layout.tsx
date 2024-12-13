@@ -43,10 +43,12 @@ export default function RootLayout({
             <div>logo</div>
             <Menu />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 flex flex-col">
             <Nav />
-            <div className="flex h-full">
-              <div className="flex-1 px-40">{children}</div>
+            <div className="flex flex-1 overflow-hidden">
+              <div className="flex-1 px-24 overflow-y-auto overflow-x-hidden scrollbar-none">
+                {children}
+              </div>
               <div className="w-250 flex flex-col">
                 <RightLogo />
                 <div className="font-bold text-18 text-101010 leading-27 mb-24 mt-40">

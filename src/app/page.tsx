@@ -11,9 +11,9 @@ export default function Home() {
         <div>logo</div>
         <Menu />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col">
         <Nav />
-        <div className="flex h-full">
+        <div className="flex flex-1">
           <div className="flex-1 px-40">
             <Content />
           </div>

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const RightListProducts = () => {
   return (
-    <div className="flex-1 overflow-x-hidden overflow-y-auto">
+    <div className="flex-1 overflow-x-hidden overflow-y-auto scrollbar-none">
       <div className="space-y-16 cursor-pointer">
         {Array(15)
           .fill(1)
