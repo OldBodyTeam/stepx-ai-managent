@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Menu from "./components/menu/Menu";
-import Nav from "./components/nav/Nav";
-import RightLogo from "./components/right-logo/RightLogo";
-import RightListProducts from "./components/right-list-products/RightListProducts";
+import Menu from "@/components/menu/Menu";
+import Nav from "@/components/nav/Nav";
+import RightListProducts from "@/components/right-list-products/RightListProducts";
+import RightLogo from "@/components/right-logo/RightLogo";
 
 const poppinsBold = localFont({
-  src: "./fonts/Poppins-Bold.ttf",
+  src: "../fonts/Poppins-Bold.ttf",
   variable: "--font-poppins-bold",
   weight: "700",
 });
 const poppinsMedium = localFont({
-  src: "./fonts/Poppins-Medium.ttf",
+  src: "../fonts/Poppins-Medium.ttf",
   variable: "--font-poppins-medium",
   weight: "500",
 });
 const poppinsRegular = localFont({
-  src: "./fonts/Poppins-Regular.ttf",
+  src: "../fonts/Poppins-Regular.ttf",
   variable: "--font-poppins-regular",
   weight: "400",
 });

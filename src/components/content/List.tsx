@@ -17,33 +17,33 @@ const List = () => {
               />
             </div>
             <div className="flex items-center space-x-6">
-              <div className="text-xs12 text-222222">Delete</div>
-              <div className="text-xs12 text-222222">Edit</div>
+              <div className="text-xs12 text-o34">Delete</div>
+              <div className="text-xs12 text-o34">Edit</div>
             </div>
           </div>
-          <div className="line-clamp-1 text-xs12 text-222222">
+          <div className="line-clamp-1 text-xs12 text-o34">
             Animate people speaking…
           </div>
         </div>
       </div>
-      <div className="rounded-8 bg-232 p-12 mb-16">
+      <div className="rounded-8 bg-o232 p-12 mb-16">
         <div className="flex items-center">
           <div className="border-r-[1px] border-F0F0F0 border-b-[1px] flex-1 flex flex-col justify-center items-center py-12">
-            <div className="text-xs12 text-222222 mb-2">Release</div>
+            <div className="text-xs12 text-o34 mb-2">Release</div>
             <div className="text-xs14 font-medium text-222222">2024.12.03</div>
           </div>
           <div className="border-F0F0F0 border-b-[1px] flex-1 flex flex-col justify-center items-center py-12">
-            <div className="text-xs12 text-222222 mb-2">Release</div>
+            <div className="text-xs12 text-o34 mb-2">Release</div>
             <div className="text-xs14 font-medium text-222222">2024.12.03</div>
           </div>
         </div>
         <div className="flex items-center">
           <div className="border-r-[1px] border-F0F0F0 flex-1 flex flex-col justify-center items-center py-12">
-            <div className="text-xs12 text-222222 mb-2">Release</div>
+            <div className="text-xs12 text-o34 mb-2">Release</div>
             <div className="text-xs14 font-medium text-222222">2024.12.03</div>
           </div>
           <div className="flex-1 flex flex-col justify-center items-center py-12">
-            <div className="text-xs12 text-222222 mb-2">Release</div>
+            <div className="text-xs12 text-o34 mb-2">Release</div>
             <div className="text-xs14 font-medium text-222222">2024.12.03</div>
           </div>
         </div>

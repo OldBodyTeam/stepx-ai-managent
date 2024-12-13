@@ -39,7 +39,9 @@ export default {
       EDEDED: "#EDEDED",
       FADB14: "#FADB14",
       E8E8E9: "#E8E8E9",
-      232: "rgba(2322,232,233,0.2)",
+      o232: "rgba(232,232,233,0.2)",
+      o16: "rgba(16,16,16,0.65)",
+      o34: "rgba(34,34,34,0.65)",
       F0F0F0: "#F0F0F0",
     },
     fontSize: {

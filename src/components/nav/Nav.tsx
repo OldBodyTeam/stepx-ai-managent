@@ -7,13 +7,13 @@ export const navMenu = [
 ];
 const Nav = () => {
   return (
-    <div className="flex items-center pt-15  pl-24">
+    <div className="flex items-center pt-15  pl-24 mb-24">
       <div className="flex-1 justify-between items-center flex">
         <div>
           <div className="text-22 leading-33 font-bold mb-4">My Product</div>
-          <div className="flex items-center text-101010 opacity-65 text-12 leading-18">
+          <div className="flex items-center text-o16 opacity-65 text-12 leading-18">
             Home /{" "}
-            <div className="text-1010101 text-12 leading-18">My Product</div>
+            <div className="text-101010 text-12 leading-18">My Product</div>
           </div>
         </div>
         <div className="flex items-center justify-center px-12 py-8 bg-FFFFFF rounded-50 border-E8E8E9 border-1 cursor-pointer">
