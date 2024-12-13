@@ -13,7 +13,9 @@ const RightListProducts = () => {
                 className="flex items-center justify-between p-16 rounded-16 bg-white border-1 border-E8E8E9 bg-FFFFFF"
               >
                 <div className="flex-1 flex items-center">
-                  <div className="overflow-hidden w-40 h-40 mr-8">logo</div>
+                  <div className="overflow-hidden w-40 h-40 mr-8">
+                    <Image src="/2.png" alt="yellow" width={40} height={40} />
+                  </div>
                   <div className="flex-1">
                     <div className="line-clamp-1 flex items-center text-222222 font-medium text-14 leading-21 mb-4">
                       Spotter Studio

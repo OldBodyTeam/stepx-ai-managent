@@ -24,3 +24,12 @@ body {
 div {
   box-sizing: border-box;
 }
+@font-face {
+  font-family: "font_family"; /* Project id 4781182 */
+  src: url("//at.alicdn.com/t/c/font_4781182_k0wbrwth4ci.woff2?t=1734087366471")
+      format("woff2"),
+    url("//at.alicdn.com/t/c/font_4781182_k0wbrwth4ci.woff?t=1734087366471")
+      format("woff"),
+    url("//at.alicdn.com/t/c/font_4781182_k0wbrwth4ci.ttf?t=1734087366471")
+      format("truetype");
+}

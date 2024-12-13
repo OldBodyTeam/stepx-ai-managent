@@ -8,7 +8,7 @@ const menuData = [
   { name: "Dashboard", key: "dashboard" },
   { name: "My Product", key: "product" },
   { name: "My Collection", key: "collection" },
-  { name: "Notifications", key: "notifications" },
+  // { name: "Notifications", key: "notifications" },
   { name: "Settings", key: "settings" },
 ];
 const Menu = () => {
@@ -59,12 +59,16 @@ const Menu = () => {
           );
         })}
       </div>
-      <div className="h-130 w-full relative">
-        <div className="bg-FFFFFF w-54 h-54 rounded-54 flex items-center justify-center border-4 border-222222 absolute left-53 -top-27">
+
+      <div
+        className="h-130 w-full relative bg-100% bg-no-repeat flex items-end p-12"
+        style={{ backgroundImage: "url(/menu-logo-bottom.png)" }}
+      >
+        <div className="bg-FFFFFF w-54 h-54 rounded-54 flex items-center justify-center border-4 border-222222 absolute left-53 -top-27 hover:rotate-45 transition-all cursor-pointer">
           <Image src={"/arrow-up.png"} alt="arrow" width={30} height={30} />
         </div>
-        <div className=" w-43 h-43  absolute right-10 top-15">
-          <Image src={"/percentage.png"} alt="arrow" width={30} height={30} />
+        <div className="text-xs12 font-bold line-clamp-2">
+          Claim your limited time discount
         </div>
       </div>
     </div>

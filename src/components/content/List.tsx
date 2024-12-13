@@ -3,7 +3,9 @@ const List = () => {
   return (
     <div className="bg-FFFFFF border-1 border-E8E8E9 p-16 rounded-16">
       <div className="mb-16 flex items-center">
-        <div className="bg-D0FF71 w-44 h-44 mr-8 rounded-11"></div>
+        <div className="bg-D0FF71 w-44 h-44 mr-8 rounded-11">
+          <Image src="/2.png" alt="yellow" width={44} height={44} />
+        </div>
         <div className="flex-1">
           <div className="flex items-center justify-between">
             <div className="text-xs16 text-222222 font-medium flex items-center">
@@ -16,7 +18,7 @@ const List = () => {
                 className="ml-4"
               />
             </div>
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-6 cursor-pointer">
               <div className="text-xs12 text-o34">Delete</div>
               <div className="text-xs12 text-o34">Edit</div>
             </div>
@@ -48,7 +50,7 @@ const List = () => {
           </div>
         </div>
       </div>
-      <div className="h-44 rounded-44 w-full bg-D0FF71 flex items-center justify-center py-12 font-medium  text-222222 text-xs14">
+      <div className="h-44 rounded-44 w-full bg-D0FF71 flex items-center justify-center py-12 font-medium  text-222222 text-xs14 cursor-pointer">
         Renew
       </div>
     </div>
