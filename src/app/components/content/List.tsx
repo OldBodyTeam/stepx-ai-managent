@@ -1,9 +1,9 @@
 import Image from "next/image";
 const List = () => {
   return (
-    <div className="bg-FFFFFF border-1 border-E8E8E9 p-16">
+    <div className="bg-FFFFFF border-1 border-E8E8E9 p-16 rounded-16">
       <div className="mb-16 flex items-center">
-        <div className="bg-D0FF71 w-44 h-44 mr-8">x</div>
+        <div className="bg-D0FF71 w-44 h-44 mr-8 rounded-11"></div>
         <div className="flex-1">
           <div className="flex items-center justify-between">
             <div className="text-xs16 text-222222 font-medium flex items-center">
@@ -26,7 +26,7 @@ const List = () => {
           </div>
         </div>
       </div>
-      <div className="rounded-8 bg-E8E8E9 p-12 mb-16">
+      <div className="rounded-8 bg-232 p-12 mb-16">
         <div className="flex items-center">
           <div className="border-r-[1px] border-F0F0F0 border-b-[1px] flex-1 flex flex-col justify-center items-center py-12">
             <div className="text-xs12 text-222222 mb-2">Release</div>

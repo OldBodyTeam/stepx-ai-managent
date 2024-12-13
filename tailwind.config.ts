@@ -39,6 +39,7 @@ export default {
       EDEDED: "#EDEDED",
       FADB14: "#FADB14",
       E8E8E9: "#E8E8E9",
+      232: "rgba(2322,232,233,0.2)",
       F0F0F0: "#F0F0F0",
     },
     fontSize: {
@@ -64,7 +65,7 @@ export default {
     screens: {
       desktop12: "1280px",
       desktop14: "1440px",
-      desktop19: "1290px",
+      desktop19: "1920px",
     },
   },
   plugins: [daisyui, scrollbar],
