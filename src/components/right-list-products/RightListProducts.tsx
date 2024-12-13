@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const RightListProducts = () => {
   return (
-    <div className="flex-1 overflow-x-hidden overflow-y-auto scrollbar-none">
-      <div className="space-y-16 cursor-pointer">
+    <div className="flex-1 overflow-x-hidden overflow-y-auto scrollbar-none pb-16">
+      <div className="space-y-12 cursor-pointer">
         {Array(15)
           .fill(1)
           .map((_, index) => {

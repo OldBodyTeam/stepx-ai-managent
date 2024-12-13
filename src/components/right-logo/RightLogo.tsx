@@ -17,7 +17,7 @@ const RightLogo = () => {
             Limited time promotion of $10 per year
           </div>
         </div>
-        <div className="w-28 h-28 rounded-28 bg-FADB14 flex items-center justify-center hover:rotate-45 transition-all cursor-pointer">
+        <div className="w-28 h-28 rounded-28 bg-FADB14 flex items-center justify-center hover:rotate-45 transition-all cursor-pointer !duration-300">
           <Image
             src={"/right-top-arrow.png"}
             alt="arrow"

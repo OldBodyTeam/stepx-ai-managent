@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@arco-design/web-react": "^2.65.0",
     "ahooks": "^3.8.4",
     "classnames": "^2.5.1",
+    "framer-motion": "^11.14.3",
     "jotai": "^2.10.3",
     "next": "15.0.4",
     "react": "^19.0.0",

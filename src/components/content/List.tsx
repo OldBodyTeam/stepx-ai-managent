@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AnimationButton from "../animation-button/AnimationButton";
 const List = () => {
   return (
     <div className="bg-FFFFFF border-1 border-E8E8E9 p-16 rounded-16">
@@ -50,9 +51,9 @@ const List = () => {
           </div>
         </div>
       </div>
-      <div className="h-44 rounded-44 w-full bg-D0FF71 flex items-center justify-center py-12 font-medium  text-222222 text-xs14 cursor-pointer">
-        Renew
-      </div>
+      <AnimationButton className="h-44 rounded-44 w-full bg-D0FF71 flex items-center justify-center py-12 font-medium  text-222222 text-xs14 cursor-pointer overflow-hidden flex-col relative">
+        ReNew
+      </AnimationButton>
     </div>
   );
 };

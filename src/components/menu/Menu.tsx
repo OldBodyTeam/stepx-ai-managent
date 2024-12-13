@@ -64,7 +64,7 @@ const Menu = () => {
         className="h-130 w-full relative bg-100% bg-no-repeat flex items-end p-12"
         style={{ backgroundImage: "url(/menu-logo-bottom.png)" }}
       >
-        <div className="bg-FFFFFF w-54 h-54 rounded-54 flex items-center justify-center border-4 border-222222 absolute left-53 -top-27 hover:rotate-45 transition-all cursor-pointer">
+        <div className="bg-FFFFFF w-54 h-54 rounded-54 flex items-center justify-center border-4 border-222222 absolute left-53 -top-27 hover:rotate-45 transition-all cursor-pointer !duration-300">
           <Image src={"/arrow-up.png"} alt="arrow" width={30} height={30} />
         </div>
         <div className="text-xs12 font-bold line-clamp-2">
