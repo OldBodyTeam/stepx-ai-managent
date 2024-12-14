@@ -6,17 +6,22 @@ import classNames from "classnames";
 const variantsTop = {
   hover: {
     y: -50,
+    opacity: 0,
   },
   initial: {
     y: 0,
+    opacity: 1,
   },
 };
 const variantsBottom = {
   hover: {
     y: 50,
+    opacity: 0,
+    transition: { when: "afterChildren" },
   },
   initial: {
     y: 0,
+    opacity: 1,
   },
 };
 const AnimationButton: FC<PropsWithChildren<{ className?: string }>> = (
@@ -44,14 +49,29 @@ const AnimationButton: FC<PropsWithChildren<{ className?: string }>> = (
       <motion.div
         variants={variantsTop}
         animate={isHovered ? "hover" : "initial"}
-        className="left-0 top-0 right-0 bottom-0 w-full h-full flex items-center justify-center  absolute"
+        transition={{
+          type: "spring",
+          visualDuration: 0.5,
+          bounce: 0.25,
+        }}
+        className={classNames(
+          "left-0 top-0 right-0 bottom-0 w-full h-full flex items-center justify-center  absolute"
+        )}
       >
         {children}
       </motion.div>
       <motion.div
         variants={variantsBottom}
         animate={isHovered ? "initial" : "hover"}
-        className="left-0 top-0 right-0 bottom-0 w-full h-full flex items-center justify-center  absolute"
+        transition={{
+          type: "spring",
+          visualDuration: 0.5,
+          bounce: 0.25,
+        }}
+        initial={false}
+        className={classNames(
+          "left-0 top-0 right-0 bottom-0 w-full h-full flex items-center justify-center  absolute translate-y-full"
+        )}
       >
         {children}
       </motion.div>

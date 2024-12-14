@@ -2,7 +2,7 @@
 import { useMemoizedFn } from "ahooks";
 import classNames from "classnames";
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 const menuData = [
   { name: "Dashboard", key: "dashboard" },
@@ -13,9 +13,12 @@ const menuData = [
 ];
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(menuData.at(1)?.key);
+  const router = useRouter();
   const handleChangeMenu = useMemoizedFn((key: string) => {
     setSelectedMenu(key);
+    router.push(`/${key}`);
   });
+
   return (
     <div className="flex flex-col justify-between flex-1">
       <div className="space-y-8">
@@ -53,7 +56,7 @@ const Menu = () => {
                   isSelected ? "text-101010" : "text-FFFFFF"
                 )}
               >
-                <Link href={v.key}>{v.name}</Link>
+                {v.name}
               </div>
             </div>
           );
