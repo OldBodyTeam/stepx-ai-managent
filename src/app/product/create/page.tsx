@@ -1,5 +1,3 @@
-import Form from "next/form";
-import { createPost } from "./actions";
 import Input from "@/components/base/Input";
 import Upload from "@/components/base/Upload";
 import Title from "@/components/base/Title";
@@ -7,7 +5,7 @@ import LabelProgress from "@/components/base/LabelProgress";
 import Editor from "@/components/base/Editor";
 const ProductCreate = () => {
   return (
-    <Form action={createPost}>
+    <div>
       <div>
         <Title className="mb-16">Product Information</Title>
         <div className="p-16 rounded-16 bg-FFFFFF mb-24">
@@ -60,7 +58,7 @@ const ProductCreate = () => {
       </div>
 
       <button type="submit">Create Post</button>
-    </Form>
+    </div>
   );
 };
 export default ProductCreate;
