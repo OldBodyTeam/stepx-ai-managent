@@ -27,7 +27,7 @@ const LabelProgress: FC<PropsWithChildren<LabelProgressProps>> = (props) => {
   });
   const percent = useMemo(() => {
     return Math.floor((text.length / base) * 100);
-  }, [text]);
+  }, [base, text.length]);
   return (
     <div className="flex flex-1  flex-col w-full space-y-10">
       <div className="w-full flex items-center flex-1 justify-between">

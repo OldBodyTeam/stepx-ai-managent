@@ -1,9 +1,8 @@
 "use client";
-import { FC, CSSProperties } from "react";
+import { FC } from "react";
 import cls from "classnames";
 import { Upload as UploadArco, UploadProps } from "@arco-design/web-react";
 import Image from "next/image";
-export interface InputProps {}
 const Upload: FC<UploadProps & { text: string }> = (props) => {
   const { className, style, text, ...rest } = props;
   return (

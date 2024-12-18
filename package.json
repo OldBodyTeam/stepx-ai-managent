@@ -6,7 +6,8 @@
     "dev": "PORT=4000 next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen-api": "openapi-generator-cli generate -i http://47.100.116.254:8084/swagger.json -g typescript-axios -o ./src/services"
   },
   "dependencies": {
     "@arco-design/web-react": "^2.65.0",
@@ -28,6 +29,7 @@
     "tailwind-scrollbar": "^3.1.0"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.15.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
