@@ -1,6 +1,6 @@
 import Image from "next/image";
 import AnimationButton from "../animation-button/AnimationButton";
-
+import Link from "next/link";
 export const navMenu = [
   { key: "search", path: "/search.png" },
   { key: "language", path: "/language.png" },
@@ -20,7 +20,7 @@ const Nav = () => {
         <div className="flex items-center justify-center pl-12 pr-16 py-8 bg-FFFFFF rounded-50 border-E8E8E9 border-1 cursor-pointer">
           <Image src={"/add.png"} alt="add" width={16} height={16} />
           <AnimationButton className="font-medium text-222222 text-12 ml-4 flex-1 h-full">
-            New Product
+            <Link href={"/product/create"}>New Product</Link>
           </AnimationButton>
         </div>
       </div>
