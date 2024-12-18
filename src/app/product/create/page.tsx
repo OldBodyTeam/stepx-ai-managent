@@ -1,3 +1,4 @@
+"use client";
 import Input from "@/components/base/Input";
 import Upload from "@/components/base/Upload";
 import Title from "@/components/base/Title";
