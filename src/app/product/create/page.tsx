@@ -1,9 +1,9 @@
-"use client";
 import Input from "@/components/base/Input";
 import Upload from "@/components/base/Upload";
 import Title from "@/components/base/Title";
 import LabelProgress from "@/components/base/LabelProgress";
-import Editor from "@/components/base/Editor";
+import Editor from "@/components/editor";
+
 const ProductCreate = () => {
   return (
     <div>
