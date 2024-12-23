@@ -28,6 +28,10 @@ export default {
       map[index] = `${index}px`;
       return map;
     }, {}) as any,
+    borderWidth: Array.from({ length: 1000 }).reduce((map: any, _, index) => {
+      map[index] = `${index}px`;
+      return map;
+    }, {}) as any,
     backgroundSize: {
       "100%": "100% 100%",
     },

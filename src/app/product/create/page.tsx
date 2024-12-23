@@ -1,18 +1,44 @@
+"use client";
 import Input from "@/components/base/Input";
 import Upload from "@/components/base/Upload";
 import Title from "@/components/base/Title";
 import LabelProgress from "@/components/base/LabelProgress";
 import Editor from "@/components/editor";
+// import { Configuration, DefaultApi } from "@/services";
+import { useActionState } from "react";
+import { createTodo } from "./actions";
+import { Button, Form } from "@arco-design/web-react";
+import { useMemoizedFn } from "ahooks";
 
 const ProductCreate = () => {
+  // api
+  //   .adminCreateCreate({ username: "xxx", password: "xx", company_name: "xx" })
+  //   .then((response) => {
+  //     console.log(response.data);
+  //   });
+  // const [state, formAction] = useActionState(createTodo, { a: 1 });
+  const [form] = Form.useForm();
+  const handleSubmit = useMemoizedFn(() => {
+    form.validate().then(() => {
+      createTodo({ username: "xxx", password: "xx", company_name: "xx" });
+    });
+  });
   return (
-    <div>
+    <Form
+      onChange={console.log}
+      wrapperCol={{ span: 24 }}
+      className="[&_.arco-form-layout-horizontal]:!mb-0"
+      form={form}
+    >
       <div>
         <Title className="mb-16">Product Information</Title>
         <div className="p-16 rounded-16 bg-FFFFFF mb-24">
           <div className="flex space-x-12 items-center">
             <div className="space-y-8 flex flex-col flex-1">
-              <Input placeholder="Please enter the product name" />
+              <Form.Item field="todo">
+                <Input placeholder="Please enter the product name" />
+              </Form.Item>
+
               <Input placeholder="Please enter subtitle" />
               <Input placeholder="Please enter the product link" />
             </div>
@@ -58,8 +84,8 @@ const ProductCreate = () => {
         </div>
       </div>
 
-      <button type="submit">Create Post</button>
-    </div>
+      <Button onClick={handleSubmit}>Create Post</Button>
+    </Form>
   );
 };
 export default ProductCreate;
