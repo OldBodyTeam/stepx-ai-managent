@@ -22,7 +22,7 @@ const CustomRadio: FC<CustomRadioProps> = (props) => {
     <div
       onClick={handleRadioChange}
       className={classNames(
-        "transition-all w-24 h-24 rounded-24 overflow-hidden",
+        "transition-all w-24 h-24 rounded-24 overflow-hidden cursor-pointer",
         className
       )}
     >
