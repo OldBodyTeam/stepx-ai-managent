@@ -4,7 +4,6 @@ import Button from "../components/Button";
 import RadioGroupCustom from "../components/RadioGroupCustom";
 import RadioVar from "../components/RadioVar";
 import { useRouter } from "next/navigation";
-import { Message } from "@arco-design/web-react";
 const options = [
   {
     title: "c",
