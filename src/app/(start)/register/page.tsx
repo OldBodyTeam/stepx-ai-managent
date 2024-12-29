@@ -1,30 +1,44 @@
-import CustomRadio from "@/components/base/Radio";
+"use client";
+import { useState } from "react";
 import Button from "../components/Button";
-import Image from "next/image";
 import RadioGroupCustom from "../components/RadioGroupCustom";
 import RadioVar from "../components/RadioVar";
+import { useRouter } from "next/navigation";
+import { Message } from "@arco-design/web-react";
 const options = [
   {
-    title: "people",
+    title: "c",
+    icon: "people",
     label: "Individual Users",
     desc: "Mainly used for browsing the website",
   },
   {
-    title: "book",
+    title: "b",
+    icon: "book",
     label: "Enterprise Users",
     desc: "Mainly used for publishing products",
   },
 ];
 const RegisterPage = () => {
+  const [path, setPath] = useState("");
+  const [match, setMatch] = useState(false);
+  const router = useRouter();
+  const handleClick = () => {
+    if (!match) {
+      // Message.info("Please agree to the terms of service and privacy policy");
+      return;
+    }
+    router.push(`/register/${path}`);
+  };
   return (
     <div>
       <div className="text-14 text-222222 font-medium mb-32">
         Please select the account you need to create
       </div>
-      <RadioGroupCustom options={options} />
-      <RadioVar />
+      <RadioGroupCustom options={options} onChange={(path) => setPath(path)} />
+      <RadioVar onChange={(e) => setMatch(e)} value={match} />
       <div className="space-y-16 mt-44">
-        <Button>Next Step</Button>
+        <Button onClick={handleClick}>Next Step</Button>
         <Button className="!bg-EDEDED !border-1 !border-222222 !text-101010">
           Cancel
         </Button>

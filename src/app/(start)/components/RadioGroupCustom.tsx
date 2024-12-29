@@ -8,11 +8,15 @@ export type RadioGroupCustomProps = {
   title: string;
   label: string;
   desc: string;
+  icon: string;
 };
-const RadioGroupCustom: FC<{ options: RadioGroupCustomProps[] }> = (props) => {
-  const { options } = props;
+const RadioGroupCustom: FC<{
+  options: RadioGroupCustomProps[];
+  onChange?: (path: string) => void;
+}> = (props) => {
+  const { options, onChange } = props;
   return (
-    <Radio.Group className="space-y-16">
+    <Radio.Group className="space-y-16" onChange={onChange}>
       {options.map((item) => {
         return (
           <Radio value={item.title} key={item.title}>
@@ -22,7 +26,7 @@ const RadioGroupCustom: FC<{ options: RadioGroupCustomProps[] }> = (props) => {
                   <div className="flex items-center">
                     <div className="w-42 h-42 bg-D0FF71 rounded-10 flex items-center justify-center">
                       <Image
-                        src={`/login/${item.title}.png`}
+                        src={`/login/${item.icon}.png`}
                         alt="people"
                         width={24}
                         height={24}
