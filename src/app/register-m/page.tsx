@@ -1,16 +1,9 @@
 import CustomRadio from "@/components/base/Radio";
-import Image from "next/image";
 import Button from "./components/Button";
+import Image from "next/image";
 const RegisterPage = () => {
   return (
     <div>
-      <Image
-        src={"/login/login-logo.png"}
-        alt="logo"
-        width={156}
-        height={40}
-        className="mt-8"
-      />
       <div className="text-14 text-222222 font-medium mb-32">
         Please select the account you need to create
       </div>

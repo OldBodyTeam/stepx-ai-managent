@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import "@arco-design/web-react/dist/css/arco.css";
+import "./arco.css";
 import { Provider } from "jotai";
 export const metadata: Metadata = {
   title: "Create Next App",

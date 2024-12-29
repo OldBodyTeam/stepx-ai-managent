@@ -1,13 +1,23 @@
 "use client";
-import { useMemoizedFn } from "ahooks";
+import { useMemoizedFn, useMount } from "ahooks";
 import classNames from "classnames";
+import { createStore, Provider } from "jotai";
 import Image from "next/image";
-import { FC, useEffect, useState } from "react";
+import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
 export interface CustomRadioProps {
   className?: string;
   value?: boolean;
   onChange?: (value?: boolean) => void;
 }
+export const CustomRadioGroup: FC<PropsWithChildren<any>> = (props) => {
+  const { children } = props;
+  const ref = useRef<ReturnType<typeof createStore>>(createStore());
+  useMount(() => {
+    ref.current = createStore();
+  });
+
+  return <Provider store={ref.current}>{children}</Provider>;
+};
 const CustomRadio: FC<CustomRadioProps> = (props) => {
   const { className, value, onChange } = props;
   const [selected, setSelected] = useState(false);
