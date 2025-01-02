@@ -4,6 +4,11 @@ import Nav from "@/components/nav/Nav";
 import RightListProducts from "@/components/right-list-products/RightListProducts";
 import RightLogo from "@/components/right-logo/RightLogo";
 import Image from "next/image";
+export const navMenu = [
+  { key: "search", path: "/search.png" },
+  { key: "language", path: "/language.png" },
+  { key: "people", path: "/user.png" },
+];
 const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
   return (
     <div className="w-screen h-screen box-border px-16 pt-16 flex bg-EDEDED relative">
@@ -34,19 +39,31 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
           </div>
           <Menu />
         </div>
-        <div className="flex-1 flex flex-col">
-          <Nav />
-          <div className="flex flex-1 overflow-hidden">
-            <div className="flex-1 px-24 overflow-y-auto overflow-x-hidden scrollbar-none">
-              {children}
-            </div>
-            <div className="w-250 flex flex-col">
-              <RightLogo />
-              <div className="font-bold text-18 text-101010 leading-27 mb-16 mt-24">
-                Like Products
+        <div className="flex flex-1 overflow-hidden">
+          <div className="flex-1 px-24 overflow-y-auto overflow-x-hidden scrollbar-none">
+            <Nav />
+            {children}
+          </div>
+          <div className="w-250 flex flex-col">
+            <div className="w-[250px] flex justify-end items-center mb-20 mt-15 h-55 ">
+              <div className="space-x-16 flex items-center">
+                {navMenu.map((v) => {
+                  return (
+                    <div
+                      className="flex items-center justify-center w-32 h-32 rounded-32 bg-FFFFFF"
+                      key={v.key}
+                    >
+                      <Image src={v.path} alt={v.key} width={16} height={16} />
+                    </div>
+                  );
+                })}
               </div>
-              <RightListProducts />
             </div>
+            <RightLogo />
+            <div className="font-bold text-18 text-101010 leading-27 mb-16 mt-24">
+              Like Products
+            </div>
+            <RightListProducts />
           </div>
         </div>
       </div>

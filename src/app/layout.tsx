@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import "@arco-design/web-react/dist/css/arco.css";
@@ -21,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.className}`}>
       <body>
-        <Provider>
-          <div className="w-screen h-screen">{children}</div>
-        </Provider>
+        <AntdRegistry>
+          <Provider>
+            <div className="w-screen h-screen">{children}</div>
+          </Provider>
+        </AntdRegistry>
       </body>
     </html>
   );

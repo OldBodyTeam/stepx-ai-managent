@@ -1,10 +1,13 @@
 "use client";
-import { useMemoizedFn } from "ahooks";
+import { useMemoizedFn, useMount } from "ahooks";
 import classNames from "classnames";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-const menuData = [
+import { useSetAtom } from "jotai";
+import { menuAtom } from "@/hooks/menu";
+import { usePathname } from "next/navigation";
+export const menuData = [
   { name: "Dashboard", key: "dashboard" },
   { name: "My Product", key: "product" },
   { name: "My Collection", key: "collection" },
@@ -12,11 +15,19 @@ const menuData = [
   { name: "Settings", key: "settings" },
 ];
 const Menu = () => {
+  const setMenuAtom = useSetAtom(menuAtom);
   const [selectedMenu, setSelectedMenu] = useState(menuData.at(1)?.key);
   const router = useRouter();
   const handleChangeMenu = useMemoizedFn((key: string) => {
     setSelectedMenu(key);
     router.push(`/${key}`);
+    setMenuAtom(menuData.find((v) => v.key === key));
+  });
+  const pathname = usePathname();
+  useMount(() => {
+    const key = menuData.find((v) => pathname.includes(v.key))?.key;
+    setSelectedMenu(key);
+    setMenuAtom(menuData.find((v) => v.key === key));
   });
 
   return (

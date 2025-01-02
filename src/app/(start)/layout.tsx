@@ -7,7 +7,7 @@ const RegisterLayout: FC<PropsWithChildren<any>> = ({ children }) => {
       <div
         className="absolute left-0 top-0 w-373 h-370 bg-no-repeat z-0"
         style={{
-          backgroundImage: "url(/register/bg-left.png)",
+          backgroundImage: "url(/register/left-bg.png)",
           backgroundSize: "100% 100%",
         }}
       ></div>

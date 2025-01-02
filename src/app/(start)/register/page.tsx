@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import RadioGroupCustom from "../components/RadioGroupCustom";
 import RadioVar from "../components/RadioVar";
 import { useRouter } from "next/navigation";
+import { message } from "antd";
 const options = [
   {
     title: "c",
@@ -22,15 +23,27 @@ const RegisterPage = () => {
   const [path, setPath] = useState("");
   const [match, setMatch] = useState(false);
   const router = useRouter();
+  const [messageApi, contextHolder] = message.useMessage();
   const handleClick = () => {
+    if (!path) {
+      messageApi.open({
+        type: "error",
+        content: "Please select the account you need to create",
+      });
+      return;
+    }
     if (!match) {
-      // Message.info("Please agree to the terms of service and privacy policy");
+      messageApi.open({
+        type: "error",
+        content: "Please agree to the terms of service and privacy policy",
+      });
       return;
     }
     router.push(`/register/${path}`);
   };
   return (
     <div>
+      {contextHolder}
       <div className="text-14 text-222222 font-medium mb-32">
         Please select the account you need to create
       </div>

@@ -3,7 +3,14 @@ import { useMemoizedFn, useMount } from "ahooks";
 import classNames from "classnames";
 import { createStore, Provider } from "jotai";
 import Image from "next/image";
-import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
+import {
+  FC,
+  PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+  Children,
+} from "react";
 export interface CustomRadioProps {
   className?: string;
   value?: boolean;
@@ -13,7 +20,7 @@ export const CustomRadioGroup: FC<PropsWithChildren<any>> = (props) => {
   const { children } = props;
   const ref = useRef<ReturnType<typeof createStore>>(createStore());
   useMount(() => {
-    ref.current = createStore();
+    Children.count(children);
   });
 
   return <Provider store={ref.current}>{children}</Provider>;

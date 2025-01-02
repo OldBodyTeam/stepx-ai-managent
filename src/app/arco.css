@@ -25,3 +25,8 @@
   margin-right: 0;
   width: 100%;
 }
+.arco-form-message {
+  display: none;
+  position: absolute;
+  opacity: 0;
+}

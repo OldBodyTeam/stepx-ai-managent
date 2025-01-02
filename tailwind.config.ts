@@ -43,6 +43,8 @@ export default {
       EDEDED: "#EDEDED",
       FADB14: "#FADB14",
       E8E8E9: "#E8E8E9",
+      "8A8C90": "#8A8C90",
+      FA3100: "#FA3100",
       o232: "rgba(232,232,233,0.2)",
       o16: "rgba(16,16,16,0.65)",
       o34: "rgba(34,34,34,0.65)",
