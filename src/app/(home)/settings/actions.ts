@@ -1,4 +1,5 @@
 "use server";
+import { AdminUpdateCreateRequest } from "@/services";
 import { tokenApi } from "@/utils/server-service";
 
 const uploadFileAction = async (file: File) => {
@@ -13,4 +14,14 @@ const uploadFileAction = async (file: File) => {
       console.error(e);
     });
 };
-export { uploadFileAction };
+const uploadUsername = async (params: AdminUpdateCreateRequest) => {
+  return tokenApi
+    .adminUpdateCreate(params)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+};
+export { uploadFileAction, uploadUsername };

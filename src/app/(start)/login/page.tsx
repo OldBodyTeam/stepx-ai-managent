@@ -12,8 +12,12 @@ import { get } from "lodash";
 import RadioVar from "../components/RadioVar";
 import { useState } from "react";
 import axios from "axios";
+import { useSetAtom } from "jotai";
+import { userIdAtom, userInfoCacheAtom } from "@/stores/userInfo";
 const Login = () => {
   const [match, setMatch] = useState(false);
+  const setUserId = useSetAtom(userIdAtom);
+  const setUserInfo = useSetAtom(userInfoCacheAtom);
   const router = useRouter();
   const [form] = Form.useForm();
   const { contextHolder, showErrorMessage, messageApi } = useHandleResponse();
@@ -29,6 +33,10 @@ const Login = () => {
       await form.validate();
       const userInput = form.getFields();
       const data = await loginAction(userInput);
+      setUserId(data.data?.user_info?.id);
+      setUserInfo({
+        [get(data, "data.user_info.id", "")]: data.data?.user_info,
+      });
       await axios.post("/api/token", { token: data.data?.api_key });
       const isValid = showErrorMessage(data as any);
       if (!isValid) {

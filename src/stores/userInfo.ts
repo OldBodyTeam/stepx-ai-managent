@@ -1,35 +1,34 @@
-import { tokenApi } from "@/utils/server-service";
+import { adminInfoCreate } from "@/app/(home)/actions";
+import { AdminLoginCreate200ResponseData } from "@/services";
 import { atom } from "jotai";
-export const adminInfoCreate = async () => {
-  const response = await tokenApi.adminInfoCreate({});
-  return response.data;
-};
-export const postId = atom(1);
-export const postCache = atom({});
-export const postData = atom(
-  async (get) => {
-    const id = get(postId);
-    const cache = get(postCache);
+import _ from "lodash";
 
-    if (cache[id]) {
-      return cache[id];
+export const userIdAtom = atom<number | undefined>();
+export const userInfoCacheAtom = atom<
+  AdminLoginCreate200ResponseData["user_info"]
+>({});
+const userInfoAtom = atom(
+  async (get) => {
+    const id = get(userIdAtom);
+    const cache = get(userInfoCacheAtom) as Record<string, any>;
+    if (_.get(cache, `${id}`)) {
+      return _.get(cache, `${id}`);
     }
 
     // to cache fetch, use jotai-cache
     const postFetched = await adminInfoCreate();
     if (postFetched) {
-      return postFetched;
+      return postFetched.data;
     }
 
-    return cache[id] || EMPTY_POST_DATA;
+    return _.get(cache, `${id}`) || {};
   },
-  (_, set, post: PostType) => {
+  (_, set, post: Record<string, any>) => {
     // only for hydrated data for now
-    set(postCache, (cache) => ({
+    set(userInfoCacheAtom, (cache) => ({
       ...cache,
       [post.id]: post,
     }));
   }
 );
-const userInfoAtom = atom();
 export { userInfoAtom };

@@ -4,15 +4,27 @@ import Image from "next/image";
 import { RightOutlined } from "@ant-design/icons";
 import { uploadFileAction } from "./actions";
 import { useState } from "react";
+import { useAtomValue } from "jotai";
+import { useRouter } from "next/navigation";
+import ModifyUsername from "@/components/modal/ModifyUsername";
+import ModifyEmail from "@/components/modal/ModifyEmail";
+import ModifyPassword from "@/components/modal/ModifyPassword";
+import { userInfoAtom } from "@/stores/userInfo";
 const Page = () => {
   const [url, setUrl] = useState("");
+  const userInfo = useAtomValue(userInfoAtom);
+  const router = useRouter();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
   return (
     <>
       <div className="p-16 bg-FFFFFF rounded-16">
         <div className="flex items-center justify-between ">
           <div className="flex items-center space-x-12">
             {url ? (
-              <div className="w-46 h-46 rounded-46 flex items-center justify-center  overflow-hidden">
+              <div className="w-46 h-46 rounded-46 flex items-center justify-center  overflow-hidden border-1 border-solid border-F0F0F0">
                 <Image
                   src={url}
                   width={46}
@@ -22,7 +34,7 @@ const Page = () => {
                 />
               </div>
             ) : (
-              <div className="w-46 h-46 rounded-46 flex items-center justify-center bg-FADB14">
+              <div className="w-46 h-46 rounded-46 flex items-center justify-center bg-FADB14 border-1 border-solid border-F0F0F0">
                 <Image
                   src={"/settings/user.png"}
                   width={24}
@@ -34,10 +46,10 @@ const Page = () => {
 
             <div className="space-y-6">
               <div className="text-xs16 font-medium text-101010">
-                Hyuk Design
+                {userInfo?.username}
               </div>
               <div className="text-xs12 text-8A8C90">
-                Phone: +86 18713596669
+                Email: {userInfo?.email}
               </div>
             </div>
           </div>
@@ -69,39 +81,49 @@ const Page = () => {
         <div className="text-xs12 text-8A8C90 mb-16">Basic Settings</div>
         <div className="space-y-16">
           {[
-            { name: "Change Username", icon: "user-edit" },
-            { name: "Change Phone Number", icon: "mobile" },
-            { name: "Change Password", icon: "lock" },
+            {
+              name: "Change Username",
+              icon: "user-edit",
+              Comp: ModifyUsername,
+            },
+            { name: "Change Email", icon: "mobile", Comp: ModifyEmail },
+            { name: "Change Password", icon: "lock", Comp: ModifyPassword },
           ].map((item) => {
+            const Container = item.Comp;
             return (
-              <div
-                className="flex items-center justify-between mb-16 cursor-pointer"
-                key={item.icon}
-              >
-                <div className="flex items-center space-x-12">
-                  <Image
-                    src={`/settings/${item.icon}.png`}
-                    width={16}
-                    height={16}
-                    alt="avatar"
-                  />
-                  <div className="text-xs16 font-medium text-101010 ml-8">
-                    {item.name}
+              <Container key={item.icon}>
+                <div className="flex items-center justify-between mb-16 cursor-pointer">
+                  <div className="flex items-center space-x-12">
+                    <Image
+                      src={`/settings/${item.icon}.png`}
+                      width={16}
+                      height={16}
+                      alt="avatar"
+                    />
+                    <div className="text-xs16 font-medium text-101010 ml-8">
+                      {item.name}
+                    </div>
+                  </div>
+                  <div className="text-16">
+                    <RightOutlined />
                   </div>
                 </div>
-                <div className="text-16">
-                  <RightOutlined />
-                </div>
-              </div>
+              </Container>
             );
           })}
         </div>
       </div>
       <div className="mt-24 space-y-16 cursor-pointer">
-        <div className="border-1 border-E8E8E9 py-14 flex items-center justify-center text-222222 text-xs14 font-medium rounded-48 bg-FFFFFF">
+        <div
+          className="border-1 border-E8E8E9 py-14 flex items-center justify-center text-222222 text-xs14 font-medium rounded-48 bg-FFFFFF"
+          onClick={handleLogout}
+        >
           Change Account
         </div>
-        <div className="border-1 border-E8E8E9 py-14 flex items-center justify-center text-FA3100 text-xs14 font-medium rounded-48 bg-FFFFFF">
+        <div
+          className="border-1 border-E8E8E9 py-14 flex items-center justify-center text-FA3100 text-xs14 font-medium rounded-48 bg-FFFFFF"
+          onClick={handleLogout}
+        >
           Logout
         </div>
       </div>
