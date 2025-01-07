@@ -23,8 +23,8 @@ const Upload: FC<
     setLoading(true);
     uploadFileAction(file.originFile as File)
       .then((data) => {
-        setPreviewUrl(data.data?.url ?? "");
-        onChange?.(data.data?.url ?? "");
+        setPreviewUrl(data?.data?.url ?? "");
+        onChange?.(data?.data?.url ?? "");
         setLoading(false);
       })
       .catch(() => {
