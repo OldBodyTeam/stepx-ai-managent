@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { FC, useEffect, useState } from "react";
 import cls from "classnames";
@@ -39,7 +40,11 @@ const Upload: FC<
     <UploadArco
       {...rest}
       className={cls(
-        "!w-180 !h-136 border-dashed rounded-12 !border-[1px] border-F0F0F0",
+        "flex-1 !w-180 !h-full border-dashed rounded-12 !border-[1px] border-F0F0F0 flex items-center justify-center",
+        "[&_.arco-upload-trigger]:!h-full",
+        "[&_.arco-upload-trigger>div]:!h-full",
+        "[&_.arco-upload-trigger>div>div]:!h-full",
+        "[&_.arco-upload-trigger>div>div>div]:!h-full",
         className
       )}
       style={style}
@@ -47,22 +52,20 @@ const Upload: FC<
       onChange={handleFileUpload}
       renderUploadList={() => null}
     >
-      <Spin spinning={loading}>
+      <Spin spinning={loading} className="h-full" rootClassName="h-full">
         {previewUrl ? (
-          <div className="!w-180 !h-136 overflow-hidden rounded-12 relative">
-            <Image
+          <div className="!w-180 !h-full overflow-hidden rounded-12 relative">
+            <img
               src={previewUrl}
               alt="add"
-              width={180}
-              height={136}
-              className="object-cover"
+              className="object-cover w-full h-full inline-block"
             />
             <div className="absolute bottom-0 left-0 w-full py-4 flex items-center justify-center text-101010 text-xs12 font-medium bg-D0FF71">
               Re-upload
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-center space-y-8 flex-col h-136 ">
+          <div className="flex items-center justify-center space-y-8 flex-col h-full ">
             <Image src={"/add-yellow.png"} width={24} height={24} alt="add" />
             <div className="text-xs12 text-101010">{text}</div>
           </div>

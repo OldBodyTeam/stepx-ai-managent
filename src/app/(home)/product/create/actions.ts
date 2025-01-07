@@ -1,18 +1,17 @@
 "use server";
 
-import {
-  DefaultApi,
-  Configuration,
-  ProductCreateCreateRequest,
-} from "@/services";
+import { ProductCreateCreateRequest } from "@/services";
+import { tokenApi } from "@/utils/server-service";
 
-const api = new DefaultApi(
-  new Configuration({ basePath: "http://47.100.116.254:8084" })
-);
 const createTodo = async (params: ProductCreateCreateRequest) => {
-  console.log(params);
-  api.productCreateCreate(params).then((response) => {
+  tokenApi.productCreateCreate(params).then((response) => {
     console.log(response.data);
   });
 };
-export { createTodo };
+const getList = async () => {
+  return tokenApi.categoryListCreate({}).then((response) => {
+    console.log(response.data);
+    return response.data;
+  });
+};
+export { createTodo, getList };

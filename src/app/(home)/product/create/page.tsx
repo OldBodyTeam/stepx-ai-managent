@@ -2,10 +2,14 @@
 
 import Title from "@/components/base/Title";
 import LabelProgress from "@/components/base/LabelProgress";
-import { useMemoizedFn } from "ahooks";
+import { useMemoizedFn, useMount, useRequest } from "ahooks";
 import { Button, Cascader, Form, Input } from "antd";
 import Upload from "@/components/base/Upload";
 import EditorPreview from "@/components/editor";
+import { useMemo } from "react";
+import { getList } from "./actions";
+import { CategoryListCreate200ResponseDataItems } from "@/services";
+import ColorList from "@/components/color-list/ColorList";
 
 const ProductCreate = () => {
   const [form] = Form.useForm();
@@ -18,6 +22,27 @@ const ProductCreate = () => {
       console.log(error);
     }
   });
+  const { run, data, loading } = useRequest(getList, { manual: true });
+  useMount(() => {
+    run();
+  });
+  const list = useMemo(() => {
+    if (!data?.data) {
+      return [];
+    }
+    const transformData = (
+      items?: CategoryListCreate200ResponseDataItems[]
+    ): any[] => {
+      if (!items) return [];
+      return items.map((item) => ({
+        label: item.name,
+        value: item.id,
+        children: item.children ? transformData(item.children) : undefined,
+      }));
+    };
+
+    return transformData(Array.isArray(data.data.items) ? data.data.items : []);
+  }, [data?.data]);
   return (
     <Form
       onChange={console.log}
@@ -28,7 +53,10 @@ const ProductCreate = () => {
       <div>
         <Title className="mb-16">Product Information</Title>
         <div className="p-16 rounded-16 bg-FFFFFF mb-24">
-          <div className="flex space-x-12 items-center">
+          <div
+            className="flex space-x-12 items-center"
+            style={{ alignItems: "stretch" }}
+          >
             <div className="space-y-8 flex flex-col flex-1">
               <Form.Item name="product_name">
                 <Input placeholder="Please enter the product name" />
@@ -43,63 +71,39 @@ const ProductCreate = () => {
                 <Cascader
                   placeholder="Please enter the product link"
                   style={{ width: "100%" }}
-                  options={[
-                    {
-                      value: "zhejiang",
-                      label: "Zhejiang",
-                      children: [
-                        {
-                          value: "hangzhou",
-                          label: "Hangzhou",
-                          children: [
-                            {
-                              value: "xihu",
-                              label: "West Lake",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      value: "jiangsu",
-                      label: "Jiangsu",
-                      children: [
-                        {
-                          value: "nanjing",
-                          label: "Nanjing",
-                          children: [
-                            {
-                              value: "zhonghuamen",
-                              label: "Zhong Hua Men",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ]}
+                  options={list}
                   multiple
                   maxTagCount="responsive"
                   className="[&_.ant-select-selector]:!py-5 [&_.ant-select-selector]:!rounded-12 "
+                  loading={loading}
                 />
               </Form.Item>
             </div>
-            <div className="space-x-10 h-full flex items-start">
-              <Form.Item name="cover">
-                <Upload
-                  imagePreview
-                  listType="picture-card"
-                  text="Upload Cover"
-                />
-              </Form.Item>
-              <Form.Item name="logo">
-                <Upload
-                  imagePreview
-                  listType="picture-card"
-                  text="Upload logo"
-                />
-              </Form.Item>
-            </div>
+
+            <Form.Item
+              name="logo"
+              className="min-h-0 overflow-hidden [&_.ant-form-item-row]:!h-full [&_.ant-form-item-control]:!h-full [&_.ant-form-item-control-input]:!h-full [&_.ant-form-item-control-input-content]:!h-full"
+            >
+              <Upload imagePreview listType="picture-card" text="Upload logo" />
+            </Form.Item>
           </div>
+          <div className="text-xs12 font-medium text-101010 mt-16 mb-12">
+            Logo Background Color
+          </div>
+          <Form.Item name="color">
+            <ColorList />
+          </Form.Item>
+          <div className="text-xs12 font-medium text-101010 mt-16 mb-12">
+            Upload Pictures
+          </div>
+          <Form.Item name="cover">
+            <Upload
+              imagePreview
+              listType="picture-card"
+              text="Upload Cover"
+              className={"!w-104 !h-104"}
+            />
+          </Form.Item>
         </div>
         <Title className="mb-16">Edit Content</Title>
         <Form.Item name="content">

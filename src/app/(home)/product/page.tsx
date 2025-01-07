@@ -1,10 +1,6 @@
 import Content from "@/components/content/Content";
 
 const Page = () => {
-  return (
-    <div>
-      <Content />
-    </div>
-  );
+  return <Content />;
 };
 export default Page;
