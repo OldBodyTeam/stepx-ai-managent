@@ -25,7 +25,7 @@ const Menu = () => {
   });
   const pathname = usePathname();
   useMount(() => {
-    const key = menuData.find((v) => pathname.includes(v.key))?.key;
+    const key = menuData.find((v) => pathname?.includes(v.key))?.key;
     setSelectedMenu(key);
     setMenuAtom(menuData.find((v) => v.key === key));
   });
