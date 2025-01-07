@@ -59,8 +59,7 @@ const EditorContent: FC<EditorContentProps> = (props) => {
     MENU_CONF: {
       uploadImage: {
         async customUpload(file: File, insertFn: any) {
-          const { data } = await uploadFileAction(file);
-          console.log(data);
+          const { data } = (await uploadFileAction(file)) ?? {};
           insertFn(data?.url);
         },
       },
