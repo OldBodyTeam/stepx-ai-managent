@@ -20,7 +20,7 @@ const ListEmpty: FC<PropsWithChildren<ListEmptyProps>> = (props) => {
         No Products Available
       </div>
       <div className="mt-6 text-xs12 text-4F5357">
-        You haven't released a new product yet
+        You haven\&apos;t released a new product yet
       </div>
       <div className="mt-24 !bg-D0FF71 py-10 px-38 rounded-40 flex items-center justify-center cursor-pointer">
         <Link
