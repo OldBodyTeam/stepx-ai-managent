@@ -2,20 +2,36 @@
 import { Divider, Upload } from "antd";
 import Image from "next/image";
 import { RightOutlined } from "@ant-design/icons";
+import { uploadFileAction } from "./actions";
+import { useState } from "react";
 const Page = () => {
+  const [url, setUrl] = useState("");
   return (
     <>
       <div className="p-16 bg-FFFFFF rounded-16">
         <div className="flex items-center justify-between ">
           <div className="flex items-center space-x-12">
-            <div className="w-46 h-46 rounded-46 flex items-center justify-center bg-FADB14 ">
-              <Image
-                src={"/settings/user.png"}
-                width={24}
-                height={24}
-                alt="avatar"
-              />
-            </div>
+            {url ? (
+              <div className="w-46 h-46 rounded-46 flex items-center justify-center  overflow-hidden">
+                <Image
+                  src={url}
+                  width={46}
+                  height={46}
+                  alt="avatar"
+                  className="object-cover"
+                />
+              </div>
+            ) : (
+              <div className="w-46 h-46 rounded-46 flex items-center justify-center bg-FADB14">
+                <Image
+                  src={"/settings/user.png"}
+                  width={24}
+                  height={24}
+                  alt="avatar"
+                />
+              </div>
+            )}
+
             <div className="space-y-6">
               <div className="text-xs16 font-medium text-101010">
                 Hyuk Design
@@ -25,7 +41,17 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <Upload>
+          <Upload
+            beforeUpload={() => false}
+            onChange={async ({ file }) => {
+              console.log(file);
+              const data = await uploadFileAction(file as unknown as File);
+              if (data) {
+                setUrl(data.data?.url ?? "");
+              }
+            }}
+            itemRender={() => null}
+          >
             <div className="w-140 px-16 py-8 flex items-center bg-FFFFFF rounded-32 cursor-pointer border-1 border-E8E8E9">
               <Image
                 src={"/settings/upload.png"}

@@ -12,6 +12,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
     "@ant-design/nextjs-registry": "^1.0.2",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@arco-design/web-react": "^2.65.0",
     "@tiptap/extension-document": "^2.10.3",
     "@tiptap/extension-paragraph": "^2.10.3",
@@ -26,6 +27,7 @@
     "antd": "^5.22.7",
     "axios": "^1.7.9",
     "classnames": "^2.5.1",
+    "cookie": "^1.0.2",
     "framer-motion": "^11.14.3",
     "jotai": "^2.10.3",
     "lodash": "^4.17.21",
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.15.3",
+    "@types/cookie": "^1.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

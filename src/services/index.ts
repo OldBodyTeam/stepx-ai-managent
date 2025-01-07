@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * 后浪API文档
- * 后浪项目接口文档
+ * 后浪项目接口文档  认证方式：在请求头中添加 X-API-Key
  *
  * The version of the OpenAPI document: v1
  * Contact: contact@yourapp.com

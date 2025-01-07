@@ -11,7 +11,7 @@ import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { get } from "lodash";
 import RadioVar from "../components/RadioVar";
 import { useState } from "react";
-import { message } from "antd";
+import axios from "axios";
 const Login = () => {
   const [match, setMatch] = useState(false);
   const router = useRouter();
@@ -29,12 +29,13 @@ const Login = () => {
       await form.validate();
       const userInput = form.getFields();
       const data = await loginAction(userInput);
+      await axios.post("/api/token", { token: data.data?.api_key });
       const isValid = showErrorMessage(data as any);
       if (!isValid) {
         return;
       }
-      router.push("/production");
-      message.info("Login successful");
+      messageApi.info("Login successful");
+      router.push("/product");
     } catch (e) {
       console.log(e);
       const list = get(e, "errors", {});

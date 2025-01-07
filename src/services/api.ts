@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * 后浪API文档
- * 后浪项目接口文档
+ * 后浪项目接口文档  认证方式：在请求头中添加 X-API-Key
  *
  * The version of the OpenAPI document: v1
  * Contact: contact@yourapp.com
@@ -12,233 +12,330 @@
  * Do not edit the class manually.
  */
 
-
-import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
-import globalAxios from 'axios';
+import type { Configuration } from "./configuration";
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from "axios";
+import globalAxios from "axios";
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
-import type { RequestArgs } from './base';
+import {
+  DUMMY_BASE_URL,
+  assertParamExists,
+  setApiKeyToObject,
+  setBasicAuthToObject,
+  setBearerAuthToObject,
+  setOAuthToObject,
+  setSearchParams,
+  serializeDataIfNeeded,
+  toPathString,
+  createRequestFunction,
+} from "./common";
+import type { RequestArgs } from "./base";
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
+import {
+  BASE_PATH,
+  COLLECTION_FORMATS,
+  BaseAPI,
+  RequiredError,
+  operationServerMap,
+} from "./base";
 
 /**
- * 
+ *
  * @export
  * @interface AdminCreateCreate200Response
  */
 export interface AdminCreateCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof AdminCreateCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof AdminCreateCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {AdminCreateCreate200ResponseData}
-     * @memberof AdminCreateCreate200Response
-     */
-    'data'?: AdminCreateCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof AdminCreateCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof AdminCreateCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {AdminCreateCreate200ResponseData}
+   * @memberof AdminCreateCreate200Response
+   */
+  data?: AdminCreateCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface AdminCreateCreate200ResponseData
  */
 export interface AdminCreateCreate200ResponseData {
-    /**
-     * ID
-     * @type {number}
-     * @memberof AdminCreateCreate200ResponseData
-     */
-    'id'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof AdminCreateCreate200ResponseData
+   */
+  id?: number;
+  /**
+   * API Key
+   * @type {string}
+   * @memberof AdminCreateCreate200ResponseData
+   */
+  api_key?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface AdminCreateCreateRequest
  */
 export interface AdminCreateCreateRequest {
-    /**
-     * 用户名
-     * @type {string}
-     * @memberof AdminCreateCreateRequest
-     */
-    'username': string;
-    /**
-     * 密码
-     * @type {string}
-     * @memberof AdminCreateCreateRequest
-     */
-    'password': string;
-    /**
-     * 手机号
-     * @type {string}
-     * @memberof AdminCreateCreateRequest
-     */
-    'mobile': string;
-    /**
-     * 邮箱
-     * @type {string}
-     * @memberof AdminCreateCreateRequest
-     */
-    'email': string;
-    /**
-     * 角色ID(1.个人  2.企业  3.内部)
-     * @type {number}
-     * @memberof AdminCreateCreateRequest
-     */
-    'role_id': number;
-    /**
-     * 企业名称（个人用户无需传值）
-     * @type {string}
-     * @memberof AdminCreateCreateRequest
-     */
-    'company_name'?: string;
+  /**
+   * 用户名
+   * @type {string}
+   * @memberof AdminCreateCreateRequest
+   */
+  username: string;
+  /**
+   * 密码
+   * @type {string}
+   * @memberof AdminCreateCreateRequest
+   */
+  password: string;
+  /**
+   * 邮箱
+   * @type {string}
+   * @memberof AdminCreateCreateRequest
+   */
+  email: string;
+  /**
+   * 角色ID(1.个人  2.企业  3.内部)
+   * @type {number}
+   * @memberof AdminCreateCreateRequest
+   */
+  role_id: number;
+  /**
+   * 企业名称（个人用户无需传值）
+   * @type {string}
+   * @memberof AdminCreateCreateRequest
+   */
+  company_name?: string;
 }
 /**
- * 
+ *
+ * @export
+ * @interface AdminGenerateApiKeyCreate200Response
+ */
+export interface AdminGenerateApiKeyCreate200Response {
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof AdminGenerateApiKeyCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof AdminGenerateApiKeyCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {AdminGenerateApiKeyCreate200ResponseData}
+   * @memberof AdminGenerateApiKeyCreate200Response
+   */
+  data?: AdminGenerateApiKeyCreate200ResponseData;
+}
+/**
+ *
+ * @export
+ * @interface AdminGenerateApiKeyCreate200ResponseData
+ */
+export interface AdminGenerateApiKeyCreate200ResponseData {
+  /**
+   * 新生成的API Key
+   * @type {string}
+   * @memberof AdminGenerateApiKeyCreate200ResponseData
+   */
+  api_key?: string;
+}
+/**
+ *
  * @export
  * @interface AdminInfoCreate200Response
  */
 export interface AdminInfoCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof AdminInfoCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof AdminInfoCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {AdminInfoCreate200ResponseData}
-     * @memberof AdminInfoCreate200Response
-     */
-    'data'?: AdminInfoCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof AdminInfoCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof AdminInfoCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {AdminInfoCreate200ResponseData}
+   * @memberof AdminInfoCreate200Response
+   */
+  data?: AdminInfoCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface AdminInfoCreate200ResponseData
  */
 export interface AdminInfoCreate200ResponseData {
-    /**
-     * ID
-     * @type {number}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'id'?: number;
-    /**
-     * 用户名
-     * @type {string}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'username'?: string;
-    /**
-     * 手机号
-     * @type {string}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'mobile'?: string;
-    /**
-     * 邮箱
-     * @type {string}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'email'?: string;
-    /**
-     * 头像URL
-     * @type {string}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'avatar'?: string;
-    /**
-     * 角色ID
-     * @type {number}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'role_id'?: number;
-    /**
-     * 企业名称
-     * @type {string}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'company_name'?: string;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'create_time'?: string;
-    /**
-     * 更新时间
-     * @type {string}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'update_time'?: string;
-    /**
-     * 状态 0:禁用 1:正常
-     * @type {number}
-     * @memberof AdminInfoCreate200ResponseData
-     */
-    'status'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  id?: number;
+  /**
+   * 用户名
+   * @type {string}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  username?: string;
+  /**
+   * 手机号
+   * @type {string}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  mobile?: string;
+  /**
+   * 邮箱
+   * @type {string}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  email?: string;
+  /**
+   * 头像URL
+   * @type {string}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  avatar?: string;
+  /**
+   * 角色ID
+   * @type {number}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  role_id?: number;
+  /**
+   * 企业名称
+   * @type {string}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  company_name?: string;
+  /**
+   * API Key
+   * @type {string}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  api_key?: string;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  create_time?: string;
+  /**
+   * 更新时间
+   * @type {string}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  update_time?: string;
+  /**
+   * 状态 0:禁用 1:正常
+   * @type {number}
+   * @memberof AdminInfoCreate200ResponseData
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AdminLoginCreate200Response
  */
 export interface AdminLoginCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof AdminLoginCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof AdminLoginCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {AdminLoginCreate200ResponseData}
-     * @memberof AdminLoginCreate200Response
-     */
-    'data'?: AdminLoginCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof AdminLoginCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof AdminLoginCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {AdminLoginCreate200ResponseData}
+   * @memberof AdminLoginCreate200Response
+   */
+  data?: AdminLoginCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface AdminLoginCreate200ResponseData
  */
 export interface AdminLoginCreate200ResponseData {
-    /**
-     * 登录令牌(使用：Bearer token)
-     * @type {string}
-     * @memberof AdminLoginCreate200ResponseData
-     */
-    'token'?: string;
-    /**
-     * 
-     * @type {AdminLoginCreate200ResponseDataUserInfo}
-     * @memberof AdminLoginCreate200ResponseData
-     */
-    'user_info'?: AdminLoginCreate200ResponseDataUserInfo;
+  /**
+   * API Key (使用：在请求头中添加 X-API-Key)
+   * @type {string}
+   * @memberof AdminLoginCreate200ResponseData
+   */
+  api_key?: string;
+  /**
+   *
+   * @type {AdminLoginCreate200ResponseDataUserInfo}
+   * @memberof AdminLoginCreate200ResponseData
+   */
+  user_info?: AdminLoginCreate200ResponseDataUserInfo;
+  /**
+   *
+   * @type {AdminLoginCreate200ResponseDataMenus}
+   * @memberof AdminLoginCreate200ResponseData
+   */
+  menus?: AdminLoginCreate200ResponseDataMenus;
+}
+/**
+ * 菜单列表
+ * @export
+ * @interface AdminLoginCreate200ResponseDataMenus
+ */
+export interface AdminLoginCreate200ResponseDataMenus {
+  /**
+   * 菜单ID
+   * @type {number}
+   * @memberof AdminLoginCreate200ResponseDataMenus
+   */
+  id?: number;
+  /**
+   * 菜单名称
+   * @type {string}
+   * @memberof AdminLoginCreate200ResponseDataMenus
+   */
+  name?: string;
+  /**
+   * 父菜单ID
+   * @type {number}
+   * @memberof AdminLoginCreate200ResponseDataMenus
+   */
+  parent_id?: number;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof AdminLoginCreate200ResponseDataMenus
+   */
+  sort?: number;
 }
 /**
  * 用户信息
@@ -246,333 +343,371 @@ export interface AdminLoginCreate200ResponseData {
  * @interface AdminLoginCreate200ResponseDataUserInfo
  */
 export interface AdminLoginCreate200ResponseDataUserInfo {
-    /**
-     * ID
-     * @type {number}
-     * @memberof AdminLoginCreate200ResponseDataUserInfo
-     */
-    'id'?: number;
-    /**
-     * 用户名
-     * @type {string}
-     * @memberof AdminLoginCreate200ResponseDataUserInfo
-     */
-    'username'?: string;
-    /**
-     * 手机号
-     * @type {string}
-     * @memberof AdminLoginCreate200ResponseDataUserInfo
-     */
-    'mobile'?: string;
-    /**
-     * 邮箱
-     * @type {string}
-     * @memberof AdminLoginCreate200ResponseDataUserInfo
-     */
-    'email'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AdminLoginCreate200ResponseDataUserInfo
-     */
-    'status'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof AdminLoginCreate200ResponseDataUserInfo
+   */
+  id?: number;
+  /**
+   * 用户名
+   * @type {string}
+   * @memberof AdminLoginCreate200ResponseDataUserInfo
+   */
+  username?: string;
+  /**
+   * 手机号
+   * @type {string}
+   * @memberof AdminLoginCreate200ResponseDataUserInfo
+   */
+  mobile?: string;
+  /**
+   * 邮箱
+   * @type {string}
+   * @memberof AdminLoginCreate200ResponseDataUserInfo
+   */
+  email?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AdminLoginCreate200ResponseDataUserInfo
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AdminLoginCreateRequest
  */
 export interface AdminLoginCreateRequest {
-    /**
-     * 用户名
-     * @type {string}
-     * @memberof AdminLoginCreateRequest
-     */
-    'username': string;
-    /**
-     * 密码
-     * @type {string}
-     * @memberof AdminLoginCreateRequest
-     */
-    'password': string;
+  /**
+   * 用户名
+   * @type {string}
+   * @memberof AdminLoginCreateRequest
+   */
+  username: string;
+  /**
+   * 密码
+   * @type {string}
+   * @memberof AdminLoginCreateRequest
+   */
+  password: string;
 }
 /**
- * 
+ *
+ * @export
+ * @interface AdminResetPasswordCreate200Response
+ */
+export interface AdminResetPasswordCreate200Response {
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof AdminResetPasswordCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof AdminResetPasswordCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {AdminResetPasswordCreate200ResponseData}
+   * @memberof AdminResetPasswordCreate200Response
+   */
+  data?: AdminResetPasswordCreate200ResponseData;
+}
+/**
+ *
+ * @export
+ * @interface AdminResetPasswordCreate200ResponseData
+ */
+export interface AdminResetPasswordCreate200ResponseData {
+  /**
+   * ID
+   * @type {number}
+   * @memberof AdminResetPasswordCreate200ResponseData
+   */
+  id?: number;
+}
+/**
+ *
  * @export
  * @interface AdminResetPasswordCreateRequest
  */
 export interface AdminResetPasswordCreateRequest {
-    /**
-     * 用户名
-     * @type {string}
-     * @memberof AdminResetPasswordCreateRequest
-     */
-    'username': string;
-    /**
-     * 邮箱
-     * @type {string}
-     * @memberof AdminResetPasswordCreateRequest
-     */
-    'email': string;
-    /**
-     * 密码
-     * @type {string}
-     * @memberof AdminResetPasswordCreateRequest
-     */
-    'password': string;
-    /**
-     * 确认密码
-     * @type {string}
-     * @memberof AdminResetPasswordCreateRequest
-     */
-    'confirm_password': string;
+  /**
+   * 用户名
+   * @type {string}
+   * @memberof AdminResetPasswordCreateRequest
+   */
+  username: string;
+  /**
+   * 邮箱
+   * @type {string}
+   * @memberof AdminResetPasswordCreateRequest
+   */
+  email: string;
+  /**
+   * 密码
+   * @type {string}
+   * @memberof AdminResetPasswordCreateRequest
+   */
+  password: string;
+  /**
+   * 确认密码
+   * @type {string}
+   * @memberof AdminResetPasswordCreateRequest
+   */
+  confirm_password: string;
 }
 /**
- * 
+ *
  * @export
  * @interface AdminUpdateCreateRequest
  */
 export interface AdminUpdateCreateRequest {
-    /**
-     * 用户名
-     * @type {string}
-     * @memberof AdminUpdateCreateRequest
-     */
-    'username'?: string;
-    /**
-     * 手机号
-     * @type {string}
-     * @memberof AdminUpdateCreateRequest
-     */
-    'mobile'?: string;
-    /**
-     * 邮箱
-     * @type {string}
-     * @memberof AdminUpdateCreateRequest
-     */
-    'email'?: string;
-    /**
-     * 头像(上传接口返回的path)
-     * @type {string}
-     * @memberof AdminUpdateCreateRequest
-     */
-    'avatar'?: string;
-    /**
-     * 角色ID
-     * @type {number}
-     * @memberof AdminUpdateCreateRequest
-     */
-    'role_id': number;
-    /**
-     * 企业名称
-     * @type {string}
-     * @memberof AdminUpdateCreateRequest
-     */
-    'company_name'?: string;
-    /**
-     * 状态 0:禁用 1:正常
-     * @type {number}
-     * @memberof AdminUpdateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 用户名
+   * @type {string}
+   * @memberof AdminUpdateCreateRequest
+   */
+  username?: string;
+  /**
+   * 手机号
+   * @type {string}
+   * @memberof AdminUpdateCreateRequest
+   */
+  mobile?: string;
+  /**
+   * 邮箱
+   * @type {string}
+   * @memberof AdminUpdateCreateRequest
+   */
+  email?: string;
+  /**
+   * 头像(上传接口返回的path)
+   * @type {string}
+   * @memberof AdminUpdateCreateRequest
+   */
+  avatar?: string;
+  /**
+   * 角色ID
+   * @type {number}
+   * @memberof AdminUpdateCreateRequest
+   */
+  role_id: number;
+  /**
+   * 企业名称
+   * @type {string}
+   * @memberof AdminUpdateCreateRequest
+   */
+  company_name?: string;
+  /**
+   * 状态 0:禁用 1:正常
+   * @type {number}
+   * @memberof AdminUpdateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AdvertisementCreateCreateRequest
  */
 export interface AdvertisementCreateCreateRequest {
-    /**
-     * 广告标题
-     * @type {string}
-     * @memberof AdvertisementCreateCreateRequest
-     */
-    'title': string;
-    /**
-     * 广告内容,上传广告后的path
-     * @type {string}
-     * @memberof AdvertisementCreateCreateRequest
-     */
-    'content'?: string;
-    /**
-     * 跳转链接
-     * @type {string}
-     * @memberof AdvertisementCreateCreateRequest
-     */
-    'link'?: string;
-    /**
-     * 图片地址
-     * @type {string}
-     * @memberof AdvertisementCreateCreateRequest
-     */
-    'image'?: string;
-    /**
-     * 广告位置1:注册页右侧 2:后台左下角 3:后台右上角 4.前台首页上方
-     * @type {number}
-     * @memberof AdvertisementCreateCreateRequest
-     */
-    'position': number;
-    /**
-     * 排序
-     * @type {number}
-     * @memberof AdvertisementCreateCreateRequest
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AdvertisementCreateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 广告标题
+   * @type {string}
+   * @memberof AdvertisementCreateCreateRequest
+   */
+  title: string;
+  /**
+   * 广告内容
+   * @type {string}
+   * @memberof AdvertisementCreateCreateRequest
+   */
+  content?: string;
+  /**
+   * 跳转链接
+   * @type {string}
+   * @memberof AdvertisementCreateCreateRequest
+   */
+  link?: string;
+  /**
+   * 图片地址(新增为上传后的path，回显为url)
+   * @type {string}
+   * @memberof AdvertisementCreateCreateRequest
+   */
+  image?: string;
+  /**
+   * 广告位置1:注册页右侧 2:后台左下角 3:后台右上角 4.前台首页上方
+   * @type {number}
+   * @memberof AdvertisementCreateCreateRequest
+   */
+  position: number;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof AdvertisementCreateCreateRequest
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AdvertisementCreateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AdvertisementDeleteCreateRequest
  */
 export interface AdvertisementDeleteCreateRequest {
-    /**
-     * 广告ID
-     * @type {number}
-     * @memberof AdvertisementDeleteCreateRequest
-     */
-    'id': number;
+  /**
+   * 广告ID
+   * @type {number}
+   * @memberof AdvertisementDeleteCreateRequest
+   */
+  id: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AdvertisementDetailCreate200Response
  */
 export interface AdvertisementDetailCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof AdvertisementDetailCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof AdvertisementDetailCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {AdvertisementDetailCreate200ResponseData}
-     * @memberof AdvertisementDetailCreate200Response
-     */
-    'data'?: AdvertisementDetailCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof AdvertisementDetailCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof AdvertisementDetailCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {AdvertisementDetailCreate200ResponseData}
+   * @memberof AdvertisementDetailCreate200Response
+   */
+  data?: AdvertisementDetailCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface AdvertisementDetailCreate200ResponseData
  */
 export interface AdvertisementDetailCreate200ResponseData {
-    /**
-     * 广告ID
-     * @type {number}
-     * @memberof AdvertisementDetailCreate200ResponseData
-     */
-    'id'?: number;
-    /**
-     * 广告标题
-     * @type {string}
-     * @memberof AdvertisementDetailCreate200ResponseData
-     */
-    'title'?: string;
-    /**
-     * 广告内容
-     * @type {string}
-     * @memberof AdvertisementDetailCreate200ResponseData
-     */
-    'content'?: string;
-    /**
-     * 跳转链接
-     * @type {string}
-     * @memberof AdvertisementDetailCreate200ResponseData
-     */
-    'link'?: string;
-    /**
-     * 图片地址
-     * @type {string}
-     * @memberof AdvertisementDetailCreate200ResponseData
-     */
-    'image'?: string;
-    /**
-     * 广告位置
-     * @type {number}
-     * @memberof AdvertisementDetailCreate200ResponseData
-     */
-    'position'?: number;
-    /**
-     * 排序
-     * @type {number}
-     * @memberof AdvertisementDetailCreate200ResponseData
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AdvertisementDetailCreate200ResponseData
-     */
-    'status'?: number;
+  /**
+   * 广告ID
+   * @type {number}
+   * @memberof AdvertisementDetailCreate200ResponseData
+   */
+  id?: number;
+  /**
+   * 广告标题
+   * @type {string}
+   * @memberof AdvertisementDetailCreate200ResponseData
+   */
+  title?: string;
+  /**
+   * 广告内容
+   * @type {string}
+   * @memberof AdvertisementDetailCreate200ResponseData
+   */
+  content?: string;
+  /**
+   * 跳转链接
+   * @type {string}
+   * @memberof AdvertisementDetailCreate200ResponseData
+   */
+  link?: string;
+  /**
+   * 图片地址
+   * @type {string}
+   * @memberof AdvertisementDetailCreate200ResponseData
+   */
+  image?: string;
+  /**
+   * 广告位置
+   * @type {number}
+   * @memberof AdvertisementDetailCreate200ResponseData
+   */
+  position?: number;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof AdvertisementDetailCreate200ResponseData
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AdvertisementDetailCreate200ResponseData
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AdvertisementListCreate200Response
  */
 export interface AdvertisementListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof AdvertisementListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof AdvertisementListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {AdvertisementListCreate200ResponseData}
-     * @memberof AdvertisementListCreate200Response
-     */
-    'data'?: AdvertisementListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof AdvertisementListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof AdvertisementListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {AdvertisementListCreate200ResponseData}
+   * @memberof AdvertisementListCreate200Response
+   */
+  data?: AdvertisementListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface AdvertisementListCreate200ResponseData
  */
 export interface AdvertisementListCreate200ResponseData {
-    /**
-     * 
-     * @type {AdvertisementListCreate200ResponseDataItems}
-     * @memberof AdvertisementListCreate200ResponseData
-     */
-    'items'?: AdvertisementListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof AdvertisementListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof AdvertisementListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof AdvertisementListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {AdvertisementListCreate200ResponseDataItems}
+   * @memberof AdvertisementListCreate200ResponseData
+   */
+  items?: AdvertisementListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof AdvertisementListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof AdvertisementListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof AdvertisementListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 广告列表
@@ -580,302 +715,302 @@ export interface AdvertisementListCreate200ResponseData {
  * @interface AdvertisementListCreate200ResponseDataItems
  */
 export interface AdvertisementListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof AdvertisementListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 广告标题
-     * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
-     */
-    'title'?: string;
-    /**
-     * 广告内容
-     * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
-     */
-    'content'?: string;
-    /**
-     * 跳转链接
-     * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
-     */
-    'link'?: string;
-    /**
-     * 图片地址
-     * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
-     */
-    'image'?: string;
-    /**
-     * 广告位置
-     * @type {number}
-     * @memberof AdvertisementListCreate200ResponseDataItems
-     */
-    'position'?: number;
-    /**
-     * 排序
-     * @type {number}
-     * @memberof AdvertisementListCreate200ResponseDataItems
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AdvertisementListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof AdvertisementListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 广告标题
+   * @type {string}
+   * @memberof AdvertisementListCreate200ResponseDataItems
+   */
+  title?: string;
+  /**
+   * 广告内容
+   * @type {string}
+   * @memberof AdvertisementListCreate200ResponseDataItems
+   */
+  content?: string;
+  /**
+   * 跳转链接
+   * @type {string}
+   * @memberof AdvertisementListCreate200ResponseDataItems
+   */
+  link?: string;
+  /**
+   * 图片地址
+   * @type {string}
+   * @memberof AdvertisementListCreate200ResponseDataItems
+   */
+  image?: string;
+  /**
+   * 广告位置
+   * @type {number}
+   * @memberof AdvertisementListCreate200ResponseDataItems
+   */
+  position?: number;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof AdvertisementListCreate200ResponseDataItems
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AdvertisementListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof AdvertisementListCreate200ResponseDataItems
+   */
+  create_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface AdvertisementListCreateRequest
  */
 export interface AdvertisementListCreateRequest {
-    /**
-     * 广告标题，用于搜索
-     * @type {string}
-     * @memberof AdvertisementListCreateRequest
-     */
-    'title'?: string;
-    /**
-     * 广告位置1:注册页右侧 2:后台左下角 3:后台右上角
-     * @type {number}
-     * @memberof AdvertisementListCreateRequest
-     */
-    'position'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AdvertisementListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof AdvertisementListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof AdvertisementListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 广告标题，用于搜索
+   * @type {string}
+   * @memberof AdvertisementListCreateRequest
+   */
+  title?: string;
+  /**
+   * 广告位置1:注册页右侧 2:后台左下角 3:后台右上角
+   * @type {number}
+   * @memberof AdvertisementListCreateRequest
+   */
+  position?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AdvertisementListCreateRequest
+   */
+  status?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof AdvertisementListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof AdvertisementListCreateRequest
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AdvertisementUpdateCreateRequest
  */
 export interface AdvertisementUpdateCreateRequest {
-    /**
-     * 广告ID
-     * @type {number}
-     * @memberof AdvertisementUpdateCreateRequest
-     */
-    'id': number;
-    /**
-     * 广告标题
-     * @type {string}
-     * @memberof AdvertisementUpdateCreateRequest
-     */
-    'title'?: string;
-    /**
-     * 广告内容
-     * @type {string}
-     * @memberof AdvertisementUpdateCreateRequest
-     */
-    'content'?: string;
-    /**
-     * 跳转链接
-     * @type {string}
-     * @memberof AdvertisementUpdateCreateRequest
-     */
-    'link'?: string;
-    /**
-     * 图片地址
-     * @type {string}
-     * @memberof AdvertisementUpdateCreateRequest
-     */
-    'image'?: string;
-    /**
-     * 广告位置1:注册页右侧 2:后台左下角 3:后台右上角
-     * @type {number}
-     * @memberof AdvertisementUpdateCreateRequest
-     */
-    'position'?: number;
-    /**
-     * 排序
-     * @type {number}
-     * @memberof AdvertisementUpdateCreateRequest
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AdvertisementUpdateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 广告ID
+   * @type {number}
+   * @memberof AdvertisementUpdateCreateRequest
+   */
+  id: number;
+  /**
+   * 广告标题
+   * @type {string}
+   * @memberof AdvertisementUpdateCreateRequest
+   */
+  title?: string;
+  /**
+   * 广告内容
+   * @type {string}
+   * @memberof AdvertisementUpdateCreateRequest
+   */
+  content?: string;
+  /**
+   * 跳转链接
+   * @type {string}
+   * @memberof AdvertisementUpdateCreateRequest
+   */
+  link?: string;
+  /**
+   * 图片地址
+   * @type {string}
+   * @memberof AdvertisementUpdateCreateRequest
+   */
+  image?: string;
+  /**
+   * 广告位置1:注册页右侧 2:后台左下角 3:后台右上角
+   * @type {number}
+   * @memberof AdvertisementUpdateCreateRequest
+   */
+  position?: number;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof AdvertisementUpdateCreateRequest
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AdvertisementUpdateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AgreementCreateCreateRequest
  */
 export interface AgreementCreateCreateRequest {
-    /**
-     * 协议标题
-     * @type {string}
-     * @memberof AgreementCreateCreateRequest
-     */
-    'title': string;
-    /**
-     * 协议内容
-     * @type {string}
-     * @memberof AgreementCreateCreateRequest
-     */
-    'content': string;
-    /**
-     * 协议类型 1:服务条款 2:用户协议 3:隐私政策
-     * @type {number}
-     * @memberof AgreementCreateCreateRequest
-     */
-    'type': number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AgreementCreateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 协议标题
+   * @type {string}
+   * @memberof AgreementCreateCreateRequest
+   */
+  title: string;
+  /**
+   * 协议内容
+   * @type {string}
+   * @memberof AgreementCreateCreateRequest
+   */
+  content: string;
+  /**
+   * 协议类型 1:服务条款 2:用户协议 3:隐私政策
+   * @type {number}
+   * @memberof AgreementCreateCreateRequest
+   */
+  type: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AgreementCreateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AgreementDeleteCreateRequest
  */
 export interface AgreementDeleteCreateRequest {
-    /**
-     * 协议ID
-     * @type {number}
-     * @memberof AgreementDeleteCreateRequest
-     */
-    'id': number;
+  /**
+   * 协议ID
+   * @type {number}
+   * @memberof AgreementDeleteCreateRequest
+   */
+  id: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AgreementImportWordCreate200Response
  */
 export interface AgreementImportWordCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof AgreementImportWordCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof AgreementImportWordCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {AgreementImportWordCreate200ResponseData}
-     * @memberof AgreementImportWordCreate200Response
-     */
-    'data'?: AgreementImportWordCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof AgreementImportWordCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof AgreementImportWordCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {AgreementImportWordCreate200ResponseData}
+   * @memberof AgreementImportWordCreate200Response
+   */
+  data?: AgreementImportWordCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface AgreementImportWordCreate200ResponseData
  */
 export interface AgreementImportWordCreate200ResponseData {
-    /**
-     * ID
-     * @type {number}
-     * @memberof AgreementImportWordCreate200ResponseData
-     */
-    'id'?: number;
-    /**
-     * 协议标题
-     * @type {string}
-     * @memberof AgreementImportWordCreate200ResponseData
-     */
-    'title'?: string;
-    /**
-     * 协议内容
-     * @type {string}
-     * @memberof AgreementImportWordCreate200ResponseData
-     */
-    'content'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof AgreementImportWordCreate200ResponseData
+   */
+  id?: number;
+  /**
+   * 协议标题
+   * @type {string}
+   * @memberof AgreementImportWordCreate200ResponseData
+   */
+  title?: string;
+  /**
+   * 协议内容
+   * @type {string}
+   * @memberof AgreementImportWordCreate200ResponseData
+   */
+  content?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface AgreementListCreate200Response
  */
 export interface AgreementListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof AgreementListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof AgreementListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {AgreementListCreate200ResponseData}
-     * @memberof AgreementListCreate200Response
-     */
-    'data'?: AgreementListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof AgreementListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof AgreementListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {AgreementListCreate200ResponseData}
+   * @memberof AgreementListCreate200Response
+   */
+  data?: AgreementListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface AgreementListCreate200ResponseData
  */
 export interface AgreementListCreate200ResponseData {
-    /**
-     * 
-     * @type {AgreementListCreate200ResponseDataItems}
-     * @memberof AgreementListCreate200ResponseData
-     */
-    'items'?: AgreementListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof AgreementListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof AgreementListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof AgreementListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {AgreementListCreate200ResponseDataItems}
+   * @memberof AgreementListCreate200ResponseData
+   */
+  items?: AgreementListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof AgreementListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof AgreementListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof AgreementListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 协议列表
@@ -883,204 +1018,204 @@ export interface AgreementListCreate200ResponseData {
  * @interface AgreementListCreate200ResponseDataItems
  */
 export interface AgreementListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof AgreementListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 协议标题
-     * @type {string}
-     * @memberof AgreementListCreate200ResponseDataItems
-     */
-    'title'?: string;
-    /**
-     * 协议内容
-     * @type {string}
-     * @memberof AgreementListCreate200ResponseDataItems
-     */
-    'content'?: string;
-    /**
-     * 协议类型
-     * @type {number}
-     * @memberof AgreementListCreate200ResponseDataItems
-     */
-    'type'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AgreementListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof AgreementListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
-    /**
-     * 更新时间
-     * @type {string}
-     * @memberof AgreementListCreate200ResponseDataItems
-     */
-    'update_time'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof AgreementListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 协议标题
+   * @type {string}
+   * @memberof AgreementListCreate200ResponseDataItems
+   */
+  title?: string;
+  /**
+   * 协议内容
+   * @type {string}
+   * @memberof AgreementListCreate200ResponseDataItems
+   */
+  content?: string;
+  /**
+   * 协议类型
+   * @type {number}
+   * @memberof AgreementListCreate200ResponseDataItems
+   */
+  type?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AgreementListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof AgreementListCreate200ResponseDataItems
+   */
+  create_time?: string;
+  /**
+   * 更新时间
+   * @type {string}
+   * @memberof AgreementListCreate200ResponseDataItems
+   */
+  update_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface AgreementListCreateRequest
  */
 export interface AgreementListCreateRequest {
-    /**
-     * 协议标题，用于搜索
-     * @type {string}
-     * @memberof AgreementListCreateRequest
-     */
-    'title'?: string;
-    /**
-     * 协议类型1:服务条款 2:用户协议 3:隐私政策
-     * @type {number}
-     * @memberof AgreementListCreateRequest
-     */
-    'type'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AgreementListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof AgreementListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof AgreementListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 协议标题，用于搜索
+   * @type {string}
+   * @memberof AgreementListCreateRequest
+   */
+  title?: string;
+  /**
+   * 协议类型1:服务条款 2:用户协议 3:隐私政策
+   * @type {number}
+   * @memberof AgreementListCreateRequest
+   */
+  type?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AgreementListCreateRequest
+   */
+  status?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof AgreementListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof AgreementListCreateRequest
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface AgreementUpdateCreateRequest
  */
 export interface AgreementUpdateCreateRequest {
-    /**
-     * 协议ID
-     * @type {number}
-     * @memberof AgreementUpdateCreateRequest
-     */
-    'id': number;
-    /**
-     * 协议标题
-     * @type {string}
-     * @memberof AgreementUpdateCreateRequest
-     */
-    'title'?: string;
-    /**
-     * 协议内容
-     * @type {string}
-     * @memberof AgreementUpdateCreateRequest
-     */
-    'content'?: string;
-    /**
-     * 协议类型1:服务条款 2:用户协议 3:隐私政策
-     * @type {number}
-     * @memberof AgreementUpdateCreateRequest
-     */
-    'type'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof AgreementUpdateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 协议ID
+   * @type {number}
+   * @memberof AgreementUpdateCreateRequest
+   */
+  id: number;
+  /**
+   * 协议标题
+   * @type {string}
+   * @memberof AgreementUpdateCreateRequest
+   */
+  title?: string;
+  /**
+   * 协议内容
+   * @type {string}
+   * @memberof AgreementUpdateCreateRequest
+   */
+  content?: string;
+  /**
+   * 协议类型1:服务条款 2:用户协议 3:隐私政策
+   * @type {number}
+   * @memberof AgreementUpdateCreateRequest
+   */
+  type?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof AgreementUpdateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface CategoryCreateCreateRequest
  */
 export interface CategoryCreateCreateRequest {
-    /**
-     * 分类名称
-     * @type {string}
-     * @memberof CategoryCreateCreateRequest
-     */
-    'name': string;
-    /**
-     * 父分类ID，0表示一级分类
-     * @type {number}
-     * @memberof CategoryCreateCreateRequest
-     */
-    'parent_id'?: number;
-    /**
-     * 排序值
-     * @type {number}
-     * @memberof CategoryCreateCreateRequest
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof CategoryCreateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 分类名称
+   * @type {string}
+   * @memberof CategoryCreateCreateRequest
+   */
+  name: string;
+  /**
+   * 父分类ID，0表示一级分类
+   * @type {number}
+   * @memberof CategoryCreateCreateRequest
+   */
+  parent_id?: number;
+  /**
+   * 排序值
+   * @type {number}
+   * @memberof CategoryCreateCreateRequest
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof CategoryCreateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface CategoryDeleteCreateRequest
  */
 export interface CategoryDeleteCreateRequest {
-    /**
-     * 分类ID
-     * @type {number}
-     * @memberof CategoryDeleteCreateRequest
-     */
-    'id': number;
+  /**
+   * 分类ID
+   * @type {number}
+   * @memberof CategoryDeleteCreateRequest
+   */
+  id: number;
 }
 /**
- * 
+ *
  * @export
  * @interface CategoryListCreate200Response
  */
 export interface CategoryListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof CategoryListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof CategoryListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {CategoryListCreate200ResponseData}
-     * @memberof CategoryListCreate200Response
-     */
-    'data'?: CategoryListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof CategoryListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof CategoryListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {CategoryListCreate200ResponseData}
+   * @memberof CategoryListCreate200Response
+   */
+  data?: CategoryListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface CategoryListCreate200ResponseData
  */
 export interface CategoryListCreate200ResponseData {
-    /**
-     * 
-     * @type {CategoryListCreate200ResponseDataItems}
-     * @memberof CategoryListCreate200ResponseData
-     */
-    'items'?: CategoryListCreate200ResponseDataItems;
+  /**
+   *
+   * @type {CategoryListCreate200ResponseDataItems}
+   * @memberof CategoryListCreate200ResponseData
+   */
+  items?: CategoryListCreate200ResponseDataItems;
 }
 /**
  * 分类列表
@@ -1088,241 +1223,241 @@ export interface CategoryListCreate200ResponseData {
  * @interface CategoryListCreate200ResponseDataItems
  */
 export interface CategoryListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 分类名称
-     * @type {string}
-     * @memberof CategoryListCreate200ResponseDataItems
-     */
-    'name'?: string;
-    /**
-     * 父分类ID
-     * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItems
-     */
-    'parent_id'?: number;
-    /**
-     * 排序值
-     * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItems
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof CategoryListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
-    /**
-     * 子分类列表
-     * @type {Array<CategoryListCreate200ResponseDataItemsChildrenInner>}
-     * @memberof CategoryListCreate200ResponseDataItems
-     */
-    'children'?: Array<CategoryListCreate200ResponseDataItemsChildrenInner>;
+  /**
+   * ID
+   * @type {number}
+   * @memberof CategoryListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 分类名称
+   * @type {string}
+   * @memberof CategoryListCreate200ResponseDataItems
+   */
+  name?: string;
+  /**
+   * 父分类ID
+   * @type {number}
+   * @memberof CategoryListCreate200ResponseDataItems
+   */
+  parent_id?: number;
+  /**
+   * 排序值
+   * @type {number}
+   * @memberof CategoryListCreate200ResponseDataItems
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof CategoryListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof CategoryListCreate200ResponseDataItems
+   */
+  create_time?: string;
+  /**
+   * 子分类列表
+   * @type {Array<CategoryListCreate200ResponseDataItemsChildrenInner>}
+   * @memberof CategoryListCreate200ResponseDataItems
+   */
+  children?: Array<CategoryListCreate200ResponseDataItemsChildrenInner>;
 }
 /**
- * 
+ *
  * @export
  * @interface CategoryListCreate200ResponseDataItemsChildrenInner
  */
 export interface CategoryListCreate200ResponseDataItemsChildrenInner {
-    /**
-     * ID
-     * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
-     */
-    'id'?: number;
-    /**
-     * 分类名称
-     * @type {string}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
-     */
-    'name'?: string;
-    /**
-     * 父分类ID
-     * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
-     */
-    'parent_id'?: number;
-    /**
-     * 排序值
-     * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
-     */
-    'create_time'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+   */
+  id?: number;
+  /**
+   * 分类名称
+   * @type {string}
+   * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+   */
+  name?: string;
+  /**
+   * 父分类ID
+   * @type {number}
+   * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+   */
+  parent_id?: number;
+  /**
+   * 排序值
+   * @type {number}
+   * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+   */
+  create_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface CategoryListCreateRequest
  */
 export interface CategoryListCreateRequest {
-    /**
-     * 分类名称，用于搜索
-     * @type {string}
-     * @memberof CategoryListCreateRequest
-     */
-    'name'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof CategoryListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 父分类ID，0表示一级分类
-     * @type {number}
-     * @memberof CategoryListCreateRequest
-     */
-    'parent_id'?: number;
+  /**
+   * 分类名称，用于搜索
+   * @type {string}
+   * @memberof CategoryListCreateRequest
+   */
+  name?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof CategoryListCreateRequest
+   */
+  status?: number;
+  /**
+   * 父分类ID，0表示一级分类
+   * @type {number}
+   * @memberof CategoryListCreateRequest
+   */
+  parent_id?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface CategoryUpdateCreateRequest
  */
 export interface CategoryUpdateCreateRequest {
-    /**
-     * 分类ID
-     * @type {number}
-     * @memberof CategoryUpdateCreateRequest
-     */
-    'id': number;
-    /**
-     * 分类名称
-     * @type {string}
-     * @memberof CategoryUpdateCreateRequest
-     */
-    'name'?: string;
-    /**
-     * 排序值
-     * @type {number}
-     * @memberof CategoryUpdateCreateRequest
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof CategoryUpdateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 分类ID
+   * @type {number}
+   * @memberof CategoryUpdateCreateRequest
+   */
+  id: number;
+  /**
+   * 分类名称
+   * @type {string}
+   * @memberof CategoryUpdateCreateRequest
+   */
+  name?: string;
+  /**
+   * 排序值
+   * @type {number}
+   * @memberof CategoryUpdateCreateRequest
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof CategoryUpdateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface CoverColorCreateCreateRequest
  */
 export interface CoverColorCreateCreateRequest {
-    /**
-     * 背景颜色，例如：#FFFFFF
-     * @type {string}
-     * @memberof CoverColorCreateCreateRequest
-     */
-    'background_color': string;
-    /**
-     * 字体颜色，例如：#000000
-     * @type {string}
-     * @memberof CoverColorCreateCreateRequest
-     */
-    'font_color': string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof CoverColorCreateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 背景颜色，例如：#FFFFFF
+   * @type {string}
+   * @memberof CoverColorCreateCreateRequest
+   */
+  background_color: string;
+  /**
+   * 字体颜色，例如：#000000
+   * @type {string}
+   * @memberof CoverColorCreateCreateRequest
+   */
+  font_color: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof CoverColorCreateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface CoverColorDeleteCreateRequest
  */
 export interface CoverColorDeleteCreateRequest {
-    /**
-     * 配置ID
-     * @type {number}
-     * @memberof CoverColorDeleteCreateRequest
-     */
-    'id': number;
+  /**
+   * 配置ID
+   * @type {number}
+   * @memberof CoverColorDeleteCreateRequest
+   */
+  id: number;
 }
 /**
- * 
+ *
  * @export
  * @interface CoverColorListCreate200Response
  */
 export interface CoverColorListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof CoverColorListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof CoverColorListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {CoverColorListCreate200ResponseData}
-     * @memberof CoverColorListCreate200Response
-     */
-    'data'?: CoverColorListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof CoverColorListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof CoverColorListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {CoverColorListCreate200ResponseData}
+   * @memberof CoverColorListCreate200Response
+   */
+  data?: CoverColorListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface CoverColorListCreate200ResponseData
  */
 export interface CoverColorListCreate200ResponseData {
-    /**
-     * 
-     * @type {CoverColorListCreate200ResponseDataItems}
-     * @memberof CoverColorListCreate200ResponseData
-     */
-    'items'?: CoverColorListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof CoverColorListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof CoverColorListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof CoverColorListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {CoverColorListCreate200ResponseDataItems}
+   * @memberof CoverColorListCreate200ResponseData
+   */
+  items?: CoverColorListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof CoverColorListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof CoverColorListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof CoverColorListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 颜色配置列表
@@ -1330,124 +1465,124 @@ export interface CoverColorListCreate200ResponseData {
  * @interface CoverColorListCreate200ResponseDataItems
  */
 export interface CoverColorListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof CoverColorListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 背景颜色
-     * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
-     */
-    'background_color'?: string;
-    /**
-     * 字体颜色
-     * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
-     */
-    'font_color'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof CoverColorListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof CoverColorListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 背景颜色
+   * @type {string}
+   * @memberof CoverColorListCreate200ResponseDataItems
+   */
+  background_color?: string;
+  /**
+   * 字体颜色
+   * @type {string}
+   * @memberof CoverColorListCreate200ResponseDataItems
+   */
+  font_color?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof CoverColorListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof CoverColorListCreate200ResponseDataItems
+   */
+  create_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface CoverColorListCreateRequest
  */
 export interface CoverColorListCreateRequest {
-    /**
-     * 页码
-     * @type {number}
-     * @memberof CoverColorListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof CoverColorListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof CoverColorListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof CoverColorListCreateRequest
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface CoverColorUpdateCreateRequest
  */
 export interface CoverColorUpdateCreateRequest {
-    /**
-     * 配置ID
-     * @type {number}
-     * @memberof CoverColorUpdateCreateRequest
-     */
-    'id': number;
-    /**
-     * 背景颜色，例如：#FFFFFF
-     * @type {string}
-     * @memberof CoverColorUpdateCreateRequest
-     */
-    'background_color'?: string;
-    /**
-     * 字体颜色，例如：#000000
-     * @type {string}
-     * @memberof CoverColorUpdateCreateRequest
-     */
-    'font_color'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof CoverColorUpdateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 配置ID
+   * @type {number}
+   * @memberof CoverColorUpdateCreateRequest
+   */
+  id: number;
+  /**
+   * 背景颜色，例如：#FFFFFF
+   * @type {string}
+   * @memberof CoverColorUpdateCreateRequest
+   */
+  background_color?: string;
+  /**
+   * 字体颜色，例如：#000000
+   * @type {string}
+   * @memberof CoverColorUpdateCreateRequest
+   */
+  font_color?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof CoverColorUpdateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface FrontCategoryListCreate200Response
  */
 export interface FrontCategoryListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof FrontCategoryListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof FrontCategoryListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {FrontCategoryListCreate200ResponseData}
-     * @memberof FrontCategoryListCreate200Response
-     */
-    'data'?: FrontCategoryListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof FrontCategoryListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof FrontCategoryListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {FrontCategoryListCreate200ResponseData}
+   * @memberof FrontCategoryListCreate200Response
+   */
+  data?: FrontCategoryListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface FrontCategoryListCreate200ResponseData
  */
 export interface FrontCategoryListCreate200ResponseData {
-    /**
-     * 
-     * @type {FrontCategoryListCreate200ResponseDataItems}
-     * @memberof FrontCategoryListCreate200ResponseData
-     */
-    'items'?: FrontCategoryListCreate200ResponseDataItems;
+  /**
+   *
+   * @type {FrontCategoryListCreate200ResponseDataItems}
+   * @memberof FrontCategoryListCreate200ResponseData
+   */
+  items?: FrontCategoryListCreate200ResponseDataItems;
 }
 /**
  * 分类列表
@@ -1455,105 +1590,105 @@ export interface FrontCategoryListCreate200ResponseData {
  * @interface FrontCategoryListCreate200ResponseDataItems
  */
 export interface FrontCategoryListCreate200ResponseDataItems {
-    /**
-     * 分类ID
-     * @type {number}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 分类名称
-     * @type {string}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
-     */
-    'name'?: string;
-    /**
-     * 父分类ID
-     * @type {number}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
-     */
-    'parent_id'?: number;
-    /**
-     * 该分类下的产品数量
-     * @type {number}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
-     */
-    'product_count'?: number;
-    /**
-     * 
-     * @type {object}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
-     */
-    'children'?: object;
+  /**
+   * 分类ID
+   * @type {number}
+   * @memberof FrontCategoryListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 分类名称
+   * @type {string}
+   * @memberof FrontCategoryListCreate200ResponseDataItems
+   */
+  name?: string;
+  /**
+   * 父分类ID
+   * @type {number}
+   * @memberof FrontCategoryListCreate200ResponseDataItems
+   */
+  parent_id?: number;
+  /**
+   * 该分类下的产品数量
+   * @type {number}
+   * @memberof FrontCategoryListCreate200ResponseDataItems
+   */
+  product_count?: number;
+  /**
+   *
+   * @type {object}
+   * @memberof FrontCategoryListCreate200ResponseDataItems
+   */
+  children?: object;
 }
 /**
- * 
+ *
  * @export
  * @interface FrontCategoryListCreateRequest
  */
 export interface FrontCategoryListCreateRequest {
-    /**
-     * 父分类ID，传0只查询父类，不传展示全部
-     * @type {number}
-     * @memberof FrontCategoryListCreateRequest
-     */
-    'parent_id'?: number;
+  /**
+   * 父分类ID，传0只查询父类，不传展示全部
+   * @type {number}
+   * @memberof FrontCategoryListCreateRequest
+   */
+  parent_id?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface FrontProductListCreate200Response
  */
 export interface FrontProductListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof FrontProductListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof FrontProductListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {FrontProductListCreate200ResponseData}
-     * @memberof FrontProductListCreate200Response
-     */
-    'data'?: FrontProductListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof FrontProductListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof FrontProductListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {FrontProductListCreate200ResponseData}
+   * @memberof FrontProductListCreate200Response
+   */
+  data?: FrontProductListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface FrontProductListCreate200ResponseData
  */
 export interface FrontProductListCreate200ResponseData {
-    /**
-     * 
-     * @type {FrontProductListCreate200ResponseDataItems}
-     * @memberof FrontProductListCreate200ResponseData
-     */
-    'items'?: FrontProductListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof FrontProductListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof FrontProductListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof FrontProductListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {FrontProductListCreate200ResponseDataItems}
+   * @memberof FrontProductListCreate200ResponseData
+   */
+  items?: FrontProductListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof FrontProductListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof FrontProductListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof FrontProductListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 产品列表
@@ -1561,201 +1696,216 @@ export interface FrontProductListCreate200ResponseData {
  * @interface FrontProductListCreate200ResponseDataItems
  */
 export interface FrontProductListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'product_name'?: string;
-    /**
-     * 副标题
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'subtitle'?: string;
-    /**
-     * 产品链接
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'product_link'?: string;
-    /**
-     * 封面图片URL列表
-     * @type {Array<string>}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'cover'?: Array<string>;
-    /**
-     * logo图片
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'logo'?: string;
-    /**
-     * 产品内容
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'content'?: string;
-    /**
-     * SEO标题
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'title'?: string;
-    /**
-     * 永久链接
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'permalink'?: string;
-    /**
-     * SEO描述
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'description'?: string;
-    /**
-     * 关键词
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'focus_keyword'?: string;
-    /**
-     * 封面颜色配置ID
-     * @type {number}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'cover_color_id'?: number;
-    /**
-     * 背景颜色
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'background_color'?: string;
-    /**
-     * 字体颜色
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'font_color'?: string;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
-    /**
-     * 总浏览量
-     * @type {number}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'total_views'?: number;
-    /**
-     * 父分类名称列表
-     * @type {Array<string>}
-     * @memberof FrontProductListCreate200ResponseDataItems
-     */
-    'categories'?: Array<string>;
+  /**
+   * ID
+   * @type {number}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  product_name?: string;
+  /**
+   * 副标题
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  subtitle?: string;
+  /**
+   * 产品链接
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  product_link?: string;
+  /**
+   * 封面图片URL列表
+   * @type {Array<string>}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  cover?: Array<string>;
+  /**
+   * logo图片
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  logo?: string;
+  /**
+   * 产品内容
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  content?: string;
+  /**
+   * SEO标题
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  title?: string;
+  /**
+   * 永久链接
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  permalink?: string;
+  /**
+   * SEO描述
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  description?: string;
+  /**
+   * 关键词
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  focus_keyword?: string;
+  /**
+   * 封面颜色配置ID
+   * @type {number}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  cover_color_id?: number;
+  /**
+   * 背景颜色
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  background_color?: string;
+  /**
+   * 字体颜色
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  font_color?: string;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  create_time?: string;
+  /**
+   * 总浏览量
+   * @type {number}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  total_views?: number;
+  /**
+   * 父分类名称列表
+   * @type {Array<string>}
+   * @memberof FrontProductListCreate200ResponseDataItems
+   */
+  categories?: Array<string>;
 }
 /**
- * 
+ *
  * @export
  * @interface FrontProductListCreateRequest
  */
 export interface FrontProductListCreateRequest {
-    /**
-     * 分类ID
-     * @type {number}
-     * @memberof FrontProductListCreateRequest
-     */
-    'category_id'?: number;
-    /**
-     * 产品名称，用于搜索
-     * @type {string}
-     * @memberof FrontProductListCreateRequest
-     */
-    'product_name'?: string;
-    /**
-     * 年份，例如：2024
-     * @type {number}
-     * @memberof FrontProductListCreateRequest
-     */
-    'year'?: number;
-    /**
-     * 月份，1-12之间的整数
-     * @type {number}
-     * @memberof FrontProductListCreateRequest
-     */
-    'month'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof FrontProductListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof FrontProductListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 分类ID
+   * @type {number}
+   * @memberof FrontProductListCreateRequest
+   */
+  category_id?: number;
+  /**
+   * 产品名称，用于搜索
+   * @type {string}
+   * @memberof FrontProductListCreateRequest
+   */
+  product_name?: string;
+  /**
+   * 年份
+   * @type {number}
+   * @memberof FrontProductListCreateRequest
+   */
+  year?: number;
+  /**
+   * 月份
+   * @type {number}
+   * @memberof FrontProductListCreateRequest
+   */
+  month?: number;
+  /**
+   * 创建时间排序方向 asc:升序 desc:降序
+   * @type {string}
+   * @memberof FrontProductListCreateRequest
+   */
+  sort_order?: FrontProductListCreateRequestSortOrderEnum;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof FrontProductListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof FrontProductListCreateRequest
+   */
+  page_size?: number;
 }
+
+export const FrontProductListCreateRequestSortOrderEnum = {
+  Asc: "asc",
+  Desc: "desc",
+} as const;
+
+export type FrontProductListCreateRequestSortOrderEnum =
+  (typeof FrontProductListCreateRequestSortOrderEnum)[keyof typeof FrontProductListCreateRequestSortOrderEnum];
+
 /**
- * 
+ *
  * @export
  * @interface FrontStatisticsCreate200Response
  */
 export interface FrontStatisticsCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof FrontStatisticsCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof FrontStatisticsCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {FrontStatisticsCreate200ResponseData}
-     * @memberof FrontStatisticsCreate200Response
-     */
-    'data'?: FrontStatisticsCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof FrontStatisticsCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof FrontStatisticsCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {FrontStatisticsCreate200ResponseData}
+   * @memberof FrontStatisticsCreate200Response
+   */
+  data?: FrontStatisticsCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface FrontStatisticsCreate200ResponseData
  */
 export interface FrontStatisticsCreate200ResponseData {
-    /**
-     * 正常状态的商品总数
-     * @type {number}
-     * @memberof FrontStatisticsCreate200ResponseData
-     */
-    'total_products'?: number;
-    /**
-     * 正常状态的子分类总数
-     * @type {number}
-     * @memberof FrontStatisticsCreate200ResponseData
-     */
-    'total_categories'?: number;
-    /**
-     * 
-     * @type {FrontStatisticsCreate200ResponseDataAdvertisement}
-     * @memberof FrontStatisticsCreate200ResponseData
-     */
-    'advertisement'?: FrontStatisticsCreate200ResponseDataAdvertisement;
+  /**
+   * 正常状态的商品总数
+   * @type {number}
+   * @memberof FrontStatisticsCreate200ResponseData
+   */
+  total_products?: number;
+  /**
+   * 正常状态的子分类总数
+   * @type {number}
+   * @memberof FrontStatisticsCreate200ResponseData
+   */
+  total_categories?: number;
+  /**
+   *
+   * @type {FrontStatisticsCreate200ResponseDataAdvertisement}
+   * @memberof FrontStatisticsCreate200ResponseData
+   */
+  advertisement?: FrontStatisticsCreate200ResponseDataAdvertisement;
 }
 /**
  * 前台首页上方广告
@@ -1763,111 +1913,111 @@ export interface FrontStatisticsCreate200ResponseData {
  * @interface FrontStatisticsCreate200ResponseDataAdvertisement
  */
 export interface FrontStatisticsCreate200ResponseDataAdvertisement {
-    /**
-     * 广告标题
-     * @type {string}
-     * @memberof FrontStatisticsCreate200ResponseDataAdvertisement
-     */
-    'title'?: string;
-    /**
-     * 广告链接
-     * @type {string}
-     * @memberof FrontStatisticsCreate200ResponseDataAdvertisement
-     */
-    'link'?: string;
-    /**
-     * 广告图片
-     * @type {string}
-     * @memberof FrontStatisticsCreate200ResponseDataAdvertisement
-     */
-    'image'?: string;
+  /**
+   * 广告标题
+   * @type {string}
+   * @memberof FrontStatisticsCreate200ResponseDataAdvertisement
+   */
+  title?: string;
+  /**
+   * 广告链接
+   * @type {string}
+   * @memberof FrontStatisticsCreate200ResponseDataAdvertisement
+   */
+  link?: string;
+  /**
+   * 广告图片
+   * @type {string}
+   * @memberof FrontStatisticsCreate200ResponseDataAdvertisement
+   */
+  image?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface MenuCreateCreateRequest
  */
 export interface MenuCreateCreateRequest {
-    /**
-     * 菜单名称
-     * @type {string}
-     * @memberof MenuCreateCreateRequest
-     */
-    'name': string;
-    /**
-     * 父菜单ID，顶级菜单传0
-     * @type {number}
-     * @memberof MenuCreateCreateRequest
-     */
-    'parent_id'?: number;
-    /**
-     * 排序，值越小越靠前
-     * @type {number}
-     * @memberof MenuCreateCreateRequest
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof MenuCreateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 菜单名称
+   * @type {string}
+   * @memberof MenuCreateCreateRequest
+   */
+  name: string;
+  /**
+   * 父菜单ID，顶级菜单传0
+   * @type {number}
+   * @memberof MenuCreateCreateRequest
+   */
+  parent_id?: number;
+  /**
+   * 排序，值越小越靠前
+   * @type {number}
+   * @memberof MenuCreateCreateRequest
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof MenuCreateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface MenuListCreate200Response
  */
 export interface MenuListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof MenuListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof MenuListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {MenuListCreate200ResponseData}
-     * @memberof MenuListCreate200Response
-     */
-    'data'?: MenuListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof MenuListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof MenuListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {MenuListCreate200ResponseData}
+   * @memberof MenuListCreate200Response
+   */
+  data?: MenuListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface MenuListCreate200ResponseData
  */
 export interface MenuListCreate200ResponseData {
-    /**
-     * 
-     * @type {MenuListCreate200ResponseDataItems}
-     * @memberof MenuListCreate200ResponseData
-     */
-    'items'?: MenuListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof MenuListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof MenuListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof MenuListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {MenuListCreate200ResponseDataItems}
+   * @memberof MenuListCreate200ResponseData
+   */
+  items?: MenuListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof MenuListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof MenuListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof MenuListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 菜单列表
@@ -1875,319 +2025,319 @@ export interface MenuListCreate200ResponseData {
  * @interface MenuListCreate200ResponseDataItems
  */
 export interface MenuListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof MenuListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 菜单名称
-     * @type {string}
-     * @memberof MenuListCreate200ResponseDataItems
-     */
-    'name'?: string;
-    /**
-     * 父菜单ID
-     * @type {number}
-     * @memberof MenuListCreate200ResponseDataItems
-     */
-    'parent_id'?: number;
-    /**
-     * 排序
-     * @type {number}
-     * @memberof MenuListCreate200ResponseDataItems
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof MenuListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof MenuListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof MenuListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 菜单名称
+   * @type {string}
+   * @memberof MenuListCreate200ResponseDataItems
+   */
+  name?: string;
+  /**
+   * 父菜单ID
+   * @type {number}
+   * @memberof MenuListCreate200ResponseDataItems
+   */
+  parent_id?: number;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof MenuListCreate200ResponseDataItems
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof MenuListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof MenuListCreate200ResponseDataItems
+   */
+  create_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface MenuListCreateRequest
  */
 export interface MenuListCreateRequest {
-    /**
-     * 菜单名称
-     * @type {string}
-     * @memberof MenuListCreateRequest
-     */
-    'name'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof MenuListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof MenuListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof MenuListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 菜单名称
+   * @type {string}
+   * @memberof MenuListCreateRequest
+   */
+  name?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof MenuListCreateRequest
+   */
+  status?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof MenuListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof MenuListCreateRequest
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface PaymentPlanCreateCreateRequest
  */
 export interface PaymentPlanCreateCreateRequest {
-    /**
-     * 方案标题
-     * @type {string}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'title': string;
-    /**
-     * 现价
-     * @type {number}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'current_price': number;
-    /**
-     * 原价
-     * @type {number}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'original_price': number;
-    /**
-     * 有效期(天)
-     * @type {number}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'validity_period': number;
-    /**
-     * 价格介绍
-     * @type {string}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'price_description'?: string;
-    /**
-     * 推荐信息
-     * @type {string}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'recommendation'?: string;
-    /**
-     * 功能特点列表
-     * @type {Array<string>}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'features'?: Array<string>;
-    /**
-     * 版本类型(FREE:免费版 STANDARD:标准版 PREMIUM:高级版)
-     * @type {string}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'type': string;
-    /**
-     * 排序
-     * @type {number}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'sort'?: number;
-    /**
-     * 状态 0:禁用 1:正常
-     * @type {number}
-     * @memberof PaymentPlanCreateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 方案标题
+   * @type {string}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  title: string;
+  /**
+   * 现价
+   * @type {number}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  current_price: number;
+  /**
+   * 原价
+   * @type {number}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  original_price: number;
+  /**
+   * 有效期(天)
+   * @type {number}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  validity_period: number;
+  /**
+   * 价格介绍
+   * @type {string}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  price_description?: string;
+  /**
+   * 推荐信息
+   * @type {string}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  recommendation?: string;
+  /**
+   * 功能特点列表
+   * @type {Array<string>}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  features?: Array<string>;
+  /**
+   * 版本类型(FREE:免费版 STANDARD:标准版 PREMIUM:高级版)
+   * @type {string}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  type: string;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  sort?: number;
+  /**
+   * 状态 0:禁用 1:正常
+   * @type {number}
+   * @memberof PaymentPlanCreateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface PaymentPlanDeleteCreateRequest
  */
 export interface PaymentPlanDeleteCreateRequest {
-    /**
-     * ID
-     * @type {number}
-     * @memberof PaymentPlanDeleteCreateRequest
-     */
-    'id': number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof PaymentPlanDeleteCreateRequest
+   */
+  id: number;
 }
 /**
- * 
+ *
  * @export
  * @interface PaymentPlanDetailCreate200Response
  */
 export interface PaymentPlanDetailCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof PaymentPlanDetailCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof PaymentPlanDetailCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {PaymentPlanDetailCreate200ResponseData}
-     * @memberof PaymentPlanDetailCreate200Response
-     */
-    'data'?: PaymentPlanDetailCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof PaymentPlanDetailCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof PaymentPlanDetailCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {PaymentPlanDetailCreate200ResponseData}
+   * @memberof PaymentPlanDetailCreate200Response
+   */
+  data?: PaymentPlanDetailCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface PaymentPlanDetailCreate200ResponseData
  */
 export interface PaymentPlanDetailCreate200ResponseData {
-    /**
-     * ID
-     * @type {number}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'id'?: number;
-    /**
-     * 方案标题
-     * @type {string}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'title'?: string;
-    /**
-     * 现价
-     * @type {number}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'current_price'?: number;
-    /**
-     * 原价
-     * @type {number}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'original_price'?: number;
-    /**
-     * 有效期(天)
-     * @type {number}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'validity_period'?: number;
-    /**
-     * 价格介绍
-     * @type {string}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'price_description'?: string;
-    /**
-     * 推荐信息
-     * @type {string}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'recommendation'?: string;
-    /**
-     * 功能特点列表
-     * @type {Array<string>}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'features'?: Array<string>;
-    /**
-     * 版本类型
-     * @type {string}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'type'?: string;
-    /**
-     * 排序
-     * @type {number}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'sort'?: number;
-    /**
-     * 状态 0:禁用 1:正常
-     * @type {number}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'create_time'?: string;
-    /**
-     * 更新时间
-     * @type {string}
-     * @memberof PaymentPlanDetailCreate200ResponseData
-     */
-    'update_time'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  id?: number;
+  /**
+   * 方案标题
+   * @type {string}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  title?: string;
+  /**
+   * 现价
+   * @type {number}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  current_price?: number;
+  /**
+   * 原价
+   * @type {number}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  original_price?: number;
+  /**
+   * 有效期(天)
+   * @type {number}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  validity_period?: number;
+  /**
+   * 价格介绍
+   * @type {string}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  price_description?: string;
+  /**
+   * 推荐信息
+   * @type {string}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  recommendation?: string;
+  /**
+   * 功能特点列表
+   * @type {Array<string>}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  features?: Array<string>;
+  /**
+   * 版本类型
+   * @type {string}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  type?: string;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  sort?: number;
+  /**
+   * 状态 0:禁用 1:正常
+   * @type {number}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  create_time?: string;
+  /**
+   * 更新时间
+   * @type {string}
+   * @memberof PaymentPlanDetailCreate200ResponseData
+   */
+  update_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface PaymentPlanListCreate200Response
  */
 export interface PaymentPlanListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof PaymentPlanListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof PaymentPlanListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {PaymentPlanListCreate200ResponseData}
-     * @memberof PaymentPlanListCreate200Response
-     */
-    'data'?: PaymentPlanListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof PaymentPlanListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof PaymentPlanListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {PaymentPlanListCreate200ResponseData}
+   * @memberof PaymentPlanListCreate200Response
+   */
+  data?: PaymentPlanListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface PaymentPlanListCreate200ResponseData
  */
 export interface PaymentPlanListCreate200ResponseData {
-    /**
-     * 
-     * @type {PaymentPlanListCreate200ResponseDataItems}
-     * @memberof PaymentPlanListCreate200ResponseData
-     */
-    'items'?: PaymentPlanListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {PaymentPlanListCreate200ResponseDataItems}
+   * @memberof PaymentPlanListCreate200ResponseData
+   */
+  items?: PaymentPlanListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof PaymentPlanListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof PaymentPlanListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof PaymentPlanListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 价格方案列表
@@ -2195,995 +2345,1058 @@ export interface PaymentPlanListCreate200ResponseData {
  * @interface PaymentPlanListCreate200ResponseDataItems
  */
 export interface PaymentPlanListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 方案标题
-     * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'title'?: string;
-    /**
-     * 现价
-     * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'current_price'?: number;
-    /**
-     * 原价
-     * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'original_price'?: number;
-    /**
-     * 有效期(天)
-     * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'validity_period'?: number;
-    /**
-     * 价格介绍
-     * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'price_description'?: string;
-    /**
-     * 推荐信息
-     * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'recommendation'?: string;
-    /**
-     * 功能特点列表
-     * @type {Array<string>}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'features'?: Array<string>;
-    /**
-     * 版本类型
-     * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'type'?: string;
-    /**
-     * 排序
-     * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'sort'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 方案标题
+   * @type {string}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  title?: string;
+  /**
+   * 现价
+   * @type {number}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  current_price?: number;
+  /**
+   * 原价
+   * @type {number}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  original_price?: number;
+  /**
+   * 有效期(天)
+   * @type {number}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  validity_period?: number;
+  /**
+   * 价格介绍
+   * @type {string}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  price_description?: string;
+  /**
+   * 推荐信息
+   * @type {string}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  recommendation?: string;
+  /**
+   * 功能特点列表
+   * @type {Array<string>}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  features?: Array<string>;
+  /**
+   * 版本类型
+   * @type {string}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  type?: string;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  sort?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof PaymentPlanListCreate200ResponseDataItems
+   */
+  create_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface PaymentPlanListCreateRequest
  */
 export interface PaymentPlanListCreateRequest {
-    /**
-     * 方案标题
-     * @type {string}
-     * @memberof PaymentPlanListCreateRequest
-     */
-    'title'?: string;
-    /**
-     * 版本类型
-     * @type {string}
-     * @memberof PaymentPlanListCreateRequest
-     */
-    'type'?: string;
-    /**
-     * 状态 0:禁用 1:正常
-     * @type {number}
-     * @memberof PaymentPlanListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof PaymentPlanListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof PaymentPlanListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 方案标题
+   * @type {string}
+   * @memberof PaymentPlanListCreateRequest
+   */
+  title?: string;
+  /**
+   * 版本类型
+   * @type {string}
+   * @memberof PaymentPlanListCreateRequest
+   */
+  type?: string;
+  /**
+   * 状态 0:禁用 1:正常
+   * @type {number}
+   * @memberof PaymentPlanListCreateRequest
+   */
+  status?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof PaymentPlanListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof PaymentPlanListCreateRequest
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface PaymentPlanUpdateCreateRequest
  */
 export interface PaymentPlanUpdateCreateRequest {
-    /**
-     * ID
-     * @type {number}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'id': number;
-    /**
-     * 方案标题
-     * @type {string}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'title'?: string;
-    /**
-     * 现价
-     * @type {number}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'current_price'?: number;
-    /**
-     * 原价
-     * @type {number}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'original_price'?: number;
-    /**
-     * 有效期(天)
-     * @type {number}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'validity_period'?: number;
-    /**
-     * 价格介绍
-     * @type {string}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'price_description'?: string;
-    /**
-     * 推荐信息
-     * @type {string}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'recommendation'?: string;
-    /**
-     * 功能特点列表
-     * @type {Array<string>}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'features'?: Array<string>;
-    /**
-     * 版本类型(FREE:免费版 STANDARD:标准版 PREMIUM:高级版)
-     * @type {string}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'type'?: string;
-    /**
-     * 排序
-     * @type {number}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'sort'?: number;
-    /**
-     * 状态 0:禁用 1:正常
-     * @type {number}
-     * @memberof PaymentPlanUpdateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  id: number;
+  /**
+   * 方案标题
+   * @type {string}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  title?: string;
+  /**
+   * 现价
+   * @type {number}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  current_price?: number;
+  /**
+   * 原价
+   * @type {number}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  original_price?: number;
+  /**
+   * 有效期(天)
+   * @type {number}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  validity_period?: number;
+  /**
+   * 价格介绍
+   * @type {string}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  price_description?: string;
+  /**
+   * 推荐信息
+   * @type {string}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  recommendation?: string;
+  /**
+   * 功能特点列表
+   * @type {Array<string>}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  features?: Array<string>;
+  /**
+   * 版本类型(FREE:免费版 STANDARD:标准版 PREMIUM:高级版)
+   * @type {string}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  type?: string;
+  /**
+   * 排序
+   * @type {number}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  sort?: number;
+  /**
+   * 状态 0:禁用 1:正常
+   * @type {number}
+   * @memberof PaymentPlanUpdateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
+ * @export
+ * @interface PaypalCancelPaymentCreate200Response
+ */
+export interface PaypalCancelPaymentCreate200Response {
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof PaypalCancelPaymentCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof PaypalCancelPaymentCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {PaypalCancelPaymentCreate200ResponseData}
+   * @memberof PaypalCancelPaymentCreate200Response
+   */
+  data?: PaypalCancelPaymentCreate200ResponseData;
+}
+/**
+ *
+ * @export
+ * @interface PaypalCancelPaymentCreate200ResponseData
+ */
+export interface PaypalCancelPaymentCreate200ResponseData {
+  /**
+   * 订单号
+   * @type {string}
+   * @memberof PaypalCancelPaymentCreate200ResponseData
+   */
+  order_no?: string;
+  /**
+   * 订单状态
+   * @type {string}
+   * @memberof PaypalCancelPaymentCreate200ResponseData
+   */
+  status?: string;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof PaypalCancelPaymentCreate200ResponseData
+   */
+  message?: string;
+}
+/**
+ *
+ * @export
+ * @interface PaypalCancelPaymentCreateRequest
+ */
+export interface PaypalCancelPaymentCreateRequest {
+  /**
+   * 订单号
+   * @type {string}
+   * @memberof PaypalCancelPaymentCreateRequest
+   */
+  order_no: string;
+}
+/**
+ *
  * @export
  * @interface PaypalCompletePaymentCreate200Response
  */
 export interface PaypalCompletePaymentCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof PaypalCompletePaymentCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {PaypalCompletePaymentCreate200ResponseData}
-     * @memberof PaypalCompletePaymentCreate200Response
-     */
-    'data'?: PaypalCompletePaymentCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof PaypalCompletePaymentCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {PaypalCompletePaymentCreate200ResponseData}
+   * @memberof PaypalCompletePaymentCreate200Response
+   */
+  data?: PaypalCompletePaymentCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalCompletePaymentCreate200ResponseData
  */
 export interface PaypalCompletePaymentCreate200ResponseData {
-    /**
-     * 订单号
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'order_no'?: string;
-    /**
-     * 支付状态
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'status'?: string;
-    /**
-     * 支付时间
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'payment_time'?: string;
-    /**
-     * 总金额
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'total_amount'?: string;
-    /**
-     * PayPal手续费
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'paypal_fee'?: string;
-    /**
-     * 实际到账金额
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'net_amount'?: string;
-    /**
-     * 货币类型
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'currency'?: string;
-    /**
-     * 支付模式
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'payment_mode'?: string;
-    /**
-     * 交易状态
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'state'?: string;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'create_time'?: string;
-    /**
-     * 交易ID
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'transaction_id'?: string;
-    /**
-     * 提示信息，可选
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreate200ResponseData
-     */
-    'message'?: string;
+  /**
+   * 订单号
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  order_no?: string;
+  /**
+   * 支付状态
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  status?: string;
+  /**
+   * 支付时间
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  payment_time?: string;
+  /**
+   * 总金额
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  total_amount?: string;
+  /**
+   * PayPal手续费
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  paypal_fee?: string;
+  /**
+   * 实际到账金额
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  net_amount?: string;
+  /**
+   * 货币类型
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  currency?: string;
+  /**
+   * 支付模式
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  payment_mode?: string;
+  /**
+   * 交易状态
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  state?: string;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  create_time?: string;
+  /**
+   * 交易ID
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  transaction_id?: string;
+  /**
+   * 提示信息，可选
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreate200ResponseData
+   */
+  message?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalCompletePaymentCreateRequest
  */
 export interface PaypalCompletePaymentCreateRequest {
-    /**
-     * PayPal支付ID
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreateRequest
-     */
-    'payment_id': string;
-    /**
-     * PayPal支付者ID
-     * @type {string}
-     * @memberof PaypalCompletePaymentCreateRequest
-     */
-    'payer_id': string;
+  /**
+   * PayPal支付ID
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreateRequest
+   */
+  payment_id: string;
+  /**
+   * PayPal支付者ID
+   * @type {string}
+   * @memberof PaypalCompletePaymentCreateRequest
+   */
+  payer_id: string;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalCreatePaymentCreate200Response
  */
 export interface PaypalCreatePaymentCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof PaypalCreatePaymentCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {PaypalCreatePaymentCreate200ResponseData}
-     * @memberof PaypalCreatePaymentCreate200Response
-     */
-    'data'?: PaypalCreatePaymentCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof PaypalCreatePaymentCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {PaypalCreatePaymentCreate200ResponseData}
+   * @memberof PaypalCreatePaymentCreate200Response
+   */
+  data?: PaypalCreatePaymentCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalCreatePaymentCreate200ResponseData
  */
 export interface PaypalCreatePaymentCreate200ResponseData {
-    /**
-     * PayPal支付ID，付费套餐时返回
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200ResponseData
-     */
-    'payment_id'?: string;
-    /**
-     * PayPal支付URL，付费套餐时返回
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200ResponseData
-     */
-    'approval_url'?: string;
-    /**
-     * 订单号，免费套餐时返回
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200ResponseData
-     */
-    'order_no'?: string;
-    /**
-     * 支付状态，免费套餐时返回
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200ResponseData
-     */
-    'status'?: string;
-    /**
-     * 支付时间，免费套餐时返回
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200ResponseData
-     */
-    'payment_time'?: string;
-    /**
-     * 总金额，免费套餐时返回
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200ResponseData
-     */
-    'total_amount'?: string;
-    /**
-     * 手续费，免费套餐时返回
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200ResponseData
-     */
-    'paypal_fee'?: string;
-    /**
-     * 实际到账金额，免费套餐时返回
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200ResponseData
-     */
-    'net_amount'?: string;
-    /**
-     * 提示信息，免费套餐时返回
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreate200ResponseData
-     */
-    'message'?: string;
+  /**
+   * PayPal支付ID，付费套餐时返回
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200ResponseData
+   */
+  payment_id?: string;
+  /**
+   * PayPal支付URL，付费套餐时返回
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200ResponseData
+   */
+  approval_url?: string;
+  /**
+   * 订单号，免费套餐时返回
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200ResponseData
+   */
+  order_no?: string;
+  /**
+   * 支付状态，免费套餐时返回
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200ResponseData
+   */
+  status?: string;
+  /**
+   * 支付时间，免费套餐时返回
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200ResponseData
+   */
+  payment_time?: string;
+  /**
+   * 总金额，免费套餐时返回
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200ResponseData
+   */
+  total_amount?: string;
+  /**
+   * 手续费，免费套餐时返回
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200ResponseData
+   */
+  paypal_fee?: string;
+  /**
+   * 实际到账金额，免费套餐时返回
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200ResponseData
+   */
+  net_amount?: string;
+  /**
+   * 提示信息，免费套餐时返回
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreate200ResponseData
+   */
+  message?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalCreatePaymentCreateRequest
  */
 export interface PaypalCreatePaymentCreateRequest {
-    /**
-     * 商品ID
-     * @type {number}
-     * @memberof PaypalCreatePaymentCreateRequest
-     */
-    'product_id': number;
-    /**
-     * 支付方案关联id
-     * @type {number}
-     * @memberof PaypalCreatePaymentCreateRequest
-     */
-    'paymentRelation_id': number;
-    /**
-     * 支付成功后的跳转URL
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreateRequest
-     */
-    'return_url': string;
-    /**
-     * 支付取消后的跳转URL
-     * @type {string}
-     * @memberof PaypalCreatePaymentCreateRequest
-     */
-    'cancel_url': string;
+  /**
+   * 商品ID
+   * @type {number}
+   * @memberof PaypalCreatePaymentCreateRequest
+   */
+  product_id: number;
+  /**
+   * 支付方案关联id
+   * @type {number}
+   * @memberof PaypalCreatePaymentCreateRequest
+   */
+  paymentRelation_id: number;
+  /**
+   * 支付成功后的跳转URL
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreateRequest
+   */
+  return_url: string;
+  /**
+   * 支付取消后的跳转URL
+   * @type {string}
+   * @memberof PaypalCreatePaymentCreateRequest
+   */
+  cancel_url: string;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalCreateRenewalCreate200Response
  */
 export interface PaypalCreateRenewalCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof PaypalCreateRenewalCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof PaypalCreateRenewalCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {PaypalCreateRenewalCreate200ResponseData}
-     * @memberof PaypalCreateRenewalCreate200Response
-     */
-    'data'?: PaypalCreateRenewalCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof PaypalCreateRenewalCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof PaypalCreateRenewalCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {PaypalCreateRenewalCreate200ResponseData}
+   * @memberof PaypalCreateRenewalCreate200Response
+   */
+  data?: PaypalCreateRenewalCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalCreateRenewalCreate200ResponseData
  */
 export interface PaypalCreateRenewalCreate200ResponseData {
-    /**
-     * 支付关联ID
-     * @type {number}
-     * @memberof PaypalCreateRenewalCreate200ResponseData
-     */
-    'paymentRelation_id'?: number;
+  /**
+   * 支付关联ID
+   * @type {number}
+   * @memberof PaypalCreateRenewalCreate200ResponseData
+   */
+  paymentRelation_id?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalCreateRenewalCreateRequest
  */
 export interface PaypalCreateRenewalCreateRequest {
-    /**
-     * 商品ID
-     * @type {number}
-     * @memberof PaypalCreateRenewalCreateRequest
-     */
-    'product_id': number;
-    /**
-     * 支付套餐ID
-     * @type {number}
-     * @memberof PaypalCreateRenewalCreateRequest
-     */
-    'payment_id': number;
+  /**
+   * 商品ID
+   * @type {number}
+   * @memberof PaypalCreateRenewalCreateRequest
+   */
+  product_id: number;
+  /**
+   * 支付套餐ID
+   * @type {number}
+   * @memberof PaypalCreateRenewalCreateRequest
+   */
+  payment_id: number;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalPaymentDetailsCreate200Response
  */
 export interface PaypalPaymentDetailsCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof PaypalPaymentDetailsCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof PaypalPaymentDetailsCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {PaypalPaymentDetailsCreate200ResponseData}
-     * @memberof PaypalPaymentDetailsCreate200Response
-     */
-    'data'?: PaypalPaymentDetailsCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof PaypalPaymentDetailsCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof PaypalPaymentDetailsCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {PaypalPaymentDetailsCreate200ResponseData}
+   * @memberof PaypalPaymentDetailsCreate200Response
+   */
+  data?: PaypalPaymentDetailsCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalPaymentDetailsCreate200ResponseData
  */
 export interface PaypalPaymentDetailsCreate200ResponseData {
-    /**
-     * PayPal支付详情
-     * @type {object}
-     * @memberof PaypalPaymentDetailsCreate200ResponseData
-     */
-    'payment_details'?: object;
+  /**
+   * PayPal支付详情
+   * @type {object}
+   * @memberof PaypalPaymentDetailsCreate200ResponseData
+   */
+  payment_details?: object;
 }
 /**
- * 
+ *
  * @export
  * @interface PaypalPaymentDetailsCreateRequest
  */
 export interface PaypalPaymentDetailsCreateRequest {
-    /**
-     * PayPal支付ID
-     * @type {string}
-     * @memberof PaypalPaymentDetailsCreateRequest
-     */
-    'payment_id': string;
+  /**
+   * PayPal支付ID
+   * @type {string}
+   * @memberof PaypalPaymentDetailsCreateRequest
+   */
+  payment_id: string;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductClickRecordCreate200Response
  */
 export interface ProductClickRecordCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof ProductClickRecordCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof ProductClickRecordCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {ProductClickRecordCreate200ResponseData}
-     * @memberof ProductClickRecordCreate200Response
-     */
-    'data'?: ProductClickRecordCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof ProductClickRecordCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof ProductClickRecordCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {ProductClickRecordCreate200ResponseData}
+   * @memberof ProductClickRecordCreate200Response
+   */
+  data?: ProductClickRecordCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductClickRecordCreate200ResponseData
  */
 export interface ProductClickRecordCreate200ResponseData {
-    /**
-     * 总点击量
-     * @type {number}
-     * @memberof ProductClickRecordCreate200ResponseData
-     */
-    'hits'?: number;
+  /**
+   * 总点击量
+   * @type {number}
+   * @memberof ProductClickRecordCreate200ResponseData
+   */
+  hits?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductClickRecordCreateRequest
  */
 export interface ProductClickRecordCreateRequest {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof ProductClickRecordCreateRequest
-     */
-    'product_id': number;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof ProductClickRecordCreateRequest
+   */
+  product_id: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductClickStatsCreate200Response
  */
 export interface ProductClickStatsCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof ProductClickStatsCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof ProductClickStatsCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {ProductClickStatsCreate200ResponseData}
-     * @memberof ProductClickStatsCreate200Response
-     */
-    'data'?: ProductClickStatsCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof ProductClickStatsCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof ProductClickStatsCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {ProductClickStatsCreate200ResponseData}
+   * @memberof ProductClickStatsCreate200Response
+   */
+  data?: ProductClickStatsCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductClickStatsCreate200ResponseData
  */
 export interface ProductClickStatsCreate200ResponseData {
-    /**
-     * 总点击量
-     * @type {number}
-     * @memberof ProductClickStatsCreate200ResponseData
-     */
-    'hits'?: number;
-    /**
-     * 独立访客数
-     * @type {number}
-     * @memberof ProductClickStatsCreate200ResponseData
-     */
-    'unique_users'?: number;
-    /**
-     * 独立IP数
-     * @type {number}
-     * @memberof ProductClickStatsCreate200ResponseData
-     */
-    'unique_ips'?: number;
+  /**
+   * 总点击量
+   * @type {number}
+   * @memberof ProductClickStatsCreate200ResponseData
+   */
+  hits?: number;
+  /**
+   * 独立访客数
+   * @type {number}
+   * @memberof ProductClickStatsCreate200ResponseData
+   */
+  unique_users?: number;
+  /**
+   * 独立IP数
+   * @type {number}
+   * @memberof ProductClickStatsCreate200ResponseData
+   */
+  unique_ips?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductClickStatsCreateRequest
  */
 export interface ProductClickStatsCreateRequest {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof ProductClickStatsCreateRequest
-     */
-    'product_id': number;
-    /**
-     * 开始日期 YYYY-MM-DD
-     * @type {string}
-     * @memberof ProductClickStatsCreateRequest
-     */
-    'start_date'?: string;
-    /**
-     * 结束日期 YYYY-MM-DD
-     * @type {string}
-     * @memberof ProductClickStatsCreateRequest
-     */
-    'end_date'?: string;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof ProductClickStatsCreateRequest
+   */
+  product_id: number;
+  /**
+   * 开始日期 YYYY-MM-DD
+   * @type {string}
+   * @memberof ProductClickStatsCreateRequest
+   */
+  start_date?: string;
+  /**
+   * 结束日期 YYYY-MM-DD
+   * @type {string}
+   * @memberof ProductClickStatsCreateRequest
+   */
+  end_date?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductCreateCreate200Response
  */
 export interface ProductCreateCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof ProductCreateCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof ProductCreateCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {ProductCreateCreate200ResponseData}
-     * @memberof ProductCreateCreate200Response
-     */
-    'data'?: ProductCreateCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof ProductCreateCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof ProductCreateCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {ProductCreateCreate200ResponseData}
+   * @memberof ProductCreateCreate200Response
+   */
+  data?: ProductCreateCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductCreateCreate200ResponseData
  */
 export interface ProductCreateCreate200ResponseData {
-    /**
-     * ID
-     * @type {number}
-     * @memberof ProductCreateCreate200ResponseData
-     */
-    'id'?: number;
-    /**
-     * 支付关联ID
-     * @type {number}
-     * @memberof ProductCreateCreate200ResponseData
-     */
-    'paymentRelation_id'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof ProductCreateCreate200ResponseData
+   */
+  id?: number;
+  /**
+   * 支付关联ID
+   * @type {number}
+   * @memberof ProductCreateCreate200ResponseData
+   */
+  paymentRelation_id?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductCreateCreateRequest
  */
 export interface ProductCreateCreateRequest {
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof ProductCreateCreateRequest
-     */
-    'product_name': string;
-    /**
-     * 副标题
-     * @type {string}
-     * @memberof ProductCreateCreateRequest
-     */
-    'subtitle'?: string;
-    /**
-     * 产品链接
-     * @type {string}
-     * @memberof ProductCreateCreateRequest
-     */
-    'product_link': string;
-    /**
-     * 封面图片(上传接口返回的path列表)
-     * @type {Array<string>}
-     * @memberof ProductCreateCreateRequest
-     */
-    'cover'?: Array<string>;
-    /**
-     * logo图片(上传接口返回的path)
-     * @type {string}
-     * @memberof ProductCreateCreateRequest
-     */
-    'logo'?: string;
-    /**
-     * 产品内容
-     * @type {string}
-     * @memberof ProductCreateCreateRequest
-     */
-    'content'?: string;
-    /**
-     * SEO标题
-     * @type {string}
-     * @memberof ProductCreateCreateRequest
-     */
-    'title': string;
-    /**
-     * 永久链接
-     * @type {string}
-     * @memberof ProductCreateCreateRequest
-     */
-    'permalink': string;
-    /**
-     * SEO描述
-     * @type {string}
-     * @memberof ProductCreateCreateRequest
-     */
-    'description'?: string;
-    /**
-     * 关键词
-     * @type {string}
-     * @memberof ProductCreateCreateRequest
-     */
-    'focus_keyword'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductCreateCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 分类ID子分类列表
-     * @type {Array<number>}
-     * @memberof ProductCreateCreateRequest
-     */
-    'category_ids': Array<number>;
-    /**
-     * 价格方案ID
-     * @type {number}
-     * @memberof ProductCreateCreateRequest
-     */
-    'payment_id': number;
-    /**
-     * 封面颜色配置ID
-     * @type {number}
-     * @memberof ProductCreateCreateRequest
-     */
-    'cover_color_id'?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof ProductCreateCreateRequest
+   */
+  product_name: string;
+  /**
+   * 副标题
+   * @type {string}
+   * @memberof ProductCreateCreateRequest
+   */
+  subtitle?: string;
+  /**
+   * 产品链接
+   * @type {string}
+   * @memberof ProductCreateCreateRequest
+   */
+  product_link: string;
+  /**
+   * 封面图片(上传接口返回的path列表)
+   * @type {Array<string>}
+   * @memberof ProductCreateCreateRequest
+   */
+  cover?: Array<string>;
+  /**
+   * logo图片(上传接口返回的path)
+   * @type {string}
+   * @memberof ProductCreateCreateRequest
+   */
+  logo?: string;
+  /**
+   * 产品内容
+   * @type {string}
+   * @memberof ProductCreateCreateRequest
+   */
+  content?: string;
+  /**
+   * SEO标题
+   * @type {string}
+   * @memberof ProductCreateCreateRequest
+   */
+  title: string;
+  /**
+   * 永久链接
+   * @type {string}
+   * @memberof ProductCreateCreateRequest
+   */
+  permalink: string;
+  /**
+   * SEO描述
+   * @type {string}
+   * @memberof ProductCreateCreateRequest
+   */
+  description?: string;
+  /**
+   * 关键词
+   * @type {string}
+   * @memberof ProductCreateCreateRequest
+   */
+  focus_keyword?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductCreateCreateRequest
+   */
+  status?: number;
+  /**
+   * 分类ID子分类列表
+   * @type {Array<number>}
+   * @memberof ProductCreateCreateRequest
+   */
+  category_ids: Array<number>;
+  /**
+   * 价格方案ID
+   * @type {number}
+   * @memberof ProductCreateCreateRequest
+   */
+  payment_id: number;
+  /**
+   * 封面颜色配置ID
+   * @type {number}
+   * @memberof ProductCreateCreateRequest
+   */
+  cover_color_id?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductDeleteCreateRequest
  */
 export interface ProductDeleteCreateRequest {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof ProductDeleteCreateRequest
-     */
-    'id': number;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof ProductDeleteCreateRequest
+   */
+  id: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductDetailCreate200Response
  */
 export interface ProductDetailCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof ProductDetailCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof ProductDetailCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {ProductDetailCreate200ResponseData}
-     * @memberof ProductDetailCreate200Response
-     */
-    'data'?: ProductDetailCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof ProductDetailCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof ProductDetailCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {ProductDetailCreate200ResponseData}
+   * @memberof ProductDetailCreate200Response
+   */
+  data?: ProductDetailCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductDetailCreate200ResponseData
  */
 export interface ProductDetailCreate200ResponseData {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'id'?: number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'product_name'?: string;
-    /**
-     * 副标题
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'subtitle'?: string;
-    /**
-     * 产品链接
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'product_link'?: string;
-    /**
-     * 封面图片
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'cover'?: string;
-    /**
-     * logo图片
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'logo'?: string;
-    /**
-     * 产品内容
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'content'?: string;
-    /**
-     * SEO标题
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'title'?: string;
-    /**
-     * 永久链接
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'permalink'?: string;
-    /**
-     * SEO描述
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'description'?: string;
-    /**
-     * 关键词
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'focus_keyword'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'status'?: number;
-    /**
-     * 分类列表
-     * @type {Array<ProductDetailCreate200ResponseDataCategoriesInner>}
-     * @memberof ProductDetailCreate200ResponseData
-     */
-    'categories'?: Array<ProductDetailCreate200ResponseDataCategoriesInner>;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  id?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  product_name?: string;
+  /**
+   * 副标题
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  subtitle?: string;
+  /**
+   * 产品链接
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  product_link?: string;
+  /**
+   * 封面图片
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  cover?: string;
+  /**
+   * logo图片
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  logo?: string;
+  /**
+   * 产品内容
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  content?: string;
+  /**
+   * SEO标题
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  title?: string;
+  /**
+   * 永久链接
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  permalink?: string;
+  /**
+   * SEO描述
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  description?: string;
+  /**
+   * 关键词
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  focus_keyword?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  status?: number;
+  /**
+   * 分类列表
+   * @type {Array<ProductDetailCreate200ResponseDataCategoriesInner>}
+   * @memberof ProductDetailCreate200ResponseData
+   */
+  categories?: Array<ProductDetailCreate200ResponseDataCategoriesInner>;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductDetailCreate200ResponseDataCategoriesInner
  */
 export interface ProductDetailCreate200ResponseDataCategoriesInner {
-    /**
-     * 分类ID
-     * @type {number}
-     * @memberof ProductDetailCreate200ResponseDataCategoriesInner
-     */
-    'id'?: number;
-    /**
-     * 分类名称
-     * @type {string}
-     * @memberof ProductDetailCreate200ResponseDataCategoriesInner
-     */
-    'name'?: string;
+  /**
+   * 分类ID
+   * @type {number}
+   * @memberof ProductDetailCreate200ResponseDataCategoriesInner
+   */
+  id?: number;
+  /**
+   * 分类名称
+   * @type {string}
+   * @memberof ProductDetailCreate200ResponseDataCategoriesInner
+   */
+  name?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductFavoriteListCreate200Response
  */
 export interface ProductFavoriteListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof ProductFavoriteListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {ProductFavoriteListCreate200ResponseData}
-     * @memberof ProductFavoriteListCreate200Response
-     */
-    'data'?: ProductFavoriteListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof ProductFavoriteListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {ProductFavoriteListCreate200ResponseData}
+   * @memberof ProductFavoriteListCreate200Response
+   */
+  data?: ProductFavoriteListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductFavoriteListCreate200ResponseData
  */
 export interface ProductFavoriteListCreate200ResponseData {
-    /**
-     * 
-     * @type {ProductFavoriteListCreate200ResponseDataItems}
-     * @memberof ProductFavoriteListCreate200ResponseData
-     */
-    'items'?: ProductFavoriteListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {ProductFavoriteListCreate200ResponseDataItems}
+   * @memberof ProductFavoriteListCreate200ResponseData
+   */
+  items?: ProductFavoriteListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 收藏列表
@@ -3191,159 +3404,159 @@ export interface ProductFavoriteListCreate200ResponseData {
  * @interface ProductFavoriteListCreate200ResponseDataItems
  */
 export interface ProductFavoriteListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'product_id'?: number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'product_name'?: string;
-    /**
-     * 产品副标题
-     * @type {string}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'subtitle'?: string;
-    /**
-     * 产品logo
-     * @type {string}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'logo'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
-    /**
-     * 到期时间
-     * @type {string}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'expiry_time'?: string;
-    /**
-     * 点击量
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'hits'?: number;
-    /**
-     * 总浏览量
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'total_views'?: number;
-    /**
-     * 今日浏览量
-     * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
-     */
-    'today_views'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  product_id?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  product_name?: string;
+  /**
+   * 产品副标题
+   * @type {string}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  subtitle?: string;
+  /**
+   * 产品logo
+   * @type {string}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  logo?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  create_time?: string;
+  /**
+   * 到期时间
+   * @type {string}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  expiry_time?: string;
+  /**
+   * 点击量
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  hits?: number;
+  /**
+   * 总浏览量
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  total_views?: number;
+  /**
+   * 今日浏览量
+   * @type {number}
+   * @memberof ProductFavoriteListCreate200ResponseDataItems
+   */
+  today_views?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductFavoriteListCreateRequest
  */
 export interface ProductFavoriteListCreateRequest {
-    /**
-     * 父分类ID
-     * @type {number}
-     * @memberof ProductFavoriteListCreateRequest
-     */
-    'parent_category_id'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductFavoriteListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof ProductFavoriteListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof ProductFavoriteListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 父分类ID
+   * @type {number}
+   * @memberof ProductFavoriteListCreateRequest
+   */
+  parent_category_id?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductFavoriteListCreateRequest
+   */
+  status?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof ProductFavoriteListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof ProductFavoriteListCreateRequest
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductListCreate200Response
  */
 export interface ProductListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof ProductListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof ProductListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {ProductListCreate200ResponseData}
-     * @memberof ProductListCreate200Response
-     */
-    'data'?: ProductListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof ProductListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof ProductListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {ProductListCreate200ResponseData}
+   * @memberof ProductListCreate200Response
+   */
+  data?: ProductListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductListCreate200ResponseData
  */
 export interface ProductListCreate200ResponseData {
-    /**
-     * 
-     * @type {ProductListCreate200ResponseDataItems}
-     * @memberof ProductListCreate200ResponseData
-     */
-    'items'?: ProductListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof ProductListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof ProductListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof ProductListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {ProductListCreate200ResponseDataItems}
+   * @memberof ProductListCreate200ResponseData
+   */
+  items?: ProductListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof ProductListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof ProductListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof ProductListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 产品列表
@@ -3351,265 +3564,267 @@ export interface ProductListCreate200ResponseData {
  * @interface ProductListCreate200ResponseDataItems
  */
 export interface ProductListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'product_name'?: string;
-    /**
-     * 副标题
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'subtitle'?: string;
-    /**
-     * 产品链接
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'product_link'?: string;
-    /**
-     * 封面图片URL列表
-     * @type {Array<string>}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'cover'?: Array<string>;
-    /**
-     * logo图片
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'logo'?: string;
-    /**
-     * SEO标题
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'title'?: string;
-    /**
-     * 永久链接
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'permalink'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 封面颜色配置ID
-     * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'cover_color_id'?: number;
-    /**
-     * 背景颜色
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'background_color'?: string;
-    /**
-     * 字体颜色
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'font_color'?: string;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
-    /**
-     * 点击量
-     * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'hits'?: number;
-    /**
-     * 总浏览量
-     * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'total_views'?: number;
-    /**
-     * 今日浏览量
-     * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'today_views'?: number;
-    /**
-     * 到期时间
-     * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'expiry_time'?: string;
-    /**
-     * 审核状态
-     * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
-     */
-    'audit_status'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  product_name?: string;
+  /**
+   * 副标题
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  subtitle?: string;
+  /**
+   * 产品链接
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  product_link?: string;
+  /**
+   * 封面图片URL列表
+   * @type {Array<string>}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  cover?: Array<string>;
+  /**
+   * logo图片
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  logo?: string;
+  /**
+   * SEO标题
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  title?: string;
+  /**
+   * 永久链接
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  permalink?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 封面颜色配置ID
+   * @type {number}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  cover_color_id?: number;
+  /**
+   * 背景颜色
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  background_color?: string;
+  /**
+   * 字体颜色
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  font_color?: string;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  create_time?: string;
+  /**
+   * 点击量
+   * @type {number}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  hits?: number;
+  /**
+   * 总浏览量
+   * @type {number}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  total_views?: number;
+  /**
+   * 今日浏览量
+   * @type {number}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  today_views?: number;
+  /**
+   * 到期时间
+   * @type {string}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  expiry_time?: string;
+  /**
+   * 审核状态
+   * @type {number}
+   * @memberof ProductListCreate200ResponseDataItems
+   */
+  audit_status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductListCreateRequest
  */
 export interface ProductListCreateRequest {
-    /**
-     * 产品名称，用于搜索
-     * @type {string}
-     * @memberof ProductListCreateRequest
-     */
-    'product_name'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof ProductListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof ProductListCreateRequest
-     */
-    'page_size'?: number;
-    /**
-     * 排序字段
-     * @type {string}
-     * @memberof ProductListCreateRequest
-     */
-    'sort_field'?: ProductListCreateRequestSortFieldEnum;
-    /**
-     * 排序方式
-     * @type {string}
-     * @memberof ProductListCreateRequest
-     */
-    'sort_order'?: ProductListCreateRequestSortOrderEnum;
+  /**
+   * 产品名称，用于搜索
+   * @type {string}
+   * @memberof ProductListCreateRequest
+   */
+  product_name?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductListCreateRequest
+   */
+  status?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof ProductListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof ProductListCreateRequest
+   */
+  page_size?: number;
+  /**
+   * 排序字段
+   * @type {string}
+   * @memberof ProductListCreateRequest
+   */
+  sort_field?: ProductListCreateRequestSortFieldEnum;
+  /**
+   * 排序方式
+   * @type {string}
+   * @memberof ProductListCreateRequest
+   */
+  sort_order?: ProductListCreateRequestSortOrderEnum;
 }
 
 export const ProductListCreateRequestSortFieldEnum = {
-    CreateTime: 'create_time',
-    UpdateTime: 'update_time'
+  CreateTime: "create_time",
+  UpdateTime: "update_time",
 } as const;
 
-export type ProductListCreateRequestSortFieldEnum = typeof ProductListCreateRequestSortFieldEnum[keyof typeof ProductListCreateRequestSortFieldEnum];
+export type ProductListCreateRequestSortFieldEnum =
+  (typeof ProductListCreateRequestSortFieldEnum)[keyof typeof ProductListCreateRequestSortFieldEnum];
 export const ProductListCreateRequestSortOrderEnum = {
-    Asc: 'asc',
-    Desc: 'desc'
+  Asc: "asc",
+  Desc: "desc",
 } as const;
 
-export type ProductListCreateRequestSortOrderEnum = typeof ProductListCreateRequestSortOrderEnum[keyof typeof ProductListCreateRequestSortOrderEnum];
+export type ProductListCreateRequestSortOrderEnum =
+  (typeof ProductListCreateRequestSortOrderEnum)[keyof typeof ProductListCreateRequestSortOrderEnum];
 
 /**
- * 
+ *
  * @export
  * @interface ProductReviewCreateCreateRequest
  */
 export interface ProductReviewCreateCreateRequest {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof ProductReviewCreateCreateRequest
-     */
-    'product_id': number;
-    /**
-     * 评价内容
-     * @type {string}
-     * @memberof ProductReviewCreateCreateRequest
-     */
-    'content': string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductReviewCreateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof ProductReviewCreateCreateRequest
+   */
+  product_id: number;
+  /**
+   * 评价内容
+   * @type {string}
+   * @memberof ProductReviewCreateCreateRequest
+   */
+  content: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductReviewCreateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductReviewDeleteCreateRequest
  */
 export interface ProductReviewDeleteCreateRequest {
-    /**
-     * 评论ID
-     * @type {number}
-     * @memberof ProductReviewDeleteCreateRequest
-     */
-    'id': number;
+  /**
+   * 评论ID
+   * @type {number}
+   * @memberof ProductReviewDeleteCreateRequest
+   */
+  id: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductReviewFrontListCreate200Response
  */
 export interface ProductReviewFrontListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof ProductReviewFrontListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof ProductReviewFrontListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {ProductReviewFrontListCreate200ResponseData}
-     * @memberof ProductReviewFrontListCreate200Response
-     */
-    'data'?: ProductReviewFrontListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof ProductReviewFrontListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof ProductReviewFrontListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {ProductReviewFrontListCreate200ResponseData}
+   * @memberof ProductReviewFrontListCreate200Response
+   */
+  data?: ProductReviewFrontListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductReviewFrontListCreate200ResponseData
  */
 export interface ProductReviewFrontListCreate200ResponseData {
-    /**
-     * 
-     * @type {ProductReviewFrontListCreate200ResponseDataItems}
-     * @memberof ProductReviewFrontListCreate200ResponseData
-     */
-    'items'?: ProductReviewFrontListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof ProductReviewFrontListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof ProductReviewFrontListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof ProductReviewFrontListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {ProductReviewFrontListCreate200ResponseDataItems}
+   * @memberof ProductReviewFrontListCreate200ResponseData
+   */
+  items?: ProductReviewFrontListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof ProductReviewFrontListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof ProductReviewFrontListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof ProductReviewFrontListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 评论列表
@@ -3617,446 +3832,446 @@ export interface ProductReviewFrontListCreate200ResponseData {
  * @interface ProductReviewFrontListCreate200ResponseDataItems
  */
 export interface ProductReviewFrontListCreate200ResponseDataItems {
-    /**
-     * 评论ID
-     * @type {number}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 评价内容
-     * @type {string}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
-     */
-    'content'?: string;
-    /**
-     * 点赞数
-     * @type {number}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
-     */
-    'likes'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
+  /**
+   * 评论ID
+   * @type {number}
+   * @memberof ProductReviewFrontListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 评价内容
+   * @type {string}
+   * @memberof ProductReviewFrontListCreate200ResponseDataItems
+   */
+  content?: string;
+  /**
+   * 点赞数
+   * @type {number}
+   * @memberof ProductReviewFrontListCreate200ResponseDataItems
+   */
+  likes?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductReviewFrontListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof ProductReviewFrontListCreate200ResponseDataItems
+   */
+  create_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductReviewFrontListCreateRequest
  */
 export interface ProductReviewFrontListCreateRequest {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof ProductReviewFrontListCreateRequest
-     */
-    'product_id'?: number;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductReviewFrontListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof ProductReviewFrontListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof ProductReviewFrontListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof ProductReviewFrontListCreateRequest
+   */
+  product_id?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductReviewFrontListCreateRequest
+   */
+  status?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof ProductReviewFrontListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof ProductReviewFrontListCreateRequest
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductReviewUpdateCreateRequest
  */
 export interface ProductReviewUpdateCreateRequest {
-    /**
-     * 评论ID
-     * @type {number}
-     * @memberof ProductReviewUpdateCreateRequest
-     */
-    'id': number;
-    /**
-     * 评价内容
-     * @type {string}
-     * @memberof ProductReviewUpdateCreateRequest
-     */
-    'content'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductReviewUpdateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 评论ID
+   * @type {number}
+   * @memberof ProductReviewUpdateCreateRequest
+   */
+  id: number;
+  /**
+   * 评价内容
+   * @type {string}
+   * @memberof ProductReviewUpdateCreateRequest
+   */
+  content?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductReviewUpdateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductUpdateCreateRequest
  */
 export interface ProductUpdateCreateRequest {
-    /**
-     * ID
-     * @type {number}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'id': number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'product_name'?: string;
-    /**
-     * 副标题
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'subtitle'?: string;
-    /**
-     * 产品链接
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'product_link'?: string;
-    /**
-     * 封面图片(上传接口返回的path)
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'cover'?: string;
-    /**
-     * logo图片(上传接口返回的path)
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'logo'?: string;
-    /**
-     * 产品内容
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'content'?: string;
-    /**
-     * SEO标题
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'title'?: string;
-    /**
-     * 永久链接
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'permalink'?: string;
-    /**
-     * SEO描述
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'description'?: string;
-    /**
-     * 关键词
-     * @type {string}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'focus_keyword'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 分类ID子分类列表
-     * @type {Array<number>}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'category_ids'?: Array<number>;
-    /**
-     * 封面颜色配置ID
-     * @type {number}
-     * @memberof ProductUpdateCreateRequest
-     */
-    'cover_color_id'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof ProductUpdateCreateRequest
+   */
+  id: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  product_name?: string;
+  /**
+   * 副标题
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  subtitle?: string;
+  /**
+   * 产品链接
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  product_link?: string;
+  /**
+   * 封面图片(上传接口返回的path)
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  cover?: string;
+  /**
+   * logo图片(上传接口返回的path)
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  logo?: string;
+  /**
+   * 产品内容
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  content?: string;
+  /**
+   * SEO标题
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  title?: string;
+  /**
+   * 永久链接
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  permalink?: string;
+  /**
+   * SEO描述
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  description?: string;
+  /**
+   * 关键词
+   * @type {string}
+   * @memberof ProductUpdateCreateRequest
+   */
+  focus_keyword?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof ProductUpdateCreateRequest
+   */
+  status?: number;
+  /**
+   * 分类ID子分类列表
+   * @type {Array<number>}
+   * @memberof ProductUpdateCreateRequest
+   */
+  category_ids?: Array<number>;
+  /**
+   * 封面颜色配置ID
+   * @type {number}
+   * @memberof ProductUpdateCreateRequest
+   */
+  cover_color_id?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductVisitEndCreate200Response
  */
 export interface ProductVisitEndCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof ProductVisitEndCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof ProductVisitEndCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {ProductVisitEndCreate200ResponseData}
-     * @memberof ProductVisitEndCreate200Response
-     */
-    'data'?: ProductVisitEndCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof ProductVisitEndCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof ProductVisitEndCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {ProductVisitEndCreate200ResponseData}
+   * @memberof ProductVisitEndCreate200Response
+   */
+  data?: ProductVisitEndCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductVisitEndCreate200ResponseData
  */
 export interface ProductVisitEndCreate200ResponseData {
-    /**
-     * 记录ID
-     * @type {number}
-     * @memberof ProductVisitEndCreate200ResponseData
-     */
-    'id'?: number;
-    /**
-     * 停留时长(秒)
-     * @type {number}
-     * @memberof ProductVisitEndCreate200ResponseData
-     */
-    'duration'?: number;
+  /**
+   * 记录ID
+   * @type {number}
+   * @memberof ProductVisitEndCreate200ResponseData
+   */
+  id?: number;
+  /**
+   * 停留时长(秒)
+   * @type {number}
+   * @memberof ProductVisitEndCreate200ResponseData
+   */
+  duration?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductVisitEndCreateRequest
  */
 export interface ProductVisitEndCreateRequest {
-    /**
-     * 记录ID
-     * @type {number}
-     * @memberof ProductVisitEndCreateRequest
-     */
-    'record_id': number;
-    /**
-     * 结束访问时间戳(秒)
-     * @type {number}
-     * @memberof ProductVisitEndCreateRequest
-     */
-    'end_time': number;
+  /**
+   * 记录ID
+   * @type {number}
+   * @memberof ProductVisitEndCreateRequest
+   */
+  record_id: number;
+  /**
+   * 结束访问时间戳(秒)
+   * @type {number}
+   * @memberof ProductVisitEndCreateRequest
+   */
+  end_time: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductVisitStartCreate200Response
  */
 export interface ProductVisitStartCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof ProductVisitStartCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof ProductVisitStartCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {ProductVisitStartCreate200ResponseData}
-     * @memberof ProductVisitStartCreate200Response
-     */
-    'data'?: ProductVisitStartCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof ProductVisitStartCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof ProductVisitStartCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {ProductVisitStartCreate200ResponseData}
+   * @memberof ProductVisitStartCreate200Response
+   */
+  data?: ProductVisitStartCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductVisitStartCreate200ResponseData
  */
 export interface ProductVisitStartCreate200ResponseData {
-    /**
-     * 记录ID
-     * @type {number}
-     * @memberof ProductVisitStartCreate200ResponseData
-     */
-    'id'?: number;
+  /**
+   * 记录ID
+   * @type {number}
+   * @memberof ProductVisitStartCreate200ResponseData
+   */
+  id?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface ProductVisitStartCreateRequest
  */
 export interface ProductVisitStartCreateRequest {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof ProductVisitStartCreateRequest
-     */
-    'product_id': number;
-    /**
-     * 开始访问时间戳(秒)
-     * @type {number}
-     * @memberof ProductVisitStartCreateRequest
-     */
-    'start_time': number;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof ProductVisitStartCreateRequest
+   */
+  product_id: number;
+  /**
+   * 开始访问时间戳(秒)
+   * @type {number}
+   * @memberof ProductVisitStartCreateRequest
+   */
+  start_time: number;
 }
 /**
- * 
+ *
  * @export
  * @interface RoleCreateCreateRequest
  */
 export interface RoleCreateCreateRequest {
-    /**
-     * 角色名称
-     * @type {string}
-     * @memberof RoleCreateCreateRequest
-     */
-    'name': string;
-    /**
-     * 角色介绍
-     * @type {string}
-     * @memberof RoleCreateCreateRequest
-     */
-    'intro'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof RoleCreateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 角色名称
+   * @type {string}
+   * @memberof RoleCreateCreateRequest
+   */
+  name: string;
+  /**
+   * 角色介绍
+   * @type {string}
+   * @memberof RoleCreateCreateRequest
+   */
+  intro?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof RoleCreateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface RoleInfoCreate200Response
  */
 export interface RoleInfoCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof RoleInfoCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof RoleInfoCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {RoleInfoCreate200ResponseData}
-     * @memberof RoleInfoCreate200Response
-     */
-    'data'?: RoleInfoCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof RoleInfoCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof RoleInfoCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {RoleInfoCreate200ResponseData}
+   * @memberof RoleInfoCreate200Response
+   */
+  data?: RoleInfoCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface RoleInfoCreate200ResponseData
  */
 export interface RoleInfoCreate200ResponseData {
-    /**
-     * ID
-     * @type {number}
-     * @memberof RoleInfoCreate200ResponseData
-     */
-    'id'?: number;
-    /**
-     * 角色名称
-     * @type {string}
-     * @memberof RoleInfoCreate200ResponseData
-     */
-    'name'?: string;
-    /**
-     * 角色介绍
-     * @type {string}
-     * @memberof RoleInfoCreate200ResponseData
-     */
-    'intro'?: string;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof RoleInfoCreate200ResponseData
-     */
-    'create_time'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof RoleInfoCreate200ResponseData
-     */
-    'status'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof RoleInfoCreate200ResponseData
+   */
+  id?: number;
+  /**
+   * 角色名称
+   * @type {string}
+   * @memberof RoleInfoCreate200ResponseData
+   */
+  name?: string;
+  /**
+   * 角色介绍
+   * @type {string}
+   * @memberof RoleInfoCreate200ResponseData
+   */
+  intro?: string;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof RoleInfoCreate200ResponseData
+   */
+  create_time?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof RoleInfoCreate200ResponseData
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface RoleListCreate200Response
  */
 export interface RoleListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof RoleListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof RoleListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {RoleListCreate200ResponseData}
-     * @memberof RoleListCreate200Response
-     */
-    'data'?: RoleListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof RoleListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof RoleListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {RoleListCreate200ResponseData}
+   * @memberof RoleListCreate200Response
+   */
+  data?: RoleListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface RoleListCreate200ResponseData
  */
 export interface RoleListCreate200ResponseData {
-    /**
-     * 
-     * @type {RoleListCreate200ResponseDataItems}
-     * @memberof RoleListCreate200ResponseData
-     */
-    'items'?: RoleListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof RoleListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof RoleListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof RoleListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {RoleListCreate200ResponseDataItems}
+   * @memberof RoleListCreate200ResponseData
+   */
+  items?: RoleListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof RoleListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof RoleListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof RoleListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 角色列表
@@ -4064,686 +4279,687 @@ export interface RoleListCreate200ResponseData {
  * @interface RoleListCreate200ResponseDataItems
  */
 export interface RoleListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof RoleListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 角色名称
-     * @type {string}
-     * @memberof RoleListCreate200ResponseDataItems
-     */
-    'name'?: string;
-    /**
-     * 角色介绍
-     * @type {string}
-     * @memberof RoleListCreate200ResponseDataItems
-     */
-    'intro'?: string;
-    /**
-     * 状态
-     * @type {number}
-     * @memberof RoleListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 创建时间
-     * @type {string}
-     * @memberof RoleListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof RoleListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 角色名称
+   * @type {string}
+   * @memberof RoleListCreate200ResponseDataItems
+   */
+  name?: string;
+  /**
+   * 角色介绍
+   * @type {string}
+   * @memberof RoleListCreate200ResponseDataItems
+   */
+  intro?: string;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof RoleListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 创建时间
+   * @type {string}
+   * @memberof RoleListCreate200ResponseDataItems
+   */
+  create_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface RoleListCreateRequest
  */
 export interface RoleListCreateRequest {
-    /**
-     * 状态
-     * @type {number}
-     * @memberof RoleListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof RoleListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof RoleListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 状态
+   * @type {number}
+   * @memberof RoleListCreateRequest
+   */
+  status?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof RoleListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof RoleListCreateRequest
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsClickRateCreate200Response
  */
 export interface StatsClickRateCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof StatsClickRateCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof StatsClickRateCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {StatsClickRateCreate200ResponseData}
-     * @memberof StatsClickRateCreate200Response
-     */
-    'data'?: StatsClickRateCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof StatsClickRateCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof StatsClickRateCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {StatsClickRateCreate200ResponseData}
+   * @memberof StatsClickRateCreate200Response
+   */
+  data?: StatsClickRateCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsClickRateCreate200ResponseData
  */
 export interface StatsClickRateCreate200ResponseData {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof StatsClickRateCreate200ResponseData
-     */
-    'product_id'?: number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof StatsClickRateCreate200ResponseData
-     */
-    'product_name'?: string;
-    /**
-     * 总浏览量
-     * @type {number}
-     * @memberof StatsClickRateCreate200ResponseData
-     */
-    'total_views'?: number;
-    /**
-     * 总点击量
-     * @type {number}
-     * @memberof StatsClickRateCreate200ResponseData
-     */
-    'total_clicks'?: number;
-    /**
-     * 浏览量同比增长（百分比）
-     * @type {number}
-     * @memberof StatsClickRateCreate200ResponseData
-     */
-    'views_contrast'?: number;
-    /**
-     * 点击量同比增长（百分比）
-     * @type {number}
-     * @memberof StatsClickRateCreate200ResponseData
-     */
-    'clicks_contrast'?: number;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof StatsClickRateCreate200ResponseData
+   */
+  product_id?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof StatsClickRateCreate200ResponseData
+   */
+  product_name?: string;
+  /**
+   * 总浏览量
+   * @type {number}
+   * @memberof StatsClickRateCreate200ResponseData
+   */
+  total_views?: number;
+  /**
+   * 总点击量
+   * @type {number}
+   * @memberof StatsClickRateCreate200ResponseData
+   */
+  total_clicks?: number;
+  /**
+   * 浏览量同比增长（百分比）
+   * @type {number}
+   * @memberof StatsClickRateCreate200ResponseData
+   */
+  views_contrast?: number;
+  /**
+   * 点击量同比增长（百分比）
+   * @type {number}
+   * @memberof StatsClickRateCreate200ResponseData
+   */
+  clicks_contrast?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsPopularCreate200Response
  */
 export interface StatsPopularCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof StatsPopularCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof StatsPopularCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {StatsPopularCreate200ResponseData}
-     * @memberof StatsPopularCreate200Response
-     */
-    'data'?: StatsPopularCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof StatsPopularCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof StatsPopularCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {StatsPopularCreate200ResponseData}
+   * @memberof StatsPopularCreate200Response
+   */
+  data?: StatsPopularCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsPopularCreate200ResponseData
  */
 export interface StatsPopularCreate200ResponseData {
-    /**
-     * 热门商品列表
-     * @type {Array<StatsPopularCreate200ResponseDataItemsInner>}
-     * @memberof StatsPopularCreate200ResponseData
-     */
-    'items'?: Array<StatsPopularCreate200ResponseDataItemsInner>;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof StatsPopularCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof StatsPopularCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof StatsPopularCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   * 热门商品列表
+   * @type {Array<StatsPopularCreate200ResponseDataItemsInner>}
+   * @memberof StatsPopularCreate200ResponseData
+   */
+  items?: Array<StatsPopularCreate200ResponseDataItemsInner>;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof StatsPopularCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof StatsPopularCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof StatsPopularCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsPopularCreate200ResponseDataItemsInner
  */
 export interface StatsPopularCreate200ResponseDataItemsInner {
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsPopularCreate200ResponseDataItemsInner
-     */
-    'id'?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsPopularCreate200ResponseDataItemsInner
-     */
-    'product_name'?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsPopularCreate200ResponseDataItemsInner
-     */
-    'subtitle'?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsPopularCreate200ResponseDataItemsInner
-     */
-    'logo'?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsPopularCreate200ResponseDataItemsInner
-     */
-    'total_views'?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsPopularCreate200ResponseDataItemsInner
+   */
+  id?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsPopularCreate200ResponseDataItemsInner
+   */
+  product_name?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsPopularCreate200ResponseDataItemsInner
+   */
+  subtitle?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsPopularCreate200ResponseDataItemsInner
+   */
+  logo?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsPopularCreate200ResponseDataItemsInner
+   */
+  total_views?: object;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsPopularCreateRequest
  */
 export interface StatsPopularCreateRequest {
-    /**
-     * 排序字段
-     * @type {string}
-     * @memberof StatsPopularCreateRequest
-     */
-    'sort_by'?: StatsPopularCreateRequestSortByEnum;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof StatsPopularCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof StatsPopularCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 排序字段
+   * @type {string}
+   * @memberof StatsPopularCreateRequest
+   */
+  sort_by?: StatsPopularCreateRequestSortByEnum;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof StatsPopularCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof StatsPopularCreateRequest
+   */
+  page_size?: number;
 }
 
 export const StatsPopularCreateRequestSortByEnum = {
-    Views: 'views',
-    TodayViews: 'today_views'
+  Views: "views",
+  TodayViews: "today_views",
 } as const;
 
-export type StatsPopularCreateRequestSortByEnum = typeof StatsPopularCreateRequestSortByEnum[keyof typeof StatsPopularCreateRequestSortByEnum];
+export type StatsPopularCreateRequestSortByEnum =
+  (typeof StatsPopularCreateRequestSortByEnum)[keyof typeof StatsPopularCreateRequestSortByEnum];
 
 /**
- * 
+ *
  * @export
  * @interface StatsProductsCreate200Response
  */
 export interface StatsProductsCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof StatsProductsCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof StatsProductsCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {StatsProductsCreate200ResponseData}
-     * @memberof StatsProductsCreate200Response
-     */
-    'data'?: StatsProductsCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof StatsProductsCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof StatsProductsCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {StatsProductsCreate200ResponseData}
+   * @memberof StatsProductsCreate200Response
+   */
+  data?: StatsProductsCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsProductsCreate200ResponseData
  */
 export interface StatsProductsCreate200ResponseData {
-    /**
-     * 商品列表
-     * @type {Array<StatsProductsCreate200ResponseDataItemsInner>}
-     * @memberof StatsProductsCreate200ResponseData
-     */
-    'items'?: Array<StatsProductsCreate200ResponseDataItemsInner>;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof StatsProductsCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof StatsProductsCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof StatsProductsCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   * 商品列表
+   * @type {Array<StatsProductsCreate200ResponseDataItemsInner>}
+   * @memberof StatsProductsCreate200ResponseData
+   */
+  items?: Array<StatsProductsCreate200ResponseDataItemsInner>;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof StatsProductsCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof StatsProductsCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof StatsProductsCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsProductsCreate200ResponseDataItemsInner
  */
 export interface StatsProductsCreate200ResponseDataItemsInner {
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsProductsCreate200ResponseDataItemsInner
-     */
-    'id'?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsProductsCreate200ResponseDataItemsInner
-     */
-    'product_name'?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsProductsCreate200ResponseDataItemsInner
-     */
-    'logo'?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsProductsCreate200ResponseDataItemsInner
+   */
+  id?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsProductsCreate200ResponseDataItemsInner
+   */
+  product_name?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsProductsCreate200ResponseDataItemsInner
+   */
+  logo?: object;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsVisitStatsCreate200Response
  */
 export interface StatsVisitStatsCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof StatsVisitStatsCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof StatsVisitStatsCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {StatsVisitStatsCreate200ResponseData}
-     * @memberof StatsVisitStatsCreate200Response
-     */
-    'data'?: StatsVisitStatsCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof StatsVisitStatsCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof StatsVisitStatsCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {StatsVisitStatsCreate200ResponseData}
+   * @memberof StatsVisitStatsCreate200Response
+   */
+  data?: StatsVisitStatsCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsVisitStatsCreate200ResponseData
  */
 export interface StatsVisitStatsCreate200ResponseData {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof StatsVisitStatsCreate200ResponseData
-     */
-    'product_id'?: number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof StatsVisitStatsCreate200ResponseData
-     */
-    'product_name'?: string;
-    /**
-     * 总访问时长(秒)
-     * @type {number}
-     * @memberof StatsVisitStatsCreate200ResponseData
-     */
-    'total_duration'?: number;
-    /**
-     * 昨日同比增长(%)
-     * @type {number}
-     * @memberof StatsVisitStatsCreate200ResponseData
-     */
-    'yesterday_growth'?: number;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof StatsVisitStatsCreate200ResponseData
+   */
+  product_id?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof StatsVisitStatsCreate200ResponseData
+   */
+  product_name?: string;
+  /**
+   * 总访问时长(秒)
+   * @type {number}
+   * @memberof StatsVisitStatsCreate200ResponseData
+   */
+  total_duration?: number;
+  /**
+   * 昨日同比增长(%)
+   * @type {number}
+   * @memberof StatsVisitStatsCreate200ResponseData
+   */
+  yesterday_growth?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsWeeklyClicksCreate200Response
  */
 export interface StatsWeeklyClicksCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof StatsWeeklyClicksCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof StatsWeeklyClicksCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {StatsWeeklyClicksCreate200ResponseData}
-     * @memberof StatsWeeklyClicksCreate200Response
-     */
-    'data'?: StatsWeeklyClicksCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof StatsWeeklyClicksCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof StatsWeeklyClicksCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {StatsWeeklyClicksCreate200ResponseData}
+   * @memberof StatsWeeklyClicksCreate200Response
+   */
+  data?: StatsWeeklyClicksCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsWeeklyClicksCreate200ResponseData
  */
 export interface StatsWeeklyClicksCreate200ResponseData {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof StatsWeeklyClicksCreate200ResponseData
-     */
-    'product_id'?: number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof StatsWeeklyClicksCreate200ResponseData
-     */
-    'product_name'?: string;
-    /**
-     * 每个星期几的点击量统计
-     * @type {Array<StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner>}
-     * @memberof StatsWeeklyClicksCreate200ResponseData
-     */
-    'weekly_stats'?: Array<StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner>;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof StatsWeeklyClicksCreate200ResponseData
+   */
+  product_id?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof StatsWeeklyClicksCreate200ResponseData
+   */
+  product_name?: string;
+  /**
+   * 每个星期几的点击量统计
+   * @type {Array<StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner>}
+   * @memberof StatsWeeklyClicksCreate200ResponseData
+   */
+  weekly_stats?: Array<StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner>;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner
  */
 export interface StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner {
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner
-     */
-    'weekday'?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner
-     */
-    'clicks'?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner
+   */
+  weekday?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner
+   */
+  clicks?: object;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsWeeklyDurationsCreate200Response
  */
 export interface StatsWeeklyDurationsCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof StatsWeeklyDurationsCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof StatsWeeklyDurationsCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {StatsWeeklyDurationsCreate200ResponseData}
-     * @memberof StatsWeeklyDurationsCreate200Response
-     */
-    'data'?: StatsWeeklyDurationsCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof StatsWeeklyDurationsCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof StatsWeeklyDurationsCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {StatsWeeklyDurationsCreate200ResponseData}
+   * @memberof StatsWeeklyDurationsCreate200Response
+   */
+  data?: StatsWeeklyDurationsCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsWeeklyDurationsCreate200ResponseData
  */
 export interface StatsWeeklyDurationsCreate200ResponseData {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof StatsWeeklyDurationsCreate200ResponseData
-     */
-    'product_id'?: number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof StatsWeeklyDurationsCreate200ResponseData
-     */
-    'product_name'?: string;
-    /**
-     * 每个星期几的访问时长统计
-     * @type {Array<StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner>}
-     * @memberof StatsWeeklyDurationsCreate200ResponseData
-     */
-    'weekly_stats'?: Array<StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner>;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof StatsWeeklyDurationsCreate200ResponseData
+   */
+  product_id?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof StatsWeeklyDurationsCreate200ResponseData
+   */
+  product_name?: string;
+  /**
+   * 每个星期几的访问时长统计
+   * @type {Array<StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner>}
+   * @memberof StatsWeeklyDurationsCreate200ResponseData
+   */
+  weekly_stats?: Array<StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner>;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner
  */
 export interface StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner {
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner
-     */
-    'weekday'?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner
-     */
-    'duration'?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner
+   */
+  weekday?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner
+   */
+  duration?: object;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsWeeklyViewsCreate200Response
  */
 export interface StatsWeeklyViewsCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof StatsWeeklyViewsCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof StatsWeeklyViewsCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {StatsWeeklyViewsCreate200ResponseData}
-     * @memberof StatsWeeklyViewsCreate200Response
-     */
-    'data'?: StatsWeeklyViewsCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof StatsWeeklyViewsCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof StatsWeeklyViewsCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {StatsWeeklyViewsCreate200ResponseData}
+   * @memberof StatsWeeklyViewsCreate200Response
+   */
+  data?: StatsWeeklyViewsCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsWeeklyViewsCreate200ResponseData
  */
 export interface StatsWeeklyViewsCreate200ResponseData {
-    /**
-     * 产品ID
-     * @type {number}
-     * @memberof StatsWeeklyViewsCreate200ResponseData
-     */
-    'product_id'?: number;
-    /**
-     * 产品名称
-     * @type {string}
-     * @memberof StatsWeeklyViewsCreate200ResponseData
-     */
-    'product_name'?: string;
-    /**
-     * 每个星期几的访问量统计
-     * @type {Array<StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner>}
-     * @memberof StatsWeeklyViewsCreate200ResponseData
-     */
-    'weekly_stats'?: Array<StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner>;
+  /**
+   * 产品ID
+   * @type {number}
+   * @memberof StatsWeeklyViewsCreate200ResponseData
+   */
+  product_id?: number;
+  /**
+   * 产品名称
+   * @type {string}
+   * @memberof StatsWeeklyViewsCreate200ResponseData
+   */
+  product_name?: string;
+  /**
+   * 每个星期几的访问量统计
+   * @type {Array<StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner>}
+   * @memberof StatsWeeklyViewsCreate200ResponseData
+   */
+  weekly_stats?: Array<StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner>;
 }
 /**
- * 
+ *
  * @export
  * @interface StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner
  */
 export interface StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner {
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner
-     */
-    'weekday'?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner
-     */
-    'views'?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner
+   */
+  weekday?: object;
+  /**
+   *
+   * @type {object}
+   * @memberof StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner
+   */
+  views?: object;
 }
 /**
- * 
+ *
  * @export
  * @interface SubscriptionCreateCreateRequest
  */
 export interface SubscriptionCreateCreateRequest {
-    /**
-     * 姓名
-     * @type {string}
-     * @memberof SubscriptionCreateCreateRequest
-     */
-    'name'?: string;
-    /**
-     * 邮箱地址
-     * @type {string}
-     * @memberof SubscriptionCreateCreateRequest
-     */
-    'email': string;
-    /**
-     * 手机号码
-     * @type {string}
-     * @memberof SubscriptionCreateCreateRequest
-     */
-    'phone': string;
-    /**
-     * 订阅状态
-     * @type {number}
-     * @memberof SubscriptionCreateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * 姓名
+   * @type {string}
+   * @memberof SubscriptionCreateCreateRequest
+   */
+  name?: string;
+  /**
+   * 邮箱地址
+   * @type {string}
+   * @memberof SubscriptionCreateCreateRequest
+   */
+  email: string;
+  /**
+   * 手机号码
+   * @type {string}
+   * @memberof SubscriptionCreateCreateRequest
+   */
+  phone: string;
+  /**
+   * 订阅状态
+   * @type {number}
+   * @memberof SubscriptionCreateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface SubscriptionListCreate200Response
  */
 export interface SubscriptionListCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof SubscriptionListCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof SubscriptionListCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {SubscriptionListCreate200ResponseData}
-     * @memberof SubscriptionListCreate200Response
-     */
-    'data'?: SubscriptionListCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof SubscriptionListCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof SubscriptionListCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {SubscriptionListCreate200ResponseData}
+   * @memberof SubscriptionListCreate200Response
+   */
+  data?: SubscriptionListCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface SubscriptionListCreate200ResponseData
  */
 export interface SubscriptionListCreate200ResponseData {
-    /**
-     * 
-     * @type {SubscriptionListCreate200ResponseDataItems}
-     * @memberof SubscriptionListCreate200ResponseData
-     */
-    'items'?: SubscriptionListCreate200ResponseDataItems;
-    /**
-     * 总数
-     * @type {number}
-     * @memberof SubscriptionListCreate200ResponseData
-     */
-    'total'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof SubscriptionListCreate200ResponseData
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof SubscriptionListCreate200ResponseData
-     */
-    'page_size'?: number;
+  /**
+   *
+   * @type {SubscriptionListCreate200ResponseDataItems}
+   * @memberof SubscriptionListCreate200ResponseData
+   */
+  items?: SubscriptionListCreate200ResponseDataItems;
+  /**
+   * 总数
+   * @type {number}
+   * @memberof SubscriptionListCreate200ResponseData
+   */
+  total?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof SubscriptionListCreate200ResponseData
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof SubscriptionListCreate200ResponseData
+   */
+  page_size?: number;
 }
 /**
  * 订阅列表
@@ -4751,4163 +4967,7477 @@ export interface SubscriptionListCreate200ResponseData {
  * @interface SubscriptionListCreate200ResponseDataItems
  */
 export interface SubscriptionListCreate200ResponseDataItems {
-    /**
-     * ID
-     * @type {number}
-     * @memberof SubscriptionListCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 姓名
-     * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
-     */
-    'name'?: string;
-    /**
-     * 邮箱地址
-     * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
-     */
-    'email'?: string;
-    /**
-     * 手机号码
-     * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
-     */
-    'phone'?: string;
-    /**
-     * 订阅状态
-     * @type {number}
-     * @memberof SubscriptionListCreate200ResponseDataItems
-     */
-    'status'?: number;
-    /**
-     * 订阅时间
-     * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
-     */
-    'create_time'?: string;
-    /**
-     * 更新时间
-     * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
-     */
-    'update_time'?: string;
+  /**
+   * ID
+   * @type {number}
+   * @memberof SubscriptionListCreate200ResponseDataItems
+   */
+  id?: number;
+  /**
+   * 姓名
+   * @type {string}
+   * @memberof SubscriptionListCreate200ResponseDataItems
+   */
+  name?: string;
+  /**
+   * 邮箱地址
+   * @type {string}
+   * @memberof SubscriptionListCreate200ResponseDataItems
+   */
+  email?: string;
+  /**
+   * 手机号码
+   * @type {string}
+   * @memberof SubscriptionListCreate200ResponseDataItems
+   */
+  phone?: string;
+  /**
+   * 订阅状态
+   * @type {number}
+   * @memberof SubscriptionListCreate200ResponseDataItems
+   */
+  status?: number;
+  /**
+   * 订阅时间
+   * @type {string}
+   * @memberof SubscriptionListCreate200ResponseDataItems
+   */
+  create_time?: string;
+  /**
+   * 更新时间
+   * @type {string}
+   * @memberof SubscriptionListCreate200ResponseDataItems
+   */
+  update_time?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface SubscriptionListCreateRequest
  */
 export interface SubscriptionListCreateRequest {
-    /**
-     * 邮箱地址，用于搜索
-     * @type {string}
-     * @memberof SubscriptionListCreateRequest
-     */
-    'email'?: string;
-    /**
-     * 手机号码，用于搜索
-     * @type {string}
-     * @memberof SubscriptionListCreateRequest
-     */
-    'phone'?: string;
-    /**
-     * 订阅状态
-     * @type {number}
-     * @memberof SubscriptionListCreateRequest
-     */
-    'status'?: number;
-    /**
-     * 页码
-     * @type {number}
-     * @memberof SubscriptionListCreateRequest
-     */
-    'page'?: number;
-    /**
-     * 每页数量
-     * @type {number}
-     * @memberof SubscriptionListCreateRequest
-     */
-    'page_size'?: number;
+  /**
+   * 邮箱地址，用于搜索
+   * @type {string}
+   * @memberof SubscriptionListCreateRequest
+   */
+  email?: string;
+  /**
+   * 手机号码，用于搜索
+   * @type {string}
+   * @memberof SubscriptionListCreateRequest
+   */
+  phone?: string;
+  /**
+   * 订阅状态
+   * @type {number}
+   * @memberof SubscriptionListCreateRequest
+   */
+  status?: number;
+  /**
+   * 页码
+   * @type {number}
+   * @memberof SubscriptionListCreateRequest
+   */
+  page?: number;
+  /**
+   * 每页数量
+   * @type {number}
+   * @memberof SubscriptionListCreateRequest
+   */
+  page_size?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface SubscriptionUpdateCreateRequest
  */
 export interface SubscriptionUpdateCreateRequest {
-    /**
-     * ID
-     * @type {number}
-     * @memberof SubscriptionUpdateCreateRequest
-     */
-    'id': number;
-    /**
-     * 姓名
-     * @type {string}
-     * @memberof SubscriptionUpdateCreateRequest
-     */
-    'name'?: string;
-    /**
-     * 邮箱地址
-     * @type {string}
-     * @memberof SubscriptionUpdateCreateRequest
-     */
-    'email'?: string;
-    /**
-     * 手机号码
-     * @type {string}
-     * @memberof SubscriptionUpdateCreateRequest
-     */
-    'phone'?: string;
-    /**
-     * 订阅状态
-     * @type {number}
-     * @memberof SubscriptionUpdateCreateRequest
-     */
-    'status'?: number;
+  /**
+   * ID
+   * @type {number}
+   * @memberof SubscriptionUpdateCreateRequest
+   */
+  id: number;
+  /**
+   * 姓名
+   * @type {string}
+   * @memberof SubscriptionUpdateCreateRequest
+   */
+  name?: string;
+  /**
+   * 邮箱地址
+   * @type {string}
+   * @memberof SubscriptionUpdateCreateRequest
+   */
+  email?: string;
+  /**
+   * 手机号码
+   * @type {string}
+   * @memberof SubscriptionUpdateCreateRequest
+   */
+  phone?: string;
+  /**
+   * 订阅状态
+   * @type {number}
+   * @memberof SubscriptionUpdateCreateRequest
+   */
+  status?: number;
 }
 /**
- * 
+ *
  * @export
  * @interface UploadCreate200Response
  */
 export interface UploadCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof UploadCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof UploadCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {UploadCreate200ResponseData}
-     * @memberof UploadCreate200Response
-     */
-    'data'?: UploadCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof UploadCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof UploadCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {UploadCreate200ResponseData}
+   * @memberof UploadCreate200Response
+   */
+  data?: UploadCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface UploadCreate200ResponseData
  */
 export interface UploadCreate200ResponseData {
-    /**
-     * 文件访问URL
-     * @type {string}
-     * @memberof UploadCreate200ResponseData
-     */
-    'url'?: string;
-    /**
-     * 文件存储路径
-     * @type {string}
-     * @memberof UploadCreate200ResponseData
-     */
-    'path'?: string;
-    /**
-     * 文件大小（MB）
-     * @type {string}
-     * @memberof UploadCreate200ResponseData
-     */
-    'size'?: string;
-    /**
-     * 文件类型
-     * @type {string}
-     * @memberof UploadCreate200ResponseData
-     */
-    'content_type'?: string;
+  /**
+   * 文件访问URL
+   * @type {string}
+   * @memberof UploadCreate200ResponseData
+   */
+  url?: string;
+  /**
+   * 文件存储路径
+   * @type {string}
+   * @memberof UploadCreate200ResponseData
+   */
+  path?: string;
+  /**
+   * 文件大小（MB）
+   * @type {string}
+   * @memberof UploadCreate200ResponseData
+   */
+  size?: string;
+  /**
+   * 文件类型
+   * @type {string}
+   * @memberof UploadCreate200ResponseData
+   */
+  content_type?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface UploadUrlCreate200Response
  */
 export interface UploadUrlCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof UploadUrlCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof UploadUrlCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {UploadUrlCreate200ResponseData}
-     * @memberof UploadUrlCreate200Response
-     */
-    'data'?: UploadUrlCreate200ResponseData;
+  /**
+   * 状态码
+   * @type {number}
+   * @memberof UploadUrlCreate200Response
+   */
+  code?: number;
+  /**
+   * 提示信息
+   * @type {string}
+   * @memberof UploadUrlCreate200Response
+   */
+  msg?: string;
+  /**
+   *
+   * @type {UploadUrlCreate200ResponseData}
+   * @memberof UploadUrlCreate200Response
+   */
+  data?: UploadUrlCreate200ResponseData;
 }
 /**
- * 
+ *
  * @export
  * @interface UploadUrlCreate200ResponseData
  */
 export interface UploadUrlCreate200ResponseData {
-    /**
-     * 文件访问URL
-     * @type {string}
-     * @memberof UploadUrlCreate200ResponseData
-     */
-    'url'?: string;
+  /**
+   * 文件访问URL
+   * @type {string}
+   * @memberof UploadUrlCreate200ResponseData
+   */
+  url?: string;
 }
 /**
- * 
+ *
  * @export
  * @interface UploadUrlCreateRequest
  */
 export interface UploadUrlCreateRequest {
-    /**
-     * 文件存储路径
-     * @type {string}
-     * @memberof UploadUrlCreateRequest
-     */
-    'path': string;
+  /**
+   * 文件存储路径
+   * @type {string}
+   * @memberof UploadUrlCreateRequest
+   */
+  path: string;
 }
 
 /**
  * DefaultApi - axios parameter creator
  * @export
  */
-export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 创建新的用户
-         * @param {AdminCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminCreateCreate: async (data: AdminCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('adminCreateCreate', 'data', data)
-            const localVarPath = `/admin/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取用户详细信息
-         * @param {object} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminInfoCreate: async (data: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('adminInfoCreate', 'data', data)
-            const localVarPath = `/admin/info`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 用户登录
-         * @param {AdminLoginCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminLoginCreate: async (data: AdminLoginCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('adminLoginCreate', 'data', data)
-            const localVarPath = `/admin/login`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 重置用户密码
-         * @param {AdminResetPasswordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminResetPasswordCreate: async (data: AdminResetPasswordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('adminResetPasswordCreate', 'data', data)
-            const localVarPath = `/admin/resetPassword`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 更新用户信息
-         * @param {AdminUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminUpdateCreate: async (data: AdminUpdateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('adminUpdateCreate', 'data', data)
-            const localVarPath = `/admin/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建广告
-         * @param {AdvertisementCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementCreateCreate: async (data: AdvertisementCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('advertisementCreateCreate', 'data', data)
-            const localVarPath = `/advertisement/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 删除广告
-         * @param {AdvertisementDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementDeleteCreate: async (data: AdvertisementDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('advertisementDeleteCreate', 'data', data)
-            const localVarPath = `/advertisement/delete`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取广告详情
-         * @param {AdvertisementDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementDetailCreate: async (data: AdvertisementDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('advertisementDetailCreate', 'data', data)
-            const localVarPath = `/advertisement/detail`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取广告列表
-         * @param {AdvertisementListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementListCreate: async (data: AdvertisementListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('advertisementListCreate', 'data', data)
-            const localVarPath = `/advertisement/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 更新广告
-         * @param {AdvertisementUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementUpdateCreate: async (data: AdvertisementUpdateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('advertisementUpdateCreate', 'data', data)
-            const localVarPath = `/advertisement/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建协议
-         * @param {AgreementCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementCreateCreate: async (data: AgreementCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('agreementCreateCreate', 'data', data)
-            const localVarPath = `/agreement/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 删除协议
-         * @param {AgreementDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementDeleteCreate: async (data: AgreementDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('agreementDeleteCreate', 'data', data)
-            const localVarPath = `/agreement/delete`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 导入Word文档作为协议内容
-         * @param {File} file 要上传的Word文档（仅支持.docx格式）
-         * @param {number} type 协议类型 1:服务条款 2:用户协议 3:隐私政策
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementImportWordCreate: async (file: File, type: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('agreementImportWordCreate', 'file', file)
-            // verify required parameter 'type' is not null or undefined
-            assertParamExists('agreementImportWordCreate', 'type', type)
-            const localVarPath = `/agreement/import-word`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
-    
-            if (type !== undefined) { 
-                localVarFormParams.append('type', type as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取协议列表
-         * @param {AgreementListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementListCreate: async (data: AgreementListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('agreementListCreate', 'data', data)
-            const localVarPath = `/agreement/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 更新协议
-         * @param {AgreementUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementUpdateCreate: async (data: AgreementUpdateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('agreementUpdateCreate', 'data', data)
-            const localVarPath = `/agreement/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建产品分类
-         * @param {CategoryCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        categoryCreateCreate: async (data: CategoryCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('categoryCreateCreate', 'data', data)
-            const localVarPath = `/category/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 删除分类(逻辑删除)
-         * @param {CategoryDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        categoryDeleteCreate: async (data: CategoryDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('categoryDeleteCreate', 'data', data)
-            const localVarPath = `/category/delete`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取分类列表
-         * @param {CategoryListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        categoryListCreate: async (data: CategoryListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('categoryListCreate', 'data', data)
-            const localVarPath = `/category/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 更新分类信息
-         * @param {CategoryUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        categoryUpdateCreate: async (data: CategoryUpdateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('categoryUpdateCreate', 'data', data)
-            const localVarPath = `/category/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建封面颜色配置
-         * @param {CoverColorCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        coverColorCreateCreate: async (data: CoverColorCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('coverColorCreateCreate', 'data', data)
-            const localVarPath = `/cover_color/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 删除封面颜色配置
-         * @param {CoverColorDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        coverColorDeleteCreate: async (data: CoverColorDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('coverColorDeleteCreate', 'data', data)
-            const localVarPath = `/cover_color/delete`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取封面颜色配置列表
-         * @param {CoverColorListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        coverColorListCreate: async (data: CoverColorListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('coverColorListCreate', 'data', data)
-            const localVarPath = `/cover_color/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 更新封面颜色配置
-         * @param {CoverColorUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        coverColorUpdateCreate: async (data: CoverColorUpdateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('coverColorUpdateCreate', 'data', data)
-            const localVarPath = `/cover_color/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 前台-获取分类列表
-         * @param {FrontCategoryListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        frontCategoryListCreate: async (data: FrontCategoryListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('frontCategoryListCreate', 'data', data)
-            const localVarPath = `/front/categoryList`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 前台-获取产品列表
-         * @param {FrontProductListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        frontProductListCreate: async (data: FrontProductListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('frontProductListCreate', 'data', data)
-            const localVarPath = `/front/product/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 前台-首页顶部统计
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        frontStatisticsCreate: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/front/statistics`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建菜单
-         * @param {MenuCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        menuCreateCreate: async (data: MenuCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('menuCreateCreate', 'data', data)
-            const localVarPath = `/menu/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 菜单列表
-         * @param {MenuListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        menuListCreate: async (data: MenuListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('menuListCreate', 'data', data)
-            const localVarPath = `/menu/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建价格方案
-         * @param {PaymentPlanCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanCreateCreate: async (data: PaymentPlanCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('paymentPlanCreateCreate', 'data', data)
-            const localVarPath = `/payment/plan/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 删除价格方案
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanDeleteCreate: async (data: PaymentPlanDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('paymentPlanDeleteCreate', 'data', data)
-            const localVarPath = `/payment/plan/delete`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取价格方案详情
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanDetailCreate: async (data: PaymentPlanDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('paymentPlanDetailCreate', 'data', data)
-            const localVarPath = `/payment/plan/detail`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取价格方案列表
-         * @param {PaymentPlanListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanListCreate: async (data: PaymentPlanListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('paymentPlanListCreate', 'data', data)
-            const localVarPath = `/payment/plan/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 更新价格方案
-         * @param {PaymentPlanUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanUpdateCreate: async (data: PaymentPlanUpdateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('paymentPlanUpdateCreate', 'data', data)
-            const localVarPath = `/payment/plan/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 记录产品点击
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productClickRecordCreate: async (data: ProductClickRecordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productClickRecordCreate', 'data', data)
-            const localVarPath = `/product/click/record`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取产品点击统计
-         * @param {ProductClickStatsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productClickStatsCreate: async (data: ProductClickStatsCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productClickStatsCreate', 'data', data)
-            const localVarPath = `/product/click/stats`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建产品信息
-         * @param {ProductCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productCreateCreate: async (data: ProductCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productCreateCreate', 'data', data)
-            const localVarPath = `/product/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 删除产品信息(逻辑删除)
-         * @param {ProductDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productDeleteCreate: async (data: ProductDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productDeleteCreate', 'data', data)
-            const localVarPath = `/product/delete`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取产品详情
-         * @param {ProductDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productDetailCreate: async (data: ProductDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productDetailCreate', 'data', data)
-            const localVarPath = `/product/detail`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 前台-取消收藏
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productFavoriteCancelCreate: async (data: ProductClickRecordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productFavoriteCancelCreate', 'data', data)
-            const localVarPath = `/product/favorite/cancel`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 前台-收藏产品
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productFavoriteCreateCreate: async (data: ProductClickRecordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productFavoriteCreateCreate', 'data', data)
-            const localVarPath = `/product/favorite/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 后台-获取收藏列表
-         * @param {ProductFavoriteListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productFavoriteListCreate: async (data: ProductFavoriteListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productFavoriteListCreate', 'data', data)
-            const localVarPath = `/product/favorite/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取产品列表
-         * @param {ProductListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productListCreate: async (data: ProductListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productListCreate', 'data', data)
-            const localVarPath = `/product/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 前台-创建产品评价
-         * @param {ProductReviewCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewCreateCreate: async (data: ProductReviewCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productReviewCreateCreate', 'data', data)
-            const localVarPath = `/product/review/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 删除产品评价
-         * @param {ProductReviewDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewDeleteCreate: async (data: ProductReviewDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productReviewDeleteCreate', 'data', data)
-            const localVarPath = `/product/review/delete`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 注册页右侧评价
-         * @param {ProductReviewFrontListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewFrontListCreate: async (data: ProductReviewFrontListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productReviewFrontListCreate', 'data', data)
-            const localVarPath = `/product/review/FrontList`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取产品评价列表
-         * @param {ProductReviewFrontListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewListCreate: async (data: ProductReviewFrontListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productReviewListCreate', 'data', data)
-            const localVarPath = `/product/review/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 修改产品评价
-         * @param {ProductReviewUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewUpdateCreate: async (data: ProductReviewUpdateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productReviewUpdateCreate', 'data', data)
-            const localVarPath = `/product/review/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 更新产品信息
-         * @param {ProductUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUpdateCreate: async (data: ProductUpdateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productUpdateCreate', 'data', data)
-            const localVarPath = `/product/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 记录产品访问结束
-         * @param {ProductVisitEndCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productVisitEndCreate: async (data: ProductVisitEndCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productVisitEndCreate', 'data', data)
-            const localVarPath = `/product/visit/end`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 记录产品访问开始
-         * @param {ProductVisitStartCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productVisitStartCreate: async (data: ProductVisitStartCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('productVisitStartCreate', 'data', data)
-            const localVarPath = `/product/visit/start`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建角色
-         * @param {RoleCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        roleCreateCreate: async (data: RoleCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('roleCreateCreate', 'data', data)
-            const localVarPath = `/role/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取角色信息
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        roleInfoCreate: async (data: PaymentPlanDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('roleInfoCreate', 'data', data)
-            const localVarPath = `/role/info`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 角色列表
-         * @param {RoleListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        roleListCreate: async (data: RoleListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('roleListCreate', 'data', data)
-            const localVarPath = `/role/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取点击量，访问量同比增长统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsClickRateCreate: async (data: ProductClickRecordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('statsClickRateCreate', 'data', data)
-            const localVarPath = `/stats/clickRate`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 后台获取商品列表排名
-         * @param {StatsPopularCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsPopularCreate: async (data: StatsPopularCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('statsPopularCreate', 'data', data)
-            const localVarPath = `/stats/popular`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 统计页获取当前用户的商品列表
-         * @param {CoverColorListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsProductsCreate: async (data: CoverColorListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('statsProductsCreate', 'data', data)
-            const localVarPath = `/stats/products`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取产品访问时长同比增长统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsVisitStatsCreate: async (data: ProductClickRecordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('statsVisitStatsCreate', 'data', data)
-            const localVarPath = `/stats/visitStats`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取产品每周点击量统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsWeeklyClicksCreate: async (data: ProductClickRecordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('statsWeeklyClicksCreate', 'data', data)
-            const localVarPath = `/stats/weeklyClicks`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取产品每周访问时长统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsWeeklyDurationsCreate: async (data: ProductClickRecordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('statsWeeklyDurationsCreate', 'data', data)
-            const localVarPath = `/stats/weeklyDurations`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取产品每周访问量统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsWeeklyViewsCreate: async (data: ProductClickRecordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('statsWeeklyViewsCreate', 'data', data)
-            const localVarPath = `/stats/weeklyViews`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建订阅
-         * @param {SubscriptionCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        subscriptionCreateCreate: async (data: SubscriptionCreateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('subscriptionCreateCreate', 'data', data)
-            const localVarPath = `/subscription/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 删除订阅(更新状态为已取消)
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        subscriptionDeleteCreate: async (data: PaymentPlanDeleteCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('subscriptionDeleteCreate', 'data', data)
-            const localVarPath = `/subscription/delete`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取订阅列表
-         * @param {SubscriptionListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        subscriptionListCreate: async (data: SubscriptionListCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('subscriptionListCreate', 'data', data)
-            const localVarPath = `/subscription/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 更新订阅信息
-         * @param {SubscriptionUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        subscriptionUpdateCreate: async (data: SubscriptionUpdateCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('subscriptionUpdateCreate', 'data', data)
-            const localVarPath = `/subscription/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 上传文件至minio（图片最大5MB，视频最大50MB）
-         * @param {File} file 要上传的文件（图片最大5MB，视频最大50MB） 支持jpg、png、gif、webp图片和mp4、mpeg视频
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        uploadCreate: async (file: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('uploadCreate', 'file', file)
-            const localVarPath = `/upload`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取minio文件访问URL
-         * @param {UploadUrlCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        uploadUrlCreate: async (data: UploadUrlCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('uploadUrlCreate', 'data', data)
-            const localVarPath = `/upload/url`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
+export const DefaultApiAxiosParamCreator = function (
+  configuration?: Configuration
+) {
+  return {
+    /**
+     * 创建新的用户
+     * @param {AdminCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminCreateCreate: async (
+      data: AdminCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("adminCreateCreate", "data", data);
+      const localVarPath = `/admin/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 生成新的API Key
+     * @param {object} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminGenerateApiKeyCreate: async (
+      data: object,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("adminGenerateApiKeyCreate", "data", data);
+      const localVarPath = `/admin/generate-api-key`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取用户详细信息
+     * @param {object} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminInfoCreate: async (
+      data: object,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("adminInfoCreate", "data", data);
+      const localVarPath = `/admin/info`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 用户登录
+     * @param {AdminLoginCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminLoginCreate: async (
+      data: AdminLoginCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("adminLoginCreate", "data", data);
+      const localVarPath = `/admin/login`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 重置用户密码
+     * @param {AdminResetPasswordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminResetPasswordCreate: async (
+      data: AdminResetPasswordCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("adminResetPasswordCreate", "data", data);
+      const localVarPath = `/admin/resetPassword`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 更新用户信息
+     * @param {AdminUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminUpdateCreate: async (
+      data: AdminUpdateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("adminUpdateCreate", "data", data);
+      const localVarPath = `/admin/update`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建广告
+     * @param {AdvertisementCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementCreateCreate: async (
+      data: AdvertisementCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("advertisementCreateCreate", "data", data);
+      const localVarPath = `/advertisement/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 删除广告
+     * @param {AdvertisementDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementDeleteCreate: async (
+      data: AdvertisementDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("advertisementDeleteCreate", "data", data);
+      const localVarPath = `/advertisement/delete`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取广告详情
+     * @param {AdvertisementDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementDetailCreate: async (
+      data: AdvertisementDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("advertisementDetailCreate", "data", data);
+      const localVarPath = `/advertisement/detail`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取广告列表
+     * @param {AdvertisementListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementListCreate: async (
+      data: AdvertisementListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("advertisementListCreate", "data", data);
+      const localVarPath = `/advertisement/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 更新广告
+     * @param {AdvertisementUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementUpdateCreate: async (
+      data: AdvertisementUpdateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("advertisementUpdateCreate", "data", data);
+      const localVarPath = `/advertisement/update`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建协议
+     * @param {AgreementCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementCreateCreate: async (
+      data: AgreementCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("agreementCreateCreate", "data", data);
+      const localVarPath = `/agreement/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 删除协议
+     * @param {AgreementDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementDeleteCreate: async (
+      data: AgreementDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("agreementDeleteCreate", "data", data);
+      const localVarPath = `/agreement/delete`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 导入Word文档作为协议内容
+     * @param {File} file 要上传的Word文档（仅支持.docx格式）
+     * @param {number} type 协议类型 1:服务条款 2:用户协议 3:隐私政策
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementImportWordCreate: async (
+      file: File,
+      type: number,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'file' is not null or undefined
+      assertParamExists("agreementImportWordCreate", "file", file);
+      // verify required parameter 'type' is not null or undefined
+      assertParamExists("agreementImportWordCreate", "type", type);
+      const localVarPath = `/agreement/import-word`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+      const localVarFormParams = new ((configuration &&
+        configuration.formDataCtor) ||
+        FormData)();
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      if (file !== undefined) {
+        localVarFormParams.append("file", file as any);
+      }
+
+      if (type !== undefined) {
+        localVarFormParams.append("type", type as any);
+      }
+
+      localVarHeaderParameter["Content-Type"] = "multipart/form-data";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = localVarFormParams;
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取协议列表
+     * @param {AgreementListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementListCreate: async (
+      data: AgreementListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("agreementListCreate", "data", data);
+      const localVarPath = `/agreement/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 更新协议
+     * @param {AgreementUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementUpdateCreate: async (
+      data: AgreementUpdateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("agreementUpdateCreate", "data", data);
+      const localVarPath = `/agreement/update`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建产品分类
+     * @param {CategoryCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    categoryCreateCreate: async (
+      data: CategoryCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("categoryCreateCreate", "data", data);
+      const localVarPath = `/category/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 删除分类(逻辑删除)
+     * @param {CategoryDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    categoryDeleteCreate: async (
+      data: CategoryDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("categoryDeleteCreate", "data", data);
+      const localVarPath = `/category/delete`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取分类列表
+     * @param {CategoryListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    categoryListCreate: async (
+      data: CategoryListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("categoryListCreate", "data", data);
+      const localVarPath = `/category/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 更新分类信息
+     * @param {CategoryUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    categoryUpdateCreate: async (
+      data: CategoryUpdateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("categoryUpdateCreate", "data", data);
+      const localVarPath = `/category/update`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建封面颜色配置
+     * @param {CoverColorCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    coverColorCreateCreate: async (
+      data: CoverColorCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("coverColorCreateCreate", "data", data);
+      const localVarPath = `/cover_color/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 删除封面颜色配置
+     * @param {CoverColorDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    coverColorDeleteCreate: async (
+      data: CoverColorDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("coverColorDeleteCreate", "data", data);
+      const localVarPath = `/cover_color/delete`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取封面颜色配置列表
+     * @param {CoverColorListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    coverColorListCreate: async (
+      data: CoverColorListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("coverColorListCreate", "data", data);
+      const localVarPath = `/cover_color/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 更新封面颜色配置
+     * @param {CoverColorUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    coverColorUpdateCreate: async (
+      data: CoverColorUpdateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("coverColorUpdateCreate", "data", data);
+      const localVarPath = `/cover_color/update`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 前台-获取分类列表
+     * @param {FrontCategoryListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    frontCategoryListCreate: async (
+      data: FrontCategoryListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("frontCategoryListCreate", "data", data);
+      const localVarPath = `/front/categoryList`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 前台-获取产品列表
+     * @param {FrontProductListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    frontProductListCreate: async (
+      data: FrontProductListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("frontProductListCreate", "data", data);
+      const localVarPath = `/front/product/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 前台-首页顶部统计
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    frontStatisticsCreate: async (
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/front/statistics`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建菜单
+     * @param {MenuCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    menuCreateCreate: async (
+      data: MenuCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("menuCreateCreate", "data", data);
+      const localVarPath = `/menu/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 菜单列表
+     * @param {MenuListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    menuListCreate: async (
+      data: MenuListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("menuListCreate", "data", data);
+      const localVarPath = `/menu/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建价格方案
+     * @param {PaymentPlanCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanCreateCreate: async (
+      data: PaymentPlanCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paymentPlanCreateCreate", "data", data);
+      const localVarPath = `/payment/plan/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 删除价格方案
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanDeleteCreate: async (
+      data: PaymentPlanDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paymentPlanDeleteCreate", "data", data);
+      const localVarPath = `/payment/plan/delete`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取价格方案详情
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanDetailCreate: async (
+      data: PaymentPlanDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paymentPlanDetailCreate", "data", data);
+      const localVarPath = `/payment/plan/detail`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取价格方案列表
+     * @param {PaymentPlanListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanListCreate: async (
+      data: PaymentPlanListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paymentPlanListCreate", "data", data);
+      const localVarPath = `/payment/plan/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 更新价格方案
+     * @param {PaymentPlanUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanUpdateCreate: async (
+      data: PaymentPlanUpdateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paymentPlanUpdateCreate", "data", data);
+      const localVarPath = `/payment/plan/update`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 记录产品点击
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productClickRecordCreate: async (
+      data: ProductClickRecordCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productClickRecordCreate", "data", data);
+      const localVarPath = `/product/click/record`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取产品点击统计
+     * @param {ProductClickStatsCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productClickStatsCreate: async (
+      data: ProductClickStatsCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productClickStatsCreate", "data", data);
+      const localVarPath = `/product/click/stats`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建产品信息
+     * @param {ProductCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productCreateCreate: async (
+      data: ProductCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productCreateCreate", "data", data);
+      const localVarPath = `/product/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 删除产品信息(逻辑删除)
+     * @param {ProductDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productDeleteCreate: async (
+      data: ProductDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productDeleteCreate", "data", data);
+      const localVarPath = `/product/delete`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取产品详情
+     * @param {ProductDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productDetailCreate: async (
+      data: ProductDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productDetailCreate", "data", data);
+      const localVarPath = `/product/detail`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 前台-取消收藏
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productFavoriteCancelCreate: async (
+      data: ProductClickRecordCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productFavoriteCancelCreate", "data", data);
+      const localVarPath = `/product/favorite/cancel`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 前台-收藏产品
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productFavoriteCreateCreate: async (
+      data: ProductClickRecordCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productFavoriteCreateCreate", "data", data);
+      const localVarPath = `/product/favorite/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 后台-获取收藏列表
+     * @param {ProductFavoriteListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productFavoriteListCreate: async (
+      data: ProductFavoriteListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productFavoriteListCreate", "data", data);
+      const localVarPath = `/product/favorite/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取产品列表
+     * @param {ProductListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productListCreate: async (
+      data: ProductListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productListCreate", "data", data);
+      const localVarPath = `/product/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 前台-创建产品评价
+     * @param {ProductReviewCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewCreateCreate: async (
+      data: ProductReviewCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productReviewCreateCreate", "data", data);
+      const localVarPath = `/product/review/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 删除产品评价
+     * @param {ProductReviewDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewDeleteCreate: async (
+      data: ProductReviewDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productReviewDeleteCreate", "data", data);
+      const localVarPath = `/product/review/delete`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 注册页右侧评价
+     * @param {ProductReviewFrontListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewFrontListCreate: async (
+      data: ProductReviewFrontListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productReviewFrontListCreate", "data", data);
+      const localVarPath = `/product/review/FrontList`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取产品评价列表
+     * @param {ProductReviewFrontListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewListCreate: async (
+      data: ProductReviewFrontListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productReviewListCreate", "data", data);
+      const localVarPath = `/product/review/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 修改产品评价
+     * @param {ProductReviewUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewUpdateCreate: async (
+      data: ProductReviewUpdateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productReviewUpdateCreate", "data", data);
+      const localVarPath = `/product/review/update`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 更新产品信息
+     * @param {ProductUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productUpdateCreate: async (
+      data: ProductUpdateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productUpdateCreate", "data", data);
+      const localVarPath = `/product/update`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 记录产品访问结束
+     * @param {ProductVisitEndCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productVisitEndCreate: async (
+      data: ProductVisitEndCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productVisitEndCreate", "data", data);
+      const localVarPath = `/product/visit/end`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 记录产品访问开始
+     * @param {ProductVisitStartCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productVisitStartCreate: async (
+      data: ProductVisitStartCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("productVisitStartCreate", "data", data);
+      const localVarPath = `/product/visit/start`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建角色
+     * @param {RoleCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    roleCreateCreate: async (
+      data: RoleCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("roleCreateCreate", "data", data);
+      const localVarPath = `/role/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取角色信息
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    roleInfoCreate: async (
+      data: PaymentPlanDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("roleInfoCreate", "data", data);
+      const localVarPath = `/role/info`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 角色列表
+     * @param {RoleListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    roleListCreate: async (
+      data: RoleListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("roleListCreate", "data", data);
+      const localVarPath = `/role/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取点击量，访问量同比增长统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsClickRateCreate: async (
+      data: ProductClickRecordCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("statsClickRateCreate", "data", data);
+      const localVarPath = `/stats/clickRate`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 后台获取商品列表排名
+     * @param {StatsPopularCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsPopularCreate: async (
+      data: StatsPopularCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("statsPopularCreate", "data", data);
+      const localVarPath = `/stats/popular`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 统计页获取当前用户的商品列表
+     * @param {CoverColorListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsProductsCreate: async (
+      data: CoverColorListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("statsProductsCreate", "data", data);
+      const localVarPath = `/stats/products`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取产品访问时长同比增长统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsVisitStatsCreate: async (
+      data: ProductClickRecordCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("statsVisitStatsCreate", "data", data);
+      const localVarPath = `/stats/visitStats`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取产品每周点击量统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsWeeklyClicksCreate: async (
+      data: ProductClickRecordCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("statsWeeklyClicksCreate", "data", data);
+      const localVarPath = `/stats/weeklyClicks`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取产品每周访问时长统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsWeeklyDurationsCreate: async (
+      data: ProductClickRecordCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("statsWeeklyDurationsCreate", "data", data);
+      const localVarPath = `/stats/weeklyDurations`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取产品每周访问量统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsWeeklyViewsCreate: async (
+      data: ProductClickRecordCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("statsWeeklyViewsCreate", "data", data);
+      const localVarPath = `/stats/weeklyViews`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建订阅
+     * @param {SubscriptionCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    subscriptionCreateCreate: async (
+      data: SubscriptionCreateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("subscriptionCreateCreate", "data", data);
+      const localVarPath = `/subscription/create`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 删除订阅(更新状态为已取消)
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    subscriptionDeleteCreate: async (
+      data: PaymentPlanDeleteCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("subscriptionDeleteCreate", "data", data);
+      const localVarPath = `/subscription/delete`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取订阅列表
+     * @param {SubscriptionListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    subscriptionListCreate: async (
+      data: SubscriptionListCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("subscriptionListCreate", "data", data);
+      const localVarPath = `/subscription/list`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 更新订阅信息
+     * @param {SubscriptionUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    subscriptionUpdateCreate: async (
+      data: SubscriptionUpdateCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("subscriptionUpdateCreate", "data", data);
+      const localVarPath = `/subscription/update`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 上传文件至minio（图片最大5MB，视频最大50MB）
+     * @param {File} file 要上传的文件（图片最大5MB，视频最大50MB） 支持jpg、png、gif、webp图片和mp4、mpeg视频
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadCreate: async (
+      file: File,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'file' is not null or undefined
+      assertParamExists("uploadCreate", "file", file);
+      const localVarPath = `/upload`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+      const localVarFormParams = new ((configuration &&
+        configuration.formDataCtor) ||
+        FormData)();
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      if (file !== undefined) {
+        localVarFormParams.append("file", file as any);
+      }
+
+      localVarHeaderParameter["Content-Type"] = "multipart/form-data";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = localVarFormParams;
+
+      console.log(
+        "localVarRequestOptions",
+        localVarRequestOptions,
+        toPathString(localVarUrlObj)
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取minio文件访问URL
+     * @param {UploadUrlCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadUrlCreate: async (
+      data: UploadUrlCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("uploadUrlCreate", "data", data);
+      const localVarPath = `/upload/url`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+  };
 };
 
 /**
  * DefaultApi - functional programming interface
  * @export
  */
-export const DefaultApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 创建新的用户
-         * @param {AdminCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async adminCreateCreate(data: AdminCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.adminCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.adminCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取用户详细信息
-         * @param {object} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async adminInfoCreate(data: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminInfoCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.adminInfoCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.adminInfoCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 用户登录
-         * @param {AdminLoginCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async adminLoginCreate(data: AdminLoginCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminLoginCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.adminLoginCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.adminLoginCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 重置用户密码
-         * @param {AdminResetPasswordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async adminResetPasswordCreate(data: AdminResetPasswordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.adminResetPasswordCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.adminResetPasswordCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 更新用户信息
-         * @param {AdminUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async adminUpdateCreate(data: AdminUpdateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.adminUpdateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.adminUpdateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建广告
-         * @param {AdvertisementCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async advertisementCreateCreate(data: AdvertisementCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.advertisementCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.advertisementCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 删除广告
-         * @param {AdvertisementDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async advertisementDeleteCreate(data: AdvertisementDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.advertisementDeleteCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.advertisementDeleteCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取广告详情
-         * @param {AdvertisementDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async advertisementDetailCreate(data: AdvertisementDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdvertisementDetailCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.advertisementDetailCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.advertisementDetailCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取广告列表
-         * @param {AdvertisementListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async advertisementListCreate(data: AdvertisementListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdvertisementListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.advertisementListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.advertisementListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 更新广告
-         * @param {AdvertisementUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async advertisementUpdateCreate(data: AdvertisementUpdateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.advertisementUpdateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.advertisementUpdateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建协议
-         * @param {AgreementCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async agreementCreateCreate(data: AgreementCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.agreementCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.agreementCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 删除协议
-         * @param {AgreementDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async agreementDeleteCreate(data: AgreementDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.agreementDeleteCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.agreementDeleteCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 导入Word文档作为协议内容
-         * @param {File} file 要上传的Word文档（仅支持.docx格式）
-         * @param {number} type 协议类型 1:服务条款 2:用户协议 3:隐私政策
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async agreementImportWordCreate(file: File, type: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AgreementImportWordCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.agreementImportWordCreate(file, type, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.agreementImportWordCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取协议列表
-         * @param {AgreementListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async agreementListCreate(data: AgreementListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AgreementListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.agreementListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.agreementListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 更新协议
-         * @param {AgreementUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async agreementUpdateCreate(data: AgreementUpdateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.agreementUpdateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.agreementUpdateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建产品分类
-         * @param {CategoryCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async categoryCreateCreate(data: CategoryCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.categoryCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.categoryCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 删除分类(逻辑删除)
-         * @param {CategoryDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async categoryDeleteCreate(data: CategoryDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.categoryDeleteCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.categoryDeleteCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取分类列表
-         * @param {CategoryListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async categoryListCreate(data: CategoryListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CategoryListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.categoryListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.categoryListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 更新分类信息
-         * @param {CategoryUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async categoryUpdateCreate(data: CategoryUpdateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.categoryUpdateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.categoryUpdateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建封面颜色配置
-         * @param {CoverColorCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async coverColorCreateCreate(data: CoverColorCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.coverColorCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.coverColorCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 删除封面颜色配置
-         * @param {CoverColorDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async coverColorDeleteCreate(data: CoverColorDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.coverColorDeleteCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.coverColorDeleteCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取封面颜色配置列表
-         * @param {CoverColorListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async coverColorListCreate(data: CoverColorListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverColorListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.coverColorListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.coverColorListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 更新封面颜色配置
-         * @param {CoverColorUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async coverColorUpdateCreate(data: CoverColorUpdateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.coverColorUpdateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.coverColorUpdateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 前台-获取分类列表
-         * @param {FrontCategoryListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async frontCategoryListCreate(data: FrontCategoryListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrontCategoryListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.frontCategoryListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.frontCategoryListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 前台-获取产品列表
-         * @param {FrontProductListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async frontProductListCreate(data: FrontProductListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrontProductListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.frontProductListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.frontProductListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 前台-首页顶部统计
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async frontStatisticsCreate(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FrontStatisticsCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.frontStatisticsCreate(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.frontStatisticsCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建菜单
-         * @param {MenuCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async menuCreateCreate(data: MenuCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.menuCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.menuCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 菜单列表
-         * @param {MenuListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async menuListCreate(data: MenuListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MenuListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.menuListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.menuListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建价格方案
-         * @param {PaymentPlanCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async paymentPlanCreateCreate(data: PaymentPlanCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.paymentPlanCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.paymentPlanCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 删除价格方案
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async paymentPlanDeleteCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.paymentPlanDeleteCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.paymentPlanDeleteCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取价格方案详情
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async paymentPlanDetailCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaymentPlanDetailCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.paymentPlanDetailCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.paymentPlanDetailCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取价格方案列表
-         * @param {PaymentPlanListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async paymentPlanListCreate(data: PaymentPlanListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaymentPlanListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.paymentPlanListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.paymentPlanListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 更新价格方案
-         * @param {PaymentPlanUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async paymentPlanUpdateCreate(data: PaymentPlanUpdateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.paymentPlanUpdateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.paymentPlanUpdateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 记录产品点击
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productClickRecordCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductClickRecordCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productClickRecordCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productClickRecordCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取产品点击统计
-         * @param {ProductClickStatsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productClickStatsCreate(data: ProductClickStatsCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductClickStatsCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productClickStatsCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productClickStatsCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建产品信息
-         * @param {ProductCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productCreateCreate(data: ProductCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 删除产品信息(逻辑删除)
-         * @param {ProductDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productDeleteCreate(data: ProductDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productDeleteCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productDeleteCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取产品详情
-         * @param {ProductDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productDetailCreate(data: ProductDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductDetailCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productDetailCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productDetailCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 前台-取消收藏
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productFavoriteCancelCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productFavoriteCancelCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productFavoriteCancelCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 前台-收藏产品
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productFavoriteCreateCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productFavoriteCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productFavoriteCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 后台-获取收藏列表
-         * @param {ProductFavoriteListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productFavoriteListCreate(data: ProductFavoriteListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductFavoriteListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productFavoriteListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productFavoriteListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取产品列表
-         * @param {ProductListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productListCreate(data: ProductListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 前台-创建产品评价
-         * @param {ProductReviewCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productReviewCreateCreate(data: ProductReviewCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productReviewCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productReviewCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 删除产品评价
-         * @param {ProductReviewDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productReviewDeleteCreate(data: ProductReviewDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productReviewDeleteCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productReviewDeleteCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 注册页右侧评价
-         * @param {ProductReviewFrontListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productReviewFrontListCreate(data: ProductReviewFrontListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductReviewFrontListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productReviewFrontListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productReviewFrontListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取产品评价列表
-         * @param {ProductReviewFrontListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productReviewListCreate(data: ProductReviewFrontListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductReviewFrontListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productReviewListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productReviewListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 修改产品评价
-         * @param {ProductReviewUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productReviewUpdateCreate(data: ProductReviewUpdateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productReviewUpdateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productReviewUpdateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 更新产品信息
-         * @param {ProductUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productUpdateCreate(data: ProductUpdateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productUpdateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productUpdateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 记录产品访问结束
-         * @param {ProductVisitEndCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productVisitEndCreate(data: ProductVisitEndCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductVisitEndCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productVisitEndCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productVisitEndCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 记录产品访问开始
-         * @param {ProductVisitStartCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productVisitStartCreate(data: ProductVisitStartCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductVisitStartCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productVisitStartCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productVisitStartCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建角色
-         * @param {RoleCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async roleCreateCreate(data: RoleCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.roleCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.roleCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取角色信息
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async roleInfoCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RoleInfoCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.roleInfoCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.roleInfoCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 角色列表
-         * @param {RoleListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async roleListCreate(data: RoleListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RoleListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.roleListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.roleListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取点击量，访问量同比增长统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async statsClickRateCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatsClickRateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.statsClickRateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.statsClickRateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 后台获取商品列表排名
-         * @param {StatsPopularCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async statsPopularCreate(data: StatsPopularCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatsPopularCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.statsPopularCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.statsPopularCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 统计页获取当前用户的商品列表
-         * @param {CoverColorListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async statsProductsCreate(data: CoverColorListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatsProductsCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.statsProductsCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.statsProductsCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取产品访问时长同比增长统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async statsVisitStatsCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatsVisitStatsCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.statsVisitStatsCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.statsVisitStatsCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取产品每周点击量统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async statsWeeklyClicksCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatsWeeklyClicksCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.statsWeeklyClicksCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.statsWeeklyClicksCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取产品每周访问时长统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async statsWeeklyDurationsCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatsWeeklyDurationsCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.statsWeeklyDurationsCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.statsWeeklyDurationsCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取产品每周访问量统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async statsWeeklyViewsCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatsWeeklyViewsCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.statsWeeklyViewsCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.statsWeeklyViewsCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建订阅
-         * @param {SubscriptionCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async subscriptionCreateCreate(data: SubscriptionCreateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionCreateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.subscriptionCreateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 删除订阅(更新状态为已取消)
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async subscriptionDeleteCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionDeleteCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.subscriptionDeleteCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取订阅列表
-         * @param {SubscriptionListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async subscriptionListCreate(data: SubscriptionListCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionListCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionListCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.subscriptionListCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 更新订阅信息
-         * @param {SubscriptionUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async subscriptionUpdateCreate(data: SubscriptionUpdateCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AdminCreateCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscriptionUpdateCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.subscriptionUpdateCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 上传文件至minio（图片最大5MB，视频最大50MB）
-         * @param {File} file 要上传的文件（图片最大5MB，视频最大50MB） 支持jpg、png、gif、webp图片和mp4、mpeg视频
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async uploadCreate(file: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.uploadCreate(file, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.uploadCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取minio文件访问URL
-         * @param {UploadUrlCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async uploadUrlCreate(data: UploadUrlCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadUrlCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.uploadUrlCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.uploadUrlCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-    }
+export const DefaultApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration);
+  return {
+    /**
+     * 创建新的用户
+     * @param {AdminCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async adminCreateCreate(
+      data: AdminCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminCreateCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.adminCreateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.adminCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 生成新的API Key
+     * @param {object} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async adminGenerateApiKeyCreate(
+      data: object,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminGenerateApiKeyCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.adminGenerateApiKeyCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.adminGenerateApiKeyCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取用户详细信息
+     * @param {object} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async adminInfoCreate(
+      data: object,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminInfoCreate200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.adminInfoCreate(
+        data,
+        options
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.adminInfoCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 用户登录
+     * @param {AdminLoginCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async adminLoginCreate(
+      data: AdminLoginCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminLoginCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.adminLoginCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.adminLoginCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 重置用户密码
+     * @param {AdminResetPasswordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async adminResetPasswordCreate(
+      data: AdminResetPasswordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.adminResetPasswordCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.adminResetPasswordCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 更新用户信息
+     * @param {AdminUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async adminUpdateCreate(
+      data: AdminUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.adminUpdateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.adminUpdateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建广告
+     * @param {AdvertisementCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async advertisementCreateCreate(
+      data: AdvertisementCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.advertisementCreateCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.advertisementCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 删除广告
+     * @param {AdvertisementDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async advertisementDeleteCreate(
+      data: AdvertisementDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.advertisementDeleteCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.advertisementDeleteCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取广告详情
+     * @param {AdvertisementDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async advertisementDetailCreate(
+      data: AdvertisementDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdvertisementDetailCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.advertisementDetailCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.advertisementDetailCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取广告列表
+     * @param {AdvertisementListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async advertisementListCreate(
+      data: AdvertisementListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdvertisementListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.advertisementListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.advertisementListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 更新广告
+     * @param {AdvertisementUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async advertisementUpdateCreate(
+      data: AdvertisementUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.advertisementUpdateCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.advertisementUpdateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建协议
+     * @param {AgreementCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async agreementCreateCreate(
+      data: AgreementCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.agreementCreateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.agreementCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 删除协议
+     * @param {AgreementDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async agreementDeleteCreate(
+      data: AgreementDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.agreementDeleteCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.agreementDeleteCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 导入Word文档作为协议内容
+     * @param {File} file 要上传的Word文档（仅支持.docx格式）
+     * @param {number} type 协议类型 1:服务条款 2:用户协议 3:隐私政策
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async agreementImportWordCreate(
+      file: File,
+      type: number,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AgreementImportWordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.agreementImportWordCreate(
+          file,
+          type,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.agreementImportWordCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取协议列表
+     * @param {AgreementListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async agreementListCreate(
+      data: AgreementListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AgreementListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.agreementListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.agreementListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 更新协议
+     * @param {AgreementUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async agreementUpdateCreate(
+      data: AgreementUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.agreementUpdateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.agreementUpdateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建产品分类
+     * @param {CategoryCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async categoryCreateCreate(
+      data: CategoryCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.categoryCreateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.categoryCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 删除分类(逻辑删除)
+     * @param {CategoryDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async categoryDeleteCreate(
+      data: CategoryDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.categoryDeleteCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.categoryDeleteCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取分类列表
+     * @param {CategoryListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async categoryListCreate(
+      data: CategoryListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<CategoryListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.categoryListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.categoryListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 更新分类信息
+     * @param {CategoryUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async categoryUpdateCreate(
+      data: CategoryUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.categoryUpdateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.categoryUpdateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建封面颜色配置
+     * @param {CoverColorCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async coverColorCreateCreate(
+      data: CoverColorCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.coverColorCreateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.coverColorCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 删除封面颜色配置
+     * @param {CoverColorDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async coverColorDeleteCreate(
+      data: CoverColorDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.coverColorDeleteCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.coverColorDeleteCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取封面颜色配置列表
+     * @param {CoverColorListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async coverColorListCreate(
+      data: CoverColorListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<CoverColorListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.coverColorListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.coverColorListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 更新封面颜色配置
+     * @param {CoverColorUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async coverColorUpdateCreate(
+      data: CoverColorUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.coverColorUpdateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.coverColorUpdateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 前台-获取分类列表
+     * @param {FrontCategoryListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async frontCategoryListCreate(
+      data: FrontCategoryListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<FrontCategoryListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.frontCategoryListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.frontCategoryListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 前台-获取产品列表
+     * @param {FrontProductListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async frontProductListCreate(
+      data: FrontProductListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<FrontProductListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.frontProductListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.frontProductListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 前台-首页顶部统计
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async frontStatisticsCreate(
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<FrontStatisticsCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.frontStatisticsCreate(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.frontStatisticsCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建菜单
+     * @param {MenuCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async menuCreateCreate(
+      data: MenuCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.menuCreateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.menuCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 菜单列表
+     * @param {MenuListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async menuListCreate(
+      data: MenuListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<MenuListCreate200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.menuListCreate(
+        data,
+        options
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.menuListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建价格方案
+     * @param {PaymentPlanCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paymentPlanCreateCreate(
+      data: PaymentPlanCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paymentPlanCreateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.paymentPlanCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 删除价格方案
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paymentPlanDeleteCreate(
+      data: PaymentPlanDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paymentPlanDeleteCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.paymentPlanDeleteCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取价格方案详情
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paymentPlanDetailCreate(
+      data: PaymentPlanDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<PaymentPlanDetailCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paymentPlanDetailCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.paymentPlanDetailCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取价格方案列表
+     * @param {PaymentPlanListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paymentPlanListCreate(
+      data: PaymentPlanListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<PaymentPlanListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paymentPlanListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.paymentPlanListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 更新价格方案
+     * @param {PaymentPlanUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paymentPlanUpdateCreate(
+      data: PaymentPlanUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paymentPlanUpdateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.paymentPlanUpdateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 记录产品点击
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productClickRecordCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductClickRecordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productClickRecordCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productClickRecordCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取产品点击统计
+     * @param {ProductClickStatsCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productClickStatsCreate(
+      data: ProductClickStatsCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductClickStatsCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productClickStatsCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productClickStatsCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建产品信息
+     * @param {ProductCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productCreateCreate(
+      data: ProductCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductCreateCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productCreateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 删除产品信息(逻辑删除)
+     * @param {ProductDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productDeleteCreate(
+      data: ProductDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productDeleteCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productDeleteCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取产品详情
+     * @param {ProductDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productDetailCreate(
+      data: ProductDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductDetailCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productDetailCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productDetailCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 前台-取消收藏
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productFavoriteCancelCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productFavoriteCancelCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productFavoriteCancelCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 前台-收藏产品
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productFavoriteCreateCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productFavoriteCreateCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productFavoriteCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 后台-获取收藏列表
+     * @param {ProductFavoriteListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productFavoriteListCreate(
+      data: ProductFavoriteListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductFavoriteListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productFavoriteListCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productFavoriteListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取产品列表
+     * @param {ProductListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productListCreate(
+      data: ProductListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 前台-创建产品评价
+     * @param {ProductReviewCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productReviewCreateCreate(
+      data: ProductReviewCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productReviewCreateCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productReviewCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 删除产品评价
+     * @param {ProductReviewDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productReviewDeleteCreate(
+      data: ProductReviewDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productReviewDeleteCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productReviewDeleteCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 注册页右侧评价
+     * @param {ProductReviewFrontListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productReviewFrontListCreate(
+      data: ProductReviewFrontListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductReviewFrontListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productReviewFrontListCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productReviewFrontListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取产品评价列表
+     * @param {ProductReviewFrontListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productReviewListCreate(
+      data: ProductReviewFrontListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductReviewFrontListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productReviewListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productReviewListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 修改产品评价
+     * @param {ProductReviewUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productReviewUpdateCreate(
+      data: ProductReviewUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productReviewUpdateCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productReviewUpdateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 更新产品信息
+     * @param {ProductUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productUpdateCreate(
+      data: ProductUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productUpdateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productUpdateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 记录产品访问结束
+     * @param {ProductVisitEndCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productVisitEndCreate(
+      data: ProductVisitEndCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductVisitEndCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productVisitEndCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productVisitEndCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 记录产品访问开始
+     * @param {ProductVisitStartCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async productVisitStartCreate(
+      data: ProductVisitStartCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ProductVisitStartCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.productVisitStartCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.productVisitStartCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建角色
+     * @param {RoleCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async roleCreateCreate(
+      data: RoleCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.roleCreateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.roleCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取角色信息
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async roleInfoCreate(
+      data: PaymentPlanDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<RoleInfoCreate200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.roleInfoCreate(
+        data,
+        options
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.roleInfoCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 角色列表
+     * @param {RoleListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async roleListCreate(
+      data: RoleListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<RoleListCreate200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.roleListCreate(
+        data,
+        options
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.roleListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取点击量，访问量同比增长统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async statsClickRateCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StatsClickRateCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.statsClickRateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.statsClickRateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 后台获取商品列表排名
+     * @param {StatsPopularCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async statsPopularCreate(
+      data: StatsPopularCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StatsPopularCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.statsPopularCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.statsPopularCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 统计页获取当前用户的商品列表
+     * @param {CoverColorListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async statsProductsCreate(
+      data: CoverColorListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StatsProductsCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.statsProductsCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.statsProductsCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取产品访问时长同比增长统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async statsVisitStatsCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StatsVisitStatsCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.statsVisitStatsCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.statsVisitStatsCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取产品每周点击量统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async statsWeeklyClicksCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StatsWeeklyClicksCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.statsWeeklyClicksCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.statsWeeklyClicksCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取产品每周访问时长统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async statsWeeklyDurationsCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StatsWeeklyDurationsCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.statsWeeklyDurationsCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.statsWeeklyDurationsCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取产品每周访问量统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async statsWeeklyViewsCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StatsWeeklyViewsCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.statsWeeklyViewsCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.statsWeeklyViewsCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建订阅
+     * @param {SubscriptionCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async subscriptionCreateCreate(
+      data: SubscriptionCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.subscriptionCreateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.subscriptionCreateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 删除订阅(更新状态为已取消)
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async subscriptionDeleteCreate(
+      data: PaymentPlanDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.subscriptionDeleteCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.subscriptionDeleteCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取订阅列表
+     * @param {SubscriptionListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async subscriptionListCreate(
+      data: SubscriptionListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<SubscriptionListCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.subscriptionListCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.subscriptionListCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 更新订阅信息
+     * @param {SubscriptionUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async subscriptionUpdateCreate(
+      data: SubscriptionUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AdminResetPasswordCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.subscriptionUpdateCreate(data, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.subscriptionUpdateCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 上传文件至minio（图片最大5MB，视频最大50MB）
+     * @param {File} file 要上传的文件（图片最大5MB，视频最大50MB） 支持jpg、png、gif、webp图片和mp4、mpeg视频
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async uploadCreate(
+      file: File,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<UploadCreate200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.uploadCreate(
+        file,
+        options
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.uploadCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      console.log(localVarOperationServerBasePath);
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取minio文件访问URL
+     * @param {UploadUrlCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async uploadUrlCreate(
+      data: UploadUrlCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<UploadUrlCreate200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.uploadUrlCreate(
+        data,
+        options
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.uploadUrlCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+  };
 };
 
 /**
  * DefaultApi - factory interface
  * @export
  */
-export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = DefaultApiFp(configuration)
-    return {
-        /**
-         * 创建新的用户
-         * @param {AdminCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminCreateCreate(data: AdminCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.adminCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取用户详细信息
-         * @param {object} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminInfoCreate(data: object, options?: RawAxiosRequestConfig): AxiosPromise<AdminInfoCreate200Response> {
-            return localVarFp.adminInfoCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 用户登录
-         * @param {AdminLoginCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminLoginCreate(data: AdminLoginCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminLoginCreate200Response> {
-            return localVarFp.adminLoginCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 重置用户密码
-         * @param {AdminResetPasswordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminResetPasswordCreate(data: AdminResetPasswordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.adminResetPasswordCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 更新用户信息
-         * @param {AdminUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminUpdateCreate(data: AdminUpdateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.adminUpdateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建广告
-         * @param {AdvertisementCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementCreateCreate(data: AdvertisementCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.advertisementCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 删除广告
-         * @param {AdvertisementDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementDeleteCreate(data: AdvertisementDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.advertisementDeleteCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取广告详情
-         * @param {AdvertisementDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementDetailCreate(data: AdvertisementDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdvertisementDetailCreate200Response> {
-            return localVarFp.advertisementDetailCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取广告列表
-         * @param {AdvertisementListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementListCreate(data: AdvertisementListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdvertisementListCreate200Response> {
-            return localVarFp.advertisementListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 更新广告
-         * @param {AdvertisementUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        advertisementUpdateCreate(data: AdvertisementUpdateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.advertisementUpdateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建协议
-         * @param {AgreementCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementCreateCreate(data: AgreementCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.agreementCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 删除协议
-         * @param {AgreementDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementDeleteCreate(data: AgreementDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.agreementDeleteCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 导入Word文档作为协议内容
-         * @param {File} file 要上传的Word文档（仅支持.docx格式）
-         * @param {number} type 协议类型 1:服务条款 2:用户协议 3:隐私政策
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementImportWordCreate(file: File, type: number, options?: RawAxiosRequestConfig): AxiosPromise<AgreementImportWordCreate200Response> {
-            return localVarFp.agreementImportWordCreate(file, type, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取协议列表
-         * @param {AgreementListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementListCreate(data: AgreementListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AgreementListCreate200Response> {
-            return localVarFp.agreementListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 更新协议
-         * @param {AgreementUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementUpdateCreate(data: AgreementUpdateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.agreementUpdateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建产品分类
-         * @param {CategoryCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        categoryCreateCreate(data: CategoryCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.categoryCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 删除分类(逻辑删除)
-         * @param {CategoryDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        categoryDeleteCreate(data: CategoryDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.categoryDeleteCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取分类列表
-         * @param {CategoryListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        categoryListCreate(data: CategoryListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<CategoryListCreate200Response> {
-            return localVarFp.categoryListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 更新分类信息
-         * @param {CategoryUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        categoryUpdateCreate(data: CategoryUpdateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.categoryUpdateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建封面颜色配置
-         * @param {CoverColorCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        coverColorCreateCreate(data: CoverColorCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.coverColorCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 删除封面颜色配置
-         * @param {CoverColorDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        coverColorDeleteCreate(data: CoverColorDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.coverColorDeleteCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取封面颜色配置列表
-         * @param {CoverColorListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        coverColorListCreate(data: CoverColorListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<CoverColorListCreate200Response> {
-            return localVarFp.coverColorListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 更新封面颜色配置
-         * @param {CoverColorUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        coverColorUpdateCreate(data: CoverColorUpdateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.coverColorUpdateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 前台-获取分类列表
-         * @param {FrontCategoryListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        frontCategoryListCreate(data: FrontCategoryListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<FrontCategoryListCreate200Response> {
-            return localVarFp.frontCategoryListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 前台-获取产品列表
-         * @param {FrontProductListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        frontProductListCreate(data: FrontProductListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<FrontProductListCreate200Response> {
-            return localVarFp.frontProductListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 前台-首页顶部统计
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        frontStatisticsCreate(options?: RawAxiosRequestConfig): AxiosPromise<FrontStatisticsCreate200Response> {
-            return localVarFp.frontStatisticsCreate(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建菜单
-         * @param {MenuCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        menuCreateCreate(data: MenuCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.menuCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 菜单列表
-         * @param {MenuListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        menuListCreate(data: MenuListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<MenuListCreate200Response> {
-            return localVarFp.menuListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建价格方案
-         * @param {PaymentPlanCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanCreateCreate(data: PaymentPlanCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.paymentPlanCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 删除价格方案
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanDeleteCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.paymentPlanDeleteCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取价格方案详情
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanDetailCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaymentPlanDetailCreate200Response> {
-            return localVarFp.paymentPlanDetailCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取价格方案列表
-         * @param {PaymentPlanListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanListCreate(data: PaymentPlanListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaymentPlanListCreate200Response> {
-            return localVarFp.paymentPlanListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 更新价格方案
-         * @param {PaymentPlanUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paymentPlanUpdateCreate(data: PaymentPlanUpdateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.paymentPlanUpdateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 记录产品点击
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productClickRecordCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductClickRecordCreate200Response> {
-            return localVarFp.productClickRecordCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取产品点击统计
-         * @param {ProductClickStatsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productClickStatsCreate(data: ProductClickStatsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductClickStatsCreate200Response> {
-            return localVarFp.productClickStatsCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建产品信息
-         * @param {ProductCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productCreateCreate(data: ProductCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductCreateCreate200Response> {
-            return localVarFp.productCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 删除产品信息(逻辑删除)
-         * @param {ProductDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productDeleteCreate(data: ProductDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.productDeleteCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取产品详情
-         * @param {ProductDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productDetailCreate(data: ProductDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductDetailCreate200Response> {
-            return localVarFp.productDetailCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 前台-取消收藏
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productFavoriteCancelCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.productFavoriteCancelCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 前台-收藏产品
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productFavoriteCreateCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.productFavoriteCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 后台-获取收藏列表
-         * @param {ProductFavoriteListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productFavoriteListCreate(data: ProductFavoriteListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductFavoriteListCreate200Response> {
-            return localVarFp.productFavoriteListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取产品列表
-         * @param {ProductListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productListCreate(data: ProductListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductListCreate200Response> {
-            return localVarFp.productListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 前台-创建产品评价
-         * @param {ProductReviewCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewCreateCreate(data: ProductReviewCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.productReviewCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 删除产品评价
-         * @param {ProductReviewDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewDeleteCreate(data: ProductReviewDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.productReviewDeleteCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 注册页右侧评价
-         * @param {ProductReviewFrontListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewFrontListCreate(data: ProductReviewFrontListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductReviewFrontListCreate200Response> {
-            return localVarFp.productReviewFrontListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取产品评价列表
-         * @param {ProductReviewFrontListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewListCreate(data: ProductReviewFrontListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductReviewFrontListCreate200Response> {
-            return localVarFp.productReviewListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 修改产品评价
-         * @param {ProductReviewUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productReviewUpdateCreate(data: ProductReviewUpdateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.productReviewUpdateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 更新产品信息
-         * @param {ProductUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productUpdateCreate(data: ProductUpdateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.productUpdateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 记录产品访问结束
-         * @param {ProductVisitEndCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productVisitEndCreate(data: ProductVisitEndCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductVisitEndCreate200Response> {
-            return localVarFp.productVisitEndCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 记录产品访问开始
-         * @param {ProductVisitStartCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productVisitStartCreate(data: ProductVisitStartCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductVisitStartCreate200Response> {
-            return localVarFp.productVisitStartCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建角色
-         * @param {RoleCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        roleCreateCreate(data: RoleCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.roleCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取角色信息
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        roleInfoCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<RoleInfoCreate200Response> {
-            return localVarFp.roleInfoCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 角色列表
-         * @param {RoleListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        roleListCreate(data: RoleListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<RoleListCreate200Response> {
-            return localVarFp.roleListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取点击量，访问量同比增长统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsClickRateCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<StatsClickRateCreate200Response> {
-            return localVarFp.statsClickRateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 后台获取商品列表排名
-         * @param {StatsPopularCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsPopularCreate(data: StatsPopularCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<StatsPopularCreate200Response> {
-            return localVarFp.statsPopularCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 统计页获取当前用户的商品列表
-         * @param {CoverColorListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsProductsCreate(data: CoverColorListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<StatsProductsCreate200Response> {
-            return localVarFp.statsProductsCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取产品访问时长同比增长统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsVisitStatsCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<StatsVisitStatsCreate200Response> {
-            return localVarFp.statsVisitStatsCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取产品每周点击量统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsWeeklyClicksCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<StatsWeeklyClicksCreate200Response> {
-            return localVarFp.statsWeeklyClicksCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取产品每周访问时长统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsWeeklyDurationsCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<StatsWeeklyDurationsCreate200Response> {
-            return localVarFp.statsWeeklyDurationsCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取产品每周访问量统计
-         * @param {ProductClickRecordCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        statsWeeklyViewsCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<StatsWeeklyViewsCreate200Response> {
-            return localVarFp.statsWeeklyViewsCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建订阅
-         * @param {SubscriptionCreateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        subscriptionCreateCreate(data: SubscriptionCreateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.subscriptionCreateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 删除订阅(更新状态为已取消)
-         * @param {PaymentPlanDeleteCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        subscriptionDeleteCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.subscriptionDeleteCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取订阅列表
-         * @param {SubscriptionListCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        subscriptionListCreate(data: SubscriptionListCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubscriptionListCreate200Response> {
-            return localVarFp.subscriptionListCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 更新订阅信息
-         * @param {SubscriptionUpdateCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        subscriptionUpdateCreate(data: SubscriptionUpdateCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AdminCreateCreate200Response> {
-            return localVarFp.subscriptionUpdateCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 上传文件至minio（图片最大5MB，视频最大50MB）
-         * @param {File} file 要上传的文件（图片最大5MB，视频最大50MB） 支持jpg、png、gif、webp图片和mp4、mpeg视频
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        uploadCreate(file: File, options?: RawAxiosRequestConfig): AxiosPromise<UploadCreate200Response> {
-            return localVarFp.uploadCreate(file, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取minio文件访问URL
-         * @param {UploadUrlCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        uploadUrlCreate(data: UploadUrlCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<UploadUrlCreate200Response> {
-            return localVarFp.uploadUrlCreate(data, options).then((request) => request(axios, basePath));
-        },
-    };
+export const DefaultApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  const localVarFp = DefaultApiFp(configuration);
+  return {
+    /**
+     * 创建新的用户
+     * @param {AdminCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminCreateCreate(
+      data: AdminCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminCreateCreate200Response> {
+      return localVarFp
+        .adminCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 生成新的API Key
+     * @param {object} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminGenerateApiKeyCreate(
+      data: object,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminGenerateApiKeyCreate200Response> {
+      return localVarFp
+        .adminGenerateApiKeyCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取用户详细信息
+     * @param {object} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminInfoCreate(
+      data: object,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminInfoCreate200Response> {
+      return localVarFp
+        .adminInfoCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 用户登录
+     * @param {AdminLoginCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminLoginCreate(
+      data: AdminLoginCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminLoginCreate200Response> {
+      return localVarFp
+        .adminLoginCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 重置用户密码
+     * @param {AdminResetPasswordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminResetPasswordCreate(
+      data: AdminResetPasswordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .adminResetPasswordCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 更新用户信息
+     * @param {AdminUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adminUpdateCreate(
+      data: AdminUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .adminUpdateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建广告
+     * @param {AdvertisementCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementCreateCreate(
+      data: AdvertisementCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .advertisementCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 删除广告
+     * @param {AdvertisementDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementDeleteCreate(
+      data: AdvertisementDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .advertisementDeleteCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取广告详情
+     * @param {AdvertisementDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementDetailCreate(
+      data: AdvertisementDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdvertisementDetailCreate200Response> {
+      return localVarFp
+        .advertisementDetailCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取广告列表
+     * @param {AdvertisementListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementListCreate(
+      data: AdvertisementListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdvertisementListCreate200Response> {
+      return localVarFp
+        .advertisementListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 更新广告
+     * @param {AdvertisementUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    advertisementUpdateCreate(
+      data: AdvertisementUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .advertisementUpdateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建协议
+     * @param {AgreementCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementCreateCreate(
+      data: AgreementCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .agreementCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 删除协议
+     * @param {AgreementDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementDeleteCreate(
+      data: AgreementDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .agreementDeleteCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 导入Word文档作为协议内容
+     * @param {File} file 要上传的Word文档（仅支持.docx格式）
+     * @param {number} type 协议类型 1:服务条款 2:用户协议 3:隐私政策
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementImportWordCreate(
+      file: File,
+      type: number,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AgreementImportWordCreate200Response> {
+      return localVarFp
+        .agreementImportWordCreate(file, type, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取协议列表
+     * @param {AgreementListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementListCreate(
+      data: AgreementListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AgreementListCreate200Response> {
+      return localVarFp
+        .agreementListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 更新协议
+     * @param {AgreementUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agreementUpdateCreate(
+      data: AgreementUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .agreementUpdateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建产品分类
+     * @param {CategoryCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    categoryCreateCreate(
+      data: CategoryCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .categoryCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 删除分类(逻辑删除)
+     * @param {CategoryDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    categoryDeleteCreate(
+      data: CategoryDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .categoryDeleteCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取分类列表
+     * @param {CategoryListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    categoryListCreate(
+      data: CategoryListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<CategoryListCreate200Response> {
+      return localVarFp
+        .categoryListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 更新分类信息
+     * @param {CategoryUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    categoryUpdateCreate(
+      data: CategoryUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .categoryUpdateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建封面颜色配置
+     * @param {CoverColorCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    coverColorCreateCreate(
+      data: CoverColorCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .coverColorCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 删除封面颜色配置
+     * @param {CoverColorDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    coverColorDeleteCreate(
+      data: CoverColorDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .coverColorDeleteCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取封面颜色配置列表
+     * @param {CoverColorListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    coverColorListCreate(
+      data: CoverColorListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<CoverColorListCreate200Response> {
+      return localVarFp
+        .coverColorListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 更新封面颜色配置
+     * @param {CoverColorUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    coverColorUpdateCreate(
+      data: CoverColorUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .coverColorUpdateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 前台-获取分类列表
+     * @param {FrontCategoryListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    frontCategoryListCreate(
+      data: FrontCategoryListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<FrontCategoryListCreate200Response> {
+      return localVarFp
+        .frontCategoryListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 前台-获取产品列表
+     * @param {FrontProductListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    frontProductListCreate(
+      data: FrontProductListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<FrontProductListCreate200Response> {
+      return localVarFp
+        .frontProductListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 前台-首页顶部统计
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    frontStatisticsCreate(
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<FrontStatisticsCreate200Response> {
+      return localVarFp
+        .frontStatisticsCreate(options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建菜单
+     * @param {MenuCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    menuCreateCreate(
+      data: MenuCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .menuCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 菜单列表
+     * @param {MenuListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    menuListCreate(
+      data: MenuListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<MenuListCreate200Response> {
+      return localVarFp
+        .menuListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建价格方案
+     * @param {PaymentPlanCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanCreateCreate(
+      data: PaymentPlanCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .paymentPlanCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 删除价格方案
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanDeleteCreate(
+      data: PaymentPlanDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .paymentPlanDeleteCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取价格方案详情
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanDetailCreate(
+      data: PaymentPlanDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<PaymentPlanDetailCreate200Response> {
+      return localVarFp
+        .paymentPlanDetailCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取价格方案列表
+     * @param {PaymentPlanListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanListCreate(
+      data: PaymentPlanListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<PaymentPlanListCreate200Response> {
+      return localVarFp
+        .paymentPlanListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 更新价格方案
+     * @param {PaymentPlanUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paymentPlanUpdateCreate(
+      data: PaymentPlanUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .paymentPlanUpdateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 记录产品点击
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productClickRecordCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductClickRecordCreate200Response> {
+      return localVarFp
+        .productClickRecordCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取产品点击统计
+     * @param {ProductClickStatsCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productClickStatsCreate(
+      data: ProductClickStatsCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductClickStatsCreate200Response> {
+      return localVarFp
+        .productClickStatsCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建产品信息
+     * @param {ProductCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productCreateCreate(
+      data: ProductCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductCreateCreate200Response> {
+      return localVarFp
+        .productCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 删除产品信息(逻辑删除)
+     * @param {ProductDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productDeleteCreate(
+      data: ProductDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .productDeleteCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取产品详情
+     * @param {ProductDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productDetailCreate(
+      data: ProductDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductDetailCreate200Response> {
+      return localVarFp
+        .productDetailCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 前台-取消收藏
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productFavoriteCancelCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .productFavoriteCancelCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 前台-收藏产品
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productFavoriteCreateCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .productFavoriteCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 后台-获取收藏列表
+     * @param {ProductFavoriteListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productFavoriteListCreate(
+      data: ProductFavoriteListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductFavoriteListCreate200Response> {
+      return localVarFp
+        .productFavoriteListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取产品列表
+     * @param {ProductListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productListCreate(
+      data: ProductListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductListCreate200Response> {
+      return localVarFp
+        .productListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 前台-创建产品评价
+     * @param {ProductReviewCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewCreateCreate(
+      data: ProductReviewCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .productReviewCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 删除产品评价
+     * @param {ProductReviewDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewDeleteCreate(
+      data: ProductReviewDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .productReviewDeleteCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 注册页右侧评价
+     * @param {ProductReviewFrontListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewFrontListCreate(
+      data: ProductReviewFrontListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductReviewFrontListCreate200Response> {
+      return localVarFp
+        .productReviewFrontListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取产品评价列表
+     * @param {ProductReviewFrontListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewListCreate(
+      data: ProductReviewFrontListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductReviewFrontListCreate200Response> {
+      return localVarFp
+        .productReviewListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 修改产品评价
+     * @param {ProductReviewUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productReviewUpdateCreate(
+      data: ProductReviewUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .productReviewUpdateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 更新产品信息
+     * @param {ProductUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productUpdateCreate(
+      data: ProductUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .productUpdateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 记录产品访问结束
+     * @param {ProductVisitEndCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productVisitEndCreate(
+      data: ProductVisitEndCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductVisitEndCreate200Response> {
+      return localVarFp
+        .productVisitEndCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 记录产品访问开始
+     * @param {ProductVisitStartCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    productVisitStartCreate(
+      data: ProductVisitStartCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<ProductVisitStartCreate200Response> {
+      return localVarFp
+        .productVisitStartCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建角色
+     * @param {RoleCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    roleCreateCreate(
+      data: RoleCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .roleCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取角色信息
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    roleInfoCreate(
+      data: PaymentPlanDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<RoleInfoCreate200Response> {
+      return localVarFp
+        .roleInfoCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 角色列表
+     * @param {RoleListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    roleListCreate(
+      data: RoleListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<RoleListCreate200Response> {
+      return localVarFp
+        .roleListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取点击量，访问量同比增长统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsClickRateCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<StatsClickRateCreate200Response> {
+      return localVarFp
+        .statsClickRateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 后台获取商品列表排名
+     * @param {StatsPopularCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsPopularCreate(
+      data: StatsPopularCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<StatsPopularCreate200Response> {
+      return localVarFp
+        .statsPopularCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 统计页获取当前用户的商品列表
+     * @param {CoverColorListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsProductsCreate(
+      data: CoverColorListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<StatsProductsCreate200Response> {
+      return localVarFp
+        .statsProductsCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取产品访问时长同比增长统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsVisitStatsCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<StatsVisitStatsCreate200Response> {
+      return localVarFp
+        .statsVisitStatsCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取产品每周点击量统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsWeeklyClicksCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<StatsWeeklyClicksCreate200Response> {
+      return localVarFp
+        .statsWeeklyClicksCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取产品每周访问时长统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsWeeklyDurationsCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<StatsWeeklyDurationsCreate200Response> {
+      return localVarFp
+        .statsWeeklyDurationsCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取产品每周访问量统计
+     * @param {ProductClickRecordCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    statsWeeklyViewsCreate(
+      data: ProductClickRecordCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<StatsWeeklyViewsCreate200Response> {
+      return localVarFp
+        .statsWeeklyViewsCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建订阅
+     * @param {SubscriptionCreateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    subscriptionCreateCreate(
+      data: SubscriptionCreateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .subscriptionCreateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 删除订阅(更新状态为已取消)
+     * @param {PaymentPlanDeleteCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    subscriptionDeleteCreate(
+      data: PaymentPlanDeleteCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .subscriptionDeleteCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取订阅列表
+     * @param {SubscriptionListCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    subscriptionListCreate(
+      data: SubscriptionListCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<SubscriptionListCreate200Response> {
+      return localVarFp
+        .subscriptionListCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 更新订阅信息
+     * @param {SubscriptionUpdateCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    subscriptionUpdateCreate(
+      data: SubscriptionUpdateCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<AdminResetPasswordCreate200Response> {
+      return localVarFp
+        .subscriptionUpdateCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 上传文件至minio（图片最大5MB，视频最大50MB）
+     * @param {File} file 要上传的文件（图片最大5MB，视频最大50MB） 支持jpg、png、gif、webp图片和mp4、mpeg视频
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadCreate(
+      file: File,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<UploadCreate200Response> {
+      return localVarFp
+        .uploadCreate(file, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取minio文件访问URL
+     * @param {UploadUrlCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadUrlCreate(
+      data: UploadUrlCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<UploadUrlCreate200Response> {
+      return localVarFp
+        .uploadUrlCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+  };
 };
 
 /**
@@ -8917,998 +12447,1654 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
  * @extends {BaseAPI}
  */
 export class DefaultApi extends BaseAPI {
-    /**
-     * 创建新的用户
-     * @param {AdminCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public adminCreateCreate(data: AdminCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).adminCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取用户详细信息
-     * @param {object} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public adminInfoCreate(data: object, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).adminInfoCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 用户登录
-     * @param {AdminLoginCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public adminLoginCreate(data: AdminLoginCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).adminLoginCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 重置用户密码
-     * @param {AdminResetPasswordCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public adminResetPasswordCreate(data: AdminResetPasswordCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).adminResetPasswordCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 更新用户信息
-     * @param {AdminUpdateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public adminUpdateCreate(data: AdminUpdateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).adminUpdateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 创建广告
-     * @param {AdvertisementCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public advertisementCreateCreate(data: AdvertisementCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).advertisementCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 删除广告
-     * @param {AdvertisementDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public advertisementDeleteCreate(data: AdvertisementDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).advertisementDeleteCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取广告详情
-     * @param {AdvertisementDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public advertisementDetailCreate(data: AdvertisementDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).advertisementDetailCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取广告列表
-     * @param {AdvertisementListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public advertisementListCreate(data: AdvertisementListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).advertisementListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 更新广告
-     * @param {AdvertisementUpdateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public advertisementUpdateCreate(data: AdvertisementUpdateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).advertisementUpdateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 创建协议
-     * @param {AgreementCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public agreementCreateCreate(data: AgreementCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).agreementCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 删除协议
-     * @param {AgreementDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public agreementDeleteCreate(data: AgreementDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).agreementDeleteCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 导入Word文档作为协议内容
-     * @param {File} file 要上传的Word文档（仅支持.docx格式）
-     * @param {number} type 协议类型 1:服务条款 2:用户协议 3:隐私政策
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public agreementImportWordCreate(file: File, type: number, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).agreementImportWordCreate(file, type, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取协议列表
-     * @param {AgreementListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public agreementListCreate(data: AgreementListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).agreementListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 更新协议
-     * @param {AgreementUpdateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public agreementUpdateCreate(data: AgreementUpdateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).agreementUpdateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 创建产品分类
-     * @param {CategoryCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public categoryCreateCreate(data: CategoryCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).categoryCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 删除分类(逻辑删除)
-     * @param {CategoryDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public categoryDeleteCreate(data: CategoryDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).categoryDeleteCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取分类列表
-     * @param {CategoryListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public categoryListCreate(data: CategoryListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).categoryListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 更新分类信息
-     * @param {CategoryUpdateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public categoryUpdateCreate(data: CategoryUpdateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).categoryUpdateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 创建封面颜色配置
-     * @param {CoverColorCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public coverColorCreateCreate(data: CoverColorCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).coverColorCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 删除封面颜色配置
-     * @param {CoverColorDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public coverColorDeleteCreate(data: CoverColorDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).coverColorDeleteCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取封面颜色配置列表
-     * @param {CoverColorListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public coverColorListCreate(data: CoverColorListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).coverColorListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 更新封面颜色配置
-     * @param {CoverColorUpdateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public coverColorUpdateCreate(data: CoverColorUpdateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).coverColorUpdateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 前台-获取分类列表
-     * @param {FrontCategoryListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public frontCategoryListCreate(data: FrontCategoryListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).frontCategoryListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 前台-获取产品列表
-     * @param {FrontProductListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public frontProductListCreate(data: FrontProductListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).frontProductListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 前台-首页顶部统计
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public frontStatisticsCreate(options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).frontStatisticsCreate(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 创建菜单
-     * @param {MenuCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public menuCreateCreate(data: MenuCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).menuCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 菜单列表
-     * @param {MenuListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public menuListCreate(data: MenuListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).menuListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 创建价格方案
-     * @param {PaymentPlanCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public paymentPlanCreateCreate(data: PaymentPlanCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).paymentPlanCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 删除价格方案
-     * @param {PaymentPlanDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public paymentPlanDeleteCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).paymentPlanDeleteCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取价格方案详情
-     * @param {PaymentPlanDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public paymentPlanDetailCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).paymentPlanDetailCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取价格方案列表
-     * @param {PaymentPlanListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public paymentPlanListCreate(data: PaymentPlanListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).paymentPlanListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 更新价格方案
-     * @param {PaymentPlanUpdateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public paymentPlanUpdateCreate(data: PaymentPlanUpdateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).paymentPlanUpdateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 记录产品点击
-     * @param {ProductClickRecordCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productClickRecordCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productClickRecordCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取产品点击统计
-     * @param {ProductClickStatsCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productClickStatsCreate(data: ProductClickStatsCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productClickStatsCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 创建产品信息
-     * @param {ProductCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productCreateCreate(data: ProductCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 删除产品信息(逻辑删除)
-     * @param {ProductDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productDeleteCreate(data: ProductDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productDeleteCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取产品详情
-     * @param {ProductDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productDetailCreate(data: ProductDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productDetailCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 前台-取消收藏
-     * @param {ProductClickRecordCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productFavoriteCancelCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productFavoriteCancelCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 前台-收藏产品
-     * @param {ProductClickRecordCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productFavoriteCreateCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productFavoriteCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 后台-获取收藏列表
-     * @param {ProductFavoriteListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productFavoriteListCreate(data: ProductFavoriteListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productFavoriteListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取产品列表
-     * @param {ProductListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productListCreate(data: ProductListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 前台-创建产品评价
-     * @param {ProductReviewCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productReviewCreateCreate(data: ProductReviewCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productReviewCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 删除产品评价
-     * @param {ProductReviewDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productReviewDeleteCreate(data: ProductReviewDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productReviewDeleteCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 注册页右侧评价
-     * @param {ProductReviewFrontListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productReviewFrontListCreate(data: ProductReviewFrontListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productReviewFrontListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取产品评价列表
-     * @param {ProductReviewFrontListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productReviewListCreate(data: ProductReviewFrontListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productReviewListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 修改产品评价
-     * @param {ProductReviewUpdateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productReviewUpdateCreate(data: ProductReviewUpdateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productReviewUpdateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 更新产品信息
-     * @param {ProductUpdateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productUpdateCreate(data: ProductUpdateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productUpdateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 记录产品访问结束
-     * @param {ProductVisitEndCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productVisitEndCreate(data: ProductVisitEndCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productVisitEndCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 记录产品访问开始
-     * @param {ProductVisitStartCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public productVisitStartCreate(data: ProductVisitStartCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).productVisitStartCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 创建角色
-     * @param {RoleCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public roleCreateCreate(data: RoleCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).roleCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取角色信息
-     * @param {PaymentPlanDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public roleInfoCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).roleInfoCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 角色列表
-     * @param {RoleListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public roleListCreate(data: RoleListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).roleListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取点击量，访问量同比增长统计
-     * @param {ProductClickRecordCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public statsClickRateCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).statsClickRateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 后台获取商品列表排名
-     * @param {StatsPopularCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public statsPopularCreate(data: StatsPopularCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).statsPopularCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 统计页获取当前用户的商品列表
-     * @param {CoverColorListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public statsProductsCreate(data: CoverColorListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).statsProductsCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取产品访问时长同比增长统计
-     * @param {ProductClickRecordCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public statsVisitStatsCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).statsVisitStatsCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取产品每周点击量统计
-     * @param {ProductClickRecordCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public statsWeeklyClicksCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).statsWeeklyClicksCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取产品每周访问时长统计
-     * @param {ProductClickRecordCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public statsWeeklyDurationsCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).statsWeeklyDurationsCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取产品每周访问量统计
-     * @param {ProductClickRecordCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public statsWeeklyViewsCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).statsWeeklyViewsCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 创建订阅
-     * @param {SubscriptionCreateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public subscriptionCreateCreate(data: SubscriptionCreateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).subscriptionCreateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 删除订阅(更新状态为已取消)
-     * @param {PaymentPlanDeleteCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public subscriptionDeleteCreate(data: PaymentPlanDeleteCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).subscriptionDeleteCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取订阅列表
-     * @param {SubscriptionListCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public subscriptionListCreate(data: SubscriptionListCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).subscriptionListCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 更新订阅信息
-     * @param {SubscriptionUpdateCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public subscriptionUpdateCreate(data: SubscriptionUpdateCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).subscriptionUpdateCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 上传文件至minio（图片最大5MB，视频最大50MB）
-     * @param {File} file 要上传的文件（图片最大5MB，视频最大50MB） 支持jpg、png、gif、webp图片和mp4、mpeg视频
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public uploadCreate(file: File, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).uploadCreate(file, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取minio文件访问URL
-     * @param {UploadUrlCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public uploadUrlCreate(data: UploadUrlCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).uploadUrlCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
+  /**
+   * 创建新的用户
+   * @param {AdminCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public adminCreateCreate(
+    data: AdminCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .adminCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 生成新的API Key
+   * @param {object} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public adminGenerateApiKeyCreate(
+    data: object,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .adminGenerateApiKeyCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取用户详细信息
+   * @param {object} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public adminInfoCreate(data: object, options?: RawAxiosRequestConfig) {
+    return DefaultApiFp(this.configuration)
+      .adminInfoCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 用户登录
+   * @param {AdminLoginCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public adminLoginCreate(
+    data: AdminLoginCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .adminLoginCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 重置用户密码
+   * @param {AdminResetPasswordCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public adminResetPasswordCreate(
+    data: AdminResetPasswordCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .adminResetPasswordCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 更新用户信息
+   * @param {AdminUpdateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public adminUpdateCreate(
+    data: AdminUpdateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .adminUpdateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 创建广告
+   * @param {AdvertisementCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public advertisementCreateCreate(
+    data: AdvertisementCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .advertisementCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 删除广告
+   * @param {AdvertisementDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public advertisementDeleteCreate(
+    data: AdvertisementDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .advertisementDeleteCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取广告详情
+   * @param {AdvertisementDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public advertisementDetailCreate(
+    data: AdvertisementDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .advertisementDetailCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取广告列表
+   * @param {AdvertisementListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public advertisementListCreate(
+    data: AdvertisementListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .advertisementListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 更新广告
+   * @param {AdvertisementUpdateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public advertisementUpdateCreate(
+    data: AdvertisementUpdateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .advertisementUpdateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 创建协议
+   * @param {AgreementCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public agreementCreateCreate(
+    data: AgreementCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .agreementCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 删除协议
+   * @param {AgreementDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public agreementDeleteCreate(
+    data: AgreementDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .agreementDeleteCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 导入Word文档作为协议内容
+   * @param {File} file 要上传的Word文档（仅支持.docx格式）
+   * @param {number} type 协议类型 1:服务条款 2:用户协议 3:隐私政策
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public agreementImportWordCreate(
+    file: File,
+    type: number,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .agreementImportWordCreate(file, type, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取协议列表
+   * @param {AgreementListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public agreementListCreate(
+    data: AgreementListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .agreementListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 更新协议
+   * @param {AgreementUpdateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public agreementUpdateCreate(
+    data: AgreementUpdateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .agreementUpdateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 创建产品分类
+   * @param {CategoryCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public categoryCreateCreate(
+    data: CategoryCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .categoryCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 删除分类(逻辑删除)
+   * @param {CategoryDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public categoryDeleteCreate(
+    data: CategoryDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .categoryDeleteCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取分类列表
+   * @param {CategoryListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public categoryListCreate(
+    data: CategoryListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .categoryListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 更新分类信息
+   * @param {CategoryUpdateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public categoryUpdateCreate(
+    data: CategoryUpdateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .categoryUpdateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 创建封面颜色配置
+   * @param {CoverColorCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public coverColorCreateCreate(
+    data: CoverColorCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .coverColorCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 删除封面颜色配置
+   * @param {CoverColorDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public coverColorDeleteCreate(
+    data: CoverColorDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .coverColorDeleteCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取封面颜色配置列表
+   * @param {CoverColorListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public coverColorListCreate(
+    data: CoverColorListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .coverColorListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 更新封面颜色配置
+   * @param {CoverColorUpdateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public coverColorUpdateCreate(
+    data: CoverColorUpdateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .coverColorUpdateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 前台-获取分类列表
+   * @param {FrontCategoryListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public frontCategoryListCreate(
+    data: FrontCategoryListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .frontCategoryListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 前台-获取产品列表
+   * @param {FrontProductListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public frontProductListCreate(
+    data: FrontProductListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .frontProductListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 前台-首页顶部统计
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public frontStatisticsCreate(options?: RawAxiosRequestConfig) {
+    return DefaultApiFp(this.configuration)
+      .frontStatisticsCreate(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 创建菜单
+   * @param {MenuCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public menuCreateCreate(
+    data: MenuCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .menuCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 菜单列表
+   * @param {MenuListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public menuListCreate(
+    data: MenuListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .menuListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 创建价格方案
+   * @param {PaymentPlanCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public paymentPlanCreateCreate(
+    data: PaymentPlanCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .paymentPlanCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 删除价格方案
+   * @param {PaymentPlanDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public paymentPlanDeleteCreate(
+    data: PaymentPlanDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .paymentPlanDeleteCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取价格方案详情
+   * @param {PaymentPlanDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public paymentPlanDetailCreate(
+    data: PaymentPlanDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .paymentPlanDetailCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取价格方案列表
+   * @param {PaymentPlanListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public paymentPlanListCreate(
+    data: PaymentPlanListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .paymentPlanListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 更新价格方案
+   * @param {PaymentPlanUpdateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public paymentPlanUpdateCreate(
+    data: PaymentPlanUpdateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .paymentPlanUpdateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 记录产品点击
+   * @param {ProductClickRecordCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productClickRecordCreate(
+    data: ProductClickRecordCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productClickRecordCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取产品点击统计
+   * @param {ProductClickStatsCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productClickStatsCreate(
+    data: ProductClickStatsCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productClickStatsCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 创建产品信息
+   * @param {ProductCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productCreateCreate(
+    data: ProductCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 删除产品信息(逻辑删除)
+   * @param {ProductDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productDeleteCreate(
+    data: ProductDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productDeleteCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取产品详情
+   * @param {ProductDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productDetailCreate(
+    data: ProductDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productDetailCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 前台-取消收藏
+   * @param {ProductClickRecordCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productFavoriteCancelCreate(
+    data: ProductClickRecordCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productFavoriteCancelCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 前台-收藏产品
+   * @param {ProductClickRecordCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productFavoriteCreateCreate(
+    data: ProductClickRecordCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productFavoriteCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 后台-获取收藏列表
+   * @param {ProductFavoriteListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productFavoriteListCreate(
+    data: ProductFavoriteListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productFavoriteListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取产品列表
+   * @param {ProductListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productListCreate(
+    data: ProductListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 前台-创建产品评价
+   * @param {ProductReviewCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productReviewCreateCreate(
+    data: ProductReviewCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productReviewCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 删除产品评价
+   * @param {ProductReviewDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productReviewDeleteCreate(
+    data: ProductReviewDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productReviewDeleteCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 注册页右侧评价
+   * @param {ProductReviewFrontListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productReviewFrontListCreate(
+    data: ProductReviewFrontListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productReviewFrontListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取产品评价列表
+   * @param {ProductReviewFrontListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productReviewListCreate(
+    data: ProductReviewFrontListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productReviewListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 修改产品评价
+   * @param {ProductReviewUpdateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productReviewUpdateCreate(
+    data: ProductReviewUpdateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productReviewUpdateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 更新产品信息
+   * @param {ProductUpdateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productUpdateCreate(
+    data: ProductUpdateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productUpdateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 记录产品访问结束
+   * @param {ProductVisitEndCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productVisitEndCreate(
+    data: ProductVisitEndCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productVisitEndCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 记录产品访问开始
+   * @param {ProductVisitStartCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public productVisitStartCreate(
+    data: ProductVisitStartCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .productVisitStartCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 创建角色
+   * @param {RoleCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public roleCreateCreate(
+    data: RoleCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .roleCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取角色信息
+   * @param {PaymentPlanDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public roleInfoCreate(
+    data: PaymentPlanDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .roleInfoCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 角色列表
+   * @param {RoleListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public roleListCreate(
+    data: RoleListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .roleListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取点击量，访问量同比增长统计
+   * @param {ProductClickRecordCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public statsClickRateCreate(
+    data: ProductClickRecordCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .statsClickRateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 后台获取商品列表排名
+   * @param {StatsPopularCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public statsPopularCreate(
+    data: StatsPopularCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .statsPopularCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 统计页获取当前用户的商品列表
+   * @param {CoverColorListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public statsProductsCreate(
+    data: CoverColorListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .statsProductsCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取产品访问时长同比增长统计
+   * @param {ProductClickRecordCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public statsVisitStatsCreate(
+    data: ProductClickRecordCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .statsVisitStatsCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取产品每周点击量统计
+   * @param {ProductClickRecordCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public statsWeeklyClicksCreate(
+    data: ProductClickRecordCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .statsWeeklyClicksCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取产品每周访问时长统计
+   * @param {ProductClickRecordCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public statsWeeklyDurationsCreate(
+    data: ProductClickRecordCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .statsWeeklyDurationsCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取产品每周访问量统计
+   * @param {ProductClickRecordCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public statsWeeklyViewsCreate(
+    data: ProductClickRecordCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .statsWeeklyViewsCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 创建订阅
+   * @param {SubscriptionCreateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public subscriptionCreateCreate(
+    data: SubscriptionCreateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .subscriptionCreateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 删除订阅(更新状态为已取消)
+   * @param {PaymentPlanDeleteCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public subscriptionDeleteCreate(
+    data: PaymentPlanDeleteCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .subscriptionDeleteCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取订阅列表
+   * @param {SubscriptionListCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public subscriptionListCreate(
+    data: SubscriptionListCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .subscriptionListCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 更新订阅信息
+   * @param {SubscriptionUpdateCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public subscriptionUpdateCreate(
+    data: SubscriptionUpdateCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .subscriptionUpdateCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 上传文件至minio（图片最大5MB，视频最大50MB）
+   * @param {File} file 要上传的文件（图片最大5MB，视频最大50MB） 支持jpg、png、gif、webp图片和mp4、mpeg视频
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public uploadCreate(file: File, options?: RawAxiosRequestConfig) {
+    return DefaultApiFp(this.configuration)
+      .uploadCreate(file, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取minio文件访问URL
+   * @param {UploadUrlCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public uploadUrlCreate(
+    data: UploadUrlCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .uploadUrlCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
 }
-
-
 
 /**
  * PayPalApi - axios parameter creator
  * @export
  */
-export const PayPalApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 完成PayPal支付
-         * @param {PaypalCompletePaymentCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paypalCompletePaymentCreate: async (data: PaypalCompletePaymentCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('paypalCompletePaymentCreate', 'data', data)
-            const localVarPath = `/paypal/completePayment`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
+export const PayPalApiAxiosParamCreator = function (
+  configuration?: Configuration
+) {
+  return {
+    /**
+     * 取消PayPal支付
+     * @param {PaypalCancelPaymentCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalCancelPaymentCreate: async (
+      data: PaypalCancelPaymentCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paypalCancelPaymentCreate", "data", data);
+      const localVarPath = `/paypal/cancelPayment`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
 
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
 
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
 
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+      localVarHeaderParameter["Content-Type"] = "application/json";
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
 
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建并发起PayPal支付
-         * @param {PaypalCreatePaymentCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paypalCreatePaymentCreate: async (data: PaypalCreatePaymentCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('paypalCreatePaymentCreate', 'data', data)
-            const localVarPath = `/paypal/createPayment`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 完成PayPal支付
+     * @param {PaypalCompletePaymentCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalCompletePaymentCreate: async (
+      data: PaypalCompletePaymentCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paypalCompletePaymentCreate", "data", data);
+      const localVarPath = `/paypal/completePayment`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
 
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
 
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
 
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+      localVarHeaderParameter["Content-Type"] = "application/json";
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
 
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 创建续费关联
-         * @param {PaypalCreateRenewalCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paypalCreateRenewalCreate: async (data: PaypalCreateRenewalCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('paypalCreateRenewalCreate', 'data', data)
-            const localVarPath = `/paypal/createRenewal`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建并发起PayPal支付
+     * @param {PaypalCreatePaymentCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalCreatePaymentCreate: async (
+      data: PaypalCreatePaymentCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paypalCreatePaymentCreate", "data", data);
+      const localVarPath = `/paypal/createPayment`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
 
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
 
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
 
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+      localVarHeaderParameter["Content-Type"] = "application/json";
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
 
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取PayPal支付详情
-         * @param {PaypalPaymentDetailsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paypalPaymentDetailsCreate: async (data: PaypalPaymentDetailsCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('paypalPaymentDetailsCreate', 'data', data)
-            const localVarPath = `/paypal/paymentDetails`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 创建续费关联
+     * @param {PaypalCreateRenewalCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalCreateRenewalCreate: async (
+      data: PaypalCreateRenewalCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paypalCreateRenewalCreate", "data", data);
+      const localVarPath = `/paypal/createRenewal`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
 
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
 
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
 
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+      localVarHeaderParameter["Content-Type"] = "application/json";
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
 
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * 获取PayPal支付详情
+     * @param {PaypalPaymentDetailsCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalPaymentDetailsCreate: async (
+      data: PaypalPaymentDetailsCreateRequest,
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'data' is not null or undefined
+      assertParamExists("paypalPaymentDetailsCreate", "data", data);
+      const localVarPath = `/paypal/paymentDetails`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ApiKeyAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "X-API-Key",
+        configuration
+      );
+
+      // authentication Bearer required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        "Authorization",
+        configuration
+      );
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        data,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+  };
 };
 
 /**
  * PayPalApi - functional programming interface
  * @export
  */
-export const PayPalApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = PayPalApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 完成PayPal支付
-         * @param {PaypalCompletePaymentCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async paypalCompletePaymentCreate(data: PaypalCompletePaymentCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaypalCompletePaymentCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.paypalCompletePaymentCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PayPalApi.paypalCompletePaymentCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建并发起PayPal支付
-         * @param {PaypalCreatePaymentCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async paypalCreatePaymentCreate(data: PaypalCreatePaymentCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaypalCreatePaymentCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.paypalCreatePaymentCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PayPalApi.paypalCreatePaymentCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 创建续费关联
-         * @param {PaypalCreateRenewalCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async paypalCreateRenewalCreate(data: PaypalCreateRenewalCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaypalCreateRenewalCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.paypalCreateRenewalCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PayPalApi.paypalCreateRenewalCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取PayPal支付详情
-         * @param {PaypalPaymentDetailsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async paypalPaymentDetailsCreate(data: PaypalPaymentDetailsCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaypalPaymentDetailsCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.paypalPaymentDetailsCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PayPalApi.paypalPaymentDetailsCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-    }
+export const PayPalApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = PayPalApiAxiosParamCreator(configuration);
+  return {
+    /**
+     * 取消PayPal支付
+     * @param {PaypalCancelPaymentCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paypalCancelPaymentCreate(
+      data: PaypalCancelPaymentCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<PaypalCancelPaymentCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paypalCancelPaymentCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["PayPalApi.paypalCancelPaymentCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 完成PayPal支付
+     * @param {PaypalCompletePaymentCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paypalCompletePaymentCreate(
+      data: PaypalCompletePaymentCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<PaypalCompletePaymentCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paypalCompletePaymentCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["PayPalApi.paypalCompletePaymentCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建并发起PayPal支付
+     * @param {PaypalCreatePaymentCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paypalCreatePaymentCreate(
+      data: PaypalCreatePaymentCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<PaypalCreatePaymentCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paypalCreatePaymentCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["PayPalApi.paypalCreatePaymentCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 创建续费关联
+     * @param {PaypalCreateRenewalCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paypalCreateRenewalCreate(
+      data: PaypalCreateRenewalCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<PaypalCreateRenewalCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paypalCreateRenewalCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["PayPalApi.paypalCreateRenewalCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * 获取PayPal支付详情
+     * @param {PaypalPaymentDetailsCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async paypalPaymentDetailsCreate(
+      data: PaypalPaymentDetailsCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<PaypalPaymentDetailsCreate200Response>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.paypalPaymentDetailsCreate(
+          data,
+          options
+        );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["PayPalApi.paypalPaymentDetailsCreate"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+  };
 };
 
 /**
  * PayPalApi - factory interface
  * @export
  */
-export const PayPalApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = PayPalApiFp(configuration)
-    return {
-        /**
-         * 完成PayPal支付
-         * @param {PaypalCompletePaymentCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paypalCompletePaymentCreate(data: PaypalCompletePaymentCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaypalCompletePaymentCreate200Response> {
-            return localVarFp.paypalCompletePaymentCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建并发起PayPal支付
-         * @param {PaypalCreatePaymentCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paypalCreatePaymentCreate(data: PaypalCreatePaymentCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaypalCreatePaymentCreate200Response> {
-            return localVarFp.paypalCreatePaymentCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 创建续费关联
-         * @param {PaypalCreateRenewalCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paypalCreateRenewalCreate(data: PaypalCreateRenewalCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaypalCreateRenewalCreate200Response> {
-            return localVarFp.paypalCreateRenewalCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取PayPal支付详情
-         * @param {PaypalPaymentDetailsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        paypalPaymentDetailsCreate(data: PaypalPaymentDetailsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaypalPaymentDetailsCreate200Response> {
-            return localVarFp.paypalPaymentDetailsCreate(data, options).then((request) => request(axios, basePath));
-        },
-    };
+export const PayPalApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  const localVarFp = PayPalApiFp(configuration);
+  return {
+    /**
+     * 取消PayPal支付
+     * @param {PaypalCancelPaymentCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalCancelPaymentCreate(
+      data: PaypalCancelPaymentCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<PaypalCancelPaymentCreate200Response> {
+      return localVarFp
+        .paypalCancelPaymentCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 完成PayPal支付
+     * @param {PaypalCompletePaymentCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalCompletePaymentCreate(
+      data: PaypalCompletePaymentCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<PaypalCompletePaymentCreate200Response> {
+      return localVarFp
+        .paypalCompletePaymentCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建并发起PayPal支付
+     * @param {PaypalCreatePaymentCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalCreatePaymentCreate(
+      data: PaypalCreatePaymentCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<PaypalCreatePaymentCreate200Response> {
+      return localVarFp
+        .paypalCreatePaymentCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 创建续费关联
+     * @param {PaypalCreateRenewalCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalCreateRenewalCreate(
+      data: PaypalCreateRenewalCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<PaypalCreateRenewalCreate200Response> {
+      return localVarFp
+        .paypalCreateRenewalCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * 获取PayPal支付详情
+     * @param {PaypalPaymentDetailsCreateRequest} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    paypalPaymentDetailsCreate(
+      data: PaypalPaymentDetailsCreateRequest,
+      options?: RawAxiosRequestConfig
+    ): AxiosPromise<PaypalPaymentDetailsCreate200Response> {
+      return localVarFp
+        .paypalPaymentDetailsCreate(data, options)
+        .then((request) => request(axios, basePath));
+    },
+  };
 };
 
 /**
@@ -9918,50 +14104,83 @@ export const PayPalApiFactory = function (configuration?: Configuration, basePat
  * @extends {BaseAPI}
  */
 export class PayPalApi extends BaseAPI {
-    /**
-     * 完成PayPal支付
-     * @param {PaypalCompletePaymentCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PayPalApi
-     */
-    public paypalCompletePaymentCreate(data: PaypalCompletePaymentCreateRequest, options?: RawAxiosRequestConfig) {
-        return PayPalApiFp(this.configuration).paypalCompletePaymentCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
+  /**
+   * 取消PayPal支付
+   * @param {PaypalCancelPaymentCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PayPalApi
+   */
+  public paypalCancelPaymentCreate(
+    data: PaypalCancelPaymentCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return PayPalApiFp(this.configuration)
+      .paypalCancelPaymentCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
 
-    /**
-     * 创建并发起PayPal支付
-     * @param {PaypalCreatePaymentCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PayPalApi
-     */
-    public paypalCreatePaymentCreate(data: PaypalCreatePaymentCreateRequest, options?: RawAxiosRequestConfig) {
-        return PayPalApiFp(this.configuration).paypalCreatePaymentCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
+  /**
+   * 完成PayPal支付
+   * @param {PaypalCompletePaymentCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PayPalApi
+   */
+  public paypalCompletePaymentCreate(
+    data: PaypalCompletePaymentCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return PayPalApiFp(this.configuration)
+      .paypalCompletePaymentCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
 
-    /**
-     * 创建续费关联
-     * @param {PaypalCreateRenewalCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PayPalApi
-     */
-    public paypalCreateRenewalCreate(data: PaypalCreateRenewalCreateRequest, options?: RawAxiosRequestConfig) {
-        return PayPalApiFp(this.configuration).paypalCreateRenewalCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
+  /**
+   * 创建并发起PayPal支付
+   * @param {PaypalCreatePaymentCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PayPalApi
+   */
+  public paypalCreatePaymentCreate(
+    data: PaypalCreatePaymentCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return PayPalApiFp(this.configuration)
+      .paypalCreatePaymentCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
 
-    /**
-     * 获取PayPal支付详情
-     * @param {PaypalPaymentDetailsCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PayPalApi
-     */
-    public paypalPaymentDetailsCreate(data: PaypalPaymentDetailsCreateRequest, options?: RawAxiosRequestConfig) {
-        return PayPalApiFp(this.configuration).paypalPaymentDetailsCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
+  /**
+   * 创建续费关联
+   * @param {PaypalCreateRenewalCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PayPalApi
+   */
+  public paypalCreateRenewalCreate(
+    data: PaypalCreateRenewalCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return PayPalApiFp(this.configuration)
+      .paypalCreateRenewalCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * 获取PayPal支付详情
+   * @param {PaypalPaymentDetailsCreateRequest} data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PayPalApi
+   */
+  public paypalPaymentDetailsCreate(
+    data: PaypalPaymentDetailsCreateRequest,
+    options?: RawAxiosRequestConfig
+  ) {
+    return PayPalApiFp(this.configuration)
+      .paypalPaymentDetailsCreate(data, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
 }
-
-
-

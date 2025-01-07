@@ -30,3 +30,11 @@
   position: absolute;
   opacity: 0;
 }
+.ant-form-item {
+  margin-bottom: 0 !important;
+}
+.ant-select-selection-placeholder {
+  color: #101010 !important;
+  font-size: 12px;
+  opacity: 0.3;
+}
