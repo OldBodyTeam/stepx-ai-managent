@@ -2,7 +2,7 @@
 import { useMemoizedFn, useMount } from "ahooks";
 import classNames from "classnames";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useSetAtom } from "jotai";
 import { menuAtom } from "@/hooks/menu";
@@ -15,12 +15,13 @@ export const menuData = [
   { name: "Settings", key: "settings" },
 ];
 const Menu = () => {
+  const { userId } = useParams() ?? {};
   const setMenuAtom = useSetAtom(menuAtom);
   const [selectedMenu, setSelectedMenu] = useState(menuData.at(1)?.key);
   const router = useRouter();
   const handleChangeMenu = useMemoizedFn((key: string) => {
     setSelectedMenu(key);
-    router.push(`/${key}`);
+    router.push(`/${userId}/${key}`);
     setMenuAtom(menuData.find((v) => v.key === key));
   });
   const pathname = usePathname();

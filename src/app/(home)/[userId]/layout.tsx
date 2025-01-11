@@ -27,6 +27,9 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
               alt="logo-menu"
               width={124}
               height={32}
+              className="w-auto h-auto aspect-square"
+              priority={false}
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
           <div className="mb-24">

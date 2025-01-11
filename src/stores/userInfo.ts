@@ -1,8 +1,7 @@
-import { adminInfoCreate } from "@/app/(home)/actions";
+import { adminInfoCreate } from "@/app/(home)/[userId]/actions";
 import { AdminLoginCreate200ResponseData } from "@/services";
 import { atom } from "jotai";
 import _ from "lodash";
-
 export const userIdAtom = atom<number | undefined>();
 export const userInfoCacheAtom = atom<
   AdminLoginCreate200ResponseData["user_info"]
@@ -24,11 +23,16 @@ const userInfoAtom = atom(
     return _.get(cache, `${id}`) || {};
   },
   (_, set, post: Record<string, any>) => {
+    console.log("# --->", post);
     // only for hydrated data for now
-    set(userInfoCacheAtom, (cache) => ({
-      ...cache,
-      [post.id]: post,
-    }));
+    set(userInfoCacheAtom, (cache) => {
+      return post
+        ? {
+            ...cache,
+            [post.id]: post,
+          }
+        : cache;
+    });
   }
 );
 export { userInfoAtom };

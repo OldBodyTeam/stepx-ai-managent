@@ -43,7 +43,13 @@ const Login = () => {
         return;
       }
       messageApi.info("Login successful");
-      router.push("/product");
+      router.push(
+        `/${get(data, "data.user_info.id", "")}/product?user_id=${get(
+          data,
+          "data.user_info.id",
+          ""
+        )}`
+      );
     } catch (e) {
       console.log(e);
       const list = get(e, "errors", {});

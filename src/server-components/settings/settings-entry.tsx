@@ -1,20 +1,22 @@
 "use client";
-import { Divider, Upload } from "antd";
+import { Divider, Spin, Upload } from "antd";
 import Image from "next/image";
 import { RightOutlined } from "@ant-design/icons";
-import { uploadFileAction } from "@/app/(home)/settings/actions";
 import { FC, Suspense, useState } from "react";
 import { useHydrateAtoms } from "jotai/utils";
 import { useRouter } from "next/navigation";
 import ModifyUsername from "@/components/modal/ModifyUsername";
 import ModifyEmail from "@/components/modal/ModifyEmail";
 import ModifyPassword from "@/components/modal/ModifyPassword";
-import { userInfoAtom } from "@/stores/userInfo";
+import { userIdAtom, userInfoAtom } from "@/stores/userInfo";
 import { AdminInfoCreate200Response } from "@/services";
 import { useAtomValue } from "jotai";
+import { uploadFileAction } from "@/app/(home)/[userId]/settings/actions";
+import SettingsLoading from "@/app/(home)/[userId]/settings/loading";
 const Page = () => {
   const [url, setUrl] = useState("");
   const userInfo = useAtomValue(userInfoAtom);
+
   const router = useRouter();
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -101,6 +103,8 @@ const Page = () => {
                       width={16}
                       height={16}
                       alt="avatar"
+                      className="w-auto h-auto aspect-square"
+                      style={{ width: "auto", height: "auto" }}
                     />
                     <div className="text-xs16 font-medium text-101010 ml-8">
                       {item.name}
@@ -132,14 +136,18 @@ const Page = () => {
     </>
   );
 };
-const SettingsPageEntry: FC<{ userInfo: AdminInfoCreate200Response }> = (
-  props
-) => {
-  const { userInfo: initUserInfo } = props;
-  useHydrateAtoms([[userInfoAtom, initUserInfo]]);
+const SettingsPageEntry: FC<{
+  userInfo: AdminInfoCreate200Response;
+  userId: string;
+}> = (props) => {
+  const { userInfo: initUserInfo, userId } = props;
+  useHydrateAtoms([
+    [userIdAtom, Number(userId)],
+    [userInfoAtom, initUserInfo.data!],
+  ]);
 
   return (
-    <Suspense fallback="loading">
+    <Suspense fallback={<SettingsLoading />}>
       <Page />
     </Suspense>
   );

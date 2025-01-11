@@ -9,7 +9,7 @@ import {
   IEditorConfig,
   IToolbarConfig,
 } from "@wangeditor/editor";
-import { uploadFileAction } from "@/app/(home)/settings/actions";
+import { uploadFileAction } from "@/app/(home)/[userId]/settings/actions";
 export interface EditorContentProps {
   value?: string;
   onChange?: (value: string) => void;

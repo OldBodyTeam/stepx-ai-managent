@@ -4,7 +4,7 @@ import { FC, PropsWithChildren, useState } from "react";
 import BaseModal from "./BaseModal";
 import { useAtomValue } from "jotai";
 import { userInfoAtom } from "@/stores/userInfo";
-import { uploadUsername } from "@/app/(home)/settings/actions";
+import { uploadUsername } from "@/app/(home)/[userId]/settings/actions";
 export type ModifyUsernameProps = {
   visible?: boolean;
 };

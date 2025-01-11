@@ -5,9 +5,9 @@ import { FC, PropsWithChildren, useState } from "react";
 import Image from "next/image";
 import useSendCode from "@/hooks/useSendCode";
 import BaseModal from "./BaseModal";
-import { uploadUsername } from "@/app/(home)/settings/actions";
 import { userInfoAtom } from "@/stores/userInfo";
 import { useAtomValue } from "jotai";
+import { uploadUsername } from "@/app/(home)/[userId]/settings/actions";
 export type ModifyEmailProps = {
   visible?: boolean;
 };

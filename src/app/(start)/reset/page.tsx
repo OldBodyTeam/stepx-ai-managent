@@ -13,7 +13,6 @@ import {
   validatePassword,
 } from "@/utils/validate";
 import { useMemoizedFn } from "ahooks";
-import { message } from "antd";
 const Reset = () => {
   const router = useRouter();
   const [form] = Form.useForm();
@@ -28,7 +27,7 @@ const Reset = () => {
         return;
       }
       router.push("/login");
-      message.info("Reset password successfully");
+      messageApi.info("Reset password successfully");
     } catch (e) {
       console.log(e);
       const list = get(e, "errors", {});

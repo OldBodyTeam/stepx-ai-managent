@@ -14,7 +14,6 @@ import { createCUser } from "./actions";
 import { get } from "lodash";
 import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { useRouter } from "next/navigation";
-import { message } from "antd";
 const CClient = () => {
   const [form] = Form.useForm<{
     username: string;
@@ -37,7 +36,7 @@ const CClient = () => {
         return;
       }
       router.push("/login");
-      message.info("Registration successful");
+      messageApi.info("Registration successful");
     } catch (e) {
       console.log(e);
       const list = get(e, "errors", {});

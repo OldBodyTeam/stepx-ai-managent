@@ -1,16 +1,16 @@
-import ProductItem from "./ProductItem";
+import { statsPopularCreate } from "@/app/(home)/[userId]/actions";
+import ListProductions from "./ListProductions";
 
-const RightListProducts = () => {
+const RightListProducts = async () => {
+  const list = await statsPopularCreate({ page: 1, page_size: 20 });
+
   return (
-    <div className="flex-1 overflow-x-hidden overflow-y-auto scrollbar-none pb-16 rounded-16">
-      <div className="cursor-pointer">
-        {Array(15)
-          .fill(1)
-          .map((_, index) => {
-            return <ProductItem key={index} />;
-          })}
-      </div>
-    </div>
+    <ListProductions
+      list={list?.items ?? []}
+      hasMore={list?.has_more ?? false}
+      page={1}
+      pageSize={20}
+    />
   );
 };
 export default RightListProducts;

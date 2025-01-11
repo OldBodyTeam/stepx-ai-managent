@@ -15,7 +15,6 @@ import {
 } from "@/utils/validate";
 import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { get } from "lodash";
-import { message } from "antd";
 const BClient = () => {
   const router = useRouter();
   const [form] = Form.useForm();
@@ -33,7 +32,7 @@ const BClient = () => {
         return;
       }
       router.push("/login");
-      message.info("Registration successful");
+      messageApi.info("Registration successful");
     } catch (e) {
       console.log(e);
       const list = get(e, "errors", {});
