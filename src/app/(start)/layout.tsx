@@ -38,7 +38,9 @@ const RegisterLayout: FC<PropsWithChildren<any>> = ({ children }) => {
             <div className="font-medium text-40 leading-60 text-FFFFFF">
               Reviews of StepxAi.
             </div>
-            <div className="font-medium text-56 leading-80 text-FFFFFF">"</div>
+            <div className="font-medium text-56 leading-80 text-FFFFFF">
+              &quot;
+            </div>
             <SwiperClient />
           </div>
           <div
