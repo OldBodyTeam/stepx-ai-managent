@@ -58,12 +58,8 @@ const CClient = () => {
         autoComplete="off"
       >
         <Form.Item
-          field="username"
-          rules={[
-            {
-              validator: validateEmpty,
-            },
-          ]}
+          rules={[{ required: true, message: "Please input your name" }]}
+          name={"username"}
         >
           <Input
             placeholder="Enter one user name"
@@ -78,12 +74,21 @@ const CClient = () => {
           />
         </Form.Item>
         <Form.Item
-          field={"password"}
           rules={[
             {
-              validator: validatePassword,
+              required: true,
             },
+            () => ({
+              validator(_, value) {
+                const data = validatePassword(value);
+                if (!data) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error(data));
+              },
+            }),
           ]}
+          name={"password"}
         >
           <Input.Password
             placeholder="Please input a password"
@@ -98,11 +103,21 @@ const CClient = () => {
           />
         </Form.Item>
         <Form.Item
-          field={"confirm_password"}
+          name={"confirm_password"}
           rules={[
             {
-              validator: validatePassword,
+              required: true,
             },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error("The new password that you entered do not match!")
+                );
+              },
+            }),
           ]}
         >
           <Input.Password
@@ -118,11 +133,20 @@ const CClient = () => {
           />
         </Form.Item>
         <Form.Item
-          field={"email"}
+          name={"email"}
           rules={[
             {
-              validator: validateEmail,
+              required: true,
             },
+            () => ({
+              validator(_, value) {
+                const data = validateEmail(value);
+                if (!data) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error(data));
+              },
+            }),
           ]}
         >
           <Input

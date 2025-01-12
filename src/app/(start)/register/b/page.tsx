@@ -55,13 +55,8 @@ const BClient = () => {
         autoComplete="off"
       >
         <Form.Item
-          field={"username"}
-          required
-          rules={[
-            {
-              validator: validateEmpty,
-            },
-          ]}
+          rules={[{ required: true, message: "Please input your name" }]}
+          name={"username"}
         >
           <Input
             placeholder="Enter one user name"
@@ -76,11 +71,20 @@ const BClient = () => {
           />
         </Form.Item>
         <Form.Item
-          field={"company_name"}
+          name={"company_name"}
           rules={[
             {
-              validator: validateCompanyEmpty,
+              required: true,
             },
+            () => ({
+              validator(_, value) {
+                const data = validateCompanyEmpty(value);
+                if (!data) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error(data));
+              },
+            }),
           ]}
         >
           <Input
@@ -96,11 +100,20 @@ const BClient = () => {
           />
         </Form.Item>
         <Form.Item
-          field={"password"}
+          name={"password"}
           rules={[
             {
-              validator: validatePassword,
+              required: true,
             },
+            () => ({
+              validator(_, value) {
+                const data = validatePassword(value);
+                if (!data) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error(data));
+              },
+            }),
           ]}
         >
           <Input.Password
@@ -116,11 +129,21 @@ const BClient = () => {
           />
         </Form.Item>
         <Form.Item
-          field={"confirm_password"}
+          name={"confirm_password"}
           rules={[
             {
-              validator: validatePassword,
+              required: true,
             },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error("The new password that you entered do not match!")
+                );
+              },
+            }),
           ]}
         >
           <Input.Password
@@ -136,11 +159,20 @@ const BClient = () => {
           />
         </Form.Item>
         <Form.Item
-          field={"email"}
+          name={"email"}
           rules={[
             {
-              validator: validateEmail,
+              required: true,
             },
+            () => ({
+              validator(_, value) {
+                const data = validateEmail(value);
+                if (!data) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error(data));
+              },
+            }),
           ]}
         >
           <Input

@@ -46,7 +46,10 @@ const Reset = () => {
         Please fill in the following information to facilitate registration
       </div>
       <Form className="space-y-16" wrapperCol={{ span: 24 }} form={form}>
-        <Form.Item rules={[{ validator: validateEmpty }]} field={"username"}>
+        <Form.Item
+          rules={[{ required: true, message: "Please input your name" }]}
+          name={"username"}
+        >
           <Input
             placeholder="Enter one user name"
             prefix={
@@ -60,7 +63,23 @@ const Reset = () => {
           />
         </Form.Item>
 
-        <Form.Item rules={[{ validator: validatePassword }]} field={"password"}>
+        <Form.Item
+          rules={[
+            {
+              required: true,
+            },
+            () => ({
+              validator(_, value) {
+                const data = validatePassword(value);
+                if (!data) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error(data));
+              },
+            }),
+          ]}
+          name={"password"}
+        >
           <Input.Password
             placeholder="Please input a password"
             prefix={
@@ -74,8 +93,22 @@ const Reset = () => {
           />
         </Form.Item>
         <Form.Item
-          field={"confirm_password"}
-          rules={[{ validator: validatePassword }]}
+          name={"confirm_password"}
+          rules={[
+            {
+              required: true,
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error("The new password that you entered do not match!")
+                );
+              },
+            }),
+          ]}
         >
           <Input.Password
             placeholder="Please confirm password"
@@ -89,7 +122,23 @@ const Reset = () => {
             }
           />
         </Form.Item>
-        <Form.Item field={"email"} rules={[{ validator: validateEmail }]}>
+        <Form.Item
+          name={"email"}
+          rules={[
+            {
+              required: true,
+            },
+            () => ({
+              validator(_, value) {
+                const data = validateEmail(value);
+                if (!data) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error(data));
+              },
+            }),
+          ]}
+        >
           <Input
             placeholder="Please enter your email address"
             prefix={

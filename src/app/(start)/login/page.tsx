@@ -66,9 +66,8 @@ const Login = () => {
       </div>
       <Form className="space-y-16" wrapperCol={{ span: 24 }} form={form}>
         <Form.Item
-          field={"username"}
-          required
-          rules={[{ validator: validateEmpty }]}
+          rules={[{ required: true, message: "Please input your name" }]}
+          name={"username"}
         >
           <Input
             placeholder="Enter one user name"
@@ -83,9 +82,21 @@ const Login = () => {
           />
         </Form.Item>
         <Form.Item
-          field={"password"}
-          required
-          rules={[{ validator: validatePassword }]}
+          rules={[
+            {
+              required: true,
+            },
+            () => ({
+              validator(_, value) {
+                const data = validatePassword(value);
+                if (!data) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error(data));
+              },
+            }),
+          ]}
+          name={"password"}
         >
           <Input.Password
             placeholder="Please input a password"
