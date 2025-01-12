@@ -1,8 +1,12 @@
+import { FC } from "react";
 import ListEmpty from "../empty/ListEmpty";
 import FilterTitle from "./FilterTitle";
 import List from "./List";
-
-const Content = () => {
+export interface ProductListProps {
+  userId?: string;
+}
+const ProductList: FC<ProductListProps> = (props) => {
+  const { userId } = props;
   const listData = [];
   return listData.length > 0 ? (
     <div className="pb-16">
@@ -21,8 +25,8 @@ const Content = () => {
     </div>
   ) : (
     <div className="flex justify-center items-center w-full h-full flex-1">
-      <ListEmpty />
+      <ListEmpty userId={userId} />
     </div>
   );
 };
-export default Content;
+export default ProductList;

@@ -1,10 +1,10 @@
 "use client";
 import { StatsPopularCreate200ResponseDataItemsInner } from "@/services";
-import { FC, useEffect, useMemo, useRef, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import ProductItem from "./ProductItem";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Divider, List, Skeleton, Spin } from "antd";
-import { useRequest, useSize } from "ahooks";
+import { Divider, List, Skeleton } from "antd";
+import { useRequest } from "ahooks";
 import { statsPopularCreate } from "@/app/(home)/[userId]/actions";
 import { unionBy } from "lodash";
 export interface ListProductionsProps {

@@ -40,8 +40,21 @@ const ProductItem: FC<
             </div>
           </div>
         </div>
-        <div className="w-18 h-18 rounded-18 flex items-center justify-center border-1 border-solid bg-FAFAFB border-F0F0F0 font-medium text-6F6F6F text-9">
-          {poi + 1}
+        <div>
+          {poi === 0 ? (
+            <Image src="/rate/one.png" alt="yellow" width={18} height={25} />
+          ) : null}
+          {poi === 1 ? (
+            <Image src="/rate/two.png" alt="yellow" width={18} height={25} />
+          ) : null}
+          {poi === 2 ? (
+            <Image src="/rate/three.png" alt="yellow" width={18} height={25} />
+          ) : null}
+          {poi > 2 ? (
+            <div className="w-18 h-18 rounded-18 flex items-center justify-center border-1 border-solid bg-FAFAFB border-F0F0F0 font-medium text-6F6F6F text-9">
+              {poi + 1}
+            </div>
+          ) : null}
         </div>
       </div>
       <div className="bg-E8E8E9 px-10 py-6 rounded-6 flex items-center">

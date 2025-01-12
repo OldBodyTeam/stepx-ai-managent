@@ -7,9 +7,10 @@ export interface ListEmptyProps {
   style?: React.CSSProperties;
   width?: number;
   height?: number;
+  userId?: string;
 }
 const ListEmpty: FC<PropsWithChildren<ListEmptyProps>> = (props) => {
-  const { className, style, width = 120, height = 120 } = props;
+  const { className, style, width = 120, height = 120, userId } = props;
   return (
     <div
       className={classNames("flex items-center flex-col", className)}
@@ -20,11 +21,11 @@ const ListEmpty: FC<PropsWithChildren<ListEmptyProps>> = (props) => {
         No Products Available
       </div>
       <div className="mt-6 text-xs12 text-4F5357">
-        You haven\&apos;t released a new product yet
+        You haven&apos;t released a new product yet
       </div>
       <div className="mt-24 !bg-D0FF71 py-10 px-38 rounded-40 flex items-center justify-center cursor-pointer">
         <Link
-          href="/product/create"
+          href={`product/create`}
           className="text-xs14 text-222222 font-medium"
         >
           Create Product

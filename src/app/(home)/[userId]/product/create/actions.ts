@@ -8,10 +8,15 @@ const createTodo = async (params: ProductCreateCreateRequest) => {
     console.log(response.data);
   });
 };
-const getList = async () => {
+const getCategoryList = async () => {
   return tokenApi.categoryListCreate({}).then((response) => {
+    return response.data;
+  });
+};
+const getColorList = async () => {
+  return tokenApi.coverColorListCreate({}).then((response) => {
     console.log(response.data);
     return response.data;
   });
 };
-export { createTodo, getList };
+export { createTodo, getCategoryList, getColorList };

@@ -5,8 +5,8 @@ import RightListProducts from "@/components/right-list-products/RightListProduct
 import RightLogo from "@/components/right-logo/RightLogo";
 import Image from "next/image";
 export const navMenu = [
-  { key: "search", path: "/search.png" },
-  { key: "language", path: "/language.png" },
+  // { key: "search", path: "/search.png" },
+  // { key: "language", path: "/language.png" },
   { key: "people", path: "/user.png" },
 ];
 const Layout: FC<PropsWithChildren<any>> = ({ children }) => {

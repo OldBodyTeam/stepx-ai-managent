@@ -1,15 +1,16 @@
 "use client";
 import { FC, PropsWithChildren, ReactNode, useMemo, useState } from "react";
 import Title, { TitleProps } from "./Title";
-import { Progress, Input as InputArco } from "@arco-design/web-react";
-import Input, { InputProps } from "./Input";
+import { Progress } from "@arco-design/web-react";
+import InputBase, { InputBaseProps } from "./Input";
 import { useMemoizedFn } from "ahooks";
+import { Input as AntInput } from "antd";
 export type LabelProgressProps = {
   title?: ReactNode;
   base: number;
   type?: string;
 } & TitleProps &
-  InputProps;
+  InputBaseProps;
 const LabelProgress: FC<PropsWithChildren<LabelProgressProps>> = (props) => {
   const {
     title,
@@ -45,19 +46,19 @@ const LabelProgress: FC<PropsWithChildren<LabelProgressProps>> = (props) => {
       </div>
 
       {type === "input" ? (
-        <Input
+        <InputBase
           placeholder={placeholder}
           value={text || value}
           onChange={handleChange}
         />
       ) : (
-        <InputArco.TextArea
+        <AntInput.TextArea
           placeholder={placeholder}
           value={text || value}
-          onChange={handleChange}
-          className={
-            "!resize-none !py-10 !px-12 !text-xs12 !text-101010 !border-1 !border-F0F0F0 !rounded-12 !min-h-100"
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            handleChange(e.target.value)
           }
+          className={"!resize-none  !min-h-100"}
         />
       )}
     </div>

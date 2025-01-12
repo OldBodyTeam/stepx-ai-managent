@@ -5,16 +5,17 @@ import cls from "classnames";
 import { Upload as UploadArco, UploadProps } from "@arco-design/web-react";
 import Image from "next/image";
 import { UploadItem } from "@arco-design/web-react/es/Upload";
-import { uploadFileAction } from "@/app/(home)/settings/actions";
 import { Spin } from "antd";
+import { uploadFileAction } from "@/app/(home)/[userId]/settings/actions";
 const Upload: FC<
   UploadProps & {
     text: string;
     value?: string;
     onChange?: (v?: string) => void;
-  }
+  } & { showClassName?: string }
 > = (props) => {
-  const { className, style, text, value, onChange, ...rest } = props;
+  const { className, style, text, value, onChange, showClassName, ...rest } =
+    props;
   const [fileList, setFileList] = useState<UploadItem[]>([]);
   const [previewUrl, setPreviewUrl] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,6 +37,7 @@ const Upload: FC<
       setPreviewUrl(value);
     }
   }, [value]);
+
   return (
     <UploadArco
       {...rest}
@@ -51,6 +53,19 @@ const Upload: FC<
       fileList={fileList}
       onChange={handleFileUpload}
       renderUploadList={() => null}
+      accept=".png"
+      beforeUpload={(file) => {
+        const reader = new FileReader();
+        reader.onload = function fileReadCompleted() {
+          const img = new (Image as any)(); // creates an <img> element
+          img.src = reader.result; // loads the data URL as the image source
+          img.onLoad = (e: any) => {
+            console.log(e.target);
+          };
+        };
+        reader.readAsDataURL(file);
+        return false;
+      }}
     >
       <Spin spinning={loading} className="h-full" rootClassName="h-full">
         {previewUrl ? (
@@ -65,7 +80,12 @@ const Upload: FC<
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-center space-y-8 flex-col h-full ">
+          <div
+            className={cls(
+              "flex items-center justify-center space-y-8 flex-col h-full ",
+              showClassName
+            )}
+          >
             <Image src={"/add-yellow.png"} width={24} height={24} alt="add" />
             <div className="text-xs12 text-101010">{text}</div>
           </div>

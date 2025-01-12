@@ -8,9 +8,9 @@ import { useSetAtom } from "jotai";
 import { menuAtom } from "@/hooks/menu";
 import { usePathname } from "next/navigation";
 export const menuData = [
-  { name: "Dashboard", key: "dashboard" },
+  // { name: "Dashboard", key: "dashboard" },
   { name: "My Product", key: "product" },
-  { name: "My Collection", key: "collection" },
+  // { name: "My Collection", key: "collection" },
   // { name: "Notifications", key: "notifications" },
   { name: "Settings", key: "settings" },
 ];

@@ -1,5 +1,5 @@
 "use client";
-import { Divider, Spin, Upload } from "antd";
+import { Divider, Upload } from "antd";
 import Image from "next/image";
 import { RightOutlined } from "@ant-design/icons";
 import { FC, Suspense, useState } from "react";

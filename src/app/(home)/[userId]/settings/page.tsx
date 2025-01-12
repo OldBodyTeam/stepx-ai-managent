@@ -1,7 +1,7 @@
 import { SettingsPageEntry } from "@/server-components/settings/settings-entry";
 import { adminInfoCreate } from "../actions";
 import { redirect } from "next/navigation";
-const Page = async ({ params }: { params: { userId: string } }) => {
+const Page = async ({ params }: any) => {
   const { userId } = await params;
   const userInfo = await adminInfoCreate();
   if (userInfo.code === 500) {

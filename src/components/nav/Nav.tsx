@@ -3,9 +3,12 @@ import Image from "next/image";
 import ClientButton from "../client-button/ClientButton";
 import { useAtomValue } from "jotai";
 import { menuAtom } from "@/hooks/menu";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const Nav = () => {
   const navInfo = useAtomValue(menuAtom);
+  const { user_id } = useParams() as any;
   return (
     <div className="flex items-center pt-15 mb-24">
       <div className="flex-1 justify-between items-center flex">
@@ -20,10 +23,14 @@ const Nav = () => {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center pl-12 pr-16 py-8 bg-FFFFFF rounded-50 border-E8E8E9 border-1 cursor-pointer">
-          <Image src={"/add.png"} alt="add" width={16} height={16} />
-          <ClientButton />
-        </div>
+        <Link href={`product/create`}>
+          <div className="flex items-center justify-center pl-12 pr-16 py-8 bg-FFFFFF rounded-50 border-E8E8E9 border-1 cursor-pointer">
+            <Image src={"/add.png"} alt="add" width={16} height={16} />
+            <ClientButton>
+              <div>New Product</div>
+            </ClientButton>
+          </div>
+        </Link>
       </div>
     </div>
   );

@@ -284,40 +284,40 @@ export interface AdminLoginCreate200ResponseData {
      */
     'user_info'?: AdminLoginCreate200ResponseDataUserInfo;
     /**
-     * 
-     * @type {AdminLoginCreate200ResponseDataMenus}
+     * 菜单列表
+     * @type {Array<AdminLoginCreate200ResponseDataMenusInner>}
      * @memberof AdminLoginCreate200ResponseData
      */
-    'menus'?: AdminLoginCreate200ResponseDataMenus;
+    'menus'?: Array<AdminLoginCreate200ResponseDataMenusInner>;
 }
 /**
  * 菜单列表
  * @export
- * @interface AdminLoginCreate200ResponseDataMenus
+ * @interface AdminLoginCreate200ResponseDataMenusInner
  */
-export interface AdminLoginCreate200ResponseDataMenus {
+export interface AdminLoginCreate200ResponseDataMenusInner {
     /**
      * 菜单ID
      * @type {number}
-     * @memberof AdminLoginCreate200ResponseDataMenus
+     * @memberof AdminLoginCreate200ResponseDataMenusInner
      */
     'id'?: number;
     /**
      * 菜单名称
      * @type {string}
-     * @memberof AdminLoginCreate200ResponseDataMenus
+     * @memberof AdminLoginCreate200ResponseDataMenusInner
      */
     'name'?: string;
     /**
      * 父菜单ID
      * @type {number}
-     * @memberof AdminLoginCreate200ResponseDataMenus
+     * @memberof AdminLoginCreate200ResponseDataMenusInner
      */
     'parent_id'?: number;
     /**
      * 排序
      * @type {number}
-     * @memberof AdminLoginCreate200ResponseDataMenus
+     * @memberof AdminLoginCreate200ResponseDataMenusInner
      */
     'sort'?: number;
 }
@@ -675,11 +675,11 @@ export interface AdvertisementListCreate200Response {
  */
 export interface AdvertisementListCreate200ResponseData {
     /**
-     * 
-     * @type {AdvertisementListCreate200ResponseDataItems}
+     * 广告列表
+     * @type {Array<AdvertisementListCreate200ResponseDataItemsInner>}
      * @memberof AdvertisementListCreate200ResponseData
      */
-    'items'?: AdvertisementListCreate200ResponseDataItems;
+    'items'?: Array<AdvertisementListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -714,61 +714,61 @@ export interface AdvertisementListCreate200ResponseData {
 /**
  * 广告列表
  * @export
- * @interface AdvertisementListCreate200ResponseDataItems
+ * @interface AdvertisementListCreate200ResponseDataItemsInner
  */
-export interface AdvertisementListCreate200ResponseDataItems {
+export interface AdvertisementListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof AdvertisementListCreate200ResponseDataItems
+     * @memberof AdvertisementListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 广告标题
      * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
+     * @memberof AdvertisementListCreate200ResponseDataItemsInner
      */
     'title'?: string;
     /**
      * 广告内容
      * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
+     * @memberof AdvertisementListCreate200ResponseDataItemsInner
      */
     'content'?: string;
     /**
      * 跳转链接
      * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
+     * @memberof AdvertisementListCreate200ResponseDataItemsInner
      */
     'link'?: string;
     /**
      * 图片地址
      * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
+     * @memberof AdvertisementListCreate200ResponseDataItemsInner
      */
     'image'?: string;
     /**
      * 广告位置
      * @type {number}
-     * @memberof AdvertisementListCreate200ResponseDataItems
+     * @memberof AdvertisementListCreate200ResponseDataItemsInner
      */
     'position'?: number;
     /**
      * 排序
      * @type {number}
-     * @memberof AdvertisementListCreate200ResponseDataItems
+     * @memberof AdvertisementListCreate200ResponseDataItemsInner
      */
     'sort'?: number;
     /**
      * 状态
      * @type {number}
-     * @memberof AdvertisementListCreate200ResponseDataItems
+     * @memberof AdvertisementListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof AdvertisementListCreate200ResponseDataItems
+     * @memberof AdvertisementListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
 }
@@ -946,28 +946,28 @@ export interface AgreementGetLevelsCreate200Response {
  */
 export interface AgreementGetLevelsCreate200ResponseData {
     /**
-     * 
-     * @type {AgreementGetLevelsCreate200ResponseDataItems}
+     * 服务条款层级列表
+     * @type {Array<AgreementGetLevelsCreate200ResponseDataItemsInner>}
      * @memberof AgreementGetLevelsCreate200ResponseData
      */
-    'items'?: AgreementGetLevelsCreate200ResponseDataItems;
+    'items'?: Array<AgreementGetLevelsCreate200ResponseDataItemsInner>;
 }
 /**
  * 服务条款层级列表
  * @export
- * @interface AgreementGetLevelsCreate200ResponseDataItems
+ * @interface AgreementGetLevelsCreate200ResponseDataItemsInner
  */
-export interface AgreementGetLevelsCreate200ResponseDataItems {
+export interface AgreementGetLevelsCreate200ResponseDataItemsInner {
     /**
      * 内容
      * @type {string}
-     * @memberof AgreementGetLevelsCreate200ResponseDataItems
+     * @memberof AgreementGetLevelsCreate200ResponseDataItemsInner
      */
     'content'?: string;
     /**
      * 层级值
      * @type {number}
-     * @memberof AgreementGetLevelsCreate200ResponseDataItems
+     * @memberof AgreementGetLevelsCreate200ResponseDataItemsInner
      */
     'level'?: number;
 }
@@ -983,75 +983,6 @@ export interface AgreementGetLevelsCreateRequest {
      * @memberof AgreementGetLevelsCreateRequest
      */
     'status'?: number;
-}
-/**
- * 
- * @export
- * @interface AgreementGetTreeCreate200Response
- */
-export interface AgreementGetTreeCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof AgreementGetTreeCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof AgreementGetTreeCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {AgreementGetTreeCreate200ResponseData}
-     * @memberof AgreementGetTreeCreate200Response
-     */
-    'data'?: AgreementGetTreeCreate200ResponseData;
-}
-/**
- * 
- * @export
- * @interface AgreementGetTreeCreate200ResponseData
- */
-export interface AgreementGetTreeCreate200ResponseData {
-    /**
-     * 
-     * @type {AgreementGetTreeCreate200ResponseDataItems}
-     * @memberof AgreementGetTreeCreate200ResponseData
-     */
-    'items'?: AgreementGetTreeCreate200ResponseDataItems;
-}
-/**
- * 服务条款树形结构
- * @export
- * @interface AgreementGetTreeCreate200ResponseDataItems
- */
-export interface AgreementGetTreeCreate200ResponseDataItems {
-    /**
-     * 服务条款ID
-     * @type {number}
-     * @memberof AgreementGetTreeCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 内容
-     * @type {string}
-     * @memberof AgreementGetTreeCreate200ResponseDataItems
-     */
-    'content'?: string;
-    /**
-     * 层级
-     * @type {number}
-     * @memberof AgreementGetTreeCreate200ResponseDataItems
-     */
-    'level'?: number;
-    /**
-     * 子节点
-     * @type {Array<TreeNode>}
-     * @memberof AgreementGetTreeCreate200ResponseDataItems
-     */
-    'children'?: Array<TreeNode>;
 }
 /**
  * 
@@ -1135,11 +1066,11 @@ export interface AgreementListCreate200Response {
  */
 export interface AgreementListCreate200ResponseData {
     /**
-     * 
-     * @type {AgreementListCreate200ResponseDataItems}
+     * 服务条款列表
+     * @type {Array<AgreementListCreate200ResponseDataItemsInner>}
      * @memberof AgreementListCreate200ResponseData
      */
-    'items'?: AgreementListCreate200ResponseDataItems;
+    'items'?: Array<AgreementListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -1174,55 +1105,55 @@ export interface AgreementListCreate200ResponseData {
 /**
  * 服务条款列表
  * @export
- * @interface AgreementListCreate200ResponseDataItems
+ * @interface AgreementListCreate200ResponseDataItemsInner
  */
-export interface AgreementListCreate200ResponseDataItems {
+export interface AgreementListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof AgreementListCreate200ResponseDataItems
+     * @memberof AgreementListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 标题
      * @type {string}
-     * @memberof AgreementListCreate200ResponseDataItems
+     * @memberof AgreementListCreate200ResponseDataItemsInner
      */
     'title'?: string;
     /**
      * 内容
      * @type {string}
-     * @memberof AgreementListCreate200ResponseDataItems
+     * @memberof AgreementListCreate200ResponseDataItemsInner
      */
     'content'?: string;
     /**
      * 父级ID
      * @type {number}
-     * @memberof AgreementListCreate200ResponseDataItems
+     * @memberof AgreementListCreate200ResponseDataItemsInner
      */
     'parent_id'?: number;
     /**
      * 标题层级，数字越大层级越深
      * @type {number}
-     * @memberof AgreementListCreate200ResponseDataItems
+     * @memberof AgreementListCreate200ResponseDataItemsInner
      */
     'level'?: number;
     /**
      * 状态
      * @type {number}
-     * @memberof AgreementListCreate200ResponseDataItems
+     * @memberof AgreementListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof AgreementListCreate200ResponseDataItems
+     * @memberof AgreementListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
     /**
      * 更新时间
      * @type {string}
-     * @memberof AgreementListCreate200ResponseDataItems
+     * @memberof AgreementListCreate200ResponseDataItemsInner
      */
     'update_time'?: string;
 }
@@ -1388,101 +1319,101 @@ export interface CategoryListCreate200Response {
  */
 export interface CategoryListCreate200ResponseData {
     /**
-     * 
-     * @type {CategoryListCreate200ResponseDataItems}
+     * 分类列表
+     * @type {Array<CategoryListCreate200ResponseDataItemsInner>}
      * @memberof CategoryListCreate200ResponseData
      */
-    'items'?: CategoryListCreate200ResponseDataItems;
+    'items'?: Array<CategoryListCreate200ResponseDataItemsInner>;
 }
 /**
  * 分类列表
  * @export
- * @interface CategoryListCreate200ResponseDataItems
+ * @interface CategoryListCreate200ResponseDataItemsInner
  */
-export interface CategoryListCreate200ResponseDataItems {
+export interface CategoryListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItems
+     * @memberof CategoryListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 分类名称
      * @type {string}
-     * @memberof CategoryListCreate200ResponseDataItems
+     * @memberof CategoryListCreate200ResponseDataItemsInner
      */
     'name'?: string;
     /**
      * 父分类ID
      * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItems
+     * @memberof CategoryListCreate200ResponseDataItemsInner
      */
     'parent_id'?: number;
     /**
      * 排序值
      * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItems
+     * @memberof CategoryListCreate200ResponseDataItemsInner
      */
     'sort'?: number;
     /**
      * 状态
      * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItems
+     * @memberof CategoryListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof CategoryListCreate200ResponseDataItems
+     * @memberof CategoryListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
     /**
      * 子分类列表
-     * @type {Array<CategoryListCreate200ResponseDataItemsChildrenInner>}
-     * @memberof CategoryListCreate200ResponseDataItems
+     * @type {Array<CategoryListCreate200ResponseDataItemsInnerChildrenInner>}
+     * @memberof CategoryListCreate200ResponseDataItemsInner
      */
-    'children'?: Array<CategoryListCreate200ResponseDataItemsChildrenInner>;
+    'children'?: Array<CategoryListCreate200ResponseDataItemsInnerChildrenInner>;
 }
 /**
  * 
  * @export
- * @interface CategoryListCreate200ResponseDataItemsChildrenInner
+ * @interface CategoryListCreate200ResponseDataItemsInnerChildrenInner
  */
-export interface CategoryListCreate200ResponseDataItemsChildrenInner {
+export interface CategoryListCreate200ResponseDataItemsInnerChildrenInner {
     /**
      * ID
      * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof CategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'id'?: number;
     /**
      * 分类名称
      * @type {string}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof CategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'name'?: string;
     /**
      * 父分类ID
      * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof CategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'parent_id'?: number;
     /**
      * 排序值
      * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof CategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'sort'?: number;
     /**
      * 状态
      * @type {number}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof CategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof CategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof CategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'create_time'?: string;
 }
@@ -1587,11 +1518,11 @@ export interface CoverColorListCreate200Response {
  */
 export interface CoverColorListCreate200ResponseData {
     /**
-     * 
-     * @type {CoverColorListCreate200ResponseDataItems}
+     * 颜色配置列表
+     * @type {Array<CoverColorListCreate200ResponseDataItemsInner>}
      * @memberof CoverColorListCreate200ResponseData
      */
-    'items'?: CoverColorListCreate200ResponseDataItems;
+    'items'?: Array<CoverColorListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -1626,67 +1557,67 @@ export interface CoverColorListCreate200ResponseData {
 /**
  * 颜色配置列表
  * @export
- * @interface CoverColorListCreate200ResponseDataItems
+ * @interface CoverColorListCreate200ResponseDataItemsInner
  */
-export interface CoverColorListCreate200ResponseDataItems {
+export interface CoverColorListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 背景颜色
      * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'background_color'?: string;
     /**
      * 边框颜色
      * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'border_color'?: string;
     /**
      * 主标题颜色
      * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'main_title_color'?: string;
     /**
      * 副标题颜色
      * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'subtitle_color'?: string;
     /**
      * 标签文字颜色
      * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'tag_text_color'?: string;
     /**
      * 标签边框颜色
      * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'tag_border_color'?: string;
     /**
      * 热度背景颜色
      * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'heat_background_color'?: string;
     /**
      * 状态
      * @type {number}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof CoverColorListCreate200ResponseDataItems
+     * @memberof CoverColorListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
 }
@@ -1791,10 +1722,10 @@ export interface EditPlanCreateCreateRequest {
     'edit_times': number;
     /**
      * 功能特点列表
-     * @type {string}
+     * @type {Array<string>}
      * @memberof EditPlanCreateCreateRequest
      */
-    'features'?: string;
+    'features'?: Array<string>;
     /**
      * 排序
      * @type {number}
@@ -1904,10 +1835,10 @@ export interface EditPlanDetailCreate200ResponseData {
     'edit_times'?: number;
     /**
      * 功能特点列表
-     * @type {string}
+     * @type {Array<string>}
      * @memberof EditPlanDetailCreate200ResponseData
      */
-    'features'?: string;
+    'features'?: Array<string>;
     /**
      * 排序
      * @type {number}
@@ -1965,11 +1896,11 @@ export interface EditPlanListCreate200Response {
  */
 export interface EditPlanListCreate200ResponseData {
     /**
-     * 
-     * @type {EditPlanListCreate200ResponseDataItems}
+     * 方案列表
+     * @type {Array<EditPlanListCreate200ResponseDataItemsInner>}
      * @memberof EditPlanListCreate200ResponseData
      */
-    'items'?: EditPlanListCreate200ResponseDataItems;
+    'items'?: Array<EditPlanListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -2004,73 +1935,73 @@ export interface EditPlanListCreate200ResponseData {
 /**
  * 方案列表
  * @export
- * @interface EditPlanListCreate200ResponseDataItems
+ * @interface EditPlanListCreate200ResponseDataItemsInner
  */
-export interface EditPlanListCreate200ResponseDataItems {
+export interface EditPlanListCreate200ResponseDataItemsInner {
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'id'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'title'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'current_price'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'original_price'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'description'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'type'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'edit_times'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'features'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'sort'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'status'?: object;
     /**
      * 
      * @type {object}
-     * @memberof EditPlanListCreate200ResponseDataItems
+     * @memberof EditPlanListCreate200ResponseDataItemsInner
      */
     'create_time'?: object;
 }
@@ -2169,10 +2100,10 @@ export interface EditPlanUpdateCreateRequest {
     'edit_times'?: number;
     /**
      * 功能特点列表
-     * @type {string}
+     * @type {Array<string>}
      * @memberof EditPlanUpdateCreateRequest
      */
-    'features'?: string;
+    'features'?: Array<string>;
     /**
      * 排序
      * @type {number}
@@ -2226,77 +2157,77 @@ export interface FrontCategoryListCreate200Response {
  */
 export interface FrontCategoryListCreate200ResponseData {
     /**
-     * 
-     * @type {FrontCategoryListCreate200ResponseDataItems}
+     * 分类列表
+     * @type {Array<FrontCategoryListCreate200ResponseDataItemsInner>}
      * @memberof FrontCategoryListCreate200ResponseData
      */
-    'items'?: FrontCategoryListCreate200ResponseDataItems;
+    'items'?: Array<FrontCategoryListCreate200ResponseDataItemsInner>;
 }
 /**
  * 分类列表
  * @export
- * @interface FrontCategoryListCreate200ResponseDataItems
+ * @interface FrontCategoryListCreate200ResponseDataItemsInner
  */
-export interface FrontCategoryListCreate200ResponseDataItems {
+export interface FrontCategoryListCreate200ResponseDataItemsInner {
     /**
      * 分类ID
      * @type {number}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
+     * @memberof FrontCategoryListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 分类名称
      * @type {string}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
+     * @memberof FrontCategoryListCreate200ResponseDataItemsInner
      */
     'name'?: string;
     /**
      * 父分类ID
      * @type {number}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
+     * @memberof FrontCategoryListCreate200ResponseDataItemsInner
      */
     'parent_id'?: number;
     /**
      * 该分类下的产品数量
      * @type {number}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
+     * @memberof FrontCategoryListCreate200ResponseDataItemsInner
      */
     'product_count'?: number;
     /**
      * 子分类列表
-     * @type {Array<FrontCategoryListCreate200ResponseDataItemsChildrenInner>}
-     * @memberof FrontCategoryListCreate200ResponseDataItems
+     * @type {Array<FrontCategoryListCreate200ResponseDataItemsInnerChildrenInner>}
+     * @memberof FrontCategoryListCreate200ResponseDataItemsInner
      */
-    'children'?: Array<FrontCategoryListCreate200ResponseDataItemsChildrenInner>;
+    'children'?: Array<FrontCategoryListCreate200ResponseDataItemsInnerChildrenInner>;
 }
 /**
  * 
  * @export
- * @interface FrontCategoryListCreate200ResponseDataItemsChildrenInner
+ * @interface FrontCategoryListCreate200ResponseDataItemsInnerChildrenInner
  */
-export interface FrontCategoryListCreate200ResponseDataItemsChildrenInner {
+export interface FrontCategoryListCreate200ResponseDataItemsInnerChildrenInner {
     /**
      * 分类ID
      * @type {number}
-     * @memberof FrontCategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof FrontCategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'id'?: number;
     /**
      * 分类名称
      * @type {string}
-     * @memberof FrontCategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof FrontCategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'name'?: string;
     /**
      * 父分类ID
      * @type {number}
-     * @memberof FrontCategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof FrontCategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'parent_id'?: number;
     /**
      * 该分类下的产品数量
      * @type {number}
-     * @memberof FrontCategoryListCreate200ResponseDataItemsChildrenInner
+     * @memberof FrontCategoryListCreate200ResponseDataItemsInnerChildrenInner
      */
     'product_count'?: number;
 }
@@ -2535,11 +2466,11 @@ export interface FrontProductListCreate200Response {
  */
 export interface FrontProductListCreate200ResponseData {
     /**
-     * 
-     * @type {FrontProductListCreate200ResponseDataItems}
+     * 产品列表
+     * @type {Array<FrontProductListCreate200ResponseDataItemsInner>}
      * @memberof FrontProductListCreate200ResponseData
      */
-    'items'?: FrontProductListCreate200ResponseDataItems;
+    'items'?: Array<FrontProductListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -2574,133 +2505,133 @@ export interface FrontProductListCreate200ResponseData {
 /**
  * 产品列表
  * @export
- * @interface FrontProductListCreate200ResponseDataItems
+ * @interface FrontProductListCreate200ResponseDataItemsInner
  */
-export interface FrontProductListCreate200ResponseDataItems {
+export interface FrontProductListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 产品名称
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'product_name'?: string;
     /**
      * 副标题
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'subtitle'?: string;
     /**
      * 产品链接
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'product_link'?: string;
     /**
      * 封面图片URL列表
      * @type {Array<string>}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'cover'?: Array<string>;
     /**
      * logo图片
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'logo'?: string;
     /**
      * SEO标题
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'title'?: string;
     /**
      * 永久链接
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'permalink'?: string;
     /**
      * SEO描述
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'description'?: string;
     /**
      * 关键词
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'focus_keyword'?: string;
     /**
      * 封面颜色配置ID
      * @type {number}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'cover_color_id'?: number;
     /**
      * 背景颜色
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'background_color'?: string;
     /**
      * 边框颜色
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'border_color'?: string;
     /**
      * 主标题颜色
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'main_title_color'?: string;
     /**
      * 副标题颜色
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'subtitle_color'?: string;
     /**
      * 标签文字颜色
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'tag_text_color'?: string;
     /**
      * 标签边框颜色
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'tag_border_color'?: string;
     /**
      * 热度背景颜色
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'heat_background_color'?: string;
     /**
      * 创建时间
      * @type {string}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
     /**
      * 总浏览量
      * @type {number}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'total_views'?: number;
     /**
      * 父分类名称列表
      * @type {Array<string>}
-     * @memberof FrontProductListCreate200ResponseDataItems
+     * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
     'categories'?: Array<string>;
 }
@@ -2793,11 +2724,11 @@ export interface FrontProductRelatedCreate200Response {
  */
 export interface FrontProductRelatedCreate200ResponseData {
     /**
-     * 
-     * @type {FrontProductRelatedCreate200ResponseDataItems}
+     * 相关产品列表
+     * @type {Array<FrontProductRelatedCreate200ResponseDataItemsInner>}
      * @memberof FrontProductRelatedCreate200ResponseData
      */
-    'items'?: FrontProductRelatedCreate200ResponseDataItems;
+    'items'?: Array<FrontProductRelatedCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -2832,97 +2763,97 @@ export interface FrontProductRelatedCreate200ResponseData {
 /**
  * 相关产品列表
  * @export
- * @interface FrontProductRelatedCreate200ResponseDataItems
+ * @interface FrontProductRelatedCreate200ResponseDataItemsInner
  */
-export interface FrontProductRelatedCreate200ResponseDataItems {
+export interface FrontProductRelatedCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 产品名称
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'product_name'?: string;
     /**
      * 副标题
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'subtitle'?: string;
     /**
      * 产品链接
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'product_link'?: string;
     /**
      * logo图片
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'logo'?: string;
     /**
      * 封面颜色配置ID
      * @type {number}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'cover_color_id'?: number;
     /**
      * 背景颜色
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'background_color'?: string;
     /**
      * 边框颜色
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'border_color'?: string;
     /**
      * 主标题颜色
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'main_title_color'?: string;
     /**
      * 副标题颜色
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'subtitle_color'?: string;
     /**
      * 标签文字颜色
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'tag_text_color'?: string;
     /**
      * 标签边框颜色
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'tag_border_color'?: string;
     /**
      * 热度背景颜色
      * @type {string}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'heat_background_color'?: string;
     /**
      * 总浏览量
      * @type {number}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'total_views'?: number;
     /**
      * 父分类名称列表
      * @type {Array<string>}
-     * @memberof FrontProductRelatedCreate200ResponseDataItems
+     * @memberof FrontProductRelatedCreate200ResponseDataItemsInner
      */
     'categories'?: Array<string>;
 }
@@ -3089,11 +3020,11 @@ export interface MenuListCreate200Response {
  */
 export interface MenuListCreate200ResponseData {
     /**
-     * 
-     * @type {MenuListCreate200ResponseDataItems}
+     * 菜单列表
+     * @type {Array<MenuListCreate200ResponseDataItemsInner>}
      * @memberof MenuListCreate200ResponseData
      */
-    'items'?: MenuListCreate200ResponseDataItems;
+    'items'?: Array<MenuListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -3128,43 +3059,43 @@ export interface MenuListCreate200ResponseData {
 /**
  * 菜单列表
  * @export
- * @interface MenuListCreate200ResponseDataItems
+ * @interface MenuListCreate200ResponseDataItemsInner
  */
-export interface MenuListCreate200ResponseDataItems {
+export interface MenuListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof MenuListCreate200ResponseDataItems
+     * @memberof MenuListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 菜单名称
      * @type {string}
-     * @memberof MenuListCreate200ResponseDataItems
+     * @memberof MenuListCreate200ResponseDataItemsInner
      */
     'name'?: string;
     /**
      * 父菜单ID
      * @type {number}
-     * @memberof MenuListCreate200ResponseDataItems
+     * @memberof MenuListCreate200ResponseDataItemsInner
      */
     'parent_id'?: number;
     /**
      * 排序
      * @type {number}
-     * @memberof MenuListCreate200ResponseDataItems
+     * @memberof MenuListCreate200ResponseDataItemsInner
      */
     'sort'?: number;
     /**
      * 状态
      * @type {number}
-     * @memberof MenuListCreate200ResponseDataItems
+     * @memberof MenuListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof MenuListCreate200ResponseDataItems
+     * @memberof MenuListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
 }
@@ -3421,11 +3352,11 @@ export interface PaymentPlanListCreate200Response {
  */
 export interface PaymentPlanListCreate200ResponseData {
     /**
-     * 
-     * @type {PaymentPlanListCreate200ResponseDataItems}
+     * 价格方案列表
+     * @type {Array<PaymentPlanListCreate200ResponseDataItemsInner>}
      * @memberof PaymentPlanListCreate200ResponseData
      */
-    'items'?: PaymentPlanListCreate200ResponseDataItems;
+    'items'?: Array<PaymentPlanListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -3460,79 +3391,79 @@ export interface PaymentPlanListCreate200ResponseData {
 /**
  * 价格方案列表
  * @export
- * @interface PaymentPlanListCreate200ResponseDataItems
+ * @interface PaymentPlanListCreate200ResponseDataItemsInner
  */
-export interface PaymentPlanListCreate200ResponseDataItems {
+export interface PaymentPlanListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 方案标题
      * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'title'?: string;
     /**
      * 现价
      * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'current_price'?: number;
     /**
      * 原价
      * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'original_price'?: number;
     /**
      * 价格介绍
      * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'price_description'?: string;
     /**
      * 推荐信息
      * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'recommendation'?: string;
     /**
      * 功能特点列表
      * @type {Array<string>}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'features'?: Array<string>;
     /**
      * 使用限制列表
      * @type {Array<string>}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'restrictions'?: Array<string>;
     /**
      * 版本类型
      * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'type'?: string;
     /**
      * 排序
      * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'sort'?: number;
     /**
      * 状态
      * @type {number}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof PaymentPlanListCreate200ResponseDataItems
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
 }
@@ -4045,99 +3976,30 @@ export interface PrivacyGetLevelsCreate200Response {
  */
 export interface PrivacyGetLevelsCreate200ResponseData {
     /**
-     * 
-     * @type {PrivacyGetLevelsCreate200ResponseDataItems}
+     * 隐私政策层级列表
+     * @type {Array<PrivacyGetLevelsCreate200ResponseDataItemsInner>}
      * @memberof PrivacyGetLevelsCreate200ResponseData
      */
-    'items'?: PrivacyGetLevelsCreate200ResponseDataItems;
+    'items'?: Array<PrivacyGetLevelsCreate200ResponseDataItemsInner>;
 }
 /**
  * 隐私政策层级列表
  * @export
- * @interface PrivacyGetLevelsCreate200ResponseDataItems
+ * @interface PrivacyGetLevelsCreate200ResponseDataItemsInner
  */
-export interface PrivacyGetLevelsCreate200ResponseDataItems {
+export interface PrivacyGetLevelsCreate200ResponseDataItemsInner {
     /**
      * 内容
      * @type {string}
-     * @memberof PrivacyGetLevelsCreate200ResponseDataItems
+     * @memberof PrivacyGetLevelsCreate200ResponseDataItemsInner
      */
     'content'?: string;
     /**
      * 层级值
      * @type {number}
-     * @memberof PrivacyGetLevelsCreate200ResponseDataItems
+     * @memberof PrivacyGetLevelsCreate200ResponseDataItemsInner
      */
     'level'?: number;
-}
-/**
- * 
- * @export
- * @interface PrivacyGetTreeCreate200Response
- */
-export interface PrivacyGetTreeCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof PrivacyGetTreeCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof PrivacyGetTreeCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {PrivacyGetTreeCreate200ResponseData}
-     * @memberof PrivacyGetTreeCreate200Response
-     */
-    'data'?: PrivacyGetTreeCreate200ResponseData;
-}
-/**
- * 
- * @export
- * @interface PrivacyGetTreeCreate200ResponseData
- */
-export interface PrivacyGetTreeCreate200ResponseData {
-    /**
-     * 
-     * @type {PrivacyGetTreeCreate200ResponseDataItems}
-     * @memberof PrivacyGetTreeCreate200ResponseData
-     */
-    'items'?: PrivacyGetTreeCreate200ResponseDataItems;
-}
-/**
- * 隐私政策树形结构
- * @export
- * @interface PrivacyGetTreeCreate200ResponseDataItems
- */
-export interface PrivacyGetTreeCreate200ResponseDataItems {
-    /**
-     * 隐私政策ID
-     * @type {number}
-     * @memberof PrivacyGetTreeCreate200ResponseDataItems
-     */
-    'id'?: number;
-    /**
-     * 内容
-     * @type {string}
-     * @memberof PrivacyGetTreeCreate200ResponseDataItems
-     */
-    'content'?: string;
-    /**
-     * 层级
-     * @type {number}
-     * @memberof PrivacyGetTreeCreate200ResponseDataItems
-     */
-    'level'?: number;
-    /**
-     * 子节点
-     * @type {Array<TreeNode>}
-     * @memberof PrivacyGetTreeCreate200ResponseDataItems
-     */
-    'children'?: Array<TreeNode>;
 }
 /**
  * 
@@ -4171,11 +4033,11 @@ export interface PrivacyListCreate200Response {
  */
 export interface PrivacyListCreate200ResponseData {
     /**
-     * 
-     * @type {PrivacyListCreate200ResponseDataItems}
+     * 隐私政策列表
+     * @type {Array<PrivacyListCreate200ResponseDataItemsInner>}
      * @memberof PrivacyListCreate200ResponseData
      */
-    'items'?: PrivacyListCreate200ResponseDataItems;
+    'items'?: Array<PrivacyListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -4210,55 +4072,55 @@ export interface PrivacyListCreate200ResponseData {
 /**
  * 隐私政策列表
  * @export
- * @interface PrivacyListCreate200ResponseDataItems
+ * @interface PrivacyListCreate200ResponseDataItemsInner
  */
-export interface PrivacyListCreate200ResponseDataItems {
+export interface PrivacyListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof PrivacyListCreate200ResponseDataItems
+     * @memberof PrivacyListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 标题
      * @type {string}
-     * @memberof PrivacyListCreate200ResponseDataItems
+     * @memberof PrivacyListCreate200ResponseDataItemsInner
      */
     'title'?: string;
     /**
      * 内容
      * @type {string}
-     * @memberof PrivacyListCreate200ResponseDataItems
+     * @memberof PrivacyListCreate200ResponseDataItemsInner
      */
     'content'?: string;
     /**
      * 父级ID
      * @type {number}
-     * @memberof PrivacyListCreate200ResponseDataItems
+     * @memberof PrivacyListCreate200ResponseDataItemsInner
      */
     'parent_id'?: number;
     /**
      * 标题层级，数字越大层级越深
      * @type {number}
-     * @memberof PrivacyListCreate200ResponseDataItems
+     * @memberof PrivacyListCreate200ResponseDataItemsInner
      */
     'level'?: number;
     /**
      * 状态
      * @type {number}
-     * @memberof PrivacyListCreate200ResponseDataItems
+     * @memberof PrivacyListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof PrivacyListCreate200ResponseDataItems
+     * @memberof PrivacyListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
     /**
      * 更新时间
      * @type {string}
-     * @memberof PrivacyListCreate200ResponseDataItems
+     * @memberof PrivacyListCreate200ResponseDataItemsInner
      */
     'update_time'?: string;
 }
@@ -4731,7 +4593,7 @@ export interface ProductDetailCreate200ResponseData {
     'categories'?: Array<ProductDetailCreate200ResponseDataCategoriesInner>;
 }
 /**
- * 
+ * 分类列表
  * @export
  * @interface ProductDetailCreate200ResponseDataCategoriesInner
  */
@@ -4960,11 +4822,11 @@ export interface ProductEditListCreate200Response {
  */
 export interface ProductEditListCreate200ResponseData {
     /**
-     * 
-     * @type {ProductEditListCreate200ResponseDataItems}
+     * 订单列表
+     * @type {Array<ProductEditListCreate200ResponseDataItemsInner>}
      * @memberof ProductEditListCreate200ResponseData
      */
-    'items'?: ProductEditListCreate200ResponseDataItems;
+    'items'?: Array<ProductEditListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -4999,61 +4861,61 @@ export interface ProductEditListCreate200ResponseData {
 /**
  * 订单列表
  * @export
- * @interface ProductEditListCreate200ResponseDataItems
+ * @interface ProductEditListCreate200ResponseDataItemsInner
  */
-export interface ProductEditListCreate200ResponseDataItems {
+export interface ProductEditListCreate200ResponseDataItemsInner {
     /**
      * 
      * @type {object}
-     * @memberof ProductEditListCreate200ResponseDataItems
+     * @memberof ProductEditListCreate200ResponseDataItemsInner
      */
     'id'?: object;
     /**
      * 
      * @type {object}
-     * @memberof ProductEditListCreate200ResponseDataItems
+     * @memberof ProductEditListCreate200ResponseDataItemsInner
      */
     'order_no'?: object;
     /**
      * 
      * @type {object}
-     * @memberof ProductEditListCreate200ResponseDataItems
+     * @memberof ProductEditListCreate200ResponseDataItemsInner
      */
     'product_id'?: object;
     /**
      * 
      * @type {object}
-     * @memberof ProductEditListCreate200ResponseDataItems
+     * @memberof ProductEditListCreate200ResponseDataItemsInner
      */
     'amount'?: object;
     /**
      * 
      * @type {object}
-     * @memberof ProductEditListCreate200ResponseDataItems
+     * @memberof ProductEditListCreate200ResponseDataItemsInner
      */
     'currency'?: object;
     /**
      * 
      * @type {object}
-     * @memberof ProductEditListCreate200ResponseDataItems
+     * @memberof ProductEditListCreate200ResponseDataItemsInner
      */
     'status'?: object;
     /**
      * 
      * @type {object}
-     * @memberof ProductEditListCreate200ResponseDataItems
+     * @memberof ProductEditListCreate200ResponseDataItemsInner
      */
     'payment_time'?: object;
     /**
      * 
      * @type {object}
-     * @memberof ProductEditListCreate200ResponseDataItems
+     * @memberof ProductEditListCreate200ResponseDataItemsInner
      */
     'complete_time'?: object;
     /**
      * 
      * @type {object}
-     * @memberof ProductEditListCreate200ResponseDataItems
+     * @memberof ProductEditListCreate200ResponseDataItemsInner
      */
     'create_time'?: object;
 }
@@ -5240,11 +5102,11 @@ export interface ProductFavoriteListCreate200Response {
  */
 export interface ProductFavoriteListCreate200ResponseData {
     /**
-     * 
-     * @type {ProductFavoriteListCreate200ResponseDataItems}
+     * 收藏列表
+     * @type {Array<ProductFavoriteListCreate200ResponseDataItemsInner>}
      * @memberof ProductFavoriteListCreate200ResponseData
      */
-    'items'?: ProductFavoriteListCreate200ResponseDataItems;
+    'items'?: Array<ProductFavoriteListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -5279,67 +5141,67 @@ export interface ProductFavoriteListCreate200ResponseData {
 /**
  * 收藏列表
  * @export
- * @interface ProductFavoriteListCreate200ResponseDataItems
+ * @interface ProductFavoriteListCreate200ResponseDataItemsInner
  */
-export interface ProductFavoriteListCreate200ResponseDataItems {
+export interface ProductFavoriteListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 产品ID
      * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'product_id'?: number;
     /**
      * 产品名称
      * @type {string}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'product_name'?: string;
     /**
      * 产品副标题
      * @type {string}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'subtitle'?: string;
     /**
      * 产品logo
      * @type {string}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'logo'?: string;
     /**
      * 状态
      * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
     /**
      * 点击量
      * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'hits'?: number;
     /**
      * 总浏览量
      * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'total_views'?: number;
     /**
      * 今日浏览量
      * @type {number}
-     * @memberof ProductFavoriteListCreate200ResponseDataItems
+     * @memberof ProductFavoriteListCreate200ResponseDataItemsInner
      */
     'today_views'?: number;
 }
@@ -5406,11 +5268,11 @@ export interface ProductListCreate200Response {
  */
 export interface ProductListCreate200ResponseData {
     /**
-     * 
-     * @type {ProductListCreate200ResponseDataItems}
+     * 产品列表
+     * @type {Array<ProductListCreate200ResponseDataItemsInner>}
      * @memberof ProductListCreate200ResponseData
      */
-    'items'?: ProductListCreate200ResponseDataItems;
+    'items'?: Array<ProductListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -5445,157 +5307,157 @@ export interface ProductListCreate200ResponseData {
 /**
  * 产品列表
  * @export
- * @interface ProductListCreate200ResponseDataItems
+ * @interface ProductListCreate200ResponseDataItemsInner
  */
-export interface ProductListCreate200ResponseDataItems {
+export interface ProductListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 产品名称
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'product_name'?: string;
     /**
      * 副标题
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'subtitle'?: string;
     /**
      * 产品链接
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'product_link'?: string;
     /**
      * 封面图片URL列表
      * @type {Array<string>}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'cover'?: Array<string>;
     /**
      * logo图片
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'logo'?: string;
     /**
      * SEO标题
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'title'?: string;
     /**
      * 永久链接
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'permalink'?: string;
     /**
      * SEO描述
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'description'?: string;
     /**
      * 关键词列表
      * @type {Array<string>}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'focus_keyword'?: Array<string>;
     /**
      * 状态
      * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 封面颜色配置ID
      * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'cover_color_id'?: number;
     /**
      * 背景颜色
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'background_color'?: string;
     /**
      * 边框颜色
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'border_color'?: string;
     /**
      * 主标题颜色
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'main_title_color'?: string;
     /**
      * 副标题颜色
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'subtitle_color'?: string;
     /**
      * 标签文字颜色
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'tag_text_color'?: string;
     /**
      * 标签边框颜色
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'tag_border_color'?: string;
     /**
      * 热度背景颜色
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'heat_background_color'?: string;
     /**
      * 创建时间
      * @type {string}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
     /**
      * 点击量
      * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'hits'?: number;
     /**
      * 总浏览量
      * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'total_views'?: number;
     /**
      * 今日浏览量
      * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'today_views'?: number;
     /**
      * 审核状态
      * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'audit_status'?: number;
     /**
      * 编辑状态
      * @type {number}
-     * @memberof ProductListCreate200ResponseDataItems
+     * @memberof ProductListCreate200ResponseDataItemsInner
      */
     'edit_status'?: number;
 }
@@ -5726,11 +5588,11 @@ export interface ProductReviewFrontListCreate200Response {
  */
 export interface ProductReviewFrontListCreate200ResponseData {
     /**
-     * 
-     * @type {ProductReviewFrontListCreate200ResponseDataItems}
+     * 评论列表
+     * @type {Array<ProductReviewFrontListCreate200ResponseDataItemsInner>}
      * @memberof ProductReviewFrontListCreate200ResponseData
      */
-    'items'?: ProductReviewFrontListCreate200ResponseDataItems;
+    'items'?: Array<ProductReviewFrontListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -5765,37 +5627,37 @@ export interface ProductReviewFrontListCreate200ResponseData {
 /**
  * 评论列表
  * @export
- * @interface ProductReviewFrontListCreate200ResponseDataItems
+ * @interface ProductReviewFrontListCreate200ResponseDataItemsInner
  */
-export interface ProductReviewFrontListCreate200ResponseDataItems {
+export interface ProductReviewFrontListCreate200ResponseDataItemsInner {
     /**
      * 评论ID
      * @type {number}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
+     * @memberof ProductReviewFrontListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 评价内容
      * @type {string}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
+     * @memberof ProductReviewFrontListCreate200ResponseDataItemsInner
      */
     'content'?: string;
     /**
      * 点赞数
      * @type {number}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
+     * @memberof ProductReviewFrontListCreate200ResponseDataItemsInner
      */
     'likes'?: number;
     /**
      * 状态
      * @type {number}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
+     * @memberof ProductReviewFrontListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof ProductReviewFrontListCreate200ResponseDataItems
+     * @memberof ProductReviewFrontListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
 }
@@ -6185,11 +6047,11 @@ export interface RoleListCreate200Response {
  */
 export interface RoleListCreate200ResponseData {
     /**
-     * 
-     * @type {RoleListCreate200ResponseDataItems}
+     * 角色列表
+     * @type {Array<RoleListCreate200ResponseDataItemsInner>}
      * @memberof RoleListCreate200ResponseData
      */
-    'items'?: RoleListCreate200ResponseDataItems;
+    'items'?: Array<RoleListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -6224,37 +6086,37 @@ export interface RoleListCreate200ResponseData {
 /**
  * 角色列表
  * @export
- * @interface RoleListCreate200ResponseDataItems
+ * @interface RoleListCreate200ResponseDataItemsInner
  */
-export interface RoleListCreate200ResponseDataItems {
+export interface RoleListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof RoleListCreate200ResponseDataItems
+     * @memberof RoleListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 角色名称
      * @type {string}
-     * @memberof RoleListCreate200ResponseDataItems
+     * @memberof RoleListCreate200ResponseDataItemsInner
      */
     'name'?: string;
     /**
      * 角色介绍
      * @type {string}
-     * @memberof RoleListCreate200ResponseDataItems
+     * @memberof RoleListCreate200ResponseDataItemsInner
      */
     'intro'?: string;
     /**
      * 状态
      * @type {number}
-     * @memberof RoleListCreate200ResponseDataItems
+     * @memberof RoleListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 创建时间
      * @type {string}
-     * @memberof RoleListCreate200ResponseDataItems
+     * @memberof RoleListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
 }
@@ -6420,41 +6282,41 @@ export interface StatsPopularCreate200ResponseData {
     'has_more'?: boolean;
 }
 /**
- * 
+ * 热门商品列表
  * @export
  * @interface StatsPopularCreate200ResponseDataItemsInner
  */
 export interface StatsPopularCreate200ResponseDataItemsInner {
     /**
-     * 
-     * @type {object}
+     * 产品ID
+     * @type {number}
      * @memberof StatsPopularCreate200ResponseDataItemsInner
      */
-    'id'?: object;
+    'id'?: number;
     /**
-     * 
-     * @type {object}
+     * 产品名称
+     * @type {string}
      * @memberof StatsPopularCreate200ResponseDataItemsInner
      */
-    'product_name'?: object;
+    'product_name'?: string;
     /**
-     * 
-     * @type {object}
+     * 副标题
+     * @type {string}
      * @memberof StatsPopularCreate200ResponseDataItemsInner
      */
-    'subtitle'?: object;
+    'subtitle'?: string;
     /**
-     * 
-     * @type {object}
+     * logo图片
+     * @type {string}
      * @memberof StatsPopularCreate200ResponseDataItemsInner
      */
-    'logo'?: object;
+    'logo'?: string;
     /**
-     * 
-     * @type {object}
+     * 总浏览量
+     * @type {number}
      * @memberof StatsPopularCreate200ResponseDataItemsInner
      */
-    'total_views'?: object;
+    'total_views'?: number;
 }
 /**
  * 
@@ -6558,29 +6420,29 @@ export interface StatsProductsCreate200ResponseData {
     'has_more'?: boolean;
 }
 /**
- * 
+ * 商品列表
  * @export
  * @interface StatsProductsCreate200ResponseDataItemsInner
  */
 export interface StatsProductsCreate200ResponseDataItemsInner {
     /**
-     * 
-     * @type {object}
+     * 产品ID
+     * @type {number}
      * @memberof StatsProductsCreate200ResponseDataItemsInner
      */
-    'id'?: object;
+    'id'?: number;
     /**
-     * 
-     * @type {object}
+     * 产品名称
+     * @type {string}
      * @memberof StatsProductsCreate200ResponseDataItemsInner
      */
-    'product_name'?: object;
+    'product_name'?: string;
     /**
-     * 
-     * @type {object}
+     * logo图片
+     * @type {string}
      * @memberof StatsProductsCreate200ResponseDataItemsInner
      */
-    'logo'?: object;
+    'logo'?: string;
 }
 /**
  * 
@@ -6689,7 +6551,7 @@ export interface StatsWeeklyClicksCreate200ResponseData {
     'weekly_stats'?: Array<StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner>;
 }
 /**
- * 
+ * 每个星期几的点击量统计
  * @export
  * @interface StatsWeeklyClicksCreate200ResponseDataWeeklyStatsInner
  */
@@ -6758,7 +6620,7 @@ export interface StatsWeeklyDurationsCreate200ResponseData {
     'weekly_stats'?: Array<StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner>;
 }
 /**
- * 
+ * 每个星期几的访问时长统计
  * @export
  * @interface StatsWeeklyDurationsCreate200ResponseDataWeeklyStatsInner
  */
@@ -6827,7 +6689,7 @@ export interface StatsWeeklyViewsCreate200ResponseData {
     'weekly_stats'?: Array<StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner>;
 }
 /**
- * 
+ * 每个星期几的访问量统计
  * @export
  * @interface StatsWeeklyViewsCreate200ResponseDataWeeklyStatsInner
  */
@@ -6908,11 +6770,11 @@ export interface SubscriptionListCreate200Response {
  */
 export interface SubscriptionListCreate200ResponseData {
     /**
-     * 
-     * @type {SubscriptionListCreate200ResponseDataItems}
+     * 订阅列表
+     * @type {Array<SubscriptionListCreate200ResponseDataItemsInner>}
      * @memberof SubscriptionListCreate200ResponseData
      */
-    'items'?: SubscriptionListCreate200ResponseDataItems;
+    'items'?: Array<SubscriptionListCreate200ResponseDataItemsInner>;
     /**
      * 总数
      * @type {number}
@@ -6947,49 +6809,49 @@ export interface SubscriptionListCreate200ResponseData {
 /**
  * 订阅列表
  * @export
- * @interface SubscriptionListCreate200ResponseDataItems
+ * @interface SubscriptionListCreate200ResponseDataItemsInner
  */
-export interface SubscriptionListCreate200ResponseDataItems {
+export interface SubscriptionListCreate200ResponseDataItemsInner {
     /**
      * ID
      * @type {number}
-     * @memberof SubscriptionListCreate200ResponseDataItems
+     * @memberof SubscriptionListCreate200ResponseDataItemsInner
      */
     'id'?: number;
     /**
      * 姓名
      * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
+     * @memberof SubscriptionListCreate200ResponseDataItemsInner
      */
     'name'?: string;
     /**
      * 邮箱地址
      * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
+     * @memberof SubscriptionListCreate200ResponseDataItemsInner
      */
     'email'?: string;
     /**
      * 手机号码
      * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
+     * @memberof SubscriptionListCreate200ResponseDataItemsInner
      */
     'phone'?: string;
     /**
      * 订阅状态
      * @type {number}
-     * @memberof SubscriptionListCreate200ResponseDataItems
+     * @memberof SubscriptionListCreate200ResponseDataItemsInner
      */
     'status'?: number;
     /**
      * 订阅时间
      * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
+     * @memberof SubscriptionListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
     /**
      * 更新时间
      * @type {string}
-     * @memberof SubscriptionListCreate200ResponseDataItems
+     * @memberof SubscriptionListCreate200ResponseDataItemsInner
      */
     'update_time'?: string;
 }
@@ -7823,47 +7685,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'data' is not null or undefined
             assertParamExists('agreementGetLevelsCreate', 'data', data)
             const localVarPath = `/agreement/get_levels`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取服务条款树形结构
-         * @param {AgreementGetLevelsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementGetTreeCreate: async (data: AgreementGetLevelsCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('agreementGetTreeCreate', 'data', data)
-            const localVarPath = `/agreement/get_tree`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9134,47 +8955,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'data' is not null or undefined
             assertParamExists('privacyGetLevelsCreate', 'data', data)
             const localVarPath = `/privacy/get_levels`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ApiKeyAuth required
-            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 获取隐私政策树形结构
-         * @param {AgreementGetLevelsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        privacyGetTreeCreate: async (data: AgreementGetLevelsCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'data' is not null or undefined
-            assertParamExists('privacyGetTreeCreate', 'data', data)
-            const localVarPath = `/privacy/get_tree`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -11199,18 +10979,6 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 获取服务条款树形结构
-         * @param {AgreementGetLevelsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async agreementGetTreeCreate(data: AgreementGetLevelsCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AgreementGetTreeCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.agreementGetTreeCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.agreementGetTreeCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * 导入Word文档作为服务条款内容
          * @param {File} file 要上传的Word文档（仅支持.docx格式）
          * @param {*} [options] Override http request option.
@@ -11579,18 +11347,6 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.privacyGetLevelsCreate(data, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DefaultApi.privacyGetLevelsCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 获取隐私政策树形结构
-         * @param {AgreementGetLevelsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async privacyGetTreeCreate(data: AgreementGetLevelsCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrivacyGetTreeCreate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.privacyGetTreeCreate(data, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.privacyGetTreeCreate']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -12258,15 +12014,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.agreementGetLevelsCreate(data, options).then((request) => request(axios, basePath));
         },
         /**
-         * 获取服务条款树形结构
-         * @param {AgreementGetLevelsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        agreementGetTreeCreate(data: AgreementGetLevelsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<AgreementGetTreeCreate200Response> {
-            return localVarFp.agreementGetTreeCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
          * 导入Word文档作为服务条款内容
          * @param {File} file 要上传的Word文档（仅支持.docx格式）
          * @param {*} [options] Override http request option.
@@ -12543,15 +12290,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         privacyGetLevelsCreate(data: AgreementGetLevelsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrivacyGetLevelsCreate200Response> {
             return localVarFp.privacyGetLevelsCreate(data, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 获取隐私政策树形结构
-         * @param {AgreementGetLevelsCreateRequest} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        privacyGetTreeCreate(data: AgreementGetLevelsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrivacyGetTreeCreate200Response> {
-            return localVarFp.privacyGetTreeCreate(data, options).then((request) => request(axios, basePath));
         },
         /**
          * 导入Word文档作为隐私政策内容
@@ -13114,17 +12852,6 @@ export class DefaultApi extends BaseAPI {
     }
 
     /**
-     * 获取服务条款树形结构
-     * @param {AgreementGetLevelsCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public agreementGetTreeCreate(data: AgreementGetLevelsCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).agreementGetTreeCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * 导入Word文档作为服务条款内容
      * @param {File} file 要上传的Word文档（仅支持.docx格式）
      * @param {*} [options] Override http request option.
@@ -13462,17 +13189,6 @@ export class DefaultApi extends BaseAPI {
      */
     public privacyGetLevelsCreate(data: AgreementGetLevelsCreateRequest, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).privacyGetLevelsCreate(data, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 获取隐私政策树形结构
-     * @param {AgreementGetLevelsCreateRequest} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public privacyGetTreeCreate(data: AgreementGetLevelsCreateRequest, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).privacyGetTreeCreate(data, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
