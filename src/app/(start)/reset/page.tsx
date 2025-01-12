@@ -1,5 +1,4 @@
 "use client";
-import { Form, Input } from "@arco-design/web-react";
 import Button from "../components/Button";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,14 +12,15 @@ import {
   validatePassword,
 } from "@/utils/validate";
 import { useMemoizedFn } from "ahooks";
+import { Form, Input } from "antd";
 const Reset = () => {
   const router = useRouter();
   const [form] = Form.useForm();
   const { contextHolder, showErrorMessage, messageApi } = useHandleResponse();
   const handleReset = async () => {
     try {
-      await form.validate();
-      const userInput = form.getFields();
+      await form.validateFields();
+      const userInput = form.getFieldsValue();
       const data = await restPassword(userInput);
       const isValid = showErrorMessage(data as any);
       if (!isValid) {

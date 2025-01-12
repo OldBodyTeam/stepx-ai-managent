@@ -8,13 +8,14 @@ import {
   IDomEditor,
   IEditorConfig,
   IToolbarConfig,
+  i18nChangeLanguage,
 } from "@wangeditor/editor";
 import { uploadFileAction } from "@/app/(home)/[userId]/settings/actions";
 export interface EditorContentProps {
   value?: string;
   onChange?: (value: string) => void;
 }
-
+i18nChangeLanguage("en");
 const EditorContent: FC<EditorContentProps> = (props) => {
   const { value, onChange } = props;
   const [editor, setEditor] = useState<IDomEditor | null>(null); // TS 语法
@@ -49,6 +50,9 @@ const EditorContent: FC<EditorContentProps> = (props) => {
       "undo",
       "redo",
       "insertImage",
+      "italic",
+      "fontFamily",
+      "lineHeight",
     ],
   }; // TS 语法
 
@@ -78,16 +82,16 @@ const EditorContent: FC<EditorContentProps> = (props) => {
     <>
       <div
         style={{
-          border: "1px solid #F0F0F0",
+          border: "0px solid #F0F0F0",
           zIndex: 100,
         }}
-        className="rounded-16 relative"
+        className="rounded-16 relative [&_.w-e-bar-divider]:!hidden"
       >
         <Toolbar
           editor={editor}
           defaultConfig={toolbarConfig}
           mode="default"
-          style={{ borderBottom: "1px solid #ccc" }}
+          style={{ borderBottom: "1px solid #F0F0F0" }}
         />
         <Editor
           defaultConfig={editorConfig}

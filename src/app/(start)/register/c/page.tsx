@@ -1,6 +1,5 @@
 "use client";
 
-import { Form, Input } from "@arco-design/web-react";
 import Button from "../../components/Button";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,6 +13,7 @@ import { createCUser } from "./actions";
 import { get } from "lodash";
 import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { useRouter } from "next/navigation";
+import { Form, Input } from "antd";
 const CClient = () => {
   const [form] = Form.useForm<{
     username: string;
@@ -25,12 +25,12 @@ const CClient = () => {
   const { contextHolder, showErrorMessage, messageApi } = useHandleResponse();
   const handleRegisterCUser = useMemoizedFn(async () => {
     try {
-      await form.validate();
-      const userInput = form.getFields();
+      await form.validateFields();
+      const userInput = form.getFieldsValue();
       if (userInput.password !== userInput.confirm_password) {
         messageApi.error("Passwords do not match");
       }
-      const data = await createCUser({ ...form.getFields(), role_id: 1 });
+      const data = await createCUser({ ...form.getFieldsValue(), role_id: 1 });
       const isValid = showErrorMessage(data as any);
       if (!isValid) {
         return;

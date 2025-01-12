@@ -88,6 +88,7 @@ const LabelProgress: FC<PropsWithChildren<LabelProgressProps>> = (props) => {
           suffixIcon={null}
           maxTagCount="responsive"
           onChange={handleChange}
+          size="large"
         />
       ) : null}
     </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import { Form, Input } from "@arco-design/web-react";
 import Button from "../../components/Button";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,18 +14,19 @@ import {
 } from "@/utils/validate";
 import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { get } from "lodash";
+import { Form, Input } from "antd";
 const BClient = () => {
   const router = useRouter();
   const [form] = Form.useForm();
   const { contextHolder, showErrorMessage, messageApi } = useHandleResponse();
   const handleRegisterBUser = useMemoizedFn(async () => {
     try {
-      await form.validate();
-      const userInput = form.getFields();
+      await form.validateFields();
+      const userInput = form.getFieldsValue();
       if (userInput.password !== userInput.confirm_password) {
         messageApi.error("Passwords do not match");
       }
-      const data = await createBUser({ ...form.getFields(), role_id: 2 });
+      const data = await createBUser({ ...form.getFieldsValue(), role_id: 2 });
       const isValid = showErrorMessage(data as any);
       if (!isValid) {
         return;

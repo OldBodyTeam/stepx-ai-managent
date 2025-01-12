@@ -1,6 +1,5 @@
 "use client";
 
-import { Form, Input } from "@arco-design/web-react";
 import Button from "../components/Button";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +13,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useSetAtom } from "jotai";
 import { userIdAtom, userInfoCacheAtom } from "@/stores/userInfo";
+import { Form, Input } from "antd";
 const Login = () => {
   const [match, setMatch] = useState(false);
   const setUserId = useSetAtom(userIdAtom);
@@ -30,8 +30,8 @@ const Login = () => {
       return;
     }
     try {
-      await form.validate();
-      const userInput = form.getFields();
+      await form.validateFields();
+      const userInput = form.getFieldsValue();
       const data = await loginAction(userInput);
       setUserId(data.data?.user_info?.id);
       setUserInfo({
