@@ -53,11 +53,8 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
               <div className="space-x-16 flex items-center">
                 {navMenu.map((v) => {
                   return (
-                    <Link href={"/settings"}>
-                      <div
-                        className="flex items-center justify-center w-32 h-32 rounded-32 bg-FFFFFF"
-                        key={v.key}
-                      >
+                    <Link href={"/settings"} key={v.key}>
+                      <div className="flex items-center justify-center w-32 h-32 rounded-32 bg-FFFFFF">
                         <Image
                           src={v.path}
                           alt={v.key}
