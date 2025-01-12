@@ -4,11 +4,9 @@ import ClientButton from "../client-button/ClientButton";
 import { useAtomValue } from "jotai";
 import { menuAtom } from "@/hooks/menu";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 
 const Nav = () => {
   const navInfo = useAtomValue(menuAtom);
-  const { user_id } = useParams() as any;
   return (
     <div className="flex items-center pt-15 mb-24">
       <div className="flex-1 justify-between items-center flex">

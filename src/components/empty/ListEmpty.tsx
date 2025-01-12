@@ -10,7 +10,7 @@ export interface ListEmptyProps {
   userId?: string;
 }
 const ListEmpty: FC<PropsWithChildren<ListEmptyProps>> = (props) => {
-  const { className, style, width = 120, height = 120, userId } = props;
+  const { className, style, width = 120, height = 120 } = props;
   return (
     <div
       className={classNames("flex items-center flex-col", className)}

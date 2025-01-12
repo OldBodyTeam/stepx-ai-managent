@@ -1,10 +1,10 @@
 import { FC, PropsWithChildren } from "react";
 import classNames from "classnames";
-import { CoverColorListCreate200ResponseDataItems } from "@/services";
+import { CoverColorListCreate200ResponseDataItemsInner } from "@/services";
 export type ColorListProps = {
   value?: string;
   onChange?: (value?: string) => void;
-  colorList?: CoverColorListCreate200ResponseDataItems[];
+  colorList?: CoverColorListCreate200ResponseDataItemsInner[];
 };
 const ColorList: FC<PropsWithChildren<ColorListProps>> = (props) => {
   const { value, onChange, colorList } = props;
