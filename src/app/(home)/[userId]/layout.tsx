@@ -63,8 +63,8 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
               </div>
             </div>
             <RightLogo />
-            <div className="font-bold text-18 text-101010 leading-27 mb-16 mt-24">
-              Like Products
+            <div className="font-bold text-12 text-101010 leading-27 mb-16 mt-24">
+              Popular
             </div>
             <RightListProducts />
           </div>

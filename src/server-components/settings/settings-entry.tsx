@@ -111,7 +111,14 @@ const Page = () => {
                     </div>
                   </div>
                   <div className="text-16">
-                    <RightOutlined />
+                    <Image
+                      src={`/settings/arrow.png`}
+                      width={16}
+                      height={16}
+                      alt="avatar"
+                      className="w-auto h-auto aspect-square"
+                      style={{ width: "auto", height: "auto" }}
+                    />
                   </div>
                 </div>
               </Container>

@@ -7,22 +7,24 @@ import Image from "next/image";
 import { UploadItem } from "@arco-design/web-react/es/Upload";
 import { Spin } from "antd";
 import { uploadFileAction } from "@/app/(home)/[userId]/settings/actions";
-const Upload: FC<
+const AntdUpload: FC<
   UploadProps & {
     text: string;
-    value?: string;
+    value?: string[];
     onChange?: (v?: string) => void;
   } & { showClassName?: string }
 > = (props) => {
   const { className, style, text, value, onChange, showClassName, ...rest } =
     props;
   const [fileList, setFileList] = useState<UploadItem[]>([]);
+  const [previewUrl, setPreviewUrl] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const handleFileUpload = (fileList: UploadItem[], file: UploadItem) => {
     setFileList(fileList);
     setLoading(true);
     uploadFileAction(file.originFile as File)
       .then((data) => {
+        setPreviewUrl((prev) => [...prev, data?.data?.url ?? ""]);
         onChange?.(data?.data?.url ?? "");
         setLoading(false);
       })
@@ -30,7 +32,11 @@ const Upload: FC<
         setLoading(false);
       });
   };
-  console.log(value);
+  useEffect(() => {
+    if (value) {
+      setPreviewUrl(value);
+    }
+  }, [value]);
 
   return (
     <UploadArco
@@ -47,45 +53,45 @@ const Upload: FC<
       fileList={fileList}
       onChange={handleFileUpload}
       renderUploadList={() => null}
-      accept=".png"
-      beforeUpload={(file) => {
-        const reader = new FileReader();
-        // reader.onload = function fileReadCompleted() {
-        //   const img = new (Image as any)(); // creates an <img> element
-        //   img.src = reader.result; // loads the data URL as the image source
-        //   img.onLoad = (e: any) => {
-        //     console.log(e.target);
-        //   };
-        // };
-        reader.readAsDataURL(file);
-        return true;
-      }}
+      multiple
     >
-      <Spin spinning={loading} className="h-full" rootClassName="h-full">
-        {value ? (
-          <div className="!w-180 !h-full overflow-hidden rounded-12 relative">
-            <img
-              src={value}
-              alt="add"
-              className="object-cover w-full h-full inline-block"
-            />
-            <div className="absolute bottom-0 left-0 w-full py-4 flex items-center justify-center text-101010 text-xs12 font-medium bg-D0FF71">
-              Re-upload
-            </div>
-          </div>
-        ) : (
+      <Spin
+        spinning={loading}
+        className="w-full h-full"
+        rootClassName="w-full h-full"
+      >
+        <div className="w-full h-full overflow-x-auto overflow-y-hidden space-x-12 flex items-center min-w-0">
+          {previewUrl.length > 0
+            ? previewUrl.map((item) => {
+                return (
+                  <div
+                    className="!w-180 !h-full overflow-hidden rounded-12 relative"
+                    key={item}
+                  >
+                    <img
+                      src={item}
+                      alt="add"
+                      className="object-cover w-full h-full inline-block"
+                    />
+                    <div className="absolute bottom-0 left-0 w-full py-4 flex items-center justify-center text-101010 text-xs12 font-medium bg-D0FF71">
+                      Re-upload
+                    </div>
+                  </div>
+                );
+              })
+            : null}
           <div
             className={cls(
-              "flex items-center justify-center space-y-8 flex-col h-full ",
+              "flex items-center justify-center space-y-8 flex-col h-full w-full",
               showClassName
             )}
           >
             <Image src={"/add-yellow.png"} width={24} height={24} alt="add" />
             <div className="text-xs12 text-101010">{text}</div>
           </div>
-        )}
+        </div>
       </Spin>
     </UploadArco>
   );
 };
-export default Upload;
+export default AntdUpload;

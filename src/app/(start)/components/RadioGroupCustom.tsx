@@ -35,7 +35,6 @@ const RadioGroupCustom: FC<{
                     <div className="ml-16">
                       <div className="mb-6 font-bold text-xs14 text-101010">
                         {item.label}
-                        Individual Users
                       </div>
                       <div className="text-xs12 text-101010">{item.desc}</div>
                     </div>

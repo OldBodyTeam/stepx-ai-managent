@@ -57,9 +57,9 @@ const ProductItem: FC<
           ) : null}
         </div>
       </div>
-      <div className="bg-E8E8E9 px-10 py-6 rounded-6 flex items-center">
+      <div className="bg-[rgba(232,232,233,0.2)] px-10 py-6 rounded-6 flex items-center">
         <Typography.Title
-          className="!text-222222 opacity-80 !text-xs12 !my-0"
+          className="!text-o348 !text-xs12 !my-0"
           ellipsis={{ rows: 1 }}
         >
           {subtitle as unknown as string}

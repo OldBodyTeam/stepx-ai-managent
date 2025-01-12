@@ -5,6 +5,7 @@ import BaseModal from "./BaseModal";
 import { useAtomValue } from "jotai";
 import { userInfoAtom } from "@/stores/userInfo";
 import { uploadUsername } from "@/app/(home)/[userId]/settings/actions";
+import { useHandleResponse } from "@/hooks/useHandleResponse";
 export type ModifyUsernameProps = {
   visible?: boolean;
 };
@@ -16,18 +17,17 @@ const ModifyUsername: FC<PropsWithChildren<ModifyUsernameProps>> = (props) => {
   const showModal = () => {
     setIsModalOpen(true);
   };
-
+  const { contextHolder, showErrorMessage } = useHandleResponse();
   const handleOk = async () => {
     setIsModalOpen(false);
     try {
       await form.validateFields();
       const values = form.getFieldsValue();
-      console.log(values);
       const data = await uploadUsername({
         ...values,
         role_id: userInfo?.id,
       });
-      console.log(data);
+      showErrorMessage(data);
     } catch (error) {
       console.log(error);
     }
@@ -38,6 +38,7 @@ const ModifyUsername: FC<PropsWithChildren<ModifyUsernameProps>> = (props) => {
   };
   return (
     <>
+      {contextHolder}
       <div onClick={showModal}>{children}</div>
       <BaseModal
         title="Change Username"

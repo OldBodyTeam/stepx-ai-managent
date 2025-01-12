@@ -2,13 +2,13 @@ import { FC, PropsWithChildren } from "react";
 import classNames from "classnames";
 import { CoverColorListCreate200ResponseDataItemsInner } from "@/services";
 export type ColorListProps = {
-  value?: string;
-  onChange?: (value?: string) => void;
+  value?: number;
+  onChange?: (value?: number) => void;
   colorList?: CoverColorListCreate200ResponseDataItemsInner[];
 };
 const ColorList: FC<PropsWithChildren<ColorListProps>> = (props) => {
   const { value, onChange, colorList } = props;
-  const handleSelectedColor = (color?: string) => {
+  const handleSelectedColor = (color?: number) => {
     onChange?.(color);
   };
   return (
@@ -17,14 +17,18 @@ const ColorList: FC<PropsWithChildren<ColorListProps>> = (props) => {
         <div
           key={item.id}
           className={classNames(
-            "flex-1 h-32 rounded-6 cursor-pointer border-1 border-solid overflow-hidden border-transparent",
+            "flex-1 rounded-8 cursor-pointer border-1 border-solid  border-transparent p-2 bg-transparent overflow-hidden",
             {
-              "!border-FADB14 ": value === item.background_color,
+              "!border-FADB14 ": value === item.id,
             }
           )}
-          onClick={() => handleSelectedColor(item.background_color)}
-          style={{ backgroundColor: item.background_color }}
-        />
+          onClick={() => handleSelectedColor(item.id)}
+        >
+          <div
+            className="h-32 w-full rounded-8"
+            style={{ backgroundColor: item.background_color }}
+          />
+        </div>
       ))}
     </div>
   );

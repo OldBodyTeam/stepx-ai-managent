@@ -14,6 +14,7 @@ import {
 import ColorList from "@/components/color-list/ColorList";
 import Image from "next/image";
 import PayModal from "@/components/modal/PayModal";
+import AntdUpload from "@/components/base/AntdUpload";
 export interface ProductCreateProps {
   colorList?: CoverColorListCreate200ResponseDataItemsInner[];
   categoryList?: CategoryListCreate200ResponseDataItemsInner[];
@@ -69,7 +70,7 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
               <Form.Item name="product_link">
                 <Input placeholder="Please enter the product link" />
               </Form.Item>
-              <Form.Item name="a">
+              <Form.Item name="category_ids">
                 <Cascader
                   placeholder="Please enter the product link"
                   style={{ width: "100%" }}
@@ -105,14 +106,14 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
           <div className="text-xs12 font-medium text-101010 mt-16 mb-12">
             Logo Background Color
           </div>
-          <Form.Item name="color">
+          <Form.Item name="cover_color_id">
             <ColorList colorList={colorList} />
           </Form.Item>
           <div className="text-xs12 font-medium text-101010 mt-16 mb-12">
             Upload Pictures
           </div>
           <Form.Item name="cover">
-            <Upload
+            <AntdUpload
               imagePreview
               listType="picture-card"
               text="Upload Cover"
@@ -129,7 +130,7 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
         <div className="p-16 rounded-16 bg-FFFFFF">
           <div className="flex space-x-12 items-center">
             <div className="space-y-8 flex flex-col flex-1">
-              <Form.Item>
+              <Form.Item name="title">
                 <LabelProgress
                   title="Title"
                   explain="Title"
@@ -137,44 +138,31 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
                   base={60}
                 />
               </Form.Item>
-              <LabelProgress
-                title="Permalink"
-                explain="Title"
-                placeholder="This is the unique URL of this page,displayed below the post title in the search results."
-                base={75}
-              />
-              <LabelProgress
-                type="textarea"
-                base={160}
-                title="Description"
-                explain="Title"
-                placeholder="This is what will appear as the description when this post shows up in the search results."
-              />
-              <Title className="my-16" explain={"xx"}>
-                Focus Keyword
-              </Title>
-              <Form.Item name={"focus"}>
-                <Select
-                  options={[]}
-                  mode="tags"
-                  defaultOpen={false}
-                  tagRender={(props) => {
-                    return (
-                      <div className="bg-D0FF71 px-10 py-4 rounded-25 text-xs12 text-101010 font-medium flex items-center mx-2">
-                        {props.value}
-                        <Image
-                          src={"/rate/close.png"}
-                          width={10}
-                          height={10}
-                          alt="close"
-                          className="ml-2"
-                        />
-                      </div>
-                    );
-                  }}
-                  dropdownStyle={{ display: "none" }}
-                  suffixIcon={null}
-                  maxTagCount="responsive"
+              <Form.Item name="permalink">
+                <LabelProgress
+                  title="Permalink"
+                  explain="Title"
+                  placeholder="This is the unique URL of this page,displayed below the post title in the search results."
+                  base={75}
+                  type="input"
+                />
+              </Form.Item>
+              <Form.Item name="description">
+                <LabelProgress
+                  type="textarea"
+                  base={160}
+                  title="Description"
+                  explain="Title"
+                  placeholder="This is what will appear as the description when this post shows up in the search results."
+                />
+              </Form.Item>
+              <Form.Item name={"focus_keyword"}>
+                <LabelProgress
+                  type="select"
+                  base={10}
+                  title="Focus Keyword"
+                  explain="Title"
+                  placeholder="This is what will appear as the description when this post shows up in the search results."
                 />
               </Form.Item>
             </div>

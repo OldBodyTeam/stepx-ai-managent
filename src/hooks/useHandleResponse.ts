@@ -6,7 +6,7 @@ export interface ResponseErrorData {
 }
 const useHandleResponse = () => {
   const [messageApi, contextHolder] = message.useMessage();
-  const showErrorMessage = (response: ResponseErrorData) => {
+  const showErrorMessage = (response: any) => {
     if (response.code === 500) {
       messageApi.error(response.msg);
       return false;

@@ -35,6 +35,21 @@ export default function RootLayout({
                   borderRadius: 12,
                   lineHeight: 18 / 12,
                   colorText: "#101010",
+                  activeBorderColor: "#FADB14",
+                  colorBorder: "#F0F0F0",
+                },
+                Cascader: { dropdownHeight: 260, optionSelectedBg: "#F5F5F5" },
+                Select: {
+                  borderRadius: 12,
+                  multipleItemHeight: 32,
+                  activeBorderColor: "#FADB14",
+                },
+                Checkbox: {
+                  colorBorder: "#E5E6EB",
+                  colorBgContainer: "#D0FF71",
+                },
+                Modal: {
+                  borderRadiusLG: 16,
                 },
               },
             }}

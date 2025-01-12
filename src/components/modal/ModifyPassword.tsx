@@ -8,6 +8,7 @@ import BaseModal from "./BaseModal";
 import { userInfoAtom } from "@/stores/userInfo";
 import { useAtomValue } from "jotai";
 import { uploadUsername } from "@/app/(home)/[userId]/settings/actions";
+import { useHandleResponse } from "@/hooks/useHandleResponse";
 export type ModifyEmailProps = {
   visible?: boolean;
 };
@@ -19,7 +20,7 @@ const ModifyEmail: FC<PropsWithChildren<ModifyEmailProps>> = (props) => {
   const showModal = () => {
     setIsModalOpen(true);
   };
-
+  const { contextHolder, showErrorMessage } = useHandleResponse();
   const handleOk = async () => {
     try {
       await form.validateFields();
@@ -30,7 +31,7 @@ const ModifyEmail: FC<PropsWithChildren<ModifyEmailProps>> = (props) => {
         role_id: userInfo?.id,
       });
       setIsModalOpen(false);
-      console.log(data);
+      showErrorMessage(data);
     } catch (error) {
       console.log(error);
     }
@@ -51,6 +52,7 @@ const ModifyEmail: FC<PropsWithChildren<ModifyEmailProps>> = (props) => {
   };
   return (
     <>
+      {contextHolder}
       <div onClick={showModal}>{children}</div>
       <BaseModal
         title="Change Username"

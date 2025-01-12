@@ -1,10 +1,11 @@
 "use client";
 import { FC, PropsWithChildren, ReactNode, useMemo, useState } from "react";
 import Title, { TitleProps } from "./Title";
-import { Progress } from "@arco-design/web-react";
+import { Progress, Select } from "antd";
 import InputBase, { InputBaseProps } from "./Input";
 import { useMemoizedFn } from "ahooks";
 import { Input as AntInput } from "antd";
+import Image from "next/image";
 export type LabelProgressProps = {
   title?: ReactNode;
   base: number;
@@ -39,8 +40,10 @@ const LabelProgress: FC<PropsWithChildren<LabelProgressProps>> = (props) => {
           </div>
           <Progress
             percent={percent}
-            className={"!w-160 h-8"}
-            showText={false}
+            className={"!w-160"}
+            showInfo={false}
+            trailColor={"#F5F5F5"}
+            strokeColor={{ from: "#FADB14", to: "#D0FF71" }}
           />
         </div>
       </div>
@@ -51,7 +54,8 @@ const LabelProgress: FC<PropsWithChildren<LabelProgressProps>> = (props) => {
           value={text || value}
           onChange={handleChange}
         />
-      ) : (
+      ) : null}
+      {type === "textarea" ? (
         <AntInput.TextArea
           placeholder={placeholder}
           value={text || value}
@@ -60,7 +64,32 @@ const LabelProgress: FC<PropsWithChildren<LabelProgressProps>> = (props) => {
           }
           className={"!resize-none  !min-h-100"}
         />
-      )}
+      ) : null}
+      {type === "select" ? (
+        <Select
+          options={[]}
+          mode="tags"
+          defaultOpen={false}
+          tagRender={(props) => {
+            return (
+              <div className="bg-D0FF71 px-10 py-4 rounded-25 text-xs12 text-101010 font-medium flex items-center mx-2">
+                {props.value}
+                <Image
+                  src={"/rate/close.png"}
+                  width={10}
+                  height={10}
+                  alt="close"
+                  className="ml-2"
+                />
+              </div>
+            );
+          }}
+          dropdownStyle={{ display: "none" }}
+          suffixIcon={null}
+          maxTagCount="responsive"
+          onChange={handleChange}
+        />
+      ) : null}
     </div>
   );
 };

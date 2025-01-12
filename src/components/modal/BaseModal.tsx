@@ -34,6 +34,7 @@ const BaseModal: FC<PropsWithChildren<BaseModalProps>> = (props) => {
           Confirm
         </Button>,
       ]}
+      centered
     >
       {children}
     </Modal>

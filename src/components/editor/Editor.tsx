@@ -76,7 +76,13 @@ const EditorContent: FC<EditorContentProps> = (props) => {
   }, [editor]);
   return (
     <>
-      <div style={{ border: "1px solid #ccc", zIndex: 100 }}>
+      <div
+        style={{
+          border: "1px solid #F0F0F0",
+          zIndex: 100,
+        }}
+        className="rounded-16 relative"
+      >
         <Toolbar
           editor={editor}
           defaultConfig={toolbarConfig}

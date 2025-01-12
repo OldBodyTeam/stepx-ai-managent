@@ -28,7 +28,7 @@ const PayModal: FC<PayModalProps> = (props) => {
   return (
     <>
       <div
-        className="border-1 border-E8E8E9 py-14 flex items-center justify-center text-FA3100 text-xs14 font-medium rounded-48 bg-FFFFFF my-16"
+        className="border-1 border-E8E8E9 py-14 flex items-center justify-center text-101010 text-xs14 font-medium rounded-48 bg-FFFFFF my-16"
         onClick={showModal}
       >
         Submit For Review
