@@ -15,7 +15,7 @@ const Nav = () => {
           <div className="text-22 leading-33 font-bold mb-4">
             {navInfo?.name}
           </div>
-          <div className="flex items-center text-o16 opacity-65 text-12 leading-18">
+          <div className="flex items-center text-o16 text-12 leading-18">
             Home /
             <div className="text-101010 text-12 leading-18 ml-4">
               {navInfo?.name}

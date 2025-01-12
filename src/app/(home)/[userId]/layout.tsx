@@ -4,6 +4,7 @@ import Nav from "@/components/nav/Nav";
 import RightListProducts from "@/components/right-list-products/RightListProducts";
 import RightLogo from "@/components/right-logo/RightLogo";
 import Image from "next/image";
+import Link from "next/link";
 export const navMenu = [
   // { key: "search", path: "/search.png" },
   // { key: "language", path: "/language.png" },
@@ -52,12 +53,19 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
               <div className="space-x-16 flex items-center">
                 {navMenu.map((v) => {
                   return (
-                    <div
-                      className="flex items-center justify-center w-32 h-32 rounded-32 bg-FFFFFF"
-                      key={v.key}
-                    >
-                      <Image src={v.path} alt={v.key} width={16} height={16} />
-                    </div>
+                    <Link href={"/settings"}>
+                      <div
+                        className="flex items-center justify-center w-32 h-32 rounded-32 bg-FFFFFF"
+                        key={v.key}
+                      >
+                        <Image
+                          src={v.path}
+                          alt={v.key}
+                          width={16}
+                          height={16}
+                        />
+                      </div>
+                    </Link>
                   );
                 })}
               </div>

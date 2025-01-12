@@ -3,7 +3,7 @@
 import Title from "@/components/base/Title";
 import LabelProgress from "@/components/base/LabelProgress";
 import { useMemoizedFn } from "ahooks";
-import { Cascader, Form, Input, Select } from "antd";
+import { Cascader, Form, Input } from "antd";
 import Upload from "@/components/base/Upload";
 import EditorPreview from "@/components/editor";
 import { FC, useMemo } from "react";

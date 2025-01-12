@@ -1,7 +1,6 @@
 "use client";
 import { Divider, Upload } from "antd";
 import Image from "next/image";
-import { RightOutlined } from "@ant-design/icons";
 import { FC, Suspense, useState } from "react";
 import { useHydrateAtoms } from "jotai/utils";
 import { useRouter } from "next/navigation";

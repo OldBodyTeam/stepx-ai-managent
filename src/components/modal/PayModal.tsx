@@ -45,28 +45,34 @@ const PayModal: FC<PayModalProps> = (props) => {
         }
         width={692}
         footer={null}
+        centered
       >
         <Form form={form} className="!mt-24">
           <Form.Item name="pay">
             <PayRadio />
           </Form.Item>
-          <div className="mt-16 mb-8 text-101010 text-xs12">
-            Friendship link
-          </div>
+
           <Form.Item shouldUpdate>
             {({ getFieldValue }) => {
               const pay: string = getFieldValue("pay") || "";
               console.log(pay);
               return pay ? (
-                <Form.Item name="a">
-                  <Input placeholder="Please add our friendly link on your website, otherwise there may be a risk of delisting" />
-                </Form.Item>
+                <>
+                  <div className="mt-16 mb-8 text-101010 text-xs12">
+                    Friendship link
+                  </div>
+                  <Form.Item name="a">
+                    <Input placeholder="Please add our friendly link on your website, otherwise there may be a risk of delisting" />
+                  </Form.Item>
+                </>
               ) : null;
             }}
           </Form.Item>
         </Form>
-        <div>
-          <div></div>
+        <div className="flex items-center justify-center mt-16">
+          <div className="px-56 py-10 cursor-pointer text-xs12 font-medium text-101010 bg-D0FF71 rounded-20">
+            Confirm
+          </div>
         </div>
       </Modal>
     </>

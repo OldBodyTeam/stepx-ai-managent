@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import cls from "classnames";
 import { Upload as UploadArco, UploadProps } from "@arco-design/web-react";
 import Image from "next/image";
