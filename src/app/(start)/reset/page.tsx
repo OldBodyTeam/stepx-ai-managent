@@ -56,6 +56,7 @@ const Reset = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
 
@@ -86,6 +87,7 @@ const Reset = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -116,6 +118,7 @@ const Reset = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -145,6 +148,7 @@ const Reset = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item>
@@ -166,6 +170,7 @@ const Reset = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
       </Form>

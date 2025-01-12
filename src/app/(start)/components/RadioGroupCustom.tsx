@@ -16,10 +16,10 @@ const RadioGroupCustom: FC<{
 }> = (props) => {
   const { options, onChange } = props;
   return (
-    <Radio.Group className="space-y-16" onChange={onChange}>
+    <Radio.Group className="space-y-16 w-480" onChange={onChange}>
       {options.map((item) => {
         return (
-          <Radio value={item.title} key={item.title}>
+          <Radio value={item.title} key={item.title} className={"!pl-0"}>
             {({ checked }) => {
               return (
                 <div className="p-24 flex items-center justify-between bg-FFFFFF rounded-16">

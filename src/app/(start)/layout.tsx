@@ -11,7 +11,7 @@ const RegisterLayout: FC<PropsWithChildren<any>> = ({ children }) => {
           backgroundSize: "100% 100%",
         }}
       ></div>
-      <div className="w-504 h-504 rounded-504 bg-D0FF71 opacity-60 blur-[50px] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-0"></div>
+      <div className="w-504 h-504 rounded-504 bg-[rgba(208,255,113,0.3)] opacity-60 blur-[50px] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-0"></div>
       <div className="w-[1280px] flex space-x-164 z-10">
         <div className="flex flex-col ">
           <Image
@@ -32,9 +32,13 @@ const RegisterLayout: FC<PropsWithChildren<any>> = ({ children }) => {
           }}
         >
           <div>
-            <div className="font-medium text-40 leading-60 text-FFFFFF mb-80">
-              Real user Reviews of StepxAi.
+            <div className="font-medium text-40 leading-60 text-FFFFFF">
+              Real user
             </div>
+            <div className="font-medium text-40 leading-60 text-FFFFFF">
+              Reviews of StepxAi.
+            </div>
+            <div className="font-medium text-56 leading-80 text-FFFFFF">"</div>
             <SwiperClient />
           </div>
           <div

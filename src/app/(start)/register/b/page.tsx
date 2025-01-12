@@ -67,6 +67,7 @@ const BClient = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -96,6 +97,7 @@ const BClient = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -125,6 +127,7 @@ const BClient = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -155,6 +158,7 @@ const BClient = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -184,6 +188,7 @@ const BClient = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
       </Form>

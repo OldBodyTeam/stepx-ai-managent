@@ -44,11 +44,13 @@ const RegisterPage = () => {
   return (
     <div>
       {contextHolder}
-      <div className="text-14 text-222222 font-medium mb-32">
+      <div className="text-14 text-222222 font-medium mb-32 mt-48">
         Please select the account you need to create
       </div>
       <RadioGroupCustom options={options} onChange={(path) => setPath(path)} />
-      <RadioVar onChange={(e) => setMatch(e)} value={match} />
+      <div className="w-480 flex items-center justify-center">
+        <RadioVar onChange={(e) => setMatch(e)} value={match} />
+      </div>
       <div className="space-y-16 mt-44">
         <Button onClick={handleClick}>Next Step</Button>
         <Button className="!bg-EDEDED !border-1 !border-222222 !text-101010">

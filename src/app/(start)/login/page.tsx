@@ -79,6 +79,7 @@ const Login = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -108,11 +109,14 @@ const Login = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
-        <div className="flex justify-end mt-8 text-xs12 text-101010 cursor-pointer">
-          <Link href={"/reset"}>Forgot Password</Link>
-        </div>
+        <Link href={"/reset"}>
+          <div className="flex justify-end mt-8 text-xs12 text-101010 cursor-pointer">
+            Forgot Password
+          </div>
+        </Link>
       </Form>
       <RadioVar onChange={(e) => setMatch(e)} value={match} />
       <div className="space-y-16 mt-44">

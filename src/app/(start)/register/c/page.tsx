@@ -67,6 +67,7 @@ const CClient = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -96,6 +97,7 @@ const CClient = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -126,6 +128,7 @@ const CClient = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
         <Form.Item
@@ -155,6 +158,7 @@ const CClient = () => {
                 height={16}
               />
             }
+            style={{ height: 48 }}
           />
         </Form.Item>
       </Form>
