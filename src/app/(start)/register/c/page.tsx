@@ -3,11 +3,7 @@
 import Button from "../../components/Button";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  validateEmail,
-  validateEmpty,
-  validatePassword,
-} from "@/utils/validate";
+import { validateEmail, validatePassword } from "@/utils/validate";
 import { useMemoizedFn } from "ahooks";
 import { createCUser } from "./actions";
 import { get } from "lodash";

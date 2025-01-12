@@ -9,7 +9,6 @@ import { createBUser } from "./actions";
 import {
   validateCompanyEmpty,
   validateEmail,
-  validateEmpty,
   validatePassword,
 } from "@/utils/validate";
 import { useHandleResponse } from "@/hooks/useHandleResponse";

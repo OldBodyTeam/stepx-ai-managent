@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { validateEmpty, validatePassword } from "@/utils/validate";
+import { validatePassword } from "@/utils/validate";
 import { loginAction } from "./actions";
 import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { get } from "lodash";

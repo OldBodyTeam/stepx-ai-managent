@@ -6,11 +6,7 @@ import { get } from "lodash";
 import { restPassword } from "./actions";
 import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { useRouter } from "next/navigation";
-import {
-  validateEmail,
-  validateEmpty,
-  validatePassword,
-} from "@/utils/validate";
+import { validateEmail, validatePassword } from "@/utils/validate";
 import { useMemoizedFn } from "ahooks";
 import { Form, Input } from "antd";
 const Reset = () => {
