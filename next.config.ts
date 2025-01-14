@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/",
-        destination: "/register",
+        destination: "/login",
         permanent: true,
       },
     ];
@@ -20,9 +20,10 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     serverActions: {
-      bodySizeLimit: "100mb",
+      bodySizeLimit: "5mb",
     },
   },
+  reactStrictMode: true,
 };
 
 export default nextConfig;

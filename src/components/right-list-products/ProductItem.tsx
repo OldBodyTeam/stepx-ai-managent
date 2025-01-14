@@ -11,7 +11,7 @@ const ProductItem: FC<
     <div className="space-y-8 bg-FFFFFF py-16 w-full">
       <div className="flex items-center justify-between">
         <div className="space-x-10 flex items-center">
-          <div className="w-40 h-40 rounded-8 bg-D0FF71">
+          <div className="w-40 h-40 min-w-40 rounded-8 bg-D0FF71">
             <Image
               src={encodeURI(logo as unknown as string)}
               width={18}
@@ -21,9 +21,12 @@ const ProductItem: FC<
           </div>
           <div className="space-y-4">
             <div className="flex space-x-4 items-center">
-              <div className="text-222222 text-xs14 font-medium">
+              <Typography.Title
+                className="!text-222222 !text-xs14 !font-medium"
+                ellipsis={{ rows: 1, tooltip: true }}
+              >
                 {product_name as unknown as string}
-              </div>
+              </Typography.Title>
               <Image
                 src="/yes-yellow.png"
                 alt="yellow"
@@ -60,7 +63,7 @@ const ProductItem: FC<
       <div className="bg-[rgba(232,232,233,0.2)] px-10 py-6 rounded-6 flex items-center">
         <Typography.Title
           className="!text-o348 !text-xs12 !my-0"
-          ellipsis={{ rows: 1 }}
+          ellipsis={{ rows: 1, tooltip: true }}
         >
           {subtitle as unknown as string}
         </Typography.Title>

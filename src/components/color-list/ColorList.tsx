@@ -25,8 +25,11 @@ const ColorList: FC<PropsWithChildren<ColorListProps>> = (props) => {
           onClick={() => handleSelectedColor(item.id)}
         >
           <div
-            className="h-32 w-full rounded-8"
-            style={{ backgroundColor: item.background_color }}
+            className="h-32 w-full rounded-8 border-1 border-solid"
+            style={{
+              backgroundColor: item.background_color,
+              borderColor: item.border_color,
+            }}
           />
         </div>
       ))}

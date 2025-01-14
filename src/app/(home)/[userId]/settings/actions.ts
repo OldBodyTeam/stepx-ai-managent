@@ -9,9 +9,16 @@ const uploadFileAction = async (file: File) => {
     return res.data;
   });
 };
+const uploadNoLimitCreateAction = async (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  return tokenApi.uploadNoLimitCreate(file).then((res) => {
+    return res.data;
+  });
+};
 const uploadUsername = async (params: AdminUpdateCreateRequest) => {
   return tokenApi.adminUpdateCreate(params).then((res) => {
     return res.data;
   });
 };
-export { uploadFileAction, uploadUsername };
+export { uploadFileAction, uploadUsername, uploadNoLimitCreateAction };

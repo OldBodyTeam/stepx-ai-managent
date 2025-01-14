@@ -3431,17 +3431,11 @@ export interface PaymentPlanListCreate200ResponseDataItemsInner {
      */
     'recommendation'?: string;
     /**
-     * 功能特点列表
-     * @type {Array<string>}
+     * 特性和限制列表
+     * @type {Array<PaymentPlanListCreate200ResponseDataItemsInnerFeaturesListInner>}
      * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
-    'features'?: Array<string>;
-    /**
-     * 使用限制列表
-     * @type {Array<string>}
-     * @memberof PaymentPlanListCreate200ResponseDataItemsInner
-     */
-    'restrictions'?: Array<string>;
+    'features_list'?: Array<PaymentPlanListCreate200ResponseDataItemsInnerFeaturesListInner>;
     /**
      * 版本类型
      * @type {string}
@@ -3466,6 +3460,25 @@ export interface PaymentPlanListCreate200ResponseDataItemsInner {
      * @memberof PaymentPlanListCreate200ResponseDataItemsInner
      */
     'create_time'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PaymentPlanListCreate200ResponseDataItemsInnerFeaturesListInner
+ */
+export interface PaymentPlanListCreate200ResponseDataItemsInnerFeaturesListInner {
+    /**
+     * 特性或限制的内容
+     * @type {string}
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInnerFeaturesListInner
+     */
+    'test'?: string;
+    /**
+     * true表示特性，false表示限制
+     * @type {boolean}
+     * @memberof PaymentPlanListCreate200ResponseDataItemsInnerFeaturesListInner
+     */
+    'selected'?: boolean;
 }
 /**
  * 
@@ -10678,6 +10691,52 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 上传文件至minio（无任何限制）
+         * @param {File} file 支持所有类型文件上传，无大小和格式限制
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadNoLimitCreate: async (file: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'file' is not null or undefined
+            assertParamExists('uploadNoLimitCreate', 'file', file)
+            const localVarPath = `/upload/no_limit`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 获取minio文件访问URL
          * @param {UploadUrlCreateRequest} data 
          * @param {*} [options] Override http request option.
@@ -11842,6 +11901,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * 上传文件至minio（无任何限制）
+         * @param {File} file 支持所有类型文件上传，无大小和格式限制
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async uploadNoLimitCreate(file: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadCreate200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.uploadNoLimitCreate(file, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.uploadNoLimitCreate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * 获取minio文件访问URL
          * @param {UploadUrlCreateRequest} data 
          * @param {*} [options] Override http request option.
@@ -12659,6 +12730,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         uploadCreate(file: File, options?: RawAxiosRequestConfig): AxiosPromise<UploadCreate200Response> {
             return localVarFp.uploadCreate(file, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 上传文件至minio（无任何限制）
+         * @param {File} file 支持所有类型文件上传，无大小和格式限制
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadNoLimitCreate(file: File, options?: RawAxiosRequestConfig): AxiosPromise<UploadCreate200Response> {
+            return localVarFp.uploadNoLimitCreate(file, options).then((request) => request(axios, basePath));
         },
         /**
          * 获取minio文件访问URL
@@ -13640,6 +13720,17 @@ export class DefaultApi extends BaseAPI {
      */
     public uploadCreate(file: File, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).uploadCreate(file, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 上传文件至minio（无任何限制）
+     * @param {File} file 支持所有类型文件上传，无大小和格式限制
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public uploadNoLimitCreate(file: File, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).uploadNoLimitCreate(file, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

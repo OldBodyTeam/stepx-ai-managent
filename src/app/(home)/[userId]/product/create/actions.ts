@@ -3,9 +3,10 @@
 import { ProductCreateCreateRequest } from "@/services";
 import { tokenApi } from "@/utils/server-service";
 
-const createTodo = async (params: ProductCreateCreateRequest) => {
+const createProductList = async (params: ProductCreateCreateRequest) => {
   tokenApi.productCreateCreate(params).then((response) => {
     console.log(response.data);
+    return response.data;
   });
 };
 const getCategoryList = async () => {
@@ -15,8 +16,17 @@ const getCategoryList = async () => {
 };
 const getColorList = async () => {
   return tokenApi.coverColorListCreate({}).then((response) => {
-    console.log(response.data);
     return response.data;
   });
 };
-export { createTodo, getCategoryList, getColorList };
+const getPaymentPlanListCreate = async () => {
+  return tokenApi.paymentPlanListCreate({}).then((response) => {
+    return response.data;
+  });
+};
+export {
+  createProductList,
+  getCategoryList,
+  getColorList,
+  getPaymentPlanListCreate,
+};

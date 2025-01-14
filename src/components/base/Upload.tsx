@@ -12,17 +12,29 @@ const Upload: FC<
     text: string;
     value?: string;
     onChange?: (v?: string) => void;
+    showErrorMessage?: (response: any) => boolean;
   } & { showClassName?: string }
 > = (props) => {
-  const { className, style, text, value, onChange, showClassName, ...rest } =
-    props;
-  const [fileList, setFileList] = useState<UploadItem[]>([]);
+  const {
+    className,
+    style,
+    text,
+    value,
+    onChange,
+    showClassName,
+    showErrorMessage,
+    ...rest
+  } = props;
   const [loading, setLoading] = useState(false);
   const handleFileUpload = (fileList: UploadItem[], file: UploadItem) => {
-    setFileList(fileList);
     setLoading(true);
     uploadFileAction(file.originFile as File)
       .then((data) => {
+        const isValid = showErrorMessage?.(data);
+        if (!isValid) {
+          setLoading(false);
+          return;
+        }
         onChange?.(data?.data?.url ?? "");
         setLoading(false);
       })
@@ -30,7 +42,6 @@ const Upload: FC<
         setLoading(false);
       });
   };
-  console.log(value);
 
   return (
     <UploadArco
@@ -44,7 +55,7 @@ const Upload: FC<
         className
       )}
       style={style}
-      fileList={fileList}
+      fileList={[]}
       onChange={handleFileUpload}
       renderUploadList={() => null}
       accept=".png"
