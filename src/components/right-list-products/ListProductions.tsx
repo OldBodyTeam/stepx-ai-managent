@@ -31,7 +31,6 @@ const ListProductions: FC<ListProductionsProps> = (props) => {
   const listData = useMemo(() => {
     return unionBy(list.concat(data?.items ?? []), "id");
   }, [data?.items, list]);
-  console.log(data);
 
   return (
     <div

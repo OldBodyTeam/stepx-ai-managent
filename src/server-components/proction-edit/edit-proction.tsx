@@ -2,7 +2,7 @@
 
 import Title from "@/components/base/Title";
 import LabelProgress from "@/components/base/LabelProgress";
-import { useMemoizedFn } from "ahooks";
+import { useMemoizedFn, useMount } from "ahooks";
 import { Cascader, Form, Input } from "antd";
 import Upload from "@/components/base/Upload";
 import EditorPreview from "@/components/editor";
@@ -11,6 +11,7 @@ import {
   CategoryListCreate200ResponseDataItemsInner,
   CoverColorListCreate200ResponseDataItemsInner,
   PaymentPlanListCreate200ResponseDataItemsInner,
+  ProductDetailCreate200ResponseData,
 } from "@/services";
 import ColorList from "@/components/color-list/ColorList";
 import Image from "next/image";
@@ -23,9 +24,10 @@ export interface ProductCreateProps {
   colorList?: CoverColorListCreate200ResponseDataItemsInner[];
   categoryList?: CategoryListCreate200ResponseDataItemsInner[];
   paymentPlanListData?: PaymentPlanListCreate200ResponseDataItemsInner[];
+  editFormData?: ProductDetailCreate200ResponseData;
 }
-const ProductCreate: FC<ProductCreateProps> = (props) => {
-  const { colorList, categoryList, paymentPlanListData } = props;
+const ProductEdit: FC<ProductCreateProps> = (props) => {
+  const { colorList, categoryList, paymentPlanListData, editFormData } = props;
   const [form] = Form.useForm();
   const { contextHolder, showErrorMessage, messageApi } = useHandleResponse();
   const handleSubmit = useMemoizedFn(async (payData?: any) => {
@@ -40,6 +42,10 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
       console.log(error);
       messageApi.error(get(error, "errorFields.0.errors.0"));
     }
+  });
+
+  useMount(() => {
+    form.setFieldsValue(editFormData);
   });
 
   const list = useMemo(() => {
@@ -116,6 +122,7 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
                 {({ getFieldValue }) => {
                   const colorId = getFieldValue("cover_color_id");
                   const color = colorList?.find((v) => v.id === colorId);
+                  console.log(color);
                   return (
                     <Form.Item
                       name="logo"
@@ -210,4 +217,4 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
     </div>
   );
 };
-export default ProductCreate;
+export default ProductEdit;

@@ -9,7 +9,7 @@ const Nav = () => {
   const navInfo = useAtomValue(menuAtom);
   const pathname = usePathname();
   return (
-    <div className="flex items-center pt-15 mb-24">
+    <div className="flex items-center pt-15 mb-24 ">
       <div className="flex-1 justify-between items-center flex">
         <div>
           <div className="text-22 leading-33 font-bold mb-4">

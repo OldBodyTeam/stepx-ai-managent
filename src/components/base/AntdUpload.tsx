@@ -54,11 +54,11 @@ const AntdUpload: FC<
       id={id}
     >
       {(value?.length ?? 0) > 0
-        ? value?.map((item) => {
+        ? value?.map((item, index) => {
             return (
               <div
                 className="!w-104 !h-104 min-w-104 overflow-hidden rounded-12 relative"
-                key={item}
+                key={item + "-" + index}
               >
                 <img
                   src={item}

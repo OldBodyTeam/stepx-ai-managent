@@ -81,6 +81,18 @@ export default {
           lineHeight: "27px",
         },
       ],
+      xs20: [
+        "20px",
+        {
+          lineHeight: "30px",
+        },
+      ],
+      xs26: [
+        "26px",
+        {
+          lineHeight: "39px",
+        },
+      ],
     },
     screens: {
       desktop12: "1280px",

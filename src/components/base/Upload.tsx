@@ -13,6 +13,7 @@ const Upload: FC<
     value?: string;
     onChange?: (v?: string) => void;
     showErrorMessage?: (response: any) => boolean;
+    bgColor?: string;
   } & { showClassName?: string }
 > = (props) => {
   const {
@@ -23,6 +24,7 @@ const Upload: FC<
     onChange,
     showClassName,
     showErrorMessage,
+    bgColor,
     ...rest
   } = props;
   const [loading, setLoading] = useState(false);
@@ -74,7 +76,10 @@ const Upload: FC<
     >
       <Spin spinning={loading} className="h-full" rootClassName="h-full">
         {value ? (
-          <div className="!w-180 !h-full overflow-hidden rounded-12 relative">
+          <div
+            className="!w-180 !h-full overflow-hidden rounded-12 relative"
+            style={{ backgroundColor: bgColor }}
+          >
             <img
               src={value}
               alt="add"

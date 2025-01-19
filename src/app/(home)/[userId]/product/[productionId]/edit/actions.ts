@@ -1,10 +1,9 @@
 "use server";
 
-import { ProductCreateCreateRequest } from "@/services";
 import { tokenApi } from "@/utils/server-service";
 
-const createProductList = async (params: ProductCreateCreateRequest) => {
-  return tokenApi.productCreateCreate(params).then((response) => {
+const getProductDetailCreate = async (id: number) => {
+  return tokenApi.productDetailCreate({ id }).then((response) => {
     console.log(response.data);
     return response.data;
   });
@@ -16,7 +15,6 @@ const getCategoryList = async () => {
 };
 const getColorList = async () => {
   return tokenApi.coverColorListCreate({}).then((response) => {
-    console.log(response.data);
     return response.data;
   });
 };
@@ -26,7 +24,7 @@ const getPaymentPlanListCreate = async () => {
   });
 };
 export {
-  createProductList,
+  getProductDetailCreate,
   getCategoryList,
   getColorList,
   getPaymentPlanListCreate,

@@ -3,7 +3,6 @@ import ListProductions from "./ListProductions";
 
 const RightListProducts = async () => {
   const list = await statsPopularCreate({ page: 1, page_size: 20 });
-
   return (
     <ListProductions
       list={list?.items ?? []}

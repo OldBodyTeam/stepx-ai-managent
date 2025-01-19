@@ -11,12 +11,14 @@ const ProductItem: FC<
     <div className="space-y-8 bg-FFFFFF py-16 w-full">
       <div className="flex items-center justify-between">
         <div className="space-x-10 flex items-center">
-          <div className="w-40 h-40 min-w-40 rounded-8 bg-D0FF71">
-            <Image
-              src={encodeURI(logo as unknown as string)}
+          <div className="w-40 h-40 min-w-40 rounded-8">
+            <img
+              src={logo}
               width={18}
               height={18}
               alt="logo"
+              className="w-auto h-auto aspect-square"
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
           <div className="space-y-4">

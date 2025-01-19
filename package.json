@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gen-api": "openapi-generator-cli generate -i http://47.100.116.254:8084/swagger.json -g typescript-axios -o ./src/services --skip-validate-spec"
+    "gen-api": "openapi-generator-cli generate -i http://47.251.83.181:8084/swagger.json -g typescript-axios -o ./src/services --skip-validate-spec"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",

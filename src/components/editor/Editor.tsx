@@ -4,28 +4,28 @@ import "@wangeditor/editor/dist/css/style.css"; // 引入 css
 import { useState, useEffect, FC } from "react";
 import { Editor, Toolbar } from "@wangeditor/editor-for-react";
 import {
-  DomEditor,
+  // DomEditor,
   IDomEditor,
   IEditorConfig,
   IToolbarConfig,
   i18nChangeLanguage,
 } from "@wangeditor/editor";
-import { uploadFileAction } from "@/app/(home)/[userId]/settings/actions";
+import { uploadNoLimitCreateAction } from "@/app/(home)/[userId]/settings/actions";
 export interface EditorContentProps {
   value?: string;
   onChange?: (value: string) => void;
 }
 i18nChangeLanguage("en");
 const EditorContent: FC<EditorContentProps> = (props) => {
-  const { value, onChange } = props;
+  const { value = "", onChange } = props;
   const [editor, setEditor] = useState<IDomEditor | null>(null); // TS 语法
-  useEffect(() => {
-    if (editor == null) return;
-    const toolbar = DomEditor.getToolbar(editor);
+  // useEffect(() => {
+  //   if (editor == null) return;
+  //   const toolbar = DomEditor.getToolbar(editor);
 
-    const curToolbarConfig = toolbar?.getConfig();
-    console.log(curToolbarConfig?.toolbarKeys); // 当前菜单排序和分组
-  }, [editor]);
+  //   const curToolbarConfig = toolbar?.getConfig();
+  //   console.log(curToolbarConfig?.toolbarKeys); // 当前菜单排序和分组
+  // }, [editor]);
   // 编辑器内容
 
   // 工具栏配置
@@ -59,11 +59,11 @@ const EditorContent: FC<EditorContentProps> = (props) => {
   // 编辑器配置
   const editorConfig: Partial<IEditorConfig> = {
     // TS 语法
-    placeholder: "请输入内容...",
+    placeholder: "placeholder input content",
     MENU_CONF: {
       uploadImage: {
         async customUpload(file: File, insertFn: any) {
-          const { data } = (await uploadFileAction(file)) ?? {};
+          const { data } = (await uploadNoLimitCreateAction(file)) ?? {};
           insertFn(data?.url);
         },
       },

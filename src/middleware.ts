@@ -9,5 +9,5 @@ export default async function middleware() {
 
 // Routes Middleware should not run on
 export const config = {
-  matcher: ["/admin/info"],
+  matcher: ["/product/create", "/product/list"],
 };

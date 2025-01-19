@@ -14,7 +14,7 @@ axiosInstance.interceptors.response.use(
 );
 const api = new DefaultApi(
   new Configuration({
-    basePath: "http://47.100.116.254:8084",
+    basePath: "http://47.251.83.181:8084",
   })
   // "http://47.100.116.254:8084",
   // axiosInstance

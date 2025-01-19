@@ -89,6 +89,9 @@ const LabelProgress: FC<PropsWithChildren<LabelProgressProps>> = (props) => {
           maxTagCount="responsive"
           onChange={handleChange}
           size="large"
+          value={
+            Array.isArray(value) ? (value as string) : ([] as unknown as string)
+          }
         />
       ) : null}
     </div>

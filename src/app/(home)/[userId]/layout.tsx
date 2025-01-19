@@ -44,7 +44,7 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
           <Menu />
         </div>
         <div className="flex flex-1 overflow-hidden">
-          <div className="flex-1 px-24 overflow-y-auto overflow-x-hidden scrollbar-none">
+          <div className="flex-1 px-24 flex flex-col">
             <Nav />
             {children}
           </div>
@@ -53,7 +53,7 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
               <div className="space-x-16 flex items-center">
                 {navMenu.map((v) => {
                   return (
-                    <Link href={"/settings"} key={v.key}>
+                    <Link href={"settings"} key={v.key}>
                       <div className="flex items-center justify-center w-32 h-32 rounded-32 bg-FFFFFF">
                         <Image
                           src={v.path}
