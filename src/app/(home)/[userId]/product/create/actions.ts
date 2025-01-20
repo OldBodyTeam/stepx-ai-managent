@@ -1,10 +1,19 @@
 "use server";
 
-import { ProductCreateCreateRequest } from "@/services";
+import {
+  ProductCreateCreateRequest,
+  ProductUpdateCreateRequest,
+} from "@/services";
 import { tokenApi } from "@/utils/server-service";
 
 const createProductList = async (params: ProductCreateCreateRequest) => {
   return tokenApi.productCreateCreate(params).then((response) => {
+    console.log(response.data);
+    return response.data;
+  });
+};
+const updateProductList = async (params: ProductUpdateCreateRequest) => {
+  return tokenApi.productUpdateCreate(params).then((response) => {
     console.log(response.data);
     return response.data;
   });
@@ -30,4 +39,5 @@ export {
   getCategoryList,
   getColorList,
   getPaymentPlanListCreate,
+  updateProductList,
 };

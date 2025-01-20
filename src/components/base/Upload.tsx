@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import cls from "classnames";
 import { Upload as UploadArco, UploadProps } from "@arco-design/web-react";
 import Image from "next/image";
 import { UploadItem } from "@arco-design/web-react/es/Upload";
 import { Spin } from "antd";
 import { uploadFileAction } from "@/app/(home)/[userId]/settings/actions";
+import { useDebounceFn } from "ahooks";
 const Upload: FC<
   UploadProps & {
     text: string;
@@ -20,30 +21,40 @@ const Upload: FC<
     className,
     style,
     text,
-    value,
     onChange,
     showClassName,
     showErrorMessage,
     bgColor,
+    value,
     ...rest
   } = props;
   const [loading, setLoading] = useState(false);
-  const handleFileUpload = (fileList: UploadItem[], file: UploadItem) => {
-    setLoading(true);
-    uploadFileAction(file.originFile as File)
-      .then((data) => {
-        const isValid = showErrorMessage?.(data);
-        if (!isValid) {
+  const [url, setUrl] = useState<string>("");
+  const { run: handleFileUpload } = useDebounceFn(
+    (fileList: UploadItem[], file: UploadItem) => {
+      setLoading(true);
+      uploadFileAction(file.originFile as File)
+        .then((data) => {
+          const isValid = showErrorMessage?.(data);
+          if (!isValid) {
+            setLoading(false);
+            return;
+          }
+          setUrl(data?.data?.url ?? "");
+          onChange?.(data?.data?.path ?? "");
           setLoading(false);
-          return;
-        }
-        onChange?.(data?.data?.url ?? "");
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  };
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    }
+  );
+
+  useEffect(() => {
+    if (!url && value) {
+      setUrl(value);
+    }
+  }, [url, value]);
 
   return (
     <UploadArco
@@ -57,31 +68,31 @@ const Upload: FC<
         className
       )}
       style={style}
-      fileList={[]}
+      showUploadList={false}
       onChange={handleFileUpload}
       renderUploadList={() => null}
       accept=".png"
-      beforeUpload={(file) => {
-        const reader = new FileReader();
-        // reader.onload = function fileReadCompleted() {
-        //   const img = new (Image as any)(); // creates an <img> element
-        //   img.src = reader.result; // loads the data URL as the image source
-        //   img.onLoad = (e: any) => {
-        //     console.log(e.target);
-        //   };
-        // };
-        reader.readAsDataURL(file);
-        return true;
-      }}
+      // beforeUpload={(file) => {
+      //   const reader = new FileReader();
+      //   // reader.onload = function fileReadCompleted() {
+      //   //   const img = new (Image as any)(); // creates an <img> element
+      //   //   img.src = reader.result; // loads the data URL as the image source
+      //   //   img.onLoad = (e: any) => {
+      //   //     console.log(e.target);
+      //   //   };
+      //   // };
+      //   reader.readAsDataURL(file);
+      //   return true;
+      // }}
     >
       <Spin spinning={loading} className="h-full" rootClassName="h-full">
-        {value ? (
+        {url ? (
           <div
             className="!w-180 !h-full overflow-hidden rounded-12 relative"
             style={{ backgroundColor: bgColor }}
           >
             <img
-              src={value}
+              src={url}
               alt="add"
               className="object-cover w-full h-full inline-block"
             />

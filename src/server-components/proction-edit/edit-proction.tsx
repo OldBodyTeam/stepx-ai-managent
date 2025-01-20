@@ -15,9 +15,8 @@ import {
 } from "@/services";
 import ColorList from "@/components/color-list/ColorList";
 import Image from "next/image";
-import PayModal from "@/components/modal/PayModal";
 import AntdUpload from "@/components/base/AntdUpload";
-import { createProductList } from "@/app/(home)/[userId]/product/create/actions";
+import { updateProductList } from "@/app/(home)/[userId]/product/create/actions";
 import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { get } from "lodash";
 export interface ProductCreateProps {
@@ -27,7 +26,7 @@ export interface ProductCreateProps {
   editFormData?: ProductDetailCreate200ResponseData;
 }
 const ProductEdit: FC<ProductCreateProps> = (props) => {
-  const { colorList, categoryList, paymentPlanListData, editFormData } = props;
+  const { colorList, categoryList, editFormData } = props;
   const [form] = Form.useForm();
   const { contextHolder, showErrorMessage, messageApi } = useHandleResponse();
   const handleSubmit = useMemoizedFn(async (payData?: any) => {
@@ -35,7 +34,11 @@ const ProductEdit: FC<ProductCreateProps> = (props) => {
       await form.validateFields();
       const params = form.getFieldsValue();
       console.log(params, payData);
-      const data = await createProductList({ ...params, ...payData });
+      const data = await updateProductList({
+        ...editFormData,
+        ...params,
+        ...payData,
+      });
       console.log(data);
       showErrorMessage(data ?? {});
     } catch (error) {
@@ -209,10 +212,12 @@ const ProductEdit: FC<ProductCreateProps> = (props) => {
             </div>
           </div>
         </div>
-        <PayModal
-          handleSubmit={handleSubmit}
-          paymentPlanListData={paymentPlanListData}
-        />
+        <div
+          className="border-1 border-E8E8E9 py-14 flex items-center justify-center text-101010 text-xs14 font-medium rounded-48 bg-FFFFFF my-16"
+          onClick={handleSubmit}
+        >
+          Submit For Review
+        </div>
       </Form>
     </div>
   );

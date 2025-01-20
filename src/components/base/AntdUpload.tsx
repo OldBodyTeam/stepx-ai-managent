@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { FC, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import cls from "classnames";
 import { Upload as UploadArco, UploadProps } from "@arco-design/web-react";
 import Image from "next/image";
 import { UploadItem } from "@arco-design/web-react/es/Upload";
 import { Spin } from "antd";
 import { uploadNoLimitCreateAction } from "@/app/(home)/[userId]/settings/actions";
+import { useDebounceFn, useMemoizedFn } from "ahooks";
 const AntdUpload: FC<
   UploadProps & {
     text: string;
@@ -27,34 +28,47 @@ const AntdUpload: FC<
     id,
     ...rest
   } = props;
+  const [urlList, setUrlList] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(false);
-  const handleFileUpload = (fileList: UploadItem[], file: UploadItem) => {
-    setLoading(true);
-    uploadNoLimitCreateAction(file.originFile as File)
-      .then((data) => {
-        const isValid = showErrorMessage?.(data);
-        if (!isValid) {
+  const { run: handleFileUpload } = useDebounceFn(
+    (fileList: UploadItem[], file: UploadItem) => {
+      setLoading(true);
+      uploadNoLimitCreateAction(file.originFile as File)
+        .then((data) => {
+          const isValid = showErrorMessage?.(data);
+          if (!isValid) {
+            setLoading(false);
+            return;
+          }
+          setUrlList((prev) => new Set([...prev, data?.data?.url ?? ""]));
+          onChange?.(
+            Array.from(new Set([...value, data?.data?.path ?? ""])) as string[]
+          );
           setLoading(false);
-          return;
-        }
-        // setPreviewUrl((prev) => new Set([...prev, data?.data?.url ?? ""]));
-        onChange?.(
-          Array.from(new Set([...value, data?.data?.url ?? ""])) as string[]
-        );
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  };
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    }
+  );
+
+  const list = useMemo(() => {
+    return Array.from(urlList);
+  }, [urlList]);
+
+  useEffect(() => {
+    if (urlList.size === 0 && value.length !== 0) {
+      setUrlList(new Set([...value]));
+    }
+  }, [urlList.size, value]);
 
   return (
     <div
       className="w-full h-full overflow-x-auto overflow-y-hidden space-x-12 flex items-center [&_.arco-upload-list]:!hidden"
       id={id}
     >
-      {(value?.length ?? 0) > 0
-        ? value?.map((item, index) => {
+      {(list?.length ?? 0) > 0
+        ? list?.map((item, index) => {
             return (
               <div
                 className="!w-104 !h-104 min-w-104 overflow-hidden rounded-12 relative"
@@ -81,7 +95,7 @@ const AntdUpload: FC<
           className
         )}
         style={style}
-        fileList={[]}
+        showUploadList={false}
         onChange={handleFileUpload}
         renderUploadList={() => null}
         multiple

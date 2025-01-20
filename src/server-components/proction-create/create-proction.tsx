@@ -19,6 +19,7 @@ import AntdUpload from "@/components/base/AntdUpload";
 import { createProductList } from "@/app/(home)/[userId]/product/create/actions";
 import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { get } from "lodash";
+import { useRouter } from "next/navigation";
 export interface ProductCreateProps {
   colorList?: CoverColorListCreate200ResponseDataItemsInner[];
   categoryList?: CategoryListCreate200ResponseDataItemsInner[];
@@ -28,14 +29,16 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
   const { colorList, categoryList, paymentPlanListData } = props;
   const [form] = Form.useForm();
   const { contextHolder, showErrorMessage, messageApi } = useHandleResponse();
+  const router = useRouter();
   const handleSubmit = useMemoizedFn(async (payData?: any) => {
     try {
       await form.validateFields();
       const params = form.getFieldsValue();
-      console.log(params, payData);
       const data = await createProductList({ ...params, ...payData });
       console.log(data);
-      showErrorMessage(data ?? {});
+      const isVaild = showErrorMessage(data ?? {});
+      if (!isVaild) return;
+      router.push("");
     } catch (error) {
       console.log(error);
       messageApi.error(get(error, "errorFields.0.errors.0"));
@@ -56,6 +59,47 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
 
     return transformData(Array.isArray(categoryList) ? categoryList : []);
   }, [categoryList]);
+  const formatCategory = useMemo(() => {
+    const map = new Map<number, { fatherId: number }>();
+    list.forEach((item) => {
+      item.children.forEach((element: any) => {
+        map.set(element.value, { fatherId: item.value });
+      });
+    });
+    return map;
+  }, [list]);
+  const handleCategoryIds = useMemoizedFn((value: any) => {
+    // console.log([...value].map((v) => v.slice(1)).flat());
+    if (!value.some((item: any) => item instanceof Array)) {
+      return value;
+    }
+    return (value ?? ([[]] as number[][]))
+      .map((v: number[]) => v.slice(1))
+      .flat();
+  });
+  const handleFormatCategoryIds = useMemoizedFn((value: any) => {
+    const formatData = ((value || []) as number[]).reduce((initValue, item) => {
+      if (formatCategory.has(item)) {
+        const { fatherId } = formatCategory.get(item)!;
+        if (initValue.has(fatherId)) {
+          const childList = initValue.get(fatherId)!;
+          childList?.add(item);
+          initValue.set(fatherId, childList);
+        } else {
+          const childList = new Set([item]);
+          initValue.set(fatherId, childList);
+        }
+      }
+      return initValue;
+    }, new Map() as Map<number, Set<number>>);
+    const list = [] as any[][];
+    Object.entries(formatData).forEach(([key, value]) => {
+      Array.from(value).forEach((v) => {
+        list.push([key, v]);
+      });
+    });
+    return list;
+  });
   return (
     <div className="overflow-y-auto overflow-x-hidden scrollbar-none flex-1">
       {contextHolder}
@@ -81,7 +125,11 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
                 <Form.Item name="product_link" rules={[{ required: true }]}>
                   <Input placeholder="Please enter the product link" />
                 </Form.Item>
-                <Form.Item name="category_ids">
+                <Form.Item
+                  name="category_ids"
+                  normalize={handleCategoryIds}
+                  getValueProps={handleFormatCategoryIds}
+                >
                   <Cascader
                     placeholder="Please enter the product link"
                     style={{ width: "100%" }}
