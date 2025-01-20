@@ -1,5 +1,5 @@
 "use client";
-import { FC, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import ListEmpty from "../empty/ListEmpty";
 import FilterTitle from "./FilterTitle";
 import List from "./List";
@@ -7,7 +7,7 @@ import { ProductListCreate200ResponseDataItemsInner } from "@/services";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Skeleton } from "antd";
 import { unionBy } from "lodash";
-import { useRequest } from "ahooks";
+import { useMemoizedFn, useRequest } from "ahooks";
 import { getProductList } from "@/app/(home)/[userId]/product/actions";
 export interface ProductListProps {
   userId?: string;
@@ -22,7 +22,7 @@ const ProductList: FC<ProductListProps> = (props) => {
   const [limit, setLimit] = useState(page + 1);
   // const [list, setList] = useState<StatsPopularCreate200ResponseDataItemsInner[]>(
   const { run: loadMoreData, data } = useRequest(
-    () => getProductList({ page: limit, page_size: rows }),
+    (page = limit, page_size = rows) => getProductList({ page, page_size }),
     {
       manual: true,
       onSuccess: () => {
@@ -31,9 +31,15 @@ const ProductList: FC<ProductListProps> = (props) => {
       },
     }
   );
-  const listData = useMemo(() => {
-    return unionBy(list.concat(data?.items ?? []), "id");
+  const [listData, setListData] =
+    useState<ProductListCreate200ResponseDataItemsInner[]>(list);
+  useEffect(() => {
+    setListData((prev) => unionBy(prev.concat(data?.items ?? []), "id"));
   }, [data?.items, list]);
+  const refresh = useMemoizedFn(() => {
+    setListData([]);
+    loadMoreData(1, pageSize);
+  });
   return listData.length > 0 ? (
     <div className="pb-16 flex flex-col flex-1 overflow-hidden">
       <FilterTitle />
@@ -55,7 +61,7 @@ const ProductList: FC<ProductListProps> = (props) => {
             {listData.map((item) => {
               return (
                 <div key={item.id}>
-                  <List item={item} />
+                  <List item={item} refresh={refresh} />
                 </div>
               );
             })}

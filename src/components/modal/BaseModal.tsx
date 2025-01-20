@@ -8,7 +8,8 @@ export type BaseModalProps = {
   handleCancel: () => void;
 } & ModalProps;
 const BaseModal: FC<PropsWithChildren<BaseModalProps>> = (props) => {
-  const { children, isModalOpen, handleCancel, handleOk, title } = props;
+  const { children, isModalOpen, handleCancel, handleOk, title, ...reset } =
+    props;
   return (
     <Modal
       title={<div className="font-bold text-[#000000] text-xs18">{title}</div>}
@@ -35,6 +36,7 @@ const BaseModal: FC<PropsWithChildren<BaseModalProps>> = (props) => {
         </Button>,
       ]}
       centered
+      {...reset}
     >
       {children}
     </Modal>
