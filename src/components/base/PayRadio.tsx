@@ -12,36 +12,10 @@ export interface PayRadioProps {
   onChange?: (v?: number) => void;
   paymentPlanListData?: PaymentPlanListCreate200ResponseDataItemsInner[];
 }
-const opt = [
-  {
-    title: "Free",
-    pay: "$0",
-    desc: "/Forever effective",
-    list: [
-      { text: "Get 3 dofollow links to boost your SEO", selected: true },
-      { text: "Permanent link with backlink maintenance", selected: true },
-      { text: "Reviewed and listed within 48 hours", selected: true },
-      { text: "Publish your product the day you want", selected: true },
-      { text: "Backlink to our site is required", selected: false },
-      { text: "No customer support", selected: false },
-    ],
-  },
-  {
-    title: "Paid version",
-    pay: "$3.5",
-    desc: "/Forever effective",
-    list: [
-      { text: "Get >= 3 dofollow links to boost your SEO", selected: true },
-      { text: "List right now, publish whenever you want", selected: true },
-      { text: "Permanent link, no backlink required", selected: true },
-      { text: "Share through social media and newsletters", selected: true },
-      { text: "Premium customer support", selected: true },
-    ],
-  },
-];
+
 const PayRadio: FC<PayRadioProps> = (props) => {
   const { value, onChange, paymentPlanListData } = props;
-  const handleSelect = useMemoizedFn((t: number) => {
+  const handleSelect = useMemoizedFn((t?: number) => {
     onChange?.(t);
   });
   return (
