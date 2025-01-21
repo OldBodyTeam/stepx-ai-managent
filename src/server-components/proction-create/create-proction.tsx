@@ -16,10 +16,13 @@ import ColorList from "@/components/color-list/ColorList";
 import Image from "next/image";
 import PayModal from "@/components/modal/PayModal";
 import AntdUpload from "@/components/base/AntdUpload";
-import { createProductList } from "@/app/(home)/[userId]/product/create/actions";
+import {
+  createPayment,
+  createProductList,
+} from "@/app/(home)/[userId]/product/create/actions";
 import { useHandleResponse } from "@/hooks/useHandleResponse";
 import { get } from "lodash";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 export interface ProductCreateProps {
   colorList?: CoverColorListCreate200ResponseDataItemsInner[];
   categoryList?: CategoryListCreate200ResponseDataItemsInner[];
@@ -30,15 +33,22 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
   const [form] = Form.useForm();
   const { contextHolder, showErrorMessage, messageApi } = useHandleResponse();
   const router = useRouter();
+  const { userId } = useParams() || {};
   const handleSubmit = useMemoizedFn(async (payData?: any) => {
     try {
       await form.validateFields();
       const params = form.getFieldsValue();
       const data = await createProductList({ ...params, ...payData });
-      console.log(data);
       const isVaild = showErrorMessage(data ?? {});
       if (!isVaild) return;
-      router.push("");
+      const paymentData = await createPayment({
+        product_id: data.data!.id!,
+        paymentRelation_id: data.data!.paymentRelation_id!,
+        return_url: new URL(location.origin + `/${userId}/product`).toString(),
+        cancel_url: new URL(location.origin + `/${userId}/error`).toString(),
+      });
+      window.open(paymentData.data?.approval_url);
+      // router.push("");
     } catch (error) {
       console.log(error);
       messageApi.error(get(error, "errorFields.0.errors.0"));
@@ -74,7 +84,14 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
       return value;
     }
     return (value ?? ([[]] as number[][]))
-      .map((v: number[]) => v.slice(1))
+      .map((v: number[]) => {
+        const childId = [...v].slice(1);
+        if (childId.length === 0 && v.at(0)) {
+          const { children } = list.find((m) => m.value === v.at(0)) ?? {};
+          return children.map((s: any) => s.value);
+        }
+        return childId;
+      })
       .flat();
   });
   const handleFormatCategoryIds = useMemoizedFn((value: any) => {
@@ -98,7 +115,7 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
         list.push([key, v]);
       });
     });
-    return list;
+    return list as any;
   });
   return (
     <div className="overflow-y-auto overflow-x-hidden scrollbar-none flex-1">

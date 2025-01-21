@@ -1,10 +1,11 @@
 "use server";
 
 import {
+  PaypalCreatePaymentCreateRequest,
   ProductCreateCreateRequest,
   ProductUpdateCreateRequest,
 } from "@/services";
-import { tokenApi } from "@/utils/server-service";
+import { paypalApi, tokenApi } from "@/utils/server-service";
 
 const createProductList = async (params: ProductCreateCreateRequest) => {
   return tokenApi.productCreateCreate(params).then((response) => {
@@ -12,6 +13,14 @@ const createProductList = async (params: ProductCreateCreateRequest) => {
     return response.data;
   });
 };
+
+const createPayment = async (params: PaypalCreatePaymentCreateRequest) => {
+  return paypalApi.paypalCreatePaymentCreate(params).then((response) => {
+    console.log(response.data);
+    return response.data;
+  });
+};
+
 const updateProductList = async (params: ProductUpdateCreateRequest) => {
   return tokenApi.productUpdateCreate(params).then((response) => {
     console.log(response.data);
@@ -40,4 +49,5 @@ export {
   getColorList,
   getPaymentPlanListCreate,
   updateProductList,
+  createPayment,
 };

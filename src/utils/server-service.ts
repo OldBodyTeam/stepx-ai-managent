@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { Configuration, DefaultApi } from "@/services";
+import { Configuration, DefaultApi, PayPalApi } from "@/services";
 import axios from "axios";
 import { redirect } from "next/navigation";
 // import { message } from "antd";
@@ -37,4 +37,21 @@ const tokenApi = new DefaultApi(
   "http://47.251.83.181:8084",
   axiosInstance
 );
-export { tokenApi };
+const paypalApi = new PayPalApi(
+  new Configuration({
+    basePath: "http://47.251.83.181:8084",
+    apiKey: async () => {
+      if (typeof window !== "undefined") {
+        return window.localStorage.getItem("token") || "";
+      } else {
+        const cookieStore = await cookies();
+        const token = cookieStore.get("token")?.value;
+        console.log("token", token);
+        return token!;
+      }
+    },
+  }),
+  "http://47.251.83.181:8084",
+  axiosInstance
+);
+export { tokenApi, paypalApi };

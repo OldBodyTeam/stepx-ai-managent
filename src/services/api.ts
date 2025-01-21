@@ -2349,11 +2349,11 @@ export interface FrontProductDetailCreate200ResponseDataData {
      */
     'description'?: string;
     /**
-     * 关键词
-     * @type {string}
+     * 关键词列表
+     * @type {Array<string>}
      * @memberof FrontProductDetailCreate200ResponseDataData
      */
-    'focus_keyword'?: string;
+    'focus_keyword'?: Array<string>;
     /**
      * 封面颜色配置ID
      * @type {number}
@@ -2563,11 +2563,11 @@ export interface FrontProductListCreate200ResponseDataItemsInner {
      */
     'description'?: string;
     /**
-     * 关键词
-     * @type {string}
+     * 关键词列表
+     * @type {Array<string>}
      * @memberof FrontProductListCreate200ResponseDataItemsInner
      */
-    'focus_keyword'?: string;
+    'focus_keyword'?: Array<string>;
     /**
      * 封面颜色配置ID
      * @type {number}
@@ -5733,6 +5733,112 @@ export interface ProductReviewUpdateCreateRequest {
 /**
  * 
  * @export
+ * @interface ProductSelectedCategoriesCreate200Response
+ */
+export interface ProductSelectedCategoriesCreate200Response {
+    /**
+     * 状态码
+     * @type {number}
+     * @memberof ProductSelectedCategoriesCreate200Response
+     */
+    'code'?: number;
+    /**
+     * 提示信息
+     * @type {string}
+     * @memberof ProductSelectedCategoriesCreate200Response
+     */
+    'msg'?: string;
+    /**
+     * 
+     * @type {ProductSelectedCategoriesCreate200ResponseData}
+     * @memberof ProductSelectedCategoriesCreate200Response
+     */
+    'data'?: ProductSelectedCategoriesCreate200ResponseData;
+}
+/**
+ * 
+ * @export
+ * @interface ProductSelectedCategoriesCreate200ResponseData
+ */
+export interface ProductSelectedCategoriesCreate200ResponseData {
+    /**
+     * 分类列表
+     * @type {Array<ProductSelectedCategoriesCreate200ResponseDataCategoriesInner>}
+     * @memberof ProductSelectedCategoriesCreate200ResponseData
+     */
+    'categories'?: Array<ProductSelectedCategoriesCreate200ResponseDataCategoriesInner>;
+}
+/**
+ * 分类列表
+ * @export
+ * @interface ProductSelectedCategoriesCreate200ResponseDataCategoriesInner
+ */
+export interface ProductSelectedCategoriesCreate200ResponseDataCategoriesInner {
+    /**
+     * 分类ID
+     * @type {number}
+     * @memberof ProductSelectedCategoriesCreate200ResponseDataCategoriesInner
+     */
+    'id'?: number;
+    /**
+     * 分类名称
+     * @type {string}
+     * @memberof ProductSelectedCategoriesCreate200ResponseDataCategoriesInner
+     */
+    'name'?: string;
+    /**
+     * 父分类ID
+     * @type {number}
+     * @memberof ProductSelectedCategoriesCreate200ResponseDataCategoriesInner
+     */
+    'parent_id'?: number;
+    /**
+     * 是否有子分类被选中
+     * @type {boolean}
+     * @memberof ProductSelectedCategoriesCreate200ResponseDataCategoriesInner
+     */
+    'selected'?: boolean;
+    /**
+     * 子分类列表
+     * @type {Array<ProductSelectedCategoriesCreate200ResponseDataCategoriesInnerChildrenInner>}
+     * @memberof ProductSelectedCategoriesCreate200ResponseDataCategoriesInner
+     */
+    'children'?: Array<ProductSelectedCategoriesCreate200ResponseDataCategoriesInnerChildrenInner>;
+}
+/**
+ * 
+ * @export
+ * @interface ProductSelectedCategoriesCreate200ResponseDataCategoriesInnerChildrenInner
+ */
+export interface ProductSelectedCategoriesCreate200ResponseDataCategoriesInnerChildrenInner {
+    /**
+     * 分类ID
+     * @type {number}
+     * @memberof ProductSelectedCategoriesCreate200ResponseDataCategoriesInnerChildrenInner
+     */
+    'id'?: number;
+    /**
+     * 分类名称
+     * @type {string}
+     * @memberof ProductSelectedCategoriesCreate200ResponseDataCategoriesInnerChildrenInner
+     */
+    'name'?: string;
+    /**
+     * 父分类ID
+     * @type {number}
+     * @memberof ProductSelectedCategoriesCreate200ResponseDataCategoriesInnerChildrenInner
+     */
+    'parent_id'?: number;
+    /**
+     * 是否已选中
+     * @type {boolean}
+     * @memberof ProductSelectedCategoriesCreate200ResponseDataCategoriesInnerChildrenInner
+     */
+    'selected'?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface ProductUpdateCreateRequest
  */
 export interface ProductUpdateCreateRequest {
@@ -7052,40 +7158,122 @@ export interface UploadUrlCreateRequest {
 /**
  * 
  * @export
- * @interface VerificationSendCreate200Response
+ * @interface VerificationGeneralSendCreate200Response
  */
-export interface VerificationSendCreate200Response {
+export interface VerificationGeneralSendCreate200Response {
     /**
      * 状态码
      * @type {number}
-     * @memberof VerificationSendCreate200Response
+     * @memberof VerificationGeneralSendCreate200Response
      */
     'code'?: number;
     /**
      * 提示信息
      * @type {string}
-     * @memberof VerificationSendCreate200Response
+     * @memberof VerificationGeneralSendCreate200Response
      */
     'msg'?: string;
     /**
      * 
-     * @type {VerificationSendCreate200ResponseData}
-     * @memberof VerificationSendCreate200Response
+     * @type {VerificationGeneralSendCreate200ResponseData}
+     * @memberof VerificationGeneralSendCreate200Response
      */
-    'data'?: VerificationSendCreate200ResponseData;
+    'data'?: VerificationGeneralSendCreate200ResponseData;
 }
 /**
  * 
  * @export
- * @interface VerificationSendCreate200ResponseData
+ * @interface VerificationGeneralSendCreate200ResponseData
  */
-export interface VerificationSendCreate200ResponseData {
+export interface VerificationGeneralSendCreate200ResponseData {
     /**
      * 发送结果信息
      * @type {string}
-     * @memberof VerificationSendCreate200ResponseData
+     * @memberof VerificationGeneralSendCreate200ResponseData
      */
     'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface VerificationGeneralSendCreateRequest
+ */
+export interface VerificationGeneralSendCreateRequest {
+    /**
+     * 邮箱地址
+     * @type {string}
+     * @memberof VerificationGeneralSendCreateRequest
+     */
+    'email': string;
+    /**
+     * 验证码类型，可选值：email, reset_pwd, register, bind_email, change_email, login
+     * @type {string}
+     * @memberof VerificationGeneralSendCreateRequest
+     */
+    'code_type': string;
+}
+/**
+ * 
+ * @export
+ * @interface VerificationGeneralVerifyCreate200Response
+ */
+export interface VerificationGeneralVerifyCreate200Response {
+    /**
+     * 状态码
+     * @type {number}
+     * @memberof VerificationGeneralVerifyCreate200Response
+     */
+    'code'?: number;
+    /**
+     * 提示信息
+     * @type {string}
+     * @memberof VerificationGeneralVerifyCreate200Response
+     */
+    'msg'?: string;
+    /**
+     * 
+     * @type {VerificationGeneralVerifyCreate200ResponseData}
+     * @memberof VerificationGeneralVerifyCreate200Response
+     */
+    'data'?: VerificationGeneralVerifyCreate200ResponseData;
+}
+/**
+ * 
+ * @export
+ * @interface VerificationGeneralVerifyCreate200ResponseData
+ */
+export interface VerificationGeneralVerifyCreate200ResponseData {
+    /**
+     * 验证结果信息
+     * @type {string}
+     * @memberof VerificationGeneralVerifyCreate200ResponseData
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface VerificationGeneralVerifyCreateRequest
+ */
+export interface VerificationGeneralVerifyCreateRequest {
+    /**
+     * 邮箱地址
+     * @type {string}
+     * @memberof VerificationGeneralVerifyCreateRequest
+     */
+    'email': string;
+    /**
+     * 验证码
+     * @type {string}
+     * @memberof VerificationGeneralVerifyCreateRequest
+     */
+    'code': string;
+    /**
+     * 验证码类型，可选值：email, reset_pwd, register, bind_email, change_email, login
+     * @type {string}
+     * @memberof VerificationGeneralVerifyCreateRequest
+     */
+    'code_type': string;
 }
 /**
  * 
@@ -7099,44 +7287,6 @@ export interface VerificationSendCreateRequest {
      * @memberof VerificationSendCreateRequest
      */
     'email': string;
-}
-/**
- * 
- * @export
- * @interface VerificationVerifyCreate200Response
- */
-export interface VerificationVerifyCreate200Response {
-    /**
-     * 状态码
-     * @type {number}
-     * @memberof VerificationVerifyCreate200Response
-     */
-    'code'?: number;
-    /**
-     * 提示信息
-     * @type {string}
-     * @memberof VerificationVerifyCreate200Response
-     */
-    'msg'?: string;
-    /**
-     * 
-     * @type {VerificationVerifyCreate200ResponseData}
-     * @memberof VerificationVerifyCreate200Response
-     */
-    'data'?: VerificationVerifyCreate200ResponseData;
-}
-/**
- * 
- * @export
- * @interface VerificationVerifyCreate200ResponseData
- */
-export interface VerificationVerifyCreate200ResponseData {
-    /**
-     * 验证结果信息
-     * @type {string}
-     * @memberof VerificationVerifyCreate200ResponseData
-     */
-    'message'?: string;
 }
 /**
  * 
@@ -9948,6 +10098,47 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 获取产品已选择的分类信息
+         * @param {ProductClickRecordCreateRequest} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        productSelectedCategoriesCreate: async (data: ProductClickRecordCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'data' is not null or undefined
+            assertParamExists('productSelectedCategoriesCreate', 'data', data)
+            const localVarPath = `/product/selected_categories`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 更新产品信息
          * @param {ProductUpdateCreateRequest} data 
          * @param {*} [options] Override http request option.
@@ -10746,6 +10937,88 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'data' is not null or undefined
             assertParamExists('uploadUrlCreate', 'data', data)
             const localVarPath = `/upload/url`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 发送通用验证码
+         * @param {VerificationGeneralSendCreateRequest} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verificationGeneralSendCreate: async (data: VerificationGeneralSendCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'data' is not null or undefined
+            assertParamExists('verificationGeneralSendCreate', 'data', data)
+            const localVarPath = `/verification/general/send`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(data, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 验证通用验证码
+         * @param {VerificationGeneralVerifyCreateRequest} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verificationGeneralVerifyCreate: async (data: VerificationGeneralVerifyCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'data' is not null or undefined
+            assertParamExists('verificationGeneralVerifyCreate', 'data', data)
+            const localVarPath = `/verification/general/verify`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -11685,6 +11958,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * 获取产品已选择的分类信息
+         * @param {ProductClickRecordCreateRequest} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async productSelectedCategoriesCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductSelectedCategoriesCreate200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.productSelectedCategoriesCreate(data, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.productSelectedCategoriesCreate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * 更新产品信息
          * @param {ProductUpdateCreateRequest} data 
          * @param {*} [options] Override http request option.
@@ -11925,12 +12210,36 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * 发送通用验证码
+         * @param {VerificationGeneralSendCreateRequest} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async verificationGeneralSendCreate(data: VerificationGeneralSendCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VerificationGeneralSendCreate200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.verificationGeneralSendCreate(data, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.verificationGeneralSendCreate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 验证通用验证码
+         * @param {VerificationGeneralVerifyCreateRequest} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async verificationGeneralVerifyCreate(data: VerificationGeneralVerifyCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VerificationGeneralVerifyCreate200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.verificationGeneralVerifyCreate(data, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.verificationGeneralVerifyCreate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * 发送验证码
          * @param {VerificationSendCreateRequest} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async verificationSendCreate(data: VerificationSendCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VerificationSendCreate200Response>> {
+        async verificationSendCreate(data: VerificationSendCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VerificationGeneralSendCreate200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.verificationSendCreate(data, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DefaultApi.verificationSendCreate']?.[localVarOperationServerIndex]?.url;
@@ -11942,7 +12251,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async verificationVerifyCreate(data: VerificationVerifyCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VerificationVerifyCreate200Response>> {
+        async verificationVerifyCreate(data: VerificationVerifyCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VerificationGeneralVerifyCreate200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.verificationVerifyCreate(data, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DefaultApi.verificationVerifyCreate']?.[localVarOperationServerIndex]?.url;
@@ -12570,6 +12879,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.productReviewUpdateCreate(data, options).then((request) => request(axios, basePath));
         },
         /**
+         * 获取产品已选择的分类信息
+         * @param {ProductClickRecordCreateRequest} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        productSelectedCategoriesCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductSelectedCategoriesCreate200Response> {
+            return localVarFp.productSelectedCategoriesCreate(data, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 更新产品信息
          * @param {ProductUpdateCreateRequest} data 
          * @param {*} [options] Override http request option.
@@ -12750,12 +13068,30 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.uploadUrlCreate(data, options).then((request) => request(axios, basePath));
         },
         /**
+         * 发送通用验证码
+         * @param {VerificationGeneralSendCreateRequest} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verificationGeneralSendCreate(data: VerificationGeneralSendCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<VerificationGeneralSendCreate200Response> {
+            return localVarFp.verificationGeneralSendCreate(data, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 验证通用验证码
+         * @param {VerificationGeneralVerifyCreateRequest} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verificationGeneralVerifyCreate(data: VerificationGeneralVerifyCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<VerificationGeneralVerifyCreate200Response> {
+            return localVarFp.verificationGeneralVerifyCreate(data, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 发送验证码
          * @param {VerificationSendCreateRequest} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verificationSendCreate(data: VerificationSendCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<VerificationSendCreate200Response> {
+        verificationSendCreate(data: VerificationSendCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<VerificationGeneralSendCreate200Response> {
             return localVarFp.verificationSendCreate(data, options).then((request) => request(axios, basePath));
         },
         /**
@@ -12764,7 +13100,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verificationVerifyCreate(data: VerificationVerifyCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<VerificationVerifyCreate200Response> {
+        verificationVerifyCreate(data: VerificationVerifyCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<VerificationGeneralVerifyCreate200Response> {
             return localVarFp.verificationVerifyCreate(data, options).then((request) => request(axios, basePath));
         },
     };
@@ -13525,6 +13861,17 @@ export class DefaultApi extends BaseAPI {
     }
 
     /**
+     * 获取产品已选择的分类信息
+     * @param {ProductClickRecordCreateRequest} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public productSelectedCategoriesCreate(data: ProductClickRecordCreateRequest, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).productSelectedCategoriesCreate(data, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * 更新产品信息
      * @param {ProductUpdateCreateRequest} data 
      * @param {*} [options] Override http request option.
@@ -13742,6 +14089,28 @@ export class DefaultApi extends BaseAPI {
      */
     public uploadUrlCreate(data: UploadUrlCreateRequest, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).uploadUrlCreate(data, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 发送通用验证码
+     * @param {VerificationGeneralSendCreateRequest} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public verificationGeneralSendCreate(data: VerificationGeneralSendCreateRequest, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).verificationGeneralSendCreate(data, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 验证通用验证码
+     * @param {VerificationGeneralVerifyCreateRequest} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public verificationGeneralVerifyCreate(data: VerificationGeneralVerifyCreateRequest, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).verificationGeneralVerifyCreate(data, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

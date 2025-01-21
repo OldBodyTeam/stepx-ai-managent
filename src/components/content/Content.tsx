@@ -35,7 +35,7 @@ const ProductList: FC<ProductListProps> = (props) => {
     useState<ProductListCreate200ResponseDataItemsInner[]>(list);
   useEffect(() => {
     setListData((prev) => unionBy(prev.concat(data?.items ?? []), "id"));
-  }, [data?.items, list]);
+  }, [data?.items]);
   const refresh = useMemoizedFn(() => {
     setListData([]);
     loadMoreData(1, pageSize);
