@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { Configuration, DefaultApi, PayPalApi } from "@/services";
 import axios from "axios";
 import { redirect } from "next/navigation";
-// import { message } from "antd";
+import { message } from "antd";
 // import { cookies } from "next/headers";
 const axiosInstance = axios.create({
   timeout: 10000,
@@ -11,8 +11,11 @@ axiosInstance.interceptors.response.use(
   (response) => {
     if (response.data.code === 500 && response.data.msg.includes("API")) {
       console.log("service", response.data);
-      message.error(response.data.msg);
-      redirect("/login");
+      if (process.env.NODE_ENV === "development") {
+      } else {
+        message.error(response.data.msg);
+        redirect("/login");
+      }
     }
     return response;
   },
