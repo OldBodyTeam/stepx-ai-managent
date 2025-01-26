@@ -62,7 +62,7 @@ const TheTermsOfService = async () => {
               key={v.content}
               className="text-222222  text-xs14 flex items-start mb-8"
             >
-              <div className="w-8 h-8 bg-D0FF71 rounded-8 mr-2 mt-6"></div>
+              <div className="w-8 h-8 bg-D0FF71 rounded-8 mt-6 mr-6"></div>
               {v.content}
             </div>
           );
