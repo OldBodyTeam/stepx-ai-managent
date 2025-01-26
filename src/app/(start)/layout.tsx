@@ -7,7 +7,7 @@ const RegisterLayout: FC<PropsWithChildren<any>> = ({ children }) => {
       <div
         className="absolute left-0 top-0 w-373 h-370 bg-no-repeat z-0"
         style={{
-          backgroundImage: "url(/register/left-bg.png)",
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}/register/left-bg.png)`,
           backgroundSize: "100% 100%",
         }}
       ></div>
@@ -27,7 +27,7 @@ const RegisterLayout: FC<PropsWithChildren<any>> = ({ children }) => {
         <div
           className="w-540 p-48 bg-no-repeat"
           style={{
-            backgroundImage: "url(/register/bg.png)",
+            backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}/register/bg.png)`,
             backgroundSize: "100% 100%",
           }}
         >
@@ -46,7 +46,7 @@ const RegisterLayout: FC<PropsWithChildren<any>> = ({ children }) => {
           <div
             className="w-full h-120 bg-no-repeat flex flex-col p-24 justify-end"
             style={{
-              backgroundImage: "url(/register/bg-logo.png)",
+              backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}/register/bg-logo.png)`,
               backgroundSize: "100% 100%",
             }}
           >

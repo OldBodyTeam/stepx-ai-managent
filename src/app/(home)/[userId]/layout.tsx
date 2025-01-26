@@ -6,9 +6,9 @@ import RightLogo from "@/components/right-logo/RightLogo";
 import Image from "next/image";
 import Link from "next/link";
 export const navMenu = [
-  // { key: "search", path: "/search.png" },
-  // { key: "language", path: "/language.png" },
-  { key: "people", path: "/user.png" },
+  // { key: "search", path: "/search.png`} },
+  // { key: "language", path: "/language.png`} },
+  { key: "people", path: `${process.env.NEXT_PUBLIC_BASE_URL}/user.png` },
 ];
 const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
   return (
@@ -16,7 +16,7 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
       <div
         className="bg-no-repeat bg-left-top bg-[length:370px_370px] absolute top-0 right-0 w-370 h-370"
         style={{
-          backgroundImage: "url(/bg.png)",
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}/bg.png)`,
         }}
       ></div>
 

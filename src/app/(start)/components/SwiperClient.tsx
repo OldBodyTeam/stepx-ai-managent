@@ -82,7 +82,12 @@ const SwiperClient = () => {
           )}
           onClick={handlePrev}
         >
-          <Image src="/register/left.png" alt="user" width={24} height={24} />
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_URL}/register/left.png`}
+            alt="user"
+            width={24}
+            height={24}
+          />
         </div>
         <div
           className={classNames(
@@ -91,7 +96,12 @@ const SwiperClient = () => {
           )}
           onClick={handleNext}
         >
-          <Image src="/register/right.png" alt="user" width={24} height={24} />
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_URL}/register/right.png`}
+            alt="user"
+            width={24}
+            height={24}
+          />
         </div>
       </div>
     </div>

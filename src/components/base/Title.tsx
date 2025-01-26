@@ -19,7 +19,12 @@ const Title: FC<PropsWithChildren<TitleProps>> = (props) => {
       {explain ? (
         <div className="ml-6 cursor-pointer">
           <Tooltip title={explain}>
-            <Image src="/rate/hover.png" width={14} height={14} alt="logo" />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/rate/hover.png`}
+              width={14}
+              height={14}
+              alt="logo"
+            />
           </Tooltip>
         </div>
       ) : null}

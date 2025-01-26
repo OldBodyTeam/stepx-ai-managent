@@ -61,7 +61,7 @@ const CClient = () => {
             placeholder="Enter one user name"
             prefix={
               <Image
-                src="/register/user.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/register/user.png`}
                 alt="user"
                 width={16}
                 height={16}
@@ -91,7 +91,7 @@ const CClient = () => {
             placeholder="Please input a password"
             prefix={
               <Image
-                src="/register/lock.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/register/lock.png`}
                 alt="user"
                 width={16}
                 height={16}
@@ -122,7 +122,7 @@ const CClient = () => {
             placeholder="Please confirm password"
             prefix={
               <Image
-                src="/register/lock.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/register/lock.png`}
                 alt="user"
                 width={16}
                 height={16}
@@ -152,7 +152,7 @@ const CClient = () => {
             placeholder="Please enter your email address"
             prefix={
               <Image
-                src="/register/sms.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/register/sms.png`}
                 alt="user"
                 width={16}
                 height={16}

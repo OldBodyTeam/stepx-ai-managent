@@ -1,15 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath:
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_BASE_URL
-      : "",
+  basePath: process.env.NEXT_PUBLIC_BASE_URL,
   async redirects() {
     return [
       {
         source: "/",
-        destination: "/login",
+        destination: `/${process.env.NEXT_PUBLIC_BASE_URL}/login`,
         permanent: true,
       },
     ];

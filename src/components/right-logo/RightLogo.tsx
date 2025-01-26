@@ -2,7 +2,9 @@ import Image from "next/image";
 const RightLogo = () => {
   return (
     <div
-      style={{ backgroundImage: `url(/right-logo-bg.png)` }}
+      style={{
+        backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}/right-logo-bg.png)`,
+      }}
       className="w-250 p-16 bg-100% bg-no-repeat flex flex-col justify-between relative min-h-122"
     >
       <div>

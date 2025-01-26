@@ -37,7 +37,7 @@ const Login = () => {
       setUserInfo({
         [get(data, "data.user_info.id", "")]: data.data?.user_info,
       });
-      await axios.post("/api/token", { token: data.data?.api_key });
+      await axios.post("/management/api/token", { token: data.data?.api_key });
       const isValid = showErrorMessage(data as any);
       if (!isValid) {
         return;
@@ -73,7 +73,7 @@ const Login = () => {
             placeholder="Enter one user name"
             prefix={
               <Image
-                src="/register/user.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/register/user.png`}
                 alt="user"
                 width={16}
                 height={16}
@@ -103,7 +103,7 @@ const Login = () => {
             placeholder="Please input a password"
             prefix={
               <Image
-                src="/register/lock.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/register/lock.png`}
                 alt="user"
                 width={16}
                 height={16}

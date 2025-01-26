@@ -71,7 +71,7 @@ const Upload: FC<
       showUploadList={false}
       onChange={handleFileUpload}
       renderUploadList={() => null}
-      accept=".png"
+      accept=".png`}
       // beforeUpload={(file) => {
       //   const reader = new FileReader();
       //   // reader.onload = function fileReadCompleted() {

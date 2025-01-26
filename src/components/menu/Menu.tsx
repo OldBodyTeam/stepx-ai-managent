@@ -48,14 +48,14 @@ const Menu = () => {
               <div className="">
                 {isSelected ? (
                   <Image
-                    src={`/nav-${v.key}-selected.png`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_URL}/nav-${v.key}-selected.png`}
                     alt={v.key}
                     width={16}
                     height={16}
                   />
                 ) : (
                   <Image
-                    src={`/nav-${v.key}.png`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_URL}/nav-${v.key}.png`}
                     alt={v.key}
                     width={16}
                     height={16}
@@ -77,7 +77,9 @@ const Menu = () => {
 
       <div
         className="h-130 w-full relative bg-100% bg-no-repeat flex items-end p-12"
-        style={{ backgroundImage: "url(/menu-logo-bottom.png)" }}
+        style={{
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}/menu-logo-bottom.png)`,
+        }}
       >
         <div className="bg-FFFFFF w-54 h-54 rounded-54 flex items-center justify-center border-4 border-222222 absolute left-53 -top-27 hover:rotate-45 transition-all cursor-pointer !duration-300">
           <Image

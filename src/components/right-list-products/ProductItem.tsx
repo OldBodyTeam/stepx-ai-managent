@@ -31,7 +31,7 @@ const ProductItem: FC<
                 {product_name as unknown as string}
               </Typography.Title>
               <Image
-                src="/yes-yellow.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/yes-yellow.png`}
                 alt="yellow"
                 width={14}
                 height={14}
@@ -39,7 +39,12 @@ const ProductItem: FC<
               />
             </div>
             <div className="flex space-x-4 items-center">
-              <Image src="/adv/eye.png" alt="yellow" width={14} height={14} />
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/adv/eye.png`}
+                alt="yellow"
+                width={14}
+                height={14}
+              />
               <div className="text-xs12 text-222222 opacity-65">
                 {formatNumber(total_views as unknown as number)}
               </div>
@@ -48,13 +53,28 @@ const ProductItem: FC<
         </div>
         <div>
           {poi === 0 ? (
-            <Image src="/rate/one.png" alt="yellow" width={18} height={25} />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/rate/one.png`}
+              alt="yellow"
+              width={18}
+              height={25}
+            />
           ) : null}
           {poi === 1 ? (
-            <Image src="/rate/two.png" alt="yellow" width={18} height={25} />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/rate/two.png`}
+              alt="yellow"
+              width={18}
+              height={25}
+            />
           ) : null}
           {poi === 2 ? (
-            <Image src="/rate/three.png" alt="yellow" width={18} height={25} />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/rate/three.png`}
+              alt="yellow"
+              width={18}
+              height={25}
+            />
           ) : null}
           {poi > 2 ? (
             <div className="w-18 h-18 rounded-18 flex items-center justify-center border-1 border-solid bg-FAFAFB border-F0F0F0 font-medium text-6F6F6F text-9">

@@ -24,7 +24,7 @@ const List: FC<{
             <div className="text-xs16 text-222222 font-medium flex items-center">
               {item.title}
               <Image
-                src="/yes-yellow.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/yes-yellow.png`}
                 alt="yellow"
                 width={14}
                 height={14}
