@@ -48,7 +48,7 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
         cancel_url: new URL(location.origin + `/${userId}/error`).toString(),
       });
       window.open(paymentData.data?.approval_url);
-      // router.push("");
+      router.push("");
     } catch (error) {
       console.log(error);
       messageApi.error(get(error, "errorFields.0.errors.0"));

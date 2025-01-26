@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { StatsPopularCreate200ResponseDataItemsInner } from "@/services";
 import { formatNumber } from "@/utils/format";
 import { Typography } from "antd";

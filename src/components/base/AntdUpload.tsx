@@ -7,7 +7,7 @@ import Image from "next/image";
 import { UploadItem } from "@arco-design/web-react/es/Upload";
 import { Spin } from "antd";
 import { uploadNoLimitCreateAction } from "@/app/(home)/[userId]/settings/actions";
-import { useDebounceFn, useMemoizedFn } from "ahooks";
+import { useDebounceFn } from "ahooks";
 const AntdUpload: FC<
   UploadProps & {
     text: string;

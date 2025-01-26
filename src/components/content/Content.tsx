@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import ListEmpty from "../empty/ListEmpty";
 import FilterTitle from "./FilterTitle";
 import List from "./List";

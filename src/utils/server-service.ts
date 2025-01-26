@@ -11,8 +11,8 @@ axiosInstance.interceptors.response.use(
   (response) => {
     if (response.data.code === 500 && response.data.msg.includes("API")) {
       console.log("service", response.data);
-      // message.error(response.data.msg);
-      // redirect("/login");
+      message.error(response.data.msg);
+      redirect("/login");
     }
     return response;
   },
