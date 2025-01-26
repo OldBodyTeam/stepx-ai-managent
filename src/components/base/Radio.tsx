@@ -45,14 +45,14 @@ const CustomRadio: FC<CustomRadioProps> = (props) => {
     >
       {selected ? (
         <Image
-          src={"/login/radio-selected.png"}
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/login/radio-selected.png`}
           width={24}
           height={24}
           alt="radio"
         />
       ) : (
         <Image
-          src={"/login/radio-select.png"}
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/login/radio-select.png`}
           width={24}
           height={24}
           alt="radio"

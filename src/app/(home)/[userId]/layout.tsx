@@ -24,7 +24,7 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
         <div className="w-192 bg-222222 rounded-16 p-16 flex flex-col relative mb-16">
           <div className="absolute top-0 right-0 z-50">
             <Image
-              src={"/menu-top.png"}
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/menu-top.png`}
               alt="logo-menu"
               width={124}
               height={32}
@@ -35,7 +35,7 @@ const Layout: FC<PropsWithChildren<any>> = ({ children }) => {
           </div>
           <div className="mb-24">
             <Image
-              src={"/logo-menu.png"}
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/logo-menu.png`}
               alt="logo-menu"
               width={124}
               height={32}

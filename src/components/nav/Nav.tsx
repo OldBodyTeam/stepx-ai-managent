@@ -25,7 +25,12 @@ const Nav = () => {
         {pathname?.endsWith("product") ? (
           <Link href={`product/create`}>
             <div className="flex items-center justify-center pl-12 pr-16 py-8 bg-FFFFFF rounded-50 border-E8E8E9 border-1 cursor-pointer">
-              <Image src={"/add.png"} alt="add" width={16} height={16} />
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/add.png`}
+                alt="add"
+                width={16}
+                height={16}
+              />
               <ClientButton>
                 <div>New Product</div>
               </ClientButton>

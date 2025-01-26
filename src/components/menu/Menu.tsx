@@ -80,7 +80,12 @@ const Menu = () => {
         style={{ backgroundImage: "url(/menu-logo-bottom.png)" }}
       >
         <div className="bg-FFFFFF w-54 h-54 rounded-54 flex items-center justify-center border-4 border-222222 absolute left-53 -top-27 hover:rotate-45 transition-all cursor-pointer !duration-300">
-          <Image src={"/arrow-up.png"} alt="arrow" width={30} height={30} />
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_URL}/arrow-up.png`}
+            alt="arrow"
+            width={30}
+            height={30}
+          />
         </div>
         <div className="text-xs12 font-bold line-clamp-2">
           Claim your limited time discount

@@ -15,7 +15,7 @@ const RegisterLayout: FC<PropsWithChildren<any>> = ({ children }) => {
       <div className="w-[1280px] flex space-x-164 z-10">
         <div className="flex flex-col ">
           <Image
-            src={"/login/login-logo.png"}
+            src={`${process.env.NEXT_PUBLIC_BASE_URL}/login/login-logo.png`}
             alt="logo"
             width={156}
             height={40}

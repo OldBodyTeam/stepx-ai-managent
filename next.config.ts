@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: process.env.NODE_ENV ? "/management" : "",
+  basePath:
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_BASE_URL
+      : "",
   async redirects() {
     return [
       {
@@ -15,6 +18,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "http",
+        hostname: "**",
+      },
+      {
+        protocol: "https",
         hostname: "**",
       },
     ],

@@ -111,7 +111,12 @@ const AntdUpload: FC<
               showClassName
             )}
           >
-            <Image src={"/add-yellow.png"} width={24} height={24} alt="add" />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/add-yellow.png`}
+              width={24}
+              height={24}
+              alt="add"
+            />
             <div className="text-xs12 text-101010">{text}</div>
           </div>
         </Spin>

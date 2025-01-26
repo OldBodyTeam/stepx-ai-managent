@@ -75,7 +75,7 @@ const LabelProgress: FC<PropsWithChildren<LabelProgressProps>> = (props) => {
               <div className="bg-D0FF71 px-10 py-4 rounded-25 text-xs12 text-101010 font-medium flex items-center mx-2">
                 {props.value}
                 <Image
-                  src={"/rate/close.png"}
+                  src={`${process.env.NEXT_PUBLIC_BASE_URL}/rate/close.png`}
                   width={10}
                   height={10}
                   alt="close"

@@ -16,7 +16,12 @@ const ListEmpty: FC<PropsWithChildren<ListEmptyProps>> = (props) => {
       className={classNames("flex items-center flex-col", className)}
       style={style}
     >
-      <Image width={width} height={height} alt="empty" src={"/adv/empty.png"} />
+      <Image
+        width={width}
+        height={height}
+        alt="empty"
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/adv/empty.png`}
+      />
       <div className="mt-16 text-xs14 font-semibold text-161B22">
         No Products Available
       </div>

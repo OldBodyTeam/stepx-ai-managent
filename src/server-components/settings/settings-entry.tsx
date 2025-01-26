@@ -39,7 +39,7 @@ const Page = () => {
             ) : (
               <div className="w-46 h-46 rounded-46 flex items-center justify-center bg-FADB14 border-1 border-solid border-F0F0F0">
                 <Image
-                  src={"/settings/user.png"}
+                  src={`${process.env.NEXT_PUBLIC_BASE_URL}/settings/user.png`}
                   width={24}
                   height={24}
                   alt="avatar"
@@ -69,7 +69,7 @@ const Page = () => {
           >
             <div className="w-140 px-16 py-8 flex items-center bg-FFFFFF rounded-32 cursor-pointer border-1 border-E8E8E9">
               <Image
-                src={"/settings/upload.png"}
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/settings/upload.png`}
                 width={16}
                 height={16}
                 alt="avatar"
