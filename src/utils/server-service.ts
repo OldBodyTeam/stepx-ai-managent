@@ -3,7 +3,6 @@ import { Configuration, DefaultApi, PayPalApi } from "@/services";
 import axios from "axios";
 import { redirect } from "next/navigation";
 import { message } from "antd";
-import dynamic from "next/dynamic";
 // import { cookies } from "next/headers";
 const axiosInstance = axios.create({
   timeout: 10000,
