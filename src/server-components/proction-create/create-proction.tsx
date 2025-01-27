@@ -44,8 +44,14 @@ const ProductCreate: FC<ProductCreateProps> = (props) => {
       const paymentData = await createPayment({
         product_id: data.data!.id!,
         paymentRelation_id: data.data!.paymentRelation_id!,
-        return_url: new URL(location.origin + `/${userId}/product`).toString(),
-        cancel_url: new URL(location.origin + `/${userId}/error`).toString(),
+        return_url: new URL(
+          location.origin +
+            `${process.env.NEXT_PUBLIC_BASE_URL}/${userId}/product/success`
+        ).toString(),
+        cancel_url: new URL(
+          location.origin +
+            `${process.env.NEXT_PUBLIC_BASE_URL}/${userId}/product/fail`
+        ).toString(),
       });
       window.open(paymentData.data?.approval_url);
       router.push("");

@@ -1,8 +1,9 @@
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import { Configuration, DefaultApi, PayPalApi } from "@/services";
 import axios from "axios";
 import { redirect } from "next/navigation";
 import { message } from "antd";
+import dynamic from "next/dynamic";
 // import { cookies } from "next/headers";
 const axiosInstance = axios.create({
   timeout: 10000,
@@ -30,6 +31,7 @@ const tokenApi = new DefaultApi(
       if (typeof window !== "undefined") {
         return window.localStorage.getItem("token") || "";
       } else {
+        const cookies = await import("next/headers").then((mod) => mod.cookies);
         const cookieStore = await cookies();
         const token = cookieStore.get("token")?.value;
         console.log("token", token);
@@ -47,6 +49,7 @@ const paypalApi = new PayPalApi(
       if (typeof window !== "undefined") {
         return window.localStorage.getItem("token") || "";
       } else {
+        const cookies = await import("next/headers").then((mod) => mod.cookies);
         const cookieStore = await cookies();
         const token = cookieStore.get("token")?.value;
         console.log("token", token);

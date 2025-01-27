@@ -10,7 +10,6 @@ const ProductCreateEntry = async () => {
   const { data } = await getColorList();
   const { data: categoryListData } = await getCategoryList();
   const { data: paymentPlanListData } = await getPaymentPlanListCreate();
-  console.log("********", data);
   return (
     <Suspense fallback="loading">
       <ProductCreate

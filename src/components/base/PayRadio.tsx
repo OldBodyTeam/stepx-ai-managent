@@ -47,7 +47,9 @@ const PayRadio: FC<PayRadioProps> = (props) => {
                 return (
                   <div key={l.test} className="flex items-start">
                     <Image
-                      src={`/rate/${l.selected ? "right" : "error"}.png`}
+                      src={`${process.env.NEXT_PUBLIC_BASE_URL}/rate/${
+                        l.selected ? "right" : "error"
+                      }.png`}
                       width={14}
                       height={14}
                       alt="tips"
