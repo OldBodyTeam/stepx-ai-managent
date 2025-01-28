@@ -4,10 +4,24 @@ import ClientButton from "../client-button/ClientButton";
 import { useAtomValue } from "jotai";
 import { menuAtom } from "@/hooks/menu";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSelectedLayoutSegments } from "next/navigation";
+import { useMemo } from "react";
 const Nav = () => {
   const navInfo = useAtomValue(menuAtom);
   const pathname = usePathname();
+  const selectedLayoutSegments = useSelectedLayoutSegments();
+  const [path, activePath] = useMemo(() => {
+    if (!selectedLayoutSegments || selectedLayoutSegments.length < 1) {
+      return [];
+    }
+    if (selectedLayoutSegments?.length === 1) {
+      return [, selectedLayoutSegments];
+    }
+    return [
+      [...(selectedLayoutSegments || []).slice(0, -1)].join(" / "),
+      selectedLayoutSegments[selectedLayoutSegments.length - 1],
+    ];
+  }, [selectedLayoutSegments]);
   return (
     <div className="flex items-center pt-15 mb-24 ">
       <div className="flex-1 justify-between items-center flex">
@@ -16,10 +30,12 @@ const Nav = () => {
             {navInfo?.name}
           </div>
           <div className="flex items-center text-o16 text-12 leading-18">
-            Home /
-            <div className="text-101010 text-12 leading-18 ml-4">
-              {navInfo?.name}
-            </div>
+            home {path ? `/ ${path}` : ""}
+            {activePath ? (
+              <div className="text-101010 text-12 leading-18 ml-4">
+                / {activePath}
+              </div>
+            ) : null}
           </div>
         </div>
         {pathname?.endsWith("product") ? (

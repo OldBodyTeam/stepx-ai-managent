@@ -98,7 +98,7 @@ const Page = () => {
                 <div className="flex items-center justify-between mb-16 cursor-pointer">
                   <div className="flex items-center space-x-12">
                     <Image
-                      src={`/settings/${item.icon}.png`}
+                      src={`${process.env.NEXT_PUBLIC_BASE_URL}/settings/${item.icon}.png`}
                       width={16}
                       height={16}
                       alt="avatar"
@@ -111,7 +111,7 @@ const Page = () => {
                   </div>
                   <div className="text-16">
                     <Image
-                      src={`/settings/arrow.png`}
+                      src={`${process.env.NEXT_PUBLIC_BASE_URL}/settings/arrow.png`}
                       width={16}
                       height={16}
                       alt="avatar"

@@ -3,9 +3,13 @@ import { FC, useEffect, useState } from "react";
 import ListEmpty from "../empty/ListEmpty";
 import FilterTitle from "./FilterTitle";
 import List from "./List";
-import { ProductListCreate200ResponseDataItemsInner } from "@/services";
+import {
+  ProductListCreate200ResponseDataItemsInner,
+  ProductListCreateRequestSortFieldEnum,
+  ProductListCreateRequestSortOrderEnum,
+} from "@/services";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Skeleton } from "antd";
+import { Skeleton, Spin } from "antd";
 import { unionBy } from "lodash";
 import { useMemoizedFn, useRequest } from "ahooks";
 import { getProductList } from "@/app/(home)/[userId]/product/actions";
@@ -21,8 +25,17 @@ const ProductList: FC<ProductListProps> = (props) => {
   const [rows, setRows] = useState(pageSize);
   const [limit, setLimit] = useState(page + 1);
   // const [list, setList] = useState<StatsPopularCreate200ResponseDataItemsInner[]>(
-  const { run: loadMoreData, data } = useRequest(
-    (page = limit, page_size = rows) => getProductList({ page, page_size }),
+  const {
+    run: loadMoreData,
+    data,
+    loading,
+  } = useRequest(
+    (
+      page = limit,
+      page_size = rows,
+      sort_field?: ProductListCreateRequestSortFieldEnum,
+      sort_order?: ProductListCreateRequestSortOrderEnum
+    ) => getProductList({ page, page_size, sort_field, sort_order }),
     {
       manual: true,
       onSuccess: () => {
@@ -40,38 +53,59 @@ const ProductList: FC<ProductListProps> = (props) => {
     setListData([]);
     loadMoreData(1, pageSize);
   });
-  return listData.length > 0 ? (
+  const handleUserFilter = useMemoizedFn(
+    (
+      sort_field: ProductListCreateRequestSortFieldEnum,
+      sort_order: ProductListCreateRequestSortOrderEnum
+    ) => {
+      setListData([]);
+      setLimit(1);
+      setTimeout(() => {
+        loadMoreData(1, pageSize, sort_field, sort_order);
+      }, 10);
+    }
+  );
+  return (
     <div className="pb-16 flex flex-col flex-1 overflow-hidden">
-      <FilterTitle />
-      <div
-        id="scrollableDiv"
-        className="overflow-y-auto overflow-x-hidden scrollbar-none flex-1"
-      >
-        <InfiniteScroll
-          dataLength={listData.length}
-          hasMore={data?.has_more ?? hasMore}
-          scrollableTarget="scrollableDiv"
-          next={loadMoreData}
-          loader={
-            <Skeleton avatar paragraph={{ rows: 1 }} active className="mt-16" />
-          }
-          endMessage={<></>}
-        >
-          <div className="grid desktop12:grid-cols-2 desktop14:grid-cols-3 desktop19:grid-cols-4 gap-16">
-            {listData.map((item) => {
-              return (
-                <div key={item.id}>
-                  <List item={item} refresh={refresh} />
-                </div>
-              );
-            })}
+      <FilterTitle onChange={handleUserFilter} />
+      <Spin spinning={loading}>
+        {listData.length > 0 ? (
+          <div
+            id="scrollableDiv"
+            className="overflow-y-auto overflow-x-hidden scrollbar-none flex-1"
+          >
+            <InfiniteScroll
+              dataLength={listData.length}
+              hasMore={data?.has_more ?? hasMore}
+              scrollableTarget="scrollableDiv"
+              next={loadMoreData}
+              loader={
+                <Skeleton
+                  avatar
+                  paragraph={{ rows: 1 }}
+                  active
+                  className="mt-16"
+                />
+              }
+              endMessage={<></>}
+            >
+              <div className="grid desktop12:grid-cols-2 desktop14:grid-cols-3 desktop19:grid-cols-4 gap-16">
+                {listData.map((item) => {
+                  return (
+                    <div key={item.id}>
+                      <List item={item} refresh={refresh} />
+                    </div>
+                  );
+                })}
+              </div>
+            </InfiniteScroll>
           </div>
-        </InfiniteScroll>
-      </div>
-    </div>
-  ) : (
-    <div className="flex justify-center items-center w-full h-full flex-1">
-      <ListEmpty userId={userId} />
+        ) : (
+          <div className="flex justify-center items-center w-full h-full flex-1">
+            <ListEmpty userId={userId} />
+          </div>
+        )}
+      </Spin>
     </div>
   );
 };

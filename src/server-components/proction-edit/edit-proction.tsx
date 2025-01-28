@@ -33,7 +33,7 @@ const ProductEdit: FC<ProductCreateProps> = (props) => {
     try {
       await form.validateFields();
       const params = form.getFieldsValue();
-      console.log(params, payData);
+      console.log(params, payData, editFormData);
       const data = await updateProductList({
         ...editFormData,
         ...params,

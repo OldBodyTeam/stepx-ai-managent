@@ -1,7 +1,7 @@
 "use client";
-import { useMemoizedFn, useMount } from "ahooks";
+import { useMemoizedFn } from "ahooks";
 import classNames from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useSetAtom } from "jotai";
@@ -25,11 +25,11 @@ const Menu = () => {
     setMenuAtom(menuData.find((v) => v.key === key));
   });
   const pathname = usePathname();
-  useMount(() => {
+  useEffect(() => {
     const key = menuData.find((v) => pathname?.includes(v.key))?.key;
     setSelectedMenu(key);
     setMenuAtom(menuData.find((v) => v.key === key));
-  });
+  }, [pathname, setMenuAtom]);
 
   return (
     <div className="flex flex-col justify-between flex-1">
